@@ -3,7 +3,7 @@ package seedu.address;
 import javafx.application.Application;
 
 /**
- * The main entry point to the application.
+ * The main entry point to the application. 
  *
  * This is a workaround for the following error when MainApp is made the
  * entry point of the application:
@@ -20,6 +20,6 @@ import javafx.application.Application;
  */
 public class Main {
     public static void main(String[] args) {
-        Application.launch(MainApp.class, args);
+        Application.launch(seedu.address.MainApp.class, args);
     }
 }
