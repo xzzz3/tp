@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Xing Zheng
 
-<img src="docs/images/xzzz3.png" width="200px">
+<img src="images/xzzz3.png" width="200px">
 
 [[github](http://github.com/xzzz3)]
 [[portfolio](team/xzzz3.md)]
