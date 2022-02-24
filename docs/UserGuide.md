@@ -2,7 +2,10 @@
 layout: page
 title: User Guide
 ---
+
 FoodOnWheels (FOW) is a **desktop app for managing delivery orders, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FOW can get your order management tasks done faster than traditional GUI apps.
+
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 * Table of Contents
 {:toc}
@@ -13,31 +16,39 @@ FoodOnWheels (FOW) is a **desktop app for managing delivery orders, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `foodonwheels.jar` from [here](https://github.com/AY2122S2-CS2103-F10-2/tp) (to be updated).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your FoodOnWheels.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/Ui.png) (to be updated)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`add dish`**`n/Crab Pasta` : Adds a dish named `Crab Pasta` to the restaurant's menu.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`delete dish`**`n/Crab Pasta` : Deletes a dish named `Crab Pasta` to the restaurant's menu.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`listorders`** : Lists all the current orders in the system. 
 
-   * **`clear`** : Deletes all contacts.
+   * **`listordersprev`** : Lists all the previous orders in the system.
+
+   (to be updated)
+   * **`delete`** : Deletes all contacts.
 
    * **`exit`** : Exits the app.
+
+   * **`add`** : Lists all contacts.
+
+   * **`delete`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+
 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Features 
 
 <div markdown="block" class="alert alert-info">
 
@@ -63,6 +74,38 @@ FoodOnWheels (FOW) is a **desktop app for managing delivery orders, optimized fo
 
 </div>
 
+### Adding a dish: `add dish`
+
+Adds a dish to the restaurant’s menu.
+
+Format: `add dish n/{name}`
+
+Examples:
+* `add dish n/Crab Pasta`
+* `add dish n/Kimchi Fried Rice`
+
+### Deleting a dish: `delete dish`
+
+Deletes a dish from the restaurant’s menu.
+
+Format: `delete dish n/{name}`
+
+Examples:
+* `delete dish n/Crab Pasta`
+* `delete dish n/Kimchi Fried Rice`
+
+
+
+
+
+### List previous orders: `listordersprev`
+
+Lists all the previous orders in the system
+
+Format: `listordersprev`
+
+
+(to be updated)
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -70,7 +113,6 @@ Shows a message explaning how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
 
 ### Adding a person: `add`
 
@@ -125,13 +167,17 @@ Exits the program.
 
 Format: `exit`
 
+
+
+
+
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+FoodOnWheels data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+FoodOnWheels data are saved as a JSON file `[JAR file location]/data/addressbook.json` (to be updated). Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
@@ -146,18 +192,29 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FoodOnWheels home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+(to be updated)
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+Action | Feature type | Format, Examples
+--------|--------------|------------------
+**Add** | **Dish**     | `add dish n/NAME` <br> e.g., `add dish n/Crab Pasta`
+**Delete** | **Dish**     | `delete dish n/NAME` <br> e.g., `delete dish n/Crab Pasta`
+**List (previous orders)** | **Order**    | `listordersprev`
+
+[//]: # (**Add** |              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`)
+
+[//]: # (**Clear** |              | `clear`                                                                                                                     )
+
+[//]: # (**Delete** |              | `delete INDEX`<br> e.g., `delete 3`                                                                                         )
+
+[//]: # (**Edit** |              | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` )
+
+[//]: # (**Find** |              | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                  )
+
+[//]: # (**List** |              | `list`                                                                                                                      )
+
+[//]: # (**Help** |              | `help`                                                                                                                      )
