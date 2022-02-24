@@ -9,9 +9,9 @@ FoodOnWheels is a desktop application used to delivery orders for a restaurant b
 
 Given below are my contributions to the project.
 
-* **New Feature**: TBC
+* **New Feature**: to be added soon
   
-* **Documentation**: TBC
+* **Documentation**: to be added soon
 
 
 
