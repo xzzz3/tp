@@ -21,7 +21,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 3. Copy the file to the folder you want to use as the _home folder_ for your FoodOnWheels.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png) (to be updated)
+   <img src="images/FoodOnWheels.png" width=65% height=65%>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -73,6 +73,33 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+
+## Customer features
+
+### Adding a customer: `add`
+
+Adds a customer to the addressbook.
+
+Format: `add n/{name} a/{address} p/{phone}`
+
+Examples:
+* `add n/John Doe a/John street, block 123, #01-01 p/98765432`
+* `add n/Betsy Crowe a/Newgate Prison p/1234567`
+
+### Deleting a customer: `delete`
+
+Deletes a customer from the addressbook.
+
+Format: `delete n/{name} a/{address} p/{phone}`
+
+Examples:
+* `delete n/John Doe a/John street, block 123, #01-01 p/98765432`
+* `delete n/Betsy Crowe a/Newgate Prison p/1234567`
+
+
+
+
+## Dish features
 
 ### Adding a dish: `add dish`
 
@@ -159,7 +186,17 @@ Format: `find /p {phone}`
 Examples:
 * `find /p 81234567`
 
+### List current orders: `list`
 
+Lists all the current orders in the system
+
+Format: `listorders`
+
+### List previous orders: `listordersprev`
+
+Lists all the previous orders in the system
+
+Format: `listordersprev`
 
 ### Exiting the program : `exit`
 
@@ -201,8 +238,11 @@ _Details coming soon ..._
 
 Action | Feature type | Format, Examples
 --------|--------------|------------------
+**Add** |**Customer**  |`add n/{name} a/{address} p/{phone}` <br> e.g,`add n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
+**Delete** |**Customer**  |`delete n/{name} a/{address} p/{phone}` <br> e.g,`delete n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
 **Add** | **Dish**     | `add dish n/NAME` <br> e.g., `add dish n/Crab Pasta`
 **Delete** | **Dish**     | `delete dish n/NAME` <br> e.g., `delete dish n/Crab Pasta`
+**List (current orders)** | **Order**     | `listorders`
 **List (previous orders)** | **Order**    | `listordersprev`
 
 [//]: # (**Add** |              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`)
