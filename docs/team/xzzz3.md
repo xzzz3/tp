@@ -11,15 +11,29 @@ Given below are my contributions to the project.
 
 * **New Feature**: 
   
-* **Code contributed**: [RepoSense link]()
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=xzzz3&breakdown=true)
+
 
 * **Project management**:
+  * Setting up GitHub team organization and managing the Repository
+  * Maintaining issue trackers and milestones
+  * Release Management  
+    
 
 * **Enhancements to existing features**:
   
+
 * **Documentation**:
+  * User Guide:
+      * Documentation on Order-related Features
+    
+  * Developer Guide:
+
 
 * **Community**:
   
+
 * **Tools**:
+
 
