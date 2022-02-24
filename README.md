@@ -1,6 +1,6 @@
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
 
-![Ui](docs/images/Ui.png)
+<img src="docs/images/FoodOnWheels.png" width=65% height=65%>
 
 * This is **a project for Food Delivery Managers**.<br>
   Example usages:
