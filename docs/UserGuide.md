@@ -197,6 +197,37 @@ Format: `listorders`
 Lists all the previous orders in the system
 
 Format: `listordersprev`
+=======
+
+### Adding a new Delivery Order: `add order`
+
+Adds a new delivery order to the list of orders.
+
+Format: `add order /p {phone} /d {dishes separated by comma}`
+
+Examples:
+* `add order /p 81234567 /d {Fried Rice, Pasta}`
+* `add order /p 81234567 /d {Pasta}`
+
+### Edit the status of a Delivery Order: `mark`
+
+Edit the status of a delivery order in the list using its index.
+
+Format: `mark {index} {string for the status}`
+
+Examples:
+* `mark 1 done`
+* `mark 3 cancelled`
+
+### Search for an Order by Phone Number: `find order`
+
+Search for an order with the phone number provided in the list of orders.
+
+Format: `find /p {phone}`
+
+Examples:
+* `find /p 81234567`
+
 
 ### Exiting the program : `exit`
 
