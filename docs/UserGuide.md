@@ -96,8 +96,33 @@ Examples:
 * `delete n/John Doe a/John street, block 123, #01-01 p/98765432`
 * `delete n/Betsy Crowe a/Newgate Prison p/1234567`
 
+## Driver features
 
+### Adding a driver: `add driver`
 
+Adds a driver to the database.
+
+Format: ` add driver n/{name} p/{phone}`
+
+Examples:
+* `add driver n/John Doe p/98765432 `
+* `add driver n/Betsy Crowe p/1234567 `
+
+### Deleting a driver: `delete driver`
+
+Deletes a driver from the database, together with his/her information.
+
+Format: `delete driver n/{name} p/{phone}`
+
+Examples:
+* `delete driver n/John Doe p/98765432`
+* `delete driver n/Betsy Crowe p/1234567`
+
+### List free drivers: `list driver free`
+
+Lists free drivers who are not delivering any order and can receive new orders.
+
+Format: `list driver free`
 
 ## Dish features
 
@@ -269,11 +294,14 @@ _Details coming soon ..._
 
 Action | Feature type | Format, Examples
 --------|--------------|------------------
-**Add** |**Customer**  |`add n/{name} a/{address} p/{phone}` <br> e.g,`add n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
-**Delete** |**Customer**  |`delete n/{name} a/{address} p/{phone}` <br> e.g,`delete n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
+**Add** | **Customer** |`add n/{name} a/{address} p/{phone}` <br> e.g,`add n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
+**Delete** | **Customer** |`delete n/{name} a/{address} p/{phone}` <br> e.g,`delete n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
+**Add** | **Driver**   |`add driver n/{name} p/{phone}` <br> e.g,`add driver n/John Doe p/98765432`
+**Delete** | **Driver**   |`delete driver n/{name} p/{phone}` <br> e.g,`delete driver n/John Doe p/98765432`
+**List** | **Driver**   |`list driver free` 
 **Add** | **Dish**     | `add dish n/NAME` <br> e.g., `add dish n/Crab Pasta`
 **Delete** | **Dish**     | `delete dish n/NAME` <br> e.g., `delete dish n/Crab Pasta`
-**List (current orders)** | **Order**     | `listorders`
+**List (current orders)** | **Order**    | `listorders`
 **List (previous orders)** | **Order**    | `listordersprev`
 
 [//]: # (**Add** |              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`)
