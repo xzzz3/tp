@@ -270,33 +270,43 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                            | view all the possible commands | easily refer to the commands without needing to remember them          |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* * *`  | experienced user                           | view a list of previous delivery orders          | review the previous transactions' details in case they're needed (e.g. if the driver accidentally clicks delivered and the task disappears) |
-| `* * *`  | experienced user                        | view a list of current delivery orders       | know the details of the delivery orders and respond to them. |
-| `* * *`  | basic user                                       | view a list of free drivers         | assign them to delivery orders 
-| `* *`    | experienced user                                       | view my profit for the day  | report to the accountant of the company or show my managers the earnings of the delivery orders.               |
-| `* *`    | experienced user                                       | undo a previous action   | deal with mistakes when keying in   
-| `* *`    | experienced user                                       | view the delivery orders of a single restaurant (of the chain)   | have a better idea of which ones are more popular at the current time              |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `* *`    | potential user                             | view the app with dummy data filled in       | assess the suitability of the app for my needs           |
-| `* *`    | user ready to use the app                  | purge dummy data from the app  | begin to use the app                                                   |
-| `* *`    | user who uses hardcopy tracking            | annotate delivery orders       | follow the conventions previously set in the restaurant                |
-| `* *`    | first time user                            | view a step-by-step tutorial   | pick up the knowledge necessary for me to operate the application      |
-| `* *`    | returning user                             | rewatch the tutorial           | refresh my memory on how to use the application                        |
-| `*`      | first time user                            | use the application through a clean and easy interface| not be overwhelmed by the application           |
-| `*`    | experienced user                                       | use shortcuts instead of the normal commands to add order or assign driver   | save time      |
-| `*`    | experienced user                                       | view a summary of the past month's order (e.g. most popular delivery region, most popular dishes)   | better plan the future deliveries and report the findings to my managers      |
-| `*`    | experienced user                                       | remove (at least visually) the functions that are cluttering the interface but not frequently used   | easily navigate the app interface      |
-| `*`      | forgetful user                             | retrieve password              | recover my account when I forget my password                           |
-| `*`      | impatient user                             | navigate functionalities from a single page  | easily access the different functionalities directly     |
-| `*`      | user who uses other management tools       | migrate into the platform without major restructuring | transition from one app to another              |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                 | I want to …​                                                                                       | So that I can…​                                                     |
+| -------- | ------------------------------------------ |----------------------------------------------------------------------------------------------------| ---------------------------------------------------------------------- |
+| `* * *`  | new user                            | view all the possible commands                                                                     | easily refer to the commands without needing to remember them          |
+| `* * *`  | new user                                   | see usage instructions                                                                             | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new person                                                                                   |                                                                        |
+| `* * *`  | user                                       | delete a person                                                                                    | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a person by name                                                                              | locate details of persons without having to go through the entire list |
+| `* * *`  | experienced user                           | view a list of previous delivery orders                                                            | review the previous transactions' details in case they're needed (e.g. if the driver accidentally clicks delivered and the task disappears) |
+| `* * *`  | experienced user                        | view a list of current delivery orders                                                             | know the details of the delivery orders and respond to them. |
+| `* * *`  | basic user                                       | view a list of free drivers                                                                        | assign them to delivery orders
+| `* * *`  | basic user                                       | View the detail of a driver (e.g. number, car plate number, current order)                         | I can contact the drivers in case of emergency
+| `* * *`  | basic user                                       | add information of a driver                                                                        |
+| `* * *`  | basic user                                       | delete information of a driver                                                                     |
+| `* * *`  | basic user                                       | edit information of a driver                                                                       | I can have a new driver in the database
+| `* * *`  | basic user                                       | add information of a repeat customer                                                               |
+| `* * *`  | basic user                                       | delete information of a repeat customer                                                            |
+| `* * *`  | basic user                                       | edit information of a repeat customer                                                              |I can make the new order faster and update the customer information
+| `* * *`  | basic user                                       | automatically detect when a repeat customer registers                                                              |I can reduce duplicates in the system
+| `* * *`  | basic user                                       | add a new delivery order                                                              | I can store the information of food, customer and driver.
+| `* * *`  | basic user                                       | edit the status of the order (done/ not done, customer not respond, ...)                                                              | I can keep track of the order status.
+| `* *`    | experienced user                                       | view my profit for the day                                                                         | report to the accountant of the company or show my managers the earnings of the delivery orders.               |
+| `* *`    | experienced user                                       | undo a previous action                                                                             | deal with mistakes when keying in   
+| `* *`    | experienced user                                       | view the delivery orders of a single restaurant (of the chain)                                     | have a better idea of which ones are more popular at the current time              |
+| `* *`    | user                                       | hide private contact details                                                                       | minimize chance of someone else seeing them by accident                |
+| `* *`    | potential user                             | view the app with dummy data filled in                                                             | assess the suitability of the app for my needs           |
+| `* *`    | user ready to use the app                  | purge dummy data from the app                                                                      | begin to use the app                                                   |
+| `* *`    | user who uses hardcopy tracking            | annotate delivery orders                                                                           | follow the conventions previously set in the restaurant                |
+| `* *`    | first time user                            | view a step-by-step tutorial                                                                       | pick up the knowledge necessary for me to operate the application      |
+| `* *`    | returning user                             | rewatch the tutorial                                                                               | refresh my memory on how to use the application                        |
+| `*`      | first time user                            | use the application through a clean and easy interface                                             | not be overwhelmed by the application           |
+| `*`    | experienced user                                       | use shortcuts instead of the normal commands to add order or assign driver                         | save time      |
+| `*`    | experienced user                                       | view a summary of the past month's order (e.g. most popular delivery region, most popular dishes)  | better plan the future deliveries and report the findings to my managers      |
+| `*`    | experienced user                                       | remove (at least visually) the functions that are cluttering the interface but not frequently used | easily navigate the app interface      |
+| `*`      | forgetful user                             | retrieve password                                                                                  | recover my account when I forget my password                           |
+| `*`      | impatient user                             | navigate functionalities from a single page                                                        | easily access the different functionalities directly     |
+| `*`      | user who uses other management tools       | migrate into the platform without major restructuring                                              | transition from one app to another              |
+| `*`      | user with many persons in the address book | sort persons by name                                                                               | locate a person easily                                                 |
 
 *{More to be added}*
 
