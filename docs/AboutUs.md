@@ -12,9 +12,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jaegar Poon Yu Yao
 
-<img src="images/jaegar.png" width="200px">
+<img src="images/jaegarpoon.png" width="200px">
 
-[[github](https://github.com/jaegarpoon)] [[portfolio](team/jaegar.md)]
+[[github](https://github.com/jaegarpoon)] [[portfolio](team/jaegarpoon.md)]
 
 * Role: 
 * Responsibilities: 
