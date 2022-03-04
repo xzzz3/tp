@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/jaegar.png" width="200px">
 
-[[github](https://github.com/jaegarpoon)] [[portfolio](team/jaegar.md)]
+[[github](https://github.com/jaegarpoon)] [[portfolio](team/jaegarpoon.md)]
 
 * Role: 
 * Responsibilities: 
