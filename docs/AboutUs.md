@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Goh Zi Xuan
 
-<img src="images/zxgoh.jpg" width="200px">
+<img src="images/zxgoh.png" width="200px">
 
 [[github](https://github.com/zxgoh)] [[portfolio](team/zxgoh.md)]
 
