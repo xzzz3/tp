@@ -12,16 +12,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jaegar Poon Yu Yao
 
-<img src="images/jaegar.png" width="200px">
+<img src="images/jaegarpoon.png" width="200px">
 
-[[github](https://github.com/jaegarpoon)] [[portfolio](team/jaegar.md)]
+[[github](https://github.com/jaegarpoon)] [[portfolio](team/jaegarpoon.md)]
 
 * Role: 
 * Responsibilities: 
 
 ### Goh Zi Xuan
 
-<img src="images/imgonline-com-ua-CompressToSize-nS0ZveGx2UYm9A.jpg" width="200px">
+<img src="images/zxgoh.png" width="200px">
 
 [[github](https://github.com/zxgoh)] [[portfolio](team/zxgoh.md)]
 
@@ -30,10 +30,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Nguyen Minh Hieu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hieunm1821.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/hieunm1821)]
+[[portfolio](team/hieunm1821.md)]
 
 * Role: 
 * Responsibilities: 

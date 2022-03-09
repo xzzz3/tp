@@ -1,4 +1,4 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2122S2-CS2103-F10-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2122S2-CS2103-F10-2/tp/actions)
 
 <img src="docs/images/FoodOnWheels.png" width=65% height=65%>
 
@@ -12,3 +12,4 @@
 * It is named `FoodOnWheels` (`FOW` for short) because it is made for the management of food deliveries.
 * For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
 * This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+
