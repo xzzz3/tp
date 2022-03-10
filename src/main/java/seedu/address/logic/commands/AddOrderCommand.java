@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
-import seedu.address.model.person.Phone;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;

@@ -63,6 +63,9 @@ public class AddressBookParser {
         case AddOrderCommand.COMMAND_WORD:
             return new AddOrderCommandParser().parse(arguments);
 
+        case EditOrderStatusCommand.COMMAND_WORD:
+            return new EditOrderStatusCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

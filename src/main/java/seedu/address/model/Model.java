@@ -90,4 +90,12 @@ public interface Model {
      * Adds the given order.
      */
     void addOrder(Order order);
+
+    /** Returns an unmodifiable view of the filtered Order list */
+    ObservableList<Order> getFilteredOrderList();
+
+    /**
+     * Returns true if an order with the same identity as {@code order} exists in the address book.
+     */
+    boolean hasOrder(Order order);
 }

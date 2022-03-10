@@ -129,4 +129,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         orders.add(order);
     }
 
+    @Override
+    public ObservableList<Order> getOrderList() {
+        return orders.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Returns true if an order with the same identity as {@code order} exists in the address book.
+     */
+    public boolean hasOrder(Order order) {
+        requireNonNull(order);
+        return orders.contains(order);
+    }
 }

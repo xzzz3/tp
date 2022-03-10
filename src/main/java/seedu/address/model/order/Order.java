@@ -106,4 +106,18 @@ public class Order {
 
         return builder.toString();
     }
+
+    public Order updateStatus(String status) {
+        if (status.equals("created")) {
+            this.status = OrderStatus.CREATED;
+        } else if (status.equals("in progress")) {
+            this.status = OrderStatus.IN_PROGRESS;
+        } else if (status.equals("delivered")) {
+            this.status = OrderStatus.DELIVERED;
+        } else if (status.equals("cancelled")) {
+            this.status = OrderStatus.CANCELLED;
+        }
+        // todo implement exception for invalid status
+        return this;
+    }
 }
