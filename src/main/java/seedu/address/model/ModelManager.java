@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.driver.Driver;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Driver> filteredDrivers;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredDrivers = new FilteredList<>(this.addressBook.getDriverList());
     }
 
     public ModelManager() {
@@ -94,6 +97,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasDriver(Driver driver) {
+        requireNonNull(driver);
+        return addressBook.hasDriver(driver);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -102,6 +111,12 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addDriver(Driver driver) {
+        addressBook.addDriver(driver);
+        updateFilteredDriverList(PREDICATE_SHOW_ALL_DRIVERS);
     }
 
     @Override
@@ -123,9 +138,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Driver> getFilteredDriverList() {
+        return filteredDrivers;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredDriverList(Predicate<Driver> predicate) {
+        requireNonNull(predicate);
+        filteredDrivers.setPredicate(predicate);
     }
 
     @Override

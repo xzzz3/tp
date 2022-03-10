@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.driver.Driver;
+import seedu.address.model.driver.UniqueDriverList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -25,6 +27,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+    }
+
+    private final UniqueDriverList drivers;
+    {
+        drivers = new UniqueDriverList();
     }
 
     public AddressBook() {}
@@ -66,12 +73,20 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.contains(person);
     }
 
+    public boolean hasDriver(Driver driver) {
+        requireNonNull(driver);
+        return drivers.contains(driver);
+    }
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
         persons.add(p);
+    }
+
+    public void addDriver(Driver d) {
+        drivers.add(d);
     }
 
     /**
@@ -104,6 +119,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Driver> getDriverList() {
+        return drivers.asUnmodifiableObservableList();
     }
 
     @Override

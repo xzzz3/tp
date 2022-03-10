@@ -9,6 +9,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.driver.NameDriver;
+import seedu.address.model.driver.PhoneDriver;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -49,7 +51,14 @@ public class ParserUtil {
         }
         return new Name(trimmedName);
     }
-
+    public static NameDriver parseNameDriver(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!NameDriver.isValidName(trimmedName)) {
+            throw new ParseException(NameDriver.MESSAGE_CONSTRAINTS);
+        }
+        return new NameDriver(trimmedName);
+    }
     /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
@@ -63,6 +72,15 @@ public class ParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
+    }
+
+    public static PhoneDriver parsePhoneDriver(String phone) throws ParseException {
+        requireNonNull(phone);
+        String trimmedPhone = phone.trim();
+        if (!PhoneDriver.isValidPhone(trimmedPhone)) {
+            throw new ParseException(PhoneDriver.MESSAGE_CONSTRAINTS);
+        }
+        return new PhoneDriver(trimmedPhone);
     }
 
     /**

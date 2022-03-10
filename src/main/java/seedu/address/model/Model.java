@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.driver.Driver;
 import seedu.address.model.person.Person;
 
 /**
@@ -13,6 +14,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Driver> PREDICATE_SHOW_ALL_DRIVERS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -56,6 +58,7 @@ public interface Model {
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
+    boolean hasDriver(Driver driver);
 
     /**
      * Deletes the given person.
@@ -68,6 +71,7 @@ public interface Model {
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
+    void addDriver(Driver driver);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -78,10 +82,12 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+    ObservableList<Driver> getFilteredDriverList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredDriverList(Predicate<Driver> driver);
 }
