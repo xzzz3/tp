@@ -65,7 +65,7 @@ public interface Model {
      * The person must exist in the address book.
      */
     void deletePerson(Person target);
-
+    void deleteDriver(Driver driverToDelete);
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.

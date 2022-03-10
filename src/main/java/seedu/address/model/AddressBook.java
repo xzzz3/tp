@@ -108,6 +108,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    public void removeDriver(Driver key) {
+        drivers.remove(key);
+    }
     //// util methods
 
     @Override

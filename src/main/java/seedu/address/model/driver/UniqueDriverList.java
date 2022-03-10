@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.driver.exception.DriverNotFoundException;
 import seedu.address.model.driver.exception.DuplicateDriverException;
-import seedu.address.model.person.UniquePersonList;
 
 public class UniqueDriverList implements Iterable<Driver> {
     private final ObservableList<Driver> internalList = FXCollections.observableArrayList();
@@ -59,6 +58,12 @@ public class UniqueDriverList implements Iterable<Driver> {
         internalList.setAll(drivers);
     }
 
+    public void remove(Driver toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new DriverNotFoundException();
+        }
+    }
     public ObservableList<Driver> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
