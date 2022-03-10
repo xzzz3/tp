@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
 /**
@@ -147,4 +148,10 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    //==================== FoodOnWheels ===================================
+    @Override
+    public void addOrder(Order order) {
+        addressBook.addOrder(order);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
 }
