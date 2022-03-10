@@ -29,6 +29,10 @@ public class Driver {
         return status;
     }
 
+    public boolean isFree() {
+        return status.equals("free");
+    }
+
     public boolean isSameDriver(Driver otherDriver) {
         if (otherDriver == this) {
             return true;
