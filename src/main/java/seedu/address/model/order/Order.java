@@ -1,25 +1,21 @@
 package seedu.address.model.order;
 
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
 
-import java.sql.Driver;
 import java.util.ArrayList;
-import java.util.Set;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class Order {
-    // Data fields
-    private final String customer;  // todo change to Customer class in v1.3++
-    private final String phone; // temporary variable before customer class with phone is implemented
-    private final String driver; // todo change this to Driver class in v1.3++
-    private final int orderNumber;
-    private final ArrayList<String> dishes;  // todo change to Dish calss in v1.3++
-    private OrderStatus status;
-
     // class-level attribute
     private static int nextOrderNumber = 1;
+    
+    // Data fields
+    private final String customer;  // todo change to Customer class in v1.3+
+    private final String phone; // temporary variable before customer class with phone is implemented
+    private final String driver; // todo change this to Driver class in v1.3+
+    private final int orderNumber;
+    private final ArrayList<String> dishes;  // todo change to Dish calss in v1.3+
+    private OrderStatus status;
 
     /**
      * Every field must be present and not null.
