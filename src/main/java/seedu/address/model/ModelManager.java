@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Dish;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Dish> filteredDishes;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredDishes = new FilteredList<>(this.addressBook.getDishList());
     }
 
     public ModelManager() {
@@ -111,6 +114,23 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasDish(Dish dish) {
+        requireNonNull(dish);
+        return addressBook.hasDish(dish);
+    }
+
+    @Override
+    public void deleteDish(Dish target) {
+        addressBook.removeDish(target);
+    }
+
+    @Override
+    public void addDish(Dish dish) {
+        addressBook.addDish(dish);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -122,10 +142,25 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Dish} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Dish> getFilteredDishList() {
+        return filteredDishes;
+    }
+
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredDishList(Predicate<Dish> predicate) {
+        requireNonNull(predicate);
+        filteredDishes.setPredicate(predicate);
     }
 
     @Override
@@ -144,7 +179,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredDishes.equals(other.filteredDishes);
     }
 
 }

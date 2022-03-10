@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Dish;
 import seedu.address.model.person.Person;
 
 /**
@@ -76,12 +77,38 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Returns true if a dish with the same identity as {@code dish} exists in FoodOnWheels.
+     */
+    boolean hasDish(Dish dish);
+
+    /**
+     * Deletes the given dish.
+     * The dish must exist in the address book.
+     */
+    void deleteDish(Dish target);
+
+    /**
+     * Adds the given person.
+     * {@code person} must not already exist in the address book.
+     */
+    void addDish(Dish dish);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the filtered dish list */
+    ObservableList<Dish> getFilteredDishList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Updates the filter of the filtered dish list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredDishList(Predicate<Dish> predicate);
 }
