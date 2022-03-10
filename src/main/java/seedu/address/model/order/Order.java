@@ -11,10 +11,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class Order {
     // Data fields
-    private final Customer customer;
-    private final Driver driver;
+    private final String customer;  // todo change to Customer class in v1.3++
+    private final String phone; // temporary variable before customer class with phone is implemented
+    private final String driver; // todo change this to Driver class in v1.3++
     private final int orderNumber;
-    private final ArrayList<Dish> dishes;
+    private final ArrayList<String> dishes;  // todo change to Dish calss in v1.3++
     private OrderStatus status;
 
     // class-level attribute
@@ -23,40 +24,43 @@ public class Order {
     /**
      * Every field must be present and not null.
      */
-    public Order(Customer customer, Dish ... orderedDishes) {
+    public Order(String customer, String phone, String driverName, String ... orderedDishes) {
         requireAllNonNull(customer, orderedDishes);
         this.customer = customer;
-        this.driver = DriverList.getNextFreeDriver();
-        this.dishes = new ArrayList<Dish>();
-        for (Dish dish : orderedDishes) {
+        this.driver = driverName;
+        this.dishes = new ArrayList<String>();
+        for (String dish : orderedDishes) {
             this.dishes.add(dish);
         }
+        this.phone = phone;
         this.orderNumber = Order.nextOrderNumber;
         nextOrderNumber++;
         this.status = OrderStatus.CREATED;
     }
 
-    public Name getCustomerName() {
-        return customer.getName();
+    public String getCustomerName() {
+        return customer;
     }
 
-    public Phone getCustomerPhone() {
-        return customer.getPhone();
+    public String getCustomerPhone() {
+        return phone;
     }
 
+    /*
     public Address getCustomerAddress() {
         return customer.getAddress();
     }
+    */
 
-    public Name getDriverName() {
-        return driver.getName();
+    public String getDriverName() {
+        return driver;
     }
 
     public int getOrderNumber() {
         return orderNumber;
     }
 
-    public ArrayList<Dish> getDishes() {
+    public ArrayList<String> getDishes() {
         return dishes;
     }
 
@@ -91,14 +95,16 @@ public class Order {
                 .append(getCustomerName())
                 .append("; Phone: ")
                 .append(getCustomerPhone())
+                /*
                 .append("; Address: ")
                 .append(getCustomerAddress())
+                 */
                 .append("; Driver: ")
                 .append(getDriverName())
                 .append("; Status: ")
                 .append(getStatus());
 
-        ArrayList<Dish> dishes = getDishes();
+        ArrayList<String> dishes = getDishes();
         builder.append("; Dishes: ");
         dishes.forEach(builder::append);
 
