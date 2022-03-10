@@ -8,7 +8,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class Order {
     // class-level attribute
     private static int nextOrderNumber = 1;
-    
+
     // Data fields
     private final String customer;  // todo change to Customer class in v1.3+
     private final String phone; // temporary variable before customer class with phone is implemented
