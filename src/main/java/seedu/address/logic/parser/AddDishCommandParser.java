@@ -7,8 +7,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddDishCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Dish;
-import seedu.address.model.person.Name;
+import seedu.address.model.item.Dish;
+import seedu.address.model.item.Name;
 
 /**
  * Parses input arguments and creates a new AddDishCommand object
