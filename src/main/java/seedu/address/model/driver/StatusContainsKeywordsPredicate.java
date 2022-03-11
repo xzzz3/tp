@@ -4,9 +4,8 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 
-public class StatusContainsKeywordsPredicate implements Predicate<Driver>  {
+public class StatusContainsKeywordsPredicate implements Predicate<Driver> {
     private final List<String> keywords;
 
     public StatusContainsKeywordsPredicate(List<String> keywords) {

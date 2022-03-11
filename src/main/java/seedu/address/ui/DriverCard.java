@@ -1,10 +1,9 @@
 package seedu.address.ui;
 
-import javafx.scene.layout.Region;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import seedu.address.model.driver.Driver;
 
 public class DriverCard extends UiPart<Region> {
@@ -23,6 +22,9 @@ public class DriverCard extends UiPart<Region> {
     @FXML
     private Label status;
 
+    /**
+     * Creates a {@code DriverCode} with the given {@code Driver} and index to display.
+     */
     public DriverCard(Driver driver, int displayedIndex) {
         super(FXML);
         this.driver = driver;

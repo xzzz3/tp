@@ -73,10 +73,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.contains(person);
     }
 
+    /**
+     * Returns true if a driver with the same identity as {@code driver} exists in the database
+     */
     public boolean hasDriver(Driver driver) {
         requireNonNull(driver);
         return drivers.contains(driver);
     }
+
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.

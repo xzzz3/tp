@@ -17,6 +17,9 @@ public class DriverListPanel extends UiPart<Region> {
     @FXML
     private ListView<Driver> driverListView;
 
+    /**
+     * Creates a {@code DriverListPanel} with the given {@code ObservableList}.
+     */
     public DriverListPanel(ObservableList<Driver> driverList) {
         super(FXML);
         driverListView.setItems(driverList);

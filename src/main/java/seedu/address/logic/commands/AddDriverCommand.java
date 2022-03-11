@@ -8,7 +8,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.driver.Driver;
 
-public class AddDriverCommand extends Command{
+/**
+ * Adds a driver to the database.
+ */
+public class AddDriverCommand extends Command {
     public static final String COMMAND_WORD = "adddriver";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a driver to the database. "
@@ -24,6 +27,9 @@ public class AddDriverCommand extends Command{
 
     private final Driver toAdd;
 
+    /**
+     * Creates an AddDriverCommand to add the specified {@code Driver}
+     */
     public AddDriverCommand(Driver driver) {
         requireNonNull(driver);
         toAdd = driver;

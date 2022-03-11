@@ -12,7 +12,16 @@ import seedu.address.model.driver.Driver;
 import seedu.address.model.driver.NameDriver;
 import seedu.address.model.driver.PhoneDriver;
 
+/**
+ * Parses input arguments and creates a new AddDriverCommandParser object
+ */
 public class AddDriverCommandParser implements Parser<AddDriverCommand> {
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddDriverCommand
+     * and returns an AddDriverCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public AddDriverCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE);
 

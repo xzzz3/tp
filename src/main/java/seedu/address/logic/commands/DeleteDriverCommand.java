@@ -10,6 +10,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.driver.Driver;
 
+/**
+ * Deletes a person identified using it's displayed index from the database.
+ */
 public class DeleteDriverCommand extends Command {
     public static final String COMMAND_WORD = "deletedriver";
 

@@ -13,14 +13,21 @@ import seedu.address.model.driver.exception.DuplicateDriverException;
 
 public class UniqueDriverList implements Iterable<Driver> {
     private final ObservableList<Driver> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Driver> internalUnmodifiableList=
+    private final ObservableList<Driver> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    /**
+     * Returns true if the list contains an equivalent driver as the given argument.
+     */
     public boolean contains(Driver toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameDriver);
     }
 
+    /**
+     * Adds a driver to the list.
+     * The driver must not already exist in the list.
+     */
     public void add(Driver toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
@@ -58,6 +65,10 @@ public class UniqueDriverList implements Iterable<Driver> {
         internalList.setAll(drivers);
     }
 
+    /**
+     * Removes the equivalent driver from the list.
+     * The driver must exist in the list.
+     */
     public void remove(Driver toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
@@ -86,8 +97,8 @@ public class UniqueDriverList implements Iterable<Driver> {
     }
 
     private boolean driversAreUnique(List<Driver> drivers) {
-        for (int  i = 0; i < drivers.size() - 1; i++) {
-            for (int j = i + 1; j < drivers.size(); j ++) {
+        for (int i = 0; i < drivers.size() - 1; i++) {
+            for (int j = i + 1; j < drivers.size(); j++) {
                 if (drivers.get(i).isSameDriver(drivers.get(j))) {
                     return false;
                 }

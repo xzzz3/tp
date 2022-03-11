@@ -51,6 +51,13 @@ public class ParserUtil {
         }
         return new Name(trimmedName);
     }
+
+    /**
+     * Parses a {@code String name} into a {@code NameDriver}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
     public static NameDriver parseNameDriver(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
@@ -59,6 +66,7 @@ public class ParserUtil {
         }
         return new NameDriver(trimmedName);
     }
+
     /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
@@ -74,6 +82,12 @@ public class ParserUtil {
         return new Phone(trimmedPhone);
     }
 
+    /**
+     * Parses a {@code String phone} into a {@code PhoneDriver}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
     public static PhoneDriver parsePhoneDriver(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
