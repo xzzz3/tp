@@ -98,4 +98,11 @@ public interface Model {
      * Returns true if an order with the same identity as {@code order} exists in the address book.
      */
     boolean hasOrder(Order order);
+
+    /**
+     * Updates the filter of the filtered order list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredOrderList(Predicate<Order> predicate);
+
 }

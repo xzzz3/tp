@@ -171,4 +171,10 @@ public class ModelManager implements Model {
         requireNonNull(order);
         return addressBook.hasOrder(order);
     }
+
+    @Override
+    public void updateFilteredOrderList(Predicate<Order> predicate) {
+        requireNonNull(predicate);
+        filteredOrders.setPredicate(predicate);
+    }
 }
