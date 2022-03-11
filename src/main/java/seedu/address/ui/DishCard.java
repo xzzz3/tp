@@ -24,11 +24,11 @@ public class DishCard extends UiPart<Region> {
     public final Dish dish;
 
     @FXML
-    private HBox cardPane;
+    private HBox dishCardPane;
     @FXML
-    private Label name;
+    private Label dishName;
     @FXML
-    private Label id;
+    private Label dishId;
 
     /**
      * Creates a {@code DishCode} with the given {@code Dish} and index to display.
@@ -36,8 +36,8 @@ public class DishCard extends UiPart<Region> {
     public DishCard(Dish dish, int displayedIndex) {
         super(FXML);
         this.dish = dish;
-        id.setText(displayedIndex + ". ");
-        name.setText(dish.getName().fullName);
+        dishId.setText(displayedIndex + ". ");
+        dishName.setText(dish.getName().fullName);
     }
 
     @Override
@@ -54,7 +54,7 @@ public class DishCard extends UiPart<Region> {
 
         // state check
         DishCard card = (DishCard) other;
-        return id.getText().equals(card.id.getText())
+        return dishId.getText().equals(card.dishId.getText())
                 && dish.equals(card.dish);
     }
 }
