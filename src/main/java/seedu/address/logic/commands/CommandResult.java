@@ -41,7 +41,8 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields, for FoodOnWheels.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isDish, boolean isDriver, boolean isOrder) {
+    public CommandResult(String feedbackToUser, boolean showHelp,
+            boolean exit, boolean isDish, boolean isDriver, boolean isOrder) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
@@ -70,11 +71,17 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isDish() { return isDish; }
+    public boolean isDish() {
+        return isDish;
+    }
 
-    public boolean isDriver() { return isDriver; }
+    public boolean isDriver() {
+        return isDriver;
+    }
 
-    public boolean isOrder() { return isOrder; }
+    public boolean isOrder() {
+        return isOrder;
+    }
 
     @Override
     public boolean equals(Object other) {

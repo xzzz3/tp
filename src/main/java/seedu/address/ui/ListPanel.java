@@ -9,8 +9,8 @@ public abstract class ListPanel extends UiPart<Region> {
     /**
      * Creates a {@code ListPanel} abstract class.
      */
-    public ListPanel(String FXML) {
-        super(FXML);
+    public ListPanel(String fxml) {
+        super(fxml);
     }
 
 }
