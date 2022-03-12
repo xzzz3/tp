@@ -17,7 +17,8 @@ public class OrderContainsKeywordsPredicate implements Predicate<Order> {
 
     @Override
     public boolean test(Order order) {
-        return keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(order.getCustomerPhone(), keyword));
+        return keywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(order.getCustomerPhone(), keyword));
     }
 
     @Override

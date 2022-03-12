@@ -1,10 +1,7 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.order.Order;
@@ -51,7 +48,7 @@ public class OrderCard extends UiPart<Region> {
         customerName.setText(order.getCustomerName());
         customerPhone.setText(order.getCustomerPhone());
         driverName.setText(order.getDriverName());
-        dishes.setText(order.getDishes().toString());  // todo if necessary, use a better toString representation
+        dishes.setText(order.getDishes().toString()); // todo if necessary, use a better toString representation
         status.setText(order.getStatus().toString());
     }
 

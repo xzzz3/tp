@@ -1,26 +1,26 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
-public class EditOrderStatusCommand extends Command  {
+public class EditOrderStatusCommand extends Command {
 
     public static final String COMMAND_WORD = "mark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits an order status.\n"
             + "Parameters: "
-            + "INDEX " + PREFIX_STATUS +" STATUS\n"
+            + "INDEX " + PREFIX_STATUS + " STATUS\n"
             + "Example: " + COMMAND_WORD
             + " 1 " + PREFIX_STATUS + "DELIVERED";
 
