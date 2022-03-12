@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.order.Order;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -54,7 +53,7 @@ public class UniqueOrderList implements Iterable<Order> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();   // todo make new exception for order
+            throw new PersonNotFoundException(); // todo make new exception for order
         }
 
         if (!target.equals(editedOrder) && contains(editedOrder)) {
@@ -71,7 +70,7 @@ public class UniqueOrderList implements Iterable<Order> {
     public void remove(Order toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();  // todo replace exception
+            throw new PersonNotFoundException(); // todo replace exception
         }
     }
 
@@ -87,7 +86,7 @@ public class UniqueOrderList implements Iterable<Order> {
     public void setOrders(List<Order> orders) {
         requireAllNonNull(orders);
         if (!ordersAreUnique(orders)) {
-            throw new DuplicatePersonException();  // todo update
+            throw new DuplicatePersonException(); // todo update
         }
 
         internalList.setAll(orders);

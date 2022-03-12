@@ -1,12 +1,12 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.Model;
-import seedu.address.model.order.Order;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-public class AddOrderCommand extends Command  {
+import seedu.address.model.Model;
+import seedu.address.model.order.Order;
+
+public class AddOrderCommand extends Command {
 
     public static final String COMMAND_WORD = "addorder";
 
@@ -32,7 +32,7 @@ public class AddOrderCommand extends Command  {
     }
 
     @Override
-    public CommandResult execute(Model model){
+    public CommandResult execute(Model model) {
         requireNonNull(model);
 
         // todo add duplicate checker
