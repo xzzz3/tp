@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
@@ -41,18 +40,20 @@ public class TabDisplay extends UiPart<Region> {
         driver.setStyle("-fx-text-fill: grey");
         dish.setStyle("-fx-text-fill: grey");
         switch (focusItem) {
-            case ORDER_INDEX:
-                order.setStyle("-fx-text-fill: white");
-                break;
-            case DRIVER_INDEX:
-                driver.setStyle("-fx-text-fill: white");
-                break;
-            case DISH_INDEX:
-                dish.setStyle("-fx-text-fill: white");
-                break;
-            case PERSON_INDEX:
-                person.setStyle("-fx-text-fill: white");
-                break;
+        case ORDER_INDEX:
+            order.setStyle("-fx-text-fill: white");
+            break;
+        case DRIVER_INDEX:
+            driver.setStyle("-fx-text-fill: white");
+            break;
+        case DISH_INDEX:
+            dish.setStyle("-fx-text-fill: white");
+            break;
+        case PERSON_INDEX:
+            person.setStyle("-fx-text-fill: white");
+            break;
+        default:
+            break;
         }
     }
 
