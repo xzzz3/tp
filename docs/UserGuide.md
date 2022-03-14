@@ -98,31 +98,40 @@ Examples:
 
 ## Driver features
 
-### Adding a driver: `add driver`
+### Adding a driver: `adddriver`
 
 Adds a driver to the database.
 
-Format: ` add driver n/{name} p/{phone}`
+Format: ` adddriver n/{name} p/{phone}`
 
 Examples:
-* `add driver n/John Doe p/98765432 `
-* `add driver n/Betsy Crowe p/1234567 `
+* `adddriver n/John Doe p/98765432 `
+* `adddriver n/Betsy Crowe p/1234567 `
 
 ### Deleting a driver: `delete driver`
 
 Deletes a driver from the database, together with his/her information.
 
-Format: `delete driver n/{name} p/{phone}`
+Format: `deletedriver n/{name} p/{phone}`
 
 Examples:
-* `delete driver n/John Doe p/98765432`
-* `delete driver n/Betsy Crowe p/1234567`
+* `deletedriver n/John Doe p/98765432`
+* `deletedriver n/Betsy Crowe p/1234567`
 
-### List free drivers: `list driver free`
+### List free drivers: `listdriver free`
 
 Lists free drivers who are not delivering any order and can receive new orders.
 
-Format: `list driver free`
+Format: `listdriver free`
+
+### List driver with specific status: `listdriver`
+
+Lists drivers having a specific status at that time.
+
+Format: `listdriver [STATUS]`
+
+Examples:
+* `listdriver free`
 
 ## Dish features
 
