@@ -6,11 +6,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.driver.Driver;
 
-public class DriverListPanel extends UiPart<Region> {
+public class DriverListPanel extends ListPanel {
     private static final String FXML = "DriverListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(DriverListPanel.class);
 

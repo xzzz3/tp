@@ -5,17 +5,12 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-<<<<<<< HEAD
 import seedu.address.model.driver.Driver;
 import seedu.address.model.driver.UniqueDriverList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
-=======
 import seedu.address.model.item.Dish;
 import seedu.address.model.item.Person;
 import seedu.address.model.item.UniqueDishList;
 import seedu.address.model.item.UniquePersonList;
->>>>>>> master
 
 /**
  * Wraps all data at the address-book level
@@ -130,12 +125,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-<<<<<<< HEAD
     public void removeDriver(Driver key) {
         drivers.remove(key);
     }
-=======
-    //// dish-level operations
 
     /**
      * Returns true if a dish with the same identity as {@code dish} exists in the address book.
@@ -161,8 +153,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         dishes.remove(key);
     }
 
->>>>>>> master
-    //// util methods
 
     @Override
     public String toString() {
@@ -176,13 +166,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-<<<<<<< HEAD
     public ObservableList<Driver> getDriverList() {
         return drivers.asUnmodifiableObservableList();
-=======
+    }
+    @Override
     public ObservableList<Dish> getDishList() {
         return dishes.asUnmodifiableObservableList();
->>>>>>> master
     }
 
     @Override

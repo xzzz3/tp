@@ -40,7 +40,8 @@ public class DeleteDriverCommand extends Command {
 
         Driver driverToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteDriver(driverToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_DRIVER_SUCCESS, driverToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_DRIVER_SUCCESS, driverToDelete), false,
+                false, false, true, false);
     }
 
     @Override

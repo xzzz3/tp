@@ -44,7 +44,7 @@ public class AddDriverCommand extends Command {
         }
 
         model.addDriver(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false, false, true, false);
     }
 
     @Override

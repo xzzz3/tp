@@ -187,6 +187,17 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Handles case when driver command is entered.
+     */
+    private void handleDriver() {
+        listPanel = new DriverListPanel(logic.getFilteredDriverList());
+        personListPanelPlaceholder.getChildren().add(listPanel.getRoot());
+        tabDisplay.setFocus(DRIVER_TAB_DISPLAY_FOCUS);
+        logger.info("Set to driver");
+    }
+
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -212,6 +223,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isDish()) {
                 handleDish();
+            }
+
+            if (commandResult.isDriver()) {
+                handleDriver();
             }
 
             return commandResult;
