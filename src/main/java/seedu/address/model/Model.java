@@ -135,6 +135,7 @@ public interface Model {
      */
     void updateFilteredOrderList(Predicate<Order> predicate);
 
+
     void updateFilteredDriverList(Predicate<Driver> driver);
 
     /**
@@ -142,5 +143,4 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredDishList(Predicate<Dish> predicate);
-
 }

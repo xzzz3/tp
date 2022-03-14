@@ -5,8 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-
-
 import seedu.address.model.driver.Driver;
 import seedu.address.model.driver.UniqueDriverList;
 import seedu.address.model.item.Dish;
