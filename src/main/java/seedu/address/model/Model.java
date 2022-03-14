@@ -10,6 +10,7 @@ import seedu.address.model.item.Dish;
 import seedu.address.model.item.Person;
 import seedu.address.model.order.Order;
 
+
 /**
  * The API of the Model component.
  */
@@ -128,6 +129,12 @@ public interface Model {
      */
     boolean hasOrder(Order order);
 
+    /**
+     * Updates the filter of the filtered order list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredOrderList(Predicate<Order> predicate);
+
     void updateFilteredDriverList(Predicate<Driver> driver);
 
     /**
@@ -135,4 +142,5 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredDishList(Predicate<Dish> predicate);
+
 }

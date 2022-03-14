@@ -203,7 +203,13 @@ public class AddCommandTest {
         public boolean hasOrder(Order order) {
             throw new AssertionError("This method should not be called.");
         }
+        
+        @Override
+        public void updateFilteredOrderList(Predicate<Order> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
         public void updateFilteredDriverList(Predicate<Driver> predicate) {
             throw new AssertionError("This method should not be called.");
         }
