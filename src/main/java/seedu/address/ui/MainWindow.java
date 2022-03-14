@@ -202,7 +202,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleOrder() {
         listPanel = new OrderListPanel(logic.getFilteredOrderList());
         personListPanelPlaceholder.getChildren().add(listPanel.getRoot());
-        tabDisplay.setFocus(DISH_TAB_DISPLAY_FOCUS);
+        tabDisplay.setFocus(ORDER_TAB_DISPLAY_FOCUS);
         logger.info("Set to order");
     }
 
