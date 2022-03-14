@@ -28,7 +28,7 @@ public class AddOrderCommand extends Command {
      */
     public AddOrderCommand(String phone, String ... dishes) {
         requireAllNonNull(phone, dishes);
-        toAdd = new Order("Dummy customer", phone, "Dummy driver", "Dummy dishes");
+        toAdd = new Order("Dummy customer", phone, "Dummy driver", dishes);
     }
 
     @Override
