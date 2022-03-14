@@ -22,7 +22,7 @@ public class EditOrderStatusCommand extends Command {
             + "Parameters: "
             + "INDEX " + PREFIX_STATUS + " STATUS\n"
             + "Example: " + COMMAND_WORD
-            + " 1 " + PREFIX_STATUS + "DELIVERED";
+            + " 1 " + PREFIX_STATUS + " DELIVERED";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the address book.";
