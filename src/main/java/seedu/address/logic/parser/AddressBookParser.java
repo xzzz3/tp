@@ -7,14 +7,20 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddDishCommand;
+import seedu.address.logic.commands.AddDriverCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteDishCommand;
+import seedu.address.logic.commands.DeleteDriverCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListDishCommand;
+import seedu.address.logic.commands.ListDriverCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -47,11 +53,17 @@ public class AddressBookParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
+        case AddDishCommand.COMMAND_WORD:
+            return new AddDishCommandParser().parse(arguments);
+
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+        case DeleteDishCommand.COMMAND_WORD:
+            return new DeleteDishCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -62,11 +74,23 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
+        case ListDishCommand.COMMAND_WORD:
+            return new ListDishCommand();
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case AddDriverCommand.COMMAND_WORD:
+            return new AddDriverCommandParser().parse(arguments);
+
+        case DeleteDriverCommand.COMMAND_WORD:
+            return new DeleteDriverCommandParser().parse(arguments);
+
+        case ListDriverCommand.COMMAND_WORD:
+            return new ListDriverCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

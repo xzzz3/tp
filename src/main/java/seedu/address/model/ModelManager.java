@@ -11,7 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.driver.Driver;
+import seedu.address.model.item.Dish;
+import seedu.address.model.item.Person;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +24,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Driver> filteredDrivers;
+    private final FilteredList<Dish> filteredDishes;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +38,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredDrivers = new FilteredList<>(this.addressBook.getDriverList());
+        filteredDishes = new FilteredList<>(this.addressBook.getDishList());
     }
 
     public ModelManager() {
@@ -94,8 +100,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasDriver(Driver driver) {
+        requireNonNull(driver);
+        return addressBook.hasDriver(driver);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+    }
+
+    @Override
+    public void deleteDriver(Driver target) {
+        addressBook.removeDriver(target);
     }
 
     @Override
@@ -105,10 +122,33 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addDriver(Driver driver) {
+        addressBook.addDriver(driver);
+        updateFilteredDriverList(PREDICATE_SHOW_ALL_DRIVERS);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public boolean hasDish(Dish dish) {
+        requireNonNull(dish);
+        return addressBook.hasDish(dish);
+    }
+
+    @Override
+    public void deleteDish(Dish target) {
+        addressBook.removeDish(target);
+    }
+
+    @Override
+    public void addDish(Dish dish) {
+        addressBook.addDish(dish);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -122,10 +162,35 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Dish} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Dish> getFilteredDishList() {
+        return filteredDishes;
+    }
+
+    @Override
+    public ObservableList<Driver> getFilteredDriverList() {
+        return filteredDrivers;
+    }
+
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredDriverList(Predicate<Driver> predicate) {
+        requireNonNull(predicate);
+        filteredDrivers.setPredicate(predicate);
+    }
+    @Override
+    public void updateFilteredDishList(Predicate<Dish> predicate) {
+        requireNonNull(predicate);
+        filteredDishes.setPredicate(predicate);
     }
 
     @Override
@@ -144,7 +209,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredDishes.equals(other.filteredDishes);
     }
 
 }
