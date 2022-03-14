@@ -20,13 +20,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-<<<<<<< HEAD
 import seedu.address.model.driver.Driver;
-import seedu.address.model.person.Person;
-=======
 import seedu.address.model.item.Dish;
 import seedu.address.model.item.Person;
->>>>>>> master
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -179,11 +175,11 @@ public class AddCommandTest {
         }
 
         @Override
-<<<<<<< HEAD
         public ObservableList<Driver> getFilteredDriverList() {
-=======
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public ObservableList<Dish> getFilteredDishList() {
->>>>>>> master
             throw new AssertionError("This method should not be called.");
         }
 
@@ -193,11 +189,11 @@ public class AddCommandTest {
         }
 
         @Override
-<<<<<<< HEAD
         public void updateFilteredDriverList(Predicate<Driver> predicate) {
-=======
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public void updateFilteredDishList(Predicate<Dish> predicate) {
->>>>>>> master
             throw new AssertionError("This method should not be called.");
         }
     }
