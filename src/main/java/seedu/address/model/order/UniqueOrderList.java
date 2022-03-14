@@ -64,17 +64,6 @@ public class UniqueOrderList implements Iterable<Order> {
         internalList.set(index, editedOrder);
     }
 
-    /**
-     * Removes the equivalent order from the list.
-     * The order must exist in the list.
-     */
-    public void remove(Order toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException(); // todo replace exception
-        }
-    }
-
     public void setOrders(seedu.address.model.order.UniqueOrderList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -91,6 +80,17 @@ public class UniqueOrderList implements Iterable<Order> {
         }
 
         internalList.setAll(orders);
+    }
+
+    /**
+     * Removes the equivalent order from the list.
+     * The order must exist in the list.
+     */
+    public void remove(Order toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new PersonNotFoundException(); // todo replace exception
+        }
     }
 
     /**

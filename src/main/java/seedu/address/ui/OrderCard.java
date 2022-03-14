@@ -26,6 +26,8 @@ public class OrderCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private Label id;
+    @FXML
     private Label customerName;
     @FXML
     private Label customerPhone;
@@ -41,10 +43,11 @@ public class OrderCard extends UiPart<Region> {
     /**
      * Creates a {@code orderCode} with the given {@code order} and index to display.
      */
-    public OrderCard(Order order) {
+    public OrderCard(Order order, int displayedIndex) {
         super(FXML);
         this.order = order;
-        orderNumber.setText(order.getOrderNumber() + ". ");
+        id.setText(displayedIndex + ". ");
+        orderNumber.setText("#" + order.getOrderNumber());
         customerName.setText(order.getCustomerName());
         customerPhone.setText(order.getCustomerPhone());
         driverName.setText(order.getDriverName());
