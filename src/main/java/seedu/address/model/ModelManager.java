@@ -12,7 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.driver.Driver;
-import seedu.address.model.person.Person;
+import seedu.address.model.item.Dish;
+import seedu.address.model.item.Person;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Driver> filteredDrivers;
+    private final FilteredList<Dish> filteredDishes;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,6 +39,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredDrivers = new FilteredList<>(this.addressBook.getDriverList());
+        filteredDishes = new FilteredList<>(this.addressBook.getDishList());
     }
 
     public ModelManager() {
@@ -131,6 +134,23 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasDish(Dish dish) {
+        requireNonNull(dish);
+        return addressBook.hasDish(dish);
+    }
+
+    @Override
+    public void deleteDish(Dish target) {
+        addressBook.removeDish(target);
+    }
+
+    @Override
+    public void addDish(Dish dish) {
+        addressBook.addDish(dish);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -140,6 +160,15 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Dish} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Dish> getFilteredDishList() {
+        return filteredDishes;
     }
 
     @Override
@@ -158,6 +187,11 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredDrivers.setPredicate(predicate);
     }
+    @Override
+    public void updateFilteredDishList(Predicate<Dish> predicate) {
+        requireNonNull(predicate);
+        filteredDishes.setPredicate(predicate);
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -175,7 +209,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredDishes.equals(other.filteredDishes);
     }
 
 }

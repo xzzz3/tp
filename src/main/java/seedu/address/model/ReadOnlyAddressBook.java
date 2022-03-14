@@ -2,7 +2,8 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.driver.Driver;
-import seedu.address.model.person.Person;
+import seedu.address.model.item.Dish;
+import seedu.address.model.item.Person;
 
 /**
  * Unmodifiable view of an address book
@@ -15,5 +16,6 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Person> getPersonList();
     ObservableList<Driver> getDriverList();
+    ObservableList<Dish> getDishList();
 
 }

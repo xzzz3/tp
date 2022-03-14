@@ -24,6 +24,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final int ORDER_TAB_DISPLAY_FOCUS = 0;
+    private static final int DRIVER_TAB_DISPLAY_FOCUS = 1;
+    private static final int DISH_TAB_DISPLAY_FOCUS = 2;
+    private static final int PERSON_TAB_DISPLAY_FOCUS = 3;
+    private static final int DEFAULT_TAB_DISPLAY_FOCUS = PERSON_TAB_DISPLAY_FOCUS;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -31,9 +36,10 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ListPanel listPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private TabDisplay tabDisplay;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -43,6 +49,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane tabDisplayPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,8 +119,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        listPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(listPanel.getRoot());
+
+        tabDisplay = new TabDisplay();
+        tabDisplay.setFocus(DEFAULT_TAB_DISPLAY_FOCUS);
+        tabDisplayPlaceholder.getChildren().add(tabDisplay.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -163,8 +176,14 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    /**
+     * Handles case when dish command is entered.
+     */
+    private void handleDish() {
+        listPanel = new DishListPanel(logic.getFilteredDishList());
+        personListPanelPlaceholder.getChildren().add(listPanel.getRoot());
+        tabDisplay.setFocus(DISH_TAB_DISPLAY_FOCUS);
+        logger.info("Set to dish");
     }
 
     /**
@@ -178,12 +197,21 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            tabDisplay.setFocus(DEFAULT_TAB_DISPLAY_FOCUS);
+
+            listPanel = new PersonListPanel(logic.getFilteredPersonList());
+            personListPanelPlaceholder.getChildren().add(listPanel.getRoot());
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isDish()) {
+                handleDish();
             }
 
             return commandResult;
