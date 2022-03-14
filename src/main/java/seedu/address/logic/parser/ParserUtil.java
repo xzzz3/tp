@@ -9,10 +9,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.driver.NameDriver;
+import seedu.address.model.driver.PhoneDriver;
+import seedu.address.model.item.Address;
+import seedu.address.model.item.Email;
+import seedu.address.model.item.Name;
+import seedu.address.model.item.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -51,6 +53,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String name} into a {@code NameDriver}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static NameDriver parseNameDriver(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!NameDriver.isValidName(trimmedName)) {
+            throw new ParseException(NameDriver.MESSAGE_CONSTRAINTS);
+        }
+        return new NameDriver(trimmedName);
+    }
+
+    /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -63,6 +80,21 @@ public class ParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
+    }
+
+    /**
+     * Parses a {@code String phone} into a {@code PhoneDriver}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static PhoneDriver parsePhoneDriver(String phone) throws ParseException {
+        requireNonNull(phone);
+        String trimmedPhone = phone.trim();
+        if (!PhoneDriver.isValidPhone(trimmedPhone)) {
+            throw new ParseException(PhoneDriver.MESSAGE_CONSTRAINTS);
+        }
+        return new PhoneDriver(trimmedPhone);
     }
 
     /**
