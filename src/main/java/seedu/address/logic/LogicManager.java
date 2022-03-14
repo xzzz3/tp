@@ -14,6 +14,7 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.driver.Driver;
 import seedu.address.model.item.Dish;
 import seedu.address.model.item.Person;
 import seedu.address.storage.Storage;
@@ -21,6 +22,7 @@ import seedu.address.storage.Storage;
 /**
  * The main LogicManager of the app.
  */
+@SuppressWarnings("checkstyle:Regexp")
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
@@ -65,6 +67,10 @@ public class LogicManager implements Logic {
         return model.getFilteredPersonList();
     }
 
+    @Override
+    public ObservableList<Driver> getFilteredDriverList() {
+        return model.getFilteredDriverList();
+    }
     @Override
     public ObservableList<Dish> getFilteredDishList() {
         return model.getFilteredDishList();

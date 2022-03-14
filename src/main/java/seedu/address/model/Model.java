@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.driver.Driver;
 import seedu.address.model.item.Dish;
 import seedu.address.model.item.Person;
 
@@ -14,6 +15,7 @@ import seedu.address.model.item.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Driver> PREDICATE_SHOW_ALL_DRIVERS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Dish> PREDICATE_SHOW_ALL_DISHES = unused -> true;
@@ -60,18 +62,20 @@ public interface Model {
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
+    boolean hasDriver(Driver driver);
 
     /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
     void deletePerson(Person target);
-
+    void deleteDriver(Driver driverToDelete);
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
+    void addDriver(Driver driver);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -99,6 +103,7 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+    ObservableList<Driver> getFilteredDriverList();
 
     /** Returns an unmodifiable view of the filtered dish list */
     ObservableList<Dish> getFilteredDishList();
@@ -108,6 +113,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredDriverList(Predicate<Driver> driver);
 
     /**
      * Updates the filter of the filtered dish list to filter by the given {@code predicate}.

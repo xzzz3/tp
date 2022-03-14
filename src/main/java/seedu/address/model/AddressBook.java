@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.driver.Driver;
+import seedu.address.model.driver.UniqueDriverList;
 import seedu.address.model.item.Dish;
 import seedu.address.model.item.Person;
 import seedu.address.model.item.UniqueDishList;
@@ -18,6 +20,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueDishList dishes;
+    private final UniqueDriverList drivers;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,6 +32,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         dishes = new UniqueDishList();
+        drivers = new UniqueDriverList();
     }
 
     public AddressBook() {}
@@ -60,6 +64,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the driver list with {@code drivers}.
+     * {@code drivers} must not contain duplicate dishes.
+     */
+    public void setDrivers(List<Driver> drivers) {
+        this.drivers.setDrivers(drivers);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -67,6 +79,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setDishes(newData.getDishList());
+        setDrivers(newData.getDriverList());
     }
 
     //// person-level operations
@@ -80,11 +93,23 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a driver with the same identity as {@code driver} exists in the database
+     */
+    public boolean hasDriver(Driver driver) {
+        requireNonNull(driver);
+        return drivers.contains(driver);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
         persons.add(p);
+    }
+
+    public void addDriver(Driver d) {
+        drivers.add(d);
     }
 
     /**
@@ -106,7 +131,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    //// dish-level operations
+    public void removeDriver(Driver key) {
+        drivers.remove(key);
+    }
 
     /**
      * Returns true if a dish with the same identity as {@code dish} exists in the address book.
@@ -132,12 +159,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         dishes.remove(key);
     }
 
-    //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
-        // TODO: refine later
+        return persons.asUnmodifiableObservableList().size() + " persons "
+                + dishes.asUnmodifiableObservableList().size() + " dishes "
+                + drivers.asUnmodifiableObservableList().size() + " drivers";
     }
 
     @Override
@@ -145,6 +172,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    @Override
+    public ObservableList<Driver> getDriverList() {
+        return drivers.asUnmodifiableObservableList();
+    }
     @Override
     public ObservableList<Dish> getDishList() {
         return dishes.asUnmodifiableObservableList();

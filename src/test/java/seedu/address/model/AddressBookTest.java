@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.driver.Driver;
 import seedu.address.model.item.Dish;
 import seedu.address.model.item.Person;
 import seedu.address.model.item.exceptions.DuplicatePersonException;
@@ -89,6 +90,7 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Driver> drivers = FXCollections.observableArrayList();
         private final ObservableList<Dish> dishes = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
@@ -100,6 +102,10 @@ public class AddressBookTest {
             return persons;
         }
 
+        @Override
+        public ObservableList<Driver> getDriverList() {
+            return drivers;
+        }
         @Override
         public ObservableList<Dish> getDishList() {
             return dishes;
