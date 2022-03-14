@@ -5,10 +5,11 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.order.Order;
 import seedu.address.model.driver.Driver;
 import seedu.address.model.item.Dish;
 import seedu.address.model.item.Person;
+import seedu.address.model.order.Order;
+
 
 /**
  * The API of the Model component.
@@ -127,7 +128,7 @@ public interface Model {
      * Returns true if an order with the same identity as {@code order} exists in the address book.
      */
     boolean hasOrder(Order order);
-  
+
     void updateFilteredDriverList(Predicate<Driver> driver);
 
     /**

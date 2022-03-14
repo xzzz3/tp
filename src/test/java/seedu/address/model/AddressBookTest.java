@@ -18,12 +18,13 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.order.Order;
 import seedu.address.model.driver.Driver;
 import seedu.address.model.item.Dish;
 import seedu.address.model.item.Person;
 import seedu.address.model.item.exceptions.DuplicatePersonException;
+import seedu.address.model.order.Order;
 import seedu.address.testutil.PersonBuilder;
+
 
 public class AddressBookTest {
 
@@ -108,12 +109,12 @@ public class AddressBookTest {
         public ObservableList<Order> getOrderList() {
             return orders;
         }
-      
+
         @Override
         public ObservableList<Driver> getDriverList() {
             return drivers;
         }
-      
+
         @Override
         public ObservableList<Dish> getDishList() {
             return dishes;
