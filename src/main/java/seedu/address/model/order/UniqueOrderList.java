@@ -49,7 +49,7 @@ public class UniqueOrderList implements Iterable<Order> {
      * {@code target} must exist in the list.
      * The order identity of {@code editedorder} must not be the same as another existing order in the list.
      */
-    public void setorder(Order target, Order editedOrder) {
+    public void setOrders(Order target, Order editedOrder) {
         requireAllNonNull(target, editedOrder);
 
         int index = internalList.indexOf(target);
@@ -75,7 +75,7 @@ public class UniqueOrderList implements Iterable<Order> {
         }
     }
 
-    public void setorders(seedu.address.model.order.UniqueOrderList replacement) {
+    public void setOrders(seedu.address.model.order.UniqueOrderList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }

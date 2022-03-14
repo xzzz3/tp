@@ -57,6 +57,7 @@ public class EditOrderStatusCommand extends Command {
         }
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedOrder));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedOrder),
+                false, false, false, false, true);
     }
 }

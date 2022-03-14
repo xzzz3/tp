@@ -37,6 +37,7 @@ public class AddOrderCommand extends Command {
 
         // todo add duplicate checker
         model.addOrder(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
+                false, false, false, false, true);
     }
 }

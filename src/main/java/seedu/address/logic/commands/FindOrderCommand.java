@@ -29,7 +29,8 @@ public class FindOrderCommand extends Command {
         requireNonNull(model);
         model.updateFilteredOrderList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, model.getFilteredOrderList().size()));
+                String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, model.getFilteredOrderList().size()),
+                false, false, false, false, true);
     }
 
     @Override
