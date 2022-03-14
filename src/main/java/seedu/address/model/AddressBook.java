@@ -5,15 +5,14 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-
-import seedu.address.model.order.Order;
-import seedu.address.model.order.UniqueOrderList;
 import seedu.address.model.driver.Driver;
 import seedu.address.model.driver.UniqueDriverList;
 import seedu.address.model.item.Dish;
 import seedu.address.model.item.Person;
 import seedu.address.model.item.UniqueDishList;
 import seedu.address.model.item.UniquePersonList;
+import seedu.address.model.order.Order;
+import seedu.address.model.order.UniqueOrderList;
 
 
 /**
