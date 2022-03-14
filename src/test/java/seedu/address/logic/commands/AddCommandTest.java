@@ -213,6 +213,7 @@ public class AddCommandTest {
         public void updateFilteredDriverList(Predicate<Driver> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public void updateFilteredDishList(Predicate<Dish> predicate) {
             throw new AssertionError("This method should not be called.");
