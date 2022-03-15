@@ -6,8 +6,8 @@ import java.util.Set;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
-import seedu.address.model.customer.Name;
-import seedu.address.model.customer.Phone;
+import seedu.address.model.customer.NameCustomer;
+import seedu.address.model.customer.PhoneCustomer;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -20,8 +20,8 @@ public class CustomerBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    private Name name;
-    private Phone phone;
+    private NameCustomer nameCustomer;
+    private PhoneCustomer phoneCustomer;
     private Email email;
     private Address address;
     private Set<Tag> tags;
@@ -30,8 +30,8 @@ public class CustomerBuilder {
      * Creates a {@code CustomerBuilder} with the default details.
      */
     public CustomerBuilder() {
-        name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        nameCustomer = new NameCustomer(DEFAULT_NAME);
+        phoneCustomer = new PhoneCustomer(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
@@ -41,16 +41,16 @@ public class CustomerBuilder {
      * Initializes the CustomerBuilder with the data of {@code customerToCopy}.
      */
     public CustomerBuilder(Customer customerToCopy) {
-        name = customerToCopy.getName();
-        phone = customerToCopy.getPhone();
+        nameCustomer = customerToCopy.getName();
+        phoneCustomer = customerToCopy.getPhone();
         address = customerToCopy.getAddress();
     }
 
     /**
-     * Sets the {@code Name} of the {@code Customer} that we are building.
+     * Sets the {@code NameCustomer} of the {@code Customer} that we are building.
      */
     public CustomerBuilder withName(String name) {
-        this.name = new Name(name);
+        this.nameCustomer = new NameCustomer(name);
         return this;
     }
 
@@ -63,10 +63,10 @@ public class CustomerBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Customer} that we are building.
+     * Sets the {@code PhoneCustomer} of the {@code Customer} that we are building.
      */
     public CustomerBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        this.phoneCustomer = new PhoneCustomer(phone);
         return this;
     }
 
@@ -79,7 +79,7 @@ public class CustomerBuilder {
     }
 
     public Customer build() {
-        return new Customer(name, phone, address);
+        return new Customer(nameCustomer, phoneCustomer, address);
     }
 
 }

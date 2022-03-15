@@ -27,11 +27,11 @@ public class CustomerCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label nameCustomer;
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label phoneCustomer;
     @FXML
     private Label address;
     @FXML
@@ -46,8 +46,8 @@ public class CustomerCard extends UiPart<Region> {
         super(FXML);
         this.customer = customer;
         id.setText(displayedIndex + ". ");
-        name.setText(customer.getName().fullName);
-        phone.setText(customer.getPhone().value);
+        nameCustomer.setText(customer.getName().fullName);
+        phoneCustomer.setText(customer.getPhone().value);
         address.setText(customer.getAddress().value);
     }
 

@@ -4,8 +4,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
-import seedu.address.model.customer.Name;
-import seedu.address.model.customer.Phone;
+import seedu.address.model.customer.NameCustomer;
+import seedu.address.model.customer.PhoneCustomer;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -13,17 +13,17 @@ import seedu.address.model.customer.Phone;
 public class SampleDataUtil {
     public static Customer[] getSampleCustomers() {
         return new Customer[] {
-            new Customer(new Name("Alex Yeoh"), new Phone("87438807"),
+            new Customer(new NameCustomer("Alex Yeoh"), new PhoneCustomer("87438807"),
                 new Address("Blk 30 Geylang Street 29, #06-40")),
-            new Customer(new Name("Bernice Yu"), new Phone("99272758"),
+            new Customer(new NameCustomer("Bernice Yu"), new PhoneCustomer("99272758"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18")),
-            new Customer(new Name("Charlotte Oliveiro"), new Phone("93210283"),
+            new Customer(new NameCustomer("Charlotte Oliveiro"), new PhoneCustomer("93210283"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04")),
-            new Customer(new Name("David Li"), new Phone("91031282"),
+            new Customer(new NameCustomer("David Li"), new PhoneCustomer("91031282"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43")),
-            new Customer(new Name("Irfan Ibrahim"), new Phone("92492021"),
+            new Customer(new NameCustomer("Irfan Ibrahim"), new PhoneCustomer("92492021"),
                 new Address("Blk 47 Tampines Street 20, #17-35")),
-            new Customer(new Name("Roy Balakrishnan"), new Phone("92624417"),
+            new Customer(new NameCustomer("Roy Balakrishnan"), new PhoneCustomer("92624417"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"))
         };
     }

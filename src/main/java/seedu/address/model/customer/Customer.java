@@ -11,8 +11,8 @@ import java.util.Objects;
 public class Customer {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
+    private final NameCustomer nameCustomer;
+    private final PhoneCustomer phoneCustomer;
 
     // Data fields
     private final Address address;
@@ -20,19 +20,19 @@ public class Customer {
     /**
      * Every field must be present and not null.
      */
-    public Customer(Name name, Phone phone, Address address) {
-        requireAllNonNull(name, phone, address);
-        this.name = name;
-        this.phone = phone;
+    public Customer(NameCustomer nameCustomer, PhoneCustomer phoneCustomer, Address address) {
+        requireAllNonNull(nameCustomer, phoneCustomer, address);
+        this.nameCustomer = nameCustomer;
+        this.phoneCustomer = phoneCustomer;
         this.address = address;
     }
 
-    public Name getName() {
-        return name;
+    public NameCustomer getName() {
+        return nameCustomer;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public PhoneCustomer getPhone() {
+        return phoneCustomer;
     }
 
     public Address getAddress() {
@@ -40,7 +40,7 @@ public class Customer {
     }
 
     /**
-     * Returns true if both customers have the same name.
+     * Returns true if both customers have the same nameCustomer.
      * This defines a weaker notion of equality between two customers.
      */
     public boolean isSameCustomer(Customer otherCustomer) {
@@ -75,14 +75,14 @@ public class Customer {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, address);
+        return Objects.hash(nameCustomer, phoneCustomer, address);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
+                .append("; PhoneCustomer: ")
                 .append(getPhone())
                 .append("; Address: ")
                 .append(getAddress());

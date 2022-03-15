@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.customer.Address;
-import seedu.address.model.customer.Name;
-import seedu.address.model.customer.Phone;
+import seedu.address.model.customer.NameCustomer;
+import seedu.address.model.customer.PhoneCustomer;
 
 public class JsonAdaptedCustomerTest {
     private static final String INVALID_NAME = "R@chel";
@@ -33,14 +33,14 @@ public class JsonAdaptedCustomerTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedCustomer customer =
                 new JsonAdaptedCustomer(INVALID_NAME, VALID_PHONE, VALID_ADDRESS);
-        String expectedMessage = Name.MESSAGE_CONSTRAINTS;
+        String expectedMessage = NameCustomer.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, customer::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedCustomer customer = new JsonAdaptedCustomer(null, VALID_PHONE, VALID_ADDRESS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, NameCustomer.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, customer::toModelType);
     }
 
@@ -48,14 +48,14 @@ public class JsonAdaptedCustomerTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedCustomer customer =
                 new JsonAdaptedCustomer(VALID_NAME, INVALID_PHONE, VALID_ADDRESS);
-        String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
+        String expectedMessage = PhoneCustomer.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, customer::toModelType);
     }
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedCustomer customer = new JsonAdaptedCustomer(VALID_NAME, null, VALID_ADDRESS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, PhoneCustomer.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, customer::toModelType);
     }
 

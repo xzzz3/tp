@@ -6,8 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
-import seedu.address.model.customer.Name;
-import seedu.address.model.customer.Phone;
+import seedu.address.model.customer.NameCustomer;
+import seedu.address.model.customer.PhoneCustomer;
 
 /**
  * Jackson-friendly version of {@link Customer}.
@@ -49,20 +49,20 @@ class JsonAdaptedCustomer {
     public Customer toModelType() throws IllegalValueException {
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, NameCustomer.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!NameCustomer.isValidName(name)) {
+            throw new IllegalValueException(NameCustomer.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final NameCustomer modelNameCustomer = new NameCustomer(name);
 
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PhoneCustomer.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!PhoneCustomer.isValidPhone(phone)) {
+            throw new IllegalValueException(PhoneCustomer.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final PhoneCustomer modelPhoneCustomer = new PhoneCustomer(phone);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -72,7 +72,7 @@ class JsonAdaptedCustomer {
         }
         final Address modelAddress = new Address(address);
 
-        return new Customer(modelName, modelPhone, modelAddress);
+        return new Customer(modelNameCustomer, modelPhoneCustomer, modelAddress);
     }
 
 }

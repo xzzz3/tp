@@ -25,8 +25,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCustomerCommand;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
-import seedu.address.model.customer.Name;
-import seedu.address.model.customer.Phone;
+import seedu.address.model.customer.NameCustomer;
+import seedu.address.model.customer.PhoneCustomer;
 import seedu.address.testutil.CustomerBuilder;
 
 public class AddCustomerCommandParserTest {
@@ -87,11 +87,11 @@ public class AddCustomerCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB
-                + ADDRESS_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
+                + ADDRESS_DESC_BOB, NameCustomer.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC
-                + ADDRESS_DESC_BOB, Phone.MESSAGE_CONSTRAINTS);
+                + ADDRESS_DESC_BOB, PhoneCustomer.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB
@@ -99,7 +99,7 @@ public class AddCustomerCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB
-                + INVALID_ADDRESS_DESC, Name.MESSAGE_CONSTRAINTS);
+                + INVALID_ADDRESS_DESC, NameCustomer.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB

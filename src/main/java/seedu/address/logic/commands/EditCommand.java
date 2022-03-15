@@ -22,8 +22,8 @@ import seedu.address.model.Model;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
-import seedu.address.model.customer.Name;
-import seedu.address.model.customer.Phone;
+import seedu.address.model.customer.NameCustomer;
+import seedu.address.model.customer.PhoneCustomer;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -94,11 +94,11 @@ public class EditCommand extends Command {
                                                  EditCustomerDescriptor editCustomerDescriptor) {
         assert customerToEdit != null;
 
-        Name updatedName = editCustomerDescriptor.getName().orElse(customerToEdit.getName());
-        Phone updatedPhone = editCustomerDescriptor.getPhone().orElse(customerToEdit.getPhone());
+        NameCustomer updatedNameCustomer = editCustomerDescriptor.getName().orElse(customerToEdit.getName());
+        PhoneCustomer updatedPhoneCustomer = editCustomerDescriptor.getPhone().orElse(customerToEdit.getPhone());
         Address updatedAddress = editCustomerDescriptor.getAddress().orElse(customerToEdit.getAddress());
 
-        return new Customer(updatedName, updatedPhone, updatedAddress);
+        return new Customer(updatedNameCustomer, updatedPhoneCustomer, updatedAddress);
     }
 
     @Override
@@ -124,8 +124,8 @@ public class EditCommand extends Command {
      * corresponding field value of the customer.
      */
     public static class EditCustomerDescriptor {
-        private Name name;
-        private Phone phone;
+        private NameCustomer nameCustomer;
+        private PhoneCustomer phoneCustomer;
         private Email email;
         private Address address;
         private Set<Tag> tags;
@@ -137,8 +137,8 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditCustomerDescriptor(EditCustomerDescriptor toCopy) {
-            setName(toCopy.name);
-            setPhone(toCopy.phone);
+            setName(toCopy.nameCustomer);
+            setPhone(toCopy.phoneCustomer);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
@@ -148,23 +148,23 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(nameCustomer, phoneCustomer, email, address, tags);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setName(NameCustomer nameCustomer) {
+            this.nameCustomer = nameCustomer;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<NameCustomer> getName() {
+            return Optional.ofNullable(nameCustomer);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setPhone(PhoneCustomer phoneCustomer) {
+            this.phoneCustomer = phoneCustomer;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<PhoneCustomer> getPhone() {
+            return Optional.ofNullable(phoneCustomer);
         }
 
         public void setEmail(Email email) {

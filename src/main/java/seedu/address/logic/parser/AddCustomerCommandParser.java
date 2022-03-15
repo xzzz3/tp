@@ -11,8 +11,8 @@ import seedu.address.logic.commands.AddCustomerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
-import seedu.address.model.customer.Name;
-import seedu.address.model.customer.Phone;
+import seedu.address.model.customer.NameCustomer;
+import seedu.address.model.customer.PhoneCustomer;
 
 /**
  * Parses input arguments and creates a new AddCustomerCommand object
@@ -33,11 +33,11 @@ public class AddCustomerCommandParser implements Parser<AddCustomerCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCustomerCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        NameCustomer nameCustomer = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        PhoneCustomer phoneCustomer = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
 
-        Customer customer = new Customer(name, phone, address);
+        Customer customer = new Customer(nameCustomer, phoneCustomer, address);
 
         return new AddCustomerCommand(customer);
     }

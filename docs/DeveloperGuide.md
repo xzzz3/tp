@@ -58,7 +58,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
+* defines its *API* in an `interface` with the same nameCustomer as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
@@ -110,7 +110,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command nameCustomer e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -276,7 +276,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | new user                                   | see usage instructions                                                                             | refer to instructions when I forget how to use the App                 |
 | `* * *` | user                                       | add a new person                                                                                   |                                                                        |
 | `* * *` | user                                       | delete a person                                                                                    | remove entries that I no longer need                                   |
-| `* * *` | user                                       | find a person by name                                                                              | locate details of persons without having to go through the entire list |
+| `* * *` | user                                       | find a person by nameCustomer                                                                              | locate details of persons without having to go through the entire list |
 | `* * *` | experienced user                           | view a list of previous delivery orders                                                            | review the previous transactions' details in case they're needed (e.g. if the driver accidentally clicks delivered and the task disappears) |
 | `* * *` | experienced user                        | view a list of current delivery orders                                                             | know the details of the delivery orders and respond to them. |
 | `* * *` | basic user                                       | view a list of free drivers                                                                        | assign them to delivery orders
@@ -305,7 +305,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`   | forgetful user                             | retrieve password                                                                                  | recover my account when I forget my password                           |
 | `*`   | impatient user                             | navigate functionalities from a single page                                                        | easily access the different functionalities directly     |
 | `*`   | user who uses other management tools       | migrate into the platform without major restructuring                                              | transition from one app to another              |
-| `*`   | user with many persons in the address book | sort persons by name                                                                               | locate a person easily                                                 |
+| `*`   | user with many persons in the address book | sort persons by nameCustomer                                                                               | locate a person easily                                                 |
 | `*`   | basic user                                       | View the detail of a driver (e.g. number, car plate number, current order)                         | I can contact the drivers in case of emergency
 
 *{More to be added}*
@@ -330,7 +330,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add customer by providing the required info (name, address, phone number)
+1.  User requests to add customer by providing the required info (nameCustomer, address, phoneCustomer number)
 2.  FoodOnWheels adds the customer
 
     Use case ends.
@@ -340,7 +340,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to delete customer by providing the required info (name, address, phone number)
+1.  User requests to delete customer by providing the required info (nameCustomer, address, phoneCustomer number)
 2.  FoodOnWheels deletes the customer
 
     Use case ends.
