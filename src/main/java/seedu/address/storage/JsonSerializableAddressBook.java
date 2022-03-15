@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import static seedu.address.logic.commands.AddDishCommand.MESSAGE_DUPLICATE_DISH;
 import static seedu.address.logic.commands.AddDriverCommand.MESSAGE_DUPLICATE_DRIVER;
+import static seedu.address.logic.commands.AddOrderCommand.MESSAGE_DUPLICATE_ORDER;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.driver.Driver;
 import seedu.address.model.item.Dish;
 import seedu.address.model.item.Person;
+import seedu.address.model.order.Order;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -29,6 +31,7 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedDish> dishes = new ArrayList<>();
     private final List<JsonAdaptedDriver> drivers = new ArrayList<>();
+    private final List<JsonAdaptedOrder> orders = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
@@ -36,10 +39,12 @@ class JsonSerializableAddressBook {
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
             @JsonProperty("dishes") List<JsonAdaptedDish> dishes,
-            @JsonProperty("drivers") List<JsonAdaptedDriver> drivers) {
+            @JsonProperty("drivers") List<JsonAdaptedDriver> drivers,
+            @JsonProperty("orders") List<JsonAdaptedOrder> orders) {
         this.persons.addAll(persons);
         this.dishes.addAll(dishes);
         this.drivers.addAll(drivers);
+        this.orders.addAll(orders);
     }
 
     /**
@@ -51,6 +56,7 @@ class JsonSerializableAddressBook {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         dishes.addAll(source.getDishList().stream().map(JsonAdaptedDish::new).collect(Collectors.toList()));
         drivers.addAll(source.getDriverList().stream().map(JsonAdaptedDriver::new).collect(Collectors.toList()));
+        orders.addAll(source.getOrderList().stream().map(JsonAdaptedOrder::new).collect(Collectors.toList()));
     }
 
     /**
@@ -83,6 +89,15 @@ class JsonSerializableAddressBook {
             }
             addressBook.addDriver(driver);
         }
+
+        for (JsonAdaptedOrder jsonAdaptedOrder : orders) {
+            Order order = jsonAdaptedOrder.toModelType();
+            if (addressBook.hasOrder(order)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ORDER);
+            }
+            addressBook.addOrder(order);
+        }
+
         return addressBook;
     }
 
