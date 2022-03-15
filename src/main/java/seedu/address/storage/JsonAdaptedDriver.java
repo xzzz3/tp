@@ -28,7 +28,7 @@ class JsonAdaptedDriver {
     }
 
     /**
-     * Converts a given {@code Dish} into this class for Jackson use.
+     * Converts a given {@code Order} into this class for Jackson use.
      */
     public JsonAdaptedDriver(Driver source) {
         name = source.getName().fullName;
@@ -36,9 +36,9 @@ class JsonAdaptedDriver {
     }
 
     /**
-     * Converts this Jackson-friendly adapted dish object into the model's {@code Dish} object.
+     * Converts this Jackson-friendly adapted driver object into the model's {@code Driver} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted dish.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted driver.
      */
     public Driver toModelType() throws IllegalValueException {
         if (name == null) {

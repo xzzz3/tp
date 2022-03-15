@@ -70,10 +70,18 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the contents of the driver list with {@code drivers}.
-     * {@code drivers} must not contain duplicate dishes.
+     * {@code drivers} must not contain duplicate orders.
      */
     public void setDrivers(List<Driver> drivers) {
         this.drivers.setDrivers(drivers);
+    }
+
+    /**
+     * Replaces the contents of the order list with {@code orders}.
+     * {@code orders} must not contain duplicate orders.
+     */
+    public void setOrders(List<Order> orders) {
+        this.orders.setOrders(orders);
     }
 
     /**
@@ -85,6 +93,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
         setDishes(newData.getDishList());
         setDrivers(newData.getDriverList());
+        setOrders(newData.getOrderList());
     }
 
     //// person-level operations
