@@ -55,7 +55,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 **:information_source: Notes about the command format:**<br>
 
 * Words in `{curly brackets}` are the parameters to be supplied by the user.<br>
-  e.g. in `add /n {nameCustomer}`, `nameCustomer` is a parameter which can be used as `add /n John Doe`.
+  e.g. in `add /n {name}`, `name` is a parameter which can be used as `add /n John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -80,7 +80,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 Adds a customer to the addressbook.
 
-Format: `add n/{nameCustomer} a/{addressCustomer} p/{phoneCustomer}`
+Format: `add n/{name} a/{address} p/{phone}`
 
 Examples:
 * `add n/John Doe a/John street, block 123, #01-01 p/98765432`
@@ -90,7 +90,7 @@ Examples:
 
 Deletes a customer from the addressbook.
 
-Format: `delete n/{nameCustomer} a/{addressCustomer} p/{phoneCustomer}`
+Format: `delete n/{name} a/{address} p/{phone}`
 
 Examples:
 * `delete n/John Doe a/John street, block 123, #01-01 p/98765432`
@@ -98,31 +98,40 @@ Examples:
 
 ## Driver features
 
-### Adding a driver: `add driver`
+### Adding a driver: `adddriver`
 
 Adds a driver to the database.
 
-Format: ` add driver n/{nameCustomer} p/{phoneCustomer}`
+Format: ` adddriver n/{name} p/{phone}`
 
 Examples:
-* `add driver n/John Doe p/98765432 `
-* `add driver n/Betsy Crowe p/1234567 `
+* `adddriver n/John Doe p/98765432 `
+* `adddriver n/Betsy Crowe p/1234567 `
 
 ### Deleting a driver: `delete driver`
 
 Deletes a driver from the database, together with his/her information.
 
-Format: `delete driver n/{nameCustomer} p/{phoneCustomer}`
+Format: `deletedriver n/{name} p/{phone}`
 
 Examples:
-* `delete driver n/John Doe p/98765432`
-* `delete driver n/Betsy Crowe p/1234567`
+* `deletedriver n/John Doe p/98765432`
+* `deletedriver n/Betsy Crowe p/1234567`
 
-### List free drivers: `list driver free`
+### List free drivers: `listdriver free`
 
 Lists free drivers who are not delivering any order and can receive new orders.
 
-Format: `list driver free`
+Format: `listdriver free`
+
+### List driver with specific status: `listdriver`
+
+Lists drivers having a specific status at that time.
+
+Format: `listdriver [STATUS]`
+
+Examples:
+* `listdriver free`
 
 ## Dish features
 
@@ -130,7 +139,7 @@ Format: `list driver free`
 
 Adds a dish to the restaurant’s menu.
 
-Format: `add dish n/{nameCustomer}`
+Format: `add dish n/{name}`
 
 Examples:
 * `add dish n/Crab Pasta`
@@ -140,7 +149,7 @@ Examples:
 
 Deletes a dish from the restaurant’s menu.
 
-Format: `delete dish n/{nameCustomer}`
+Format: `delete dish n/{name}`
 
 Examples:
 * `delete dish n/Crab Pasta`
@@ -168,7 +177,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the addressCustomer book.
+Adds a person to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -186,7 +195,7 @@ Examples:
 
 Adds a new delivery order to the list of orders.
 
-Format: `add order /p {phoneCustomer} /d {dishes separated by comma}`
+Format: `add order /p {phone} /d {dishes separated by comma}`
 
 Examples:
 * `add order /p 81234567 /d {Fried Rice, Pasta}`
@@ -204,9 +213,9 @@ Examples:
 
 ### Search for an Order by Phone Number: `find order`
 
-Search for an order with the phoneCustomer number provided in the list of orders.
+Search for an order with the phone number provided in the list of orders.
 
-Format: `find /p {phoneCustomer}`
+Format: `find /p {phone}`
 
 Examples:
 * `find /p 81234567`
@@ -228,7 +237,7 @@ Format: `listordersprev`
 
 Adds a new delivery order to the list of orders.
 
-Format: `add order /p {phoneCustomer} /d {dishes separated by comma}`
+Format: `add order /p {phone} /d {dishes separated by comma}`
 
 Examples:
 * `add order /p 81234567 /d {Fried Rice, Pasta}`
@@ -246,9 +255,9 @@ Examples:
 
 ### Search for an Order by Phone Number: `find order`
 
-Search for an order with the phoneCustomer number provided in the list of orders.
+Search for an order with the phone number provided in the list of orders.
 
-Format: `find /p {phoneCustomer}`
+Format: `find /p {phone}`
 
 Examples:
 * `find /p 81234567`
@@ -294,10 +303,10 @@ _Details coming soon ..._
 
 Action | Feature type | Format, Examples
 --------|--------------|------------------
-**Add** | **Customer** |`add n/{nameCustomer} a/{addressCustomer} p/{phoneCustomer}` <br> e.g,`add n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
-**Delete** | **Customer** |`delete n/{nameCustomer} a/{addressCustomer} p/{phoneCustomer}` <br> e.g,`delete n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
-**Add** | **Driver**   |`add driver n/{nameCustomer} p/{phoneCustomer}` <br> e.g,`add driver n/John Doe p/98765432`
-**Delete** | **Driver**   |`delete driver n/{nameCustomer} p/{phoneCustomer}` <br> e.g,`delete driver n/John Doe p/98765432`
+**Add** | **Customer** |`add n/{name} a/{address} p/{phone}` <br> e.g,`add n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
+**Delete** | **Customer** |`delete n/{name} a/{address} p/{phone}` <br> e.g,`delete n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
+**Add** | **Driver**   |`add driver n/{name} p/{phone}` <br> e.g,`add driver n/John Doe p/98765432`
+**Delete** | **Driver**   |`delete driver n/{name} p/{phone}` <br> e.g,`delete driver n/John Doe p/98765432`
 **List** | **Driver**   |`list driver free` 
 **Add** | **Dish**     | `add dish n/NAME` <br> e.g., `add dish n/Crab Pasta`
 **Delete** | **Dish**     | `delete dish n/NAME` <br> e.g., `delete dish n/Crab Pasta`
