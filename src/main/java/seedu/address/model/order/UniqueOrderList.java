@@ -64,7 +64,7 @@ public class UniqueOrderList implements Iterable<Order> {
         internalList.set(index, editedOrder);
     }
 
-    public void setOrders(seedu.address.model.order.UniqueOrderList replacement) {
+    public void setOrders(UniqueOrderList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -108,8 +108,8 @@ public class UniqueOrderList implements Iterable<Order> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.order.UniqueOrderList // instanceof handles nulls
-                && internalList.equals(((seedu.address.model.order.UniqueOrderList) other).internalList));
+                || (other instanceof UniqueOrderList // instanceof handles nulls
+                && internalList.equals(((UniqueOrderList) other).internalList));
     }
 
     @Override
