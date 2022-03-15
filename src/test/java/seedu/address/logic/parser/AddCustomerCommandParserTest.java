@@ -23,7 +23,7 @@ import static seedu.address.testutil.TypicalCustomers.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCustomerCommand;
-import seedu.address.model.customer.Address;
+import seedu.address.model.customer.AddressCustomer;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.NameCustomer;
 import seedu.address.model.customer.PhoneCustomer;
@@ -95,7 +95,7 @@ public class AddCustomerCommandParserTest {
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB
-                + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS);
+                + INVALID_ADDRESS_DESC, AddressCustomer.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB

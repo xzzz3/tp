@@ -33,7 +33,7 @@ public class CustomerCard extends UiPart<Region> {
     @FXML
     private Label phoneCustomer;
     @FXML
-    private Label address;
+    private Label addressCustomer;
     @FXML
     private Label email;
     @FXML
@@ -48,7 +48,7 @@ public class CustomerCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         nameCustomer.setText(customer.getName().fullName);
         phoneCustomer.setText(customer.getPhone().value);
-        address.setText(customer.getAddress().value);
+        addressCustomer.setText(customer.getAddress().value);
     }
 
     @Override

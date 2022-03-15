@@ -80,7 +80,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 Adds a customer to the addressbook.
 
-Format: `add n/{nameCustomer} a/{address} p/{phoneCustomer}`
+Format: `add n/{nameCustomer} a/{addressCustomer} p/{phoneCustomer}`
 
 Examples:
 * `add n/John Doe a/John street, block 123, #01-01 p/98765432`
@@ -90,7 +90,7 @@ Examples:
 
 Deletes a customer from the addressbook.
 
-Format: `delete n/{nameCustomer} a/{address} p/{phoneCustomer}`
+Format: `delete n/{nameCustomer} a/{addressCustomer} p/{phoneCustomer}`
 
 Examples:
 * `delete n/John Doe a/John street, block 123, #01-01 p/98765432`
@@ -168,7 +168,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to the addressCustomer book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -294,8 +294,8 @@ _Details coming soon ..._
 
 Action | Feature type | Format, Examples
 --------|--------------|------------------
-**Add** | **Customer** |`add n/{nameCustomer} a/{address} p/{phoneCustomer}` <br> e.g,`add n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
-**Delete** | **Customer** |`delete n/{nameCustomer} a/{address} p/{phoneCustomer}` <br> e.g,`delete n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
+**Add** | **Customer** |`add n/{nameCustomer} a/{addressCustomer} p/{phoneCustomer}` <br> e.g,`add n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
+**Delete** | **Customer** |`delete n/{nameCustomer} a/{addressCustomer} p/{phoneCustomer}` <br> e.g,`delete n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
 **Add** | **Driver**   |`add driver n/{nameCustomer} p/{phoneCustomer}` <br> e.g,`add driver n/John Doe p/98765432`
 **Delete** | **Driver**   |`delete driver n/{nameCustomer} p/{phoneCustomer}` <br> e.g,`delete driver n/John Doe p/98765432`
 **List** | **Driver**   |`list driver free` 

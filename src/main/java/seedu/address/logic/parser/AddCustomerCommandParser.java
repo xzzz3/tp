@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCustomerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.customer.Address;
+import seedu.address.model.customer.AddressCustomer;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.NameCustomer;
 import seedu.address.model.customer.PhoneCustomer;
@@ -35,9 +35,9 @@ public class AddCustomerCommandParser implements Parser<AddCustomerCommand> {
 
         NameCustomer nameCustomer = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         PhoneCustomer phoneCustomer = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        AddressCustomer addressCustomer = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
 
-        Customer customer = new Customer(nameCustomer, phoneCustomer, address);
+        Customer customer = new Customer(nameCustomer, phoneCustomer, addressCustomer);
 
         return new AddCustomerCommand(customer);
     }

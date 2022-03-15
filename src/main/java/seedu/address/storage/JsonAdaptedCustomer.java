@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.customer.Address;
+import seedu.address.model.customer.AddressCustomer;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.NameCustomer;
 import seedu.address.model.customer.PhoneCustomer;
@@ -65,14 +65,14 @@ class JsonAdaptedCustomer {
         final PhoneCustomer modelPhoneCustomer = new PhoneCustomer(phone);
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, AddressCustomer.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!AddressCustomer.isValidAddress(address)) {
+            throw new IllegalValueException(AddressCustomer.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final AddressCustomer modelAddressCustomer = new AddressCustomer(address);
 
-        return new Customer(modelNameCustomer, modelPhoneCustomer, modelAddress);
+        return new Customer(modelNameCustomer, modelPhoneCustomer, modelAddressCustomer);
     }
 
 }

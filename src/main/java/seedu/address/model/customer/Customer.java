@@ -5,7 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 /**
- * Represents a Customer in the address book.
+ * Represents a Customer in the addressCustomer book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Customer {
@@ -15,16 +15,16 @@ public class Customer {
     private final PhoneCustomer phoneCustomer;
 
     // Data fields
-    private final Address address;
+    private final AddressCustomer addressCustomer;
 
     /**
      * Every field must be present and not null.
      */
-    public Customer(NameCustomer nameCustomer, PhoneCustomer phoneCustomer, Address address) {
-        requireAllNonNull(nameCustomer, phoneCustomer, address);
+    public Customer(NameCustomer nameCustomer, PhoneCustomer phoneCustomer, AddressCustomer addressCustomer) {
+        requireAllNonNull(nameCustomer, phoneCustomer, addressCustomer);
         this.nameCustomer = nameCustomer;
         this.phoneCustomer = phoneCustomer;
-        this.address = address;
+        this.addressCustomer = addressCustomer;
     }
 
     public NameCustomer getName() {
@@ -35,8 +35,8 @@ public class Customer {
         return phoneCustomer;
     }
 
-    public Address getAddress() {
-        return address;
+    public AddressCustomer getAddress() {
+        return addressCustomer;
     }
 
     /**
@@ -75,7 +75,7 @@ public class Customer {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(nameCustomer, phoneCustomer, address);
+        return Objects.hash(nameCustomer, phoneCustomer, addressCustomer);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class Customer {
         builder.append(getName())
                 .append("; PhoneCustomer: ")
                 .append(getPhone())
-                .append("; Address: ")
+                .append("; AddressCustomer: ")
                 .append(getAddress());
 
         return builder.toString();

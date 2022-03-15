@@ -8,7 +8,7 @@ import static seedu.address.testutil.TypicalCustomers.BENSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.customer.Address;
+import seedu.address.model.customer.AddressCustomer;
 import seedu.address.model.customer.NameCustomer;
 import seedu.address.model.customer.PhoneCustomer;
 
@@ -64,14 +64,14 @@ public class JsonAdaptedCustomerTest {
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedCustomer customer =
                 new JsonAdaptedCustomer(VALID_NAME, VALID_PHONE, INVALID_ADDRESS);
-        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
+        String expectedMessage = AddressCustomer.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, customer::toModelType);
     }
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedCustomer customer = new JsonAdaptedCustomer(VALID_NAME, VALID_PHONE, null);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, AddressCustomer.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, customer::toModelType);
     }
 

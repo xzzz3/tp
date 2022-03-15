@@ -19,15 +19,15 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.customer.Address;
+import seedu.address.model.customer.AddressCustomer;
 import seedu.address.model.customer.Customer;
-import seedu.address.model.customer.Email;
+import seedu.address.model.customer.EmailCustomer;
 import seedu.address.model.customer.NameCustomer;
 import seedu.address.model.customer.PhoneCustomer;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing customer in the address book.
+ * Edits the details of an existing customer in the addressCustomer book.
  */
 public class EditCommand extends Command {
 
@@ -48,7 +48,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_CUSTOMER_SUCCESS = "Edited Customer: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in the addressCustomer book.";
 
     private final Index index;
     private final EditCustomerDescriptor editCustomerDescriptor;
@@ -96,9 +96,9 @@ public class EditCommand extends Command {
 
         NameCustomer updatedNameCustomer = editCustomerDescriptor.getName().orElse(customerToEdit.getName());
         PhoneCustomer updatedPhoneCustomer = editCustomerDescriptor.getPhone().orElse(customerToEdit.getPhone());
-        Address updatedAddress = editCustomerDescriptor.getAddress().orElse(customerToEdit.getAddress());
+        AddressCustomer updatedAddressCustomer = editCustomerDescriptor.getAddress().orElse(customerToEdit.getAddress());
 
-        return new Customer(updatedNameCustomer, updatedPhoneCustomer, updatedAddress);
+        return new Customer(updatedNameCustomer, updatedPhoneCustomer, updatedAddressCustomer);
     }
 
     @Override
@@ -126,8 +126,8 @@ public class EditCommand extends Command {
     public static class EditCustomerDescriptor {
         private NameCustomer nameCustomer;
         private PhoneCustomer phoneCustomer;
-        private Email email;
-        private Address address;
+        private EmailCustomer emailCustomer;
+        private AddressCustomer addressCustomer;
         private Set<Tag> tags;
 
         public EditCustomerDescriptor() {}
@@ -139,8 +139,8 @@ public class EditCommand extends Command {
         public EditCustomerDescriptor(EditCustomerDescriptor toCopy) {
             setName(toCopy.nameCustomer);
             setPhone(toCopy.phoneCustomer);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setEmail(toCopy.emailCustomer);
+            setAddress(toCopy.addressCustomer);
             setTags(toCopy.tags);
         }
 
@@ -148,7 +148,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(nameCustomer, phoneCustomer, email, address, tags);
+            return CollectionUtil.isAnyNonNull(nameCustomer, phoneCustomer, emailCustomer, addressCustomer, tags);
         }
 
         public void setName(NameCustomer nameCustomer) {
@@ -167,20 +167,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(phoneCustomer);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setEmail(EmailCustomer emailCustomer) {
+            this.emailCustomer = emailCustomer;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<EmailCustomer> getEmail() {
+            return Optional.ofNullable(emailCustomer);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setAddress(AddressCustomer addressCustomer) {
+            this.addressCustomer = addressCustomer;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<AddressCustomer> getAddress() {
+            return Optional.ofNullable(addressCustomer);
         }
 
         /**

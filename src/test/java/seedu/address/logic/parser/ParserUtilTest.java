@@ -14,8 +14,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.customer.Address;
-import seedu.address.model.customer.Email;
+import seedu.address.model.customer.AddressCustomer;
+import seedu.address.model.customer.EmailCustomer;
 import seedu.address.model.customer.NameCustomer;
 import seedu.address.model.customer.PhoneCustomer;
 import seedu.address.model.tag.Tag;
@@ -114,15 +114,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
+        AddressCustomer expectedAddressCustomer = new AddressCustomer(VALID_ADDRESS);
+        assertEquals(expectedAddressCustomer, ParserUtil.parseAddress(VALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+        AddressCustomer expectedAddressCustomer = new AddressCustomer(VALID_ADDRESS);
+        assertEquals(expectedAddressCustomer, ParserUtil.parseAddress(addressWithWhitespace));
     }
 
     @Test
@@ -137,15 +137,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+        EmailCustomer expectedEmailCustomer = new EmailCustomer(VALID_EMAIL);
+        assertEquals(expectedEmailCustomer, ParserUtil.parseEmail(VALID_EMAIL));
     }
 
     @Test
     public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+        EmailCustomer expectedEmailCustomer = new EmailCustomer(VALID_EMAIL);
+        assertEquals(expectedEmailCustomer, ParserUtil.parseEmail(emailWithWhitespace));
     }
 
     @Test
