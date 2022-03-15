@@ -29,7 +29,6 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_CUSTOMER = "Customers list contains duplicate customer(s).";
 
     private final List<JsonAdaptedCustomer> customers = new ArrayList<>();
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedDish> dishes = new ArrayList<>();
     private final List<JsonAdaptedDriver> drivers = new ArrayList<>();
     private final List<JsonAdaptedOrder> orders = new ArrayList<>();
@@ -39,11 +38,9 @@ class JsonSerializableAddressBook {
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("customers") List<JsonAdaptedCustomer> customers,
-                                       @JsonProperty("persons") List<JsonAdaptedPerson> persons,
                                        @JsonProperty("dishes") List<JsonAdaptedDish> dishes,
                                        @JsonProperty("drivers") List<JsonAdaptedDriver> drivers,
                                        @JsonProperty("orders") List<JsonAdaptedOrder> orders) {
-        this.persons.addAll(persons);
         this.dishes.addAll(dishes);
         this.drivers.addAll(drivers);
         this.orders.addAll(orders);
@@ -57,7 +54,6 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         customers.addAll(source.getCustomerList().stream().map(JsonAdaptedCustomer::new).collect(Collectors.toList()));
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         dishes.addAll(source.getDishList().stream().map(JsonAdaptedDish::new).collect(Collectors.toList()));
         drivers.addAll(source.getDriverList().stream().map(JsonAdaptedDriver::new).collect(Collectors.toList()));
         orders.addAll(source.getOrderList().stream().map(JsonAdaptedOrder::new).collect(Collectors.toList()));
