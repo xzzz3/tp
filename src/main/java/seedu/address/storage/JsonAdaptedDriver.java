@@ -28,7 +28,7 @@ class JsonAdaptedDriver {
     }
 
     /**
-     * Converts a given {@code Order} into this class for Jackson use.
+     * Converts a given {@code Driver} into this class for Jackson use.
      */
     public JsonAdaptedDriver(Driver source) {
         name = source.getName().fullName;
