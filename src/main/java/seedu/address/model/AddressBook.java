@@ -70,7 +70,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the contents of the driver list with {@code drivers}.
-     * {@code drivers} must not contain duplicate orders.
+     * {@code drivers} must not contain duplicate drivers.
      */
     public void setDrivers(List<Driver> drivers) {
         this.drivers.setDrivers(drivers);
