@@ -15,7 +15,7 @@ public class AddOrderCommand extends Command {
             + "Parameters: "
             + "p/ [PHONE] d/ [DISHES]\n"
             + "Example: " + COMMAND_WORD
-            + "p/ 87654321 d/ Chicken Pasta";
+            + " p/ 87654321 d/ Chicken Pasta";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists!";
