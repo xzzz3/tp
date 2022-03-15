@@ -60,7 +60,8 @@ public class EmailCustomerTest {
         assertTrue(EmailCustomer.isValidEmail("a@bc")); // minimal
         assertTrue(EmailCustomer.isValidEmail("test@localhost")); // alphabets only
         assertTrue(EmailCustomer.isValidEmail("123@145")); // numeric local part and domain name
-        assertTrue(EmailCustomer.isValidEmail("a1+be.d@example1.com")); // mixture of alphanumeric and special characters
+        assertTrue(EmailCustomer.isValidEmail("a1+be.d@example1.com")); // mixture of alphanumeric and special
+        // characters
         assertTrue(EmailCustomer.isValidEmail("peter_jack@very-very-very-long-example.com")); // long domain name
         assertTrue(EmailCustomer.isValidEmail("if.you.dream.it_you.can.do.it@example.com")); // long local part
         assertTrue(EmailCustomer.isValidEmail("e1234567@u.nus.edu")); // more than one period in domain

@@ -13,6 +13,9 @@ import seedu.address.model.customer.AddressCustomer;
 import seedu.address.model.customer.EmailCustomer;
 import seedu.address.model.customer.NameCustomer;
 import seedu.address.model.customer.PhoneCustomer;
+import seedu.address.model.driver.NameDriver;
+import seedu.address.model.driver.PhoneDriver;
+import seedu.address.model.item.Name;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -51,6 +54,37 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static Name parseDishName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!NameCustomer.isValidName(trimmedName)) {
+            throw new ParseException(NameCustomer.MESSAGE_CONSTRAINTS);
+        }
+        return new Name(trimmedName);
+    }
+
+
+    /**
+     * Parses a {@code String name} into a {@code NameDriver}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static NameDriver parseNameDriver(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!NameDriver.isValidName(trimmedName)) {
+            throw new ParseException(NameDriver.MESSAGE_CONSTRAINTS);
+        }
+        return new NameDriver(trimmedName);
+    }
+
+    /**
      * Parses a {@code String phone} into a {@code PhoneCustomer}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -63,6 +97,21 @@ public class ParserUtil {
             throw new ParseException(PhoneCustomer.MESSAGE_CONSTRAINTS);
         }
         return new PhoneCustomer(trimmedPhone);
+    }
+
+    /**
+     * Parses a {@code String phone} into a {@code PhoneDriver}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static PhoneDriver parsePhoneDriver(String phone) throws ParseException {
+        requireNonNull(phone);
+        String trimmedPhone = phone.trim();
+        if (!PhoneDriver.isValidPhone(trimmedPhone)) {
+            throw new ParseException(PhoneDriver.MESSAGE_CONSTRAINTS);
+        }
+        return new PhoneDriver(trimmedPhone);
     }
 
     /**

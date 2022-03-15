@@ -21,6 +21,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.driver.Driver;
+import seedu.address.model.item.Dish;
+import seedu.address.model.item.Person;
+import seedu.address.model.order.Order;
 import seedu.address.testutil.CustomerBuilder;
 
 public class AddCustomerCommandTest {
@@ -115,6 +119,16 @@ public class AddCustomerCommandTest {
         }
 
         @Override
+        public void addPerson(Person person) {
+
+        }
+
+        @Override
+        public void addDriver(Driver driver) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -130,7 +144,27 @@ public class AddCustomerCommandTest {
         }
 
         @Override
+        public boolean hasPerson(Person person) {
+            return false;
+        }
+
+        @Override
+        public boolean hasDriver(Driver person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteCustomer(Customer target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deletePerson(Person target) {
+
+        }
+
+        @Override
+        public void deleteDriver(Driver target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -140,12 +174,77 @@ public class AddCustomerCommandTest {
         }
 
         @Override
+        public boolean hasDish(Dish dish) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteDish(Dish target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addDish(Dish dish) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            return null;
+        }
+
+        @Override
         public ObservableList<Customer> getFilteredCustomerList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public ObservableList<Driver> getFilteredDriverList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Dish> getFilteredDishList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredCustomerList(Predicate<Customer> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredPersonList(Predicate<Person> predicate) {
+
+        }
+
+        @Override
+        public void addOrder(Order order) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Order> getFilteredOrderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasOrder(Order order) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredOrderList(Predicate<Order> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredDriverList(Predicate<Driver> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredDishList(Predicate<Dish> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -191,5 +290,5 @@ public class AddCustomerCommandTest {
             return new AddressBook();
         }
     }
-
 }
+

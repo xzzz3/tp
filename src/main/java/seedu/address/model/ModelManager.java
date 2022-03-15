@@ -12,6 +12,11 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.driver.Driver;
+import seedu.address.model.item.Dish;
+import seedu.address.model.item.Person;
+import seedu.address.model.order.Order;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +27,9 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Customer> filteredCustomers;
+    private final FilteredList<Order> filteredOrders;
+    private final FilteredList<Driver> filteredDrivers;
+    private final FilteredList<Dish> filteredDishes;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +42,9 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredCustomers = new FilteredList<>(this.addressBook.getCustomerList());
+        filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
+        filteredDrivers = new FilteredList<>(this.addressBook.getDriverList());
+        filteredDishes = new FilteredList<>(this.addressBook.getDishList());
     }
 
     public ModelManager() {
@@ -94,8 +105,29 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPerson(Person person) {
+        return false;
+    }
+
+    @Override
+    public boolean hasDriver(Driver driver) {
+        requireNonNull(driver);
+        return addressBook.hasDriver(driver);
+    }
+
+    @Override
     public void deleteCustomer(Customer target) {
         addressBook.removeCustomer(target);
+    }
+
+    @Override
+    public void deletePerson(Person target) {
+
+    }
+
+    @Override
+    public void deleteDriver(Driver target) {
+        addressBook.removeDriver(target);
     }
 
     @Override
@@ -105,10 +137,44 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addPerson(Person person) {
+
+    }
+
+    @Override
+    public void addDriver(Driver driver) {
+        addressBook.addDriver(driver);
+        updateFilteredDriverList(PREDICATE_SHOW_ALL_DRIVERS);
+    }
+
+    @Override
     public void setCustomer(Customer target, Customer editedCustomer) {
         requireAllNonNull(target, editedCustomer);
 
         addressBook.setCustomer(target, editedCustomer);
+    }
+
+    //=========== Filtered Dish List Accessors =============================================================
+    @Override
+    public boolean hasDish(Dish dish) {
+        requireNonNull(dish);
+        return addressBook.hasDish(dish);
+    }
+
+    @Override
+    public void deleteDish(Dish target) {
+        addressBook.removeDish(target);
+    }
+
+    @Override
+    public void addDish(Dish dish) {
+        addressBook.addDish(dish);
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+    }
+
+    @Override
+    public ObservableList<Person> getFilteredPersonList() {
+        return null;
     }
 
     //=========== Filtered Customer List Accessors =============================================================
@@ -122,10 +188,40 @@ public class ModelManager implements Model {
         return filteredCustomers;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Dish} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Dish> getFilteredDishList() {
+        return filteredDishes;
+    }
+
+    @Override
+    public ObservableList<Driver> getFilteredDriverList() {
+        return filteredDrivers;
+    }
+
     @Override
     public void updateFilteredCustomerList(Predicate<Customer> predicate) {
         requireNonNull(predicate);
         filteredCustomers.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredPersonList(Predicate<Person> predicate) {
+
+    }
+
+    @Override
+    public void updateFilteredDriverList(Predicate<Driver> predicate) {
+        requireNonNull(predicate);
+        filteredDrivers.setPredicate(predicate);
+    }
+    @Override
+    public void updateFilteredDishList(Predicate<Dish> predicate) {
+        requireNonNull(predicate);
+        filteredDishes.setPredicate(predicate);
     }
 
     @Override
@@ -144,7 +240,35 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredCustomers.equals(other.filteredCustomers);
+                && filteredCustomers.equals(other.filteredCustomers)
+                && filteredDishes.equals(other.filteredDishes);
     }
 
+    //==================== FoodOnWheels ===================================
+    @Override
+    public void addOrder(Order order) {
+        addressBook.addOrder(order);
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Order> getFilteredOrderList() {
+        return filteredOrders;
+    }
+
+    @Override
+    public boolean hasOrder(Order order) {
+        requireNonNull(order);
+        return addressBook.hasOrder(order);
+    }
+
+    @Override
+    public void updateFilteredOrderList(Predicate<Order> predicate) {
+        requireNonNull(predicate);
+        filteredOrders.setPredicate(predicate);
+    }
 }

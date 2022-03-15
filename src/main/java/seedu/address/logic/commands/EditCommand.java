@@ -51,18 +51,18 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in the addressCustomer book.";
 
     private final Index index;
-    private final EditCustomerDescriptor editCustomerDescriptor;
+    private final EditPersonDescriptor editPersonDescriptor;
 
     /**
      * @param index of the customer in the filtered customer list to edit
-     * @param editCustomerDescriptor details to edit the customer with
+     * @param editPersonDescriptor details to edit the customer with
      */
-    public EditCommand(Index index, EditCustomerDescriptor editCustomerDescriptor) {
+    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
-        requireNonNull(editCustomerDescriptor);
+        requireNonNull(editPersonDescriptor);
 
         this.index = index;
-        this.editCustomerDescriptor = new EditCustomerDescriptor(editCustomerDescriptor);
+        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class EditCommand extends Command {
         }
 
         Customer customerToEdit = lastShownList.get(index.getZeroBased());
-        Customer editedCustomer = createEditedCustomer(customerToEdit, editCustomerDescriptor);
+        Customer editedCustomer = createEditedCustomer(customerToEdit, editPersonDescriptor);
 
         if (!customerToEdit.isSameCustomer(editedCustomer) && model.hasCustomer(editedCustomer)) {
             throw new CommandException(MESSAGE_DUPLICATE_CUSTOMER);
@@ -88,15 +88,16 @@ public class EditCommand extends Command {
 
     /**
      * Creates and returns a {@code Customer} with the details of {@code customerToEdit}
-     * edited with {@code editCustomerDescriptor}.
+     * edited with {@code editPersonDescriptor}.
      */
     private static Customer createEditedCustomer(Customer customerToEdit,
-                                                 EditCustomerDescriptor editCustomerDescriptor) {
+                                                 EditPersonDescriptor editPersonDescriptor) {
         assert customerToEdit != null;
 
-        NameCustomer updatedNameCustomer = editCustomerDescriptor.getName().orElse(customerToEdit.getName());
-        PhoneCustomer updatedPhoneCustomer = editCustomerDescriptor.getPhone().orElse(customerToEdit.getPhone());
-        AddressCustomer updatedAddressCustomer = editCustomerDescriptor.getAddress().orElse(customerToEdit.getAddress());
+        NameCustomer updatedNameCustomer = editPersonDescriptor.getName().orElse(customerToEdit.getName());
+        PhoneCustomer updatedPhoneCustomer = editPersonDescriptor.getPhone().orElse(customerToEdit.getPhone());
+        AddressCustomer updatedAddressCustomer = editPersonDescriptor
+                .getAddress().orElse(customerToEdit.getAddress());
 
         return new Customer(updatedNameCustomer, updatedPhoneCustomer, updatedAddressCustomer);
     }
@@ -116,27 +117,27 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editCustomerDescriptor.equals(e.editCustomerDescriptor);
+                && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
     /**
      * Stores the details to edit the customer with. Each non-empty field value will replace the
      * corresponding field value of the customer.
      */
-    public static class EditCustomerDescriptor {
+    public static class EditPersonDescriptor {
         private NameCustomer nameCustomer;
         private PhoneCustomer phoneCustomer;
         private EmailCustomer emailCustomer;
         private AddressCustomer addressCustomer;
         private Set<Tag> tags;
 
-        public EditCustomerDescriptor() {}
+        public EditPersonDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditCustomerDescriptor(EditCustomerDescriptor toCopy) {
+        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.nameCustomer);
             setPhone(toCopy.phoneCustomer);
             setEmail(toCopy.emailCustomer);
@@ -208,12 +209,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditCustomerDescriptor)) {
+            if (!(other instanceof EditPersonDescriptor)) {
                 return false;
             }
 
             // state check
-            EditCustomerDescriptor e = (EditCustomerDescriptor) other;
+            EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())

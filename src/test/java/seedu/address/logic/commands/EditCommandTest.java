@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand.EditCustomerDescriptor;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -32,12 +32,12 @@ import seedu.address.testutil.EditCustomerDescriptorBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Customer editedCustomer = new CustomerBuilder().build();
-        EditCustomerDescriptor descriptor = new EditCustomerDescriptorBuilder(editedCustomer).build();
+        EditCommand.EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder(editedCustomer).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_CUSTOMER, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer);
@@ -56,7 +56,7 @@ public class EditCommandTest {
         CustomerBuilder customerInList = new CustomerBuilder(lastCustomer);
         Customer editedCustomer = customerInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).build();
 
-        EditCustomerDescriptor descriptor = new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB)
+        EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastCustomer, descriptor);
 
@@ -70,7 +70,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_CUSTOMER, new EditCustomerDescriptor());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_CUSTOMER, new EditPersonDescriptor());
         Customer editedCustomer = model.getFilteredCustomerList().get(INDEX_FIRST_CUSTOMER.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer);
@@ -100,7 +100,7 @@ public class EditCommandTest {
     @Test
     public void execute_duplicateCustomerUnfilteredList_failure() {
         Customer firstCustomer = model.getFilteredCustomerList().get(INDEX_FIRST_CUSTOMER.getZeroBased());
-        EditCustomerDescriptor descriptor = new EditCustomerDescriptorBuilder(firstCustomer).build();
+        EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder(firstCustomer).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_CUSTOMER, descriptor);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_CUSTOMER);
@@ -121,7 +121,8 @@ public class EditCommandTest {
     @Test
     public void execute_invalidCustomerIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCustomerList().size() + 1);
-        EditCustomerDescriptor descriptor = new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditCommand.EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB)
+                .build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
@@ -149,7 +150,7 @@ public class EditCommandTest {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_CUSTOMER, DESC_AMY);
 
         // same values -> returns true
-        EditCustomerDescriptor copyDescriptor = new EditCustomerDescriptor(DESC_AMY);
+        EditCommand.EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_CUSTOMER, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 

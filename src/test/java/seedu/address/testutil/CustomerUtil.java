@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCustomerCommand;
-import seedu.address.logic.commands.EditCommand.EditCustomerDescriptor;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.tag.Tag;
 
@@ -36,9 +36,9 @@ public class CustomerUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditCustomerDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
      */
-    public static String getEditCustomerDescriptorDetails(EditCustomerDescriptor descriptor) {
+    public static String getEditCustomerDescriptorDetails(EditPersonDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));

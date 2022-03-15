@@ -30,7 +30,7 @@ import seedu.address.model.customer.PhoneCustomer;
 import seedu.address.testutil.CustomerBuilder;
 
 public class AddCustomerCommandParserTest {
-    private AddCustomerCommandParser parser = new AddCustomerCommandParser();
+    private final AddCustomerCommandParser parser = new AddCustomerCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {

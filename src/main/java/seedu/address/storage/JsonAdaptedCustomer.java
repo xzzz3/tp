@@ -49,7 +49,8 @@ class JsonAdaptedCustomer {
     public Customer toModelType() throws IllegalValueException {
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, NameCustomer.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    NameCustomer.class.getSimpleName()));
         }
         if (!NameCustomer.isValidName(name)) {
             throw new IllegalValueException(NameCustomer.MESSAGE_CONSTRAINTS);
@@ -57,7 +58,8 @@ class JsonAdaptedCustomer {
         final NameCustomer modelNameCustomer = new NameCustomer(name);
 
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PhoneCustomer.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PhoneCustomer.class.getSimpleName()));
         }
         if (!PhoneCustomer.isValidPhone(phone)) {
             throw new IllegalValueException(PhoneCustomer.MESSAGE_CONSTRAINTS);
@@ -65,7 +67,8 @@ class JsonAdaptedCustomer {
         final PhoneCustomer modelPhoneCustomer = new PhoneCustomer(phone);
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, AddressCustomer.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    AddressCustomer.class.getSimpleName()));
         }
         if (!AddressCustomer.isValidAddress(address)) {
             throw new IllegalValueException(AddressCustomer.MESSAGE_CONSTRAINTS);

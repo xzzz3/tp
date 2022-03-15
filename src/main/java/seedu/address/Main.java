@@ -1,4 +1,4 @@
-package seedu.addressCustomer;
+package seedu.address;
 
 import javafx.application.Application;
 

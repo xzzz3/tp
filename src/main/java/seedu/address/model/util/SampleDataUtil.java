@@ -1,11 +1,14 @@
 package seedu.address.model.util;
 
+import java.util.Set;
+
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.customer.AddressCustomer;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.NameCustomer;
 import seedu.address.model.customer.PhoneCustomer;
+import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -37,4 +40,7 @@ public class SampleDataUtil {
     }
 
 
+    public static Set<Tag> getTagSet(String[] tags) {
+        return null;
+    }
 }
