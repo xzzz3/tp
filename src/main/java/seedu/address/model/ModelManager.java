@@ -14,6 +14,8 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.driver.Driver;
 import seedu.address.model.item.Dish;
 import seedu.address.model.item.Person;
+import seedu.address.model.order.Order;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -24,6 +26,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Order> filteredOrders;
     private final FilteredList<Driver> filteredDrivers;
     private final FilteredList<Dish> filteredDishes;
 
@@ -38,6 +41,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
         filteredDrivers = new FilteredList<>(this.addressBook.getDriverList());
         filteredDishes = new FilteredList<>(this.addressBook.getDishList());
     }
@@ -213,4 +217,31 @@ public class ModelManager implements Model {
                 && filteredDishes.equals(other.filteredDishes);
     }
 
+    //==================== FoodOnWheels ===================================
+    @Override
+    public void addOrder(Order order) {
+        addressBook.addOrder(order);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Order> getFilteredOrderList() {
+        return filteredOrders;
+    }
+
+    @Override
+    public boolean hasOrder(Order order) {
+        requireNonNull(order);
+        return addressBook.hasOrder(order);
+    }
+
+    @Override
+    public void updateFilteredOrderList(Predicate<Order> predicate) {
+        requireNonNull(predicate);
+        filteredOrders.setPredicate(predicate);
+    }
 }

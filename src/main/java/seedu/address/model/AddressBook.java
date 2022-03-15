@@ -11,6 +11,9 @@ import seedu.address.model.item.Dish;
 import seedu.address.model.item.Person;
 import seedu.address.model.item.UniqueDishList;
 import seedu.address.model.item.UniquePersonList;
+import seedu.address.model.order.Order;
+import seedu.address.model.order.UniqueOrderList;
+
 
 /**
  * Wraps all data at the address-book level
@@ -19,6 +22,7 @@ import seedu.address.model.item.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueOrderList orders;
     private final UniqueDishList dishes;
     private final UniqueDriverList drivers;
 
@@ -31,6 +35,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        orders = new UniqueOrderList();
         dishes = new UniqueDishList();
         drivers = new UniqueDriverList();
     }
@@ -191,5 +196,25 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
+    }
+
+    /**
+     * Adds an order.
+     */
+    public void addOrder(Order order) {
+        orders.add(order);
+    }
+
+    @Override
+    public ObservableList<Order> getOrderList() {
+        return orders.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Returns true if an order with the same identity as {@code order} exists in the address book.
+     */
+    public boolean hasOrder(Order order) {
+        requireNonNull(order);
+        return orders.contains(order);
     }
 }

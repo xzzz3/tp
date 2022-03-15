@@ -9,14 +9,17 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddDishCommand;
 import seedu.address.logic.commands.AddDriverCommand;
+import seedu.address.logic.commands.AddOrderCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteDishCommand;
 import seedu.address.logic.commands.DeleteDriverCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditOrderStatusCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindOrderCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListDishCommand;
@@ -82,6 +85,15 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case AddOrderCommand.COMMAND_WORD:
+            return new AddOrderCommandParser().parse(arguments);
+
+        case EditOrderStatusCommand.COMMAND_WORD:
+            return new EditOrderStatusCommandParser().parse(arguments);
+
+        case FindOrderCommand.COMMAND_WORD:
+            return new FindOrderCommandParser().parse(arguments);
 
         case AddDriverCommand.COMMAND_WORD:
             return new AddDriverCommandParser().parse(arguments);

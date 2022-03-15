@@ -10,7 +10,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.item.Dish;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of dishes.
  */
 public class DishListPanel extends ListPanel {
     private static final String FXML = "DishListPanel.fxml";
@@ -29,7 +29,7 @@ public class DishListPanel extends ListPanel {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Dish} using a {@code DishCard}.
      */
     class DishListViewCell extends ListCell<Dish> {
         @Override

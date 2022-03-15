@@ -196,6 +196,15 @@ public class MainWindow extends UiPart<Stage> {
         logger.info("Set to driver");
     }
 
+    /**
+     * Handles case when order command is entered.
+     */
+    private void handleOrder() {
+        listPanel = new OrderListPanel(logic.getFilteredOrderList());
+        personListPanelPlaceholder.getChildren().add(listPanel.getRoot());
+        tabDisplay.setFocus(ORDER_TAB_DISPLAY_FOCUS);
+        logger.info("Set to order");
+    }
 
     /**
      * Executes the command and returns the result.
@@ -227,6 +236,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isDriver()) {
                 handleDriver();
+            }
+
+            if (commandResult.isOrder()) {
+                handleOrder();
             }
 
             return commandResult;
