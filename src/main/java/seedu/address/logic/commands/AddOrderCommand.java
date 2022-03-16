@@ -10,13 +10,9 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
-import seedu.address.model.customer.UniqueCustomerList;
 import seedu.address.model.customer.exceptions.CustomerNotFoundException;
 import seedu.address.model.driver.Driver;
-import seedu.address.model.driver.UniqueDriverList;
 import seedu.address.model.item.Dish;
-import seedu.address.model.item.Name;
-import seedu.address.model.item.UniqueDishList;
 import seedu.address.model.item.exceptions.DishNotFoundException;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.exception.NoFreeDriverException;
@@ -58,6 +54,9 @@ public class AddOrderCommand extends Command {
                 false, false, false, false, true);
     }
 
+    /**
+     * Executes the AddOrderCommand and returns the result message.
+     */
     public CommandResult execute(Model model,
                                  ObservableList<Customer> customers, ObservableList<Driver> drivers,
                                  ObservableList<Dish> dishes) {
