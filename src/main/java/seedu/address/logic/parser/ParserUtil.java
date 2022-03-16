@@ -62,8 +62,8 @@ public class ParserUtil {
     public static Name parseDishName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!NameCustomer.isValidName(trimmedName)) {
-            throw new ParseException(NameCustomer.MESSAGE_CONSTRAINTS);
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
     }
