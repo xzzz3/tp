@@ -12,7 +12,7 @@ public class Driver {
     private final NameDriver name;
     private final PhoneDriver phone;
 
-    private final String status;
+    private String status;
 
     /**
      * Every field must be present and not null.
@@ -38,6 +38,10 @@ public class Driver {
 
     public boolean isFree() {
         return status.equals("free");
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     /**

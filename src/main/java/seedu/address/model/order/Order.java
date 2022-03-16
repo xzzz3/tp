@@ -4,6 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 
+import seedu.address.model.driver.Driver;
+
 /**
  * Represents an Order in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -15,7 +17,7 @@ public class Order {
     // Data fields
     private final String customer; // todo change to Customer class in v1.3+
     private final String phone; // temporary variable before customer class with phone is implemented
-    private final String driver; // todo change this to Driver class in v1.3
+    private final Driver driver;
     private final int orderNumber;
     private final ArrayList<String> dishes; // todo change to Dish calss in v1.3+
     private OrderStatus status;
@@ -23,10 +25,11 @@ public class Order {
     /**
      * Every field must be present and not null.
      */
-    public Order(String customer, String phone, String driverName, String ... orderedDishes) {
+    public Order(String customer, String phone, Driver driver, String ... orderedDishes) {
         requireAllNonNull(customer, orderedDishes);
         this.customer = customer;
-        this.driver = driverName;
+        this.driver = driver;
+        driver.setStatus("occupied");
         this.dishes = new ArrayList<String>();
         for (String dish : orderedDishes) {
             this.dishes.add(dish);
@@ -51,8 +54,12 @@ public class Order {
     }
     */
 
-    public String getDriverName() {
+    public Driver getDriver() {
         return driver;
+    }
+
+    public String getDriverName() {
+        return driver.getName().fullName;
     }
 
     public int getOrderNumber() {

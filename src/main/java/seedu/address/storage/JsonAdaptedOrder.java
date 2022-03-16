@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.driver.Driver;
 import seedu.address.model.order.Order;
 
 /**
@@ -16,6 +17,7 @@ class JsonAdaptedOrder {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Order's %s field is missing!";
 
     private final String customerPhone;
+    private final Driver driver;
     private final ArrayList<String> dishes;
 
     /**
@@ -23,9 +25,11 @@ class JsonAdaptedOrder {
      */
     @JsonCreator
     public JsonAdaptedOrder(@JsonProperty("customerPhone") String customerPhone,
+                            @JsonProperty("driver") Driver driver,
                             @JsonProperty("dishes") ArrayList<String> dishes) {
         this.customerPhone = customerPhone;
         this.dishes = dishes;
+        this.driver = driver;
     }
 
     /**
@@ -34,6 +38,7 @@ class JsonAdaptedOrder {
     public JsonAdaptedOrder(Order source) {
         customerPhone = source.getCustomerPhone();
         dishes = source.getDishes();
+        driver = source.getDriver();
     }
 
     /**
@@ -54,7 +59,7 @@ class JsonAdaptedOrder {
 
         final ArrayList<String> modelDishes = dishes;
 
-        return new Order("Dummy Customer", modelPhone, "Dummy Driver", dishes.toArray(new String[0]));
+        return new Order("Dummy Customer", modelPhone, driver, dishes.toArray(new String[0]));
     }
 
 }
