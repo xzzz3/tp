@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.customer.Customer;
 import seedu.address.model.driver.Driver;
 import seedu.address.model.item.Dish;
 import seedu.address.model.item.Person;
@@ -25,7 +26,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Customer> filteredCustomers;
     private final FilteredList<Order> filteredOrders;
     private final FilteredList<Driver> filteredDrivers;
     private final FilteredList<Dish> filteredDishes;
@@ -40,7 +41,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredCustomers = new FilteredList<>(this.addressBook.getCustomerList());
         filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
         filteredDrivers = new FilteredList<>(this.addressBook.getDriverList());
         filteredDishes = new FilteredList<>(this.addressBook.getDishList());
@@ -98,9 +99,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasCustomer(Customer customer) {
+        requireNonNull(customer);
+        return addressBook.hasCustomer(customer);
+    }
+
+    @Override
     public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return false;
     }
 
     @Override
@@ -110,8 +116,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteCustomer(Customer target) {
+        addressBook.removeCustomer(target);
+    }
+
+    @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+
     }
 
     @Override
@@ -120,9 +131,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addCustomer(Customer customer) {
+        addressBook.addCustomer(customer);
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+    }
+
+    @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
     }
 
     @Override
@@ -132,12 +148,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setCustomer(Customer target, Customer editedCustomer) {
+        requireAllNonNull(target, editedCustomer);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setCustomer(target, editedCustomer);
     }
 
+    //=========== Filtered Dish List Accessors =============================================================
     @Override
     public boolean hasDish(Dish dish) {
         requireNonNull(dish);
@@ -152,18 +169,23 @@ public class ModelManager implements Model {
     @Override
     public void addDish(Dish dish) {
         addressBook.addDish(dish);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public ObservableList<Person> getFilteredPersonList() {
+        return null;
+    }
+
+    //=========== Filtered Customer List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Customer} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Customer> getFilteredCustomerList() {
+        return filteredCustomers;
     }
 
     /**
@@ -181,9 +203,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredCustomerList(Predicate<Customer> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredCustomers.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredPersonList(Predicate<Person> predicate) {
+
     }
 
     @Override
@@ -213,7 +240,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
+                && filteredCustomers.equals(other.filteredCustomers)
                 && filteredDishes.equals(other.filteredDishes);
     }
 
@@ -221,7 +248,7 @@ public class ModelManager implements Model {
     @Override
     public void addOrder(Order order) {
         addressBook.addOrder(order);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
     }
 
     /**
