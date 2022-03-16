@@ -8,6 +8,7 @@ import seedu.address.model.customer.AddressCustomer;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.driver.Driver;
 import seedu.address.model.item.Address;
+import seedu.address.model.item.Dish;
 
 /**
  * Represents an Order in the address book.
@@ -21,19 +22,19 @@ public class Order {
     private final Customer customer;
     private final Driver driver;
     private final int orderNumber;
-    private final ArrayList<String> dishes; // todo change to Dish calss in v1.3+
+    private final ArrayList<Dish> dishes;
     private OrderStatus status;
 
     /**
      * Every field must be present and not null.
      */
-    public Order(Customer customer, Driver driver, String ... orderedDishes) {
+    public Order(Customer customer, Driver driver, Dish ... orderedDishes) {
         requireAllNonNull(customer, orderedDishes);
         this.customer = customer;
         this.driver = driver;
         driver.setStatus("occupied");
-        this.dishes = new ArrayList<String>();
-        for (String dish : orderedDishes) {
+        this.dishes = new ArrayList<Dish>();
+        for (Dish dish : orderedDishes) {
             this.dishes.add(dish);
         }
         this.orderNumber = Order.nextOrderNumber;
@@ -69,7 +70,7 @@ public class Order {
         return orderNumber;
     }
 
-    public ArrayList<String> getDishes() {
+    public ArrayList<Dish> getDishes() {
         return dishes;
     }
 
@@ -111,7 +112,7 @@ public class Order {
                 .append("; Status: ")
                 .append(getStatus());
 
-        ArrayList<String> dishes = getDishes();
+        ArrayList<Dish> dishes = getDishes();
         builder.append("; Dishes: ");
         dishes.forEach(builder::append);
 

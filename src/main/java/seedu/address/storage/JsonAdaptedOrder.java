@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.driver.Driver;
+import seedu.address.model.item.Dish;
 import seedu.address.model.order.Order;
 
 /**
@@ -19,7 +20,7 @@ class JsonAdaptedOrder {
 
     private final Customer customer;
     private final Driver driver;
-    private final ArrayList<String> dishes;
+    private final ArrayList<Dish> dishes;
 
     /**
      * Constructs a {@code JsonAdaptedOrder} with the given dish details.
@@ -27,7 +28,7 @@ class JsonAdaptedOrder {
     @JsonCreator
     public JsonAdaptedOrder(@JsonProperty("customer") Customer customer,
                             @JsonProperty("driver") Driver driver,
-                            @JsonProperty("dishes") ArrayList<String> dishes) {
+                            @JsonProperty("dishes") ArrayList<Dish> dishes) {
         this.customer = customer;
         this.dishes = dishes;
         this.driver = driver;
@@ -58,9 +59,9 @@ class JsonAdaptedOrder {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT));
         }
 
-        final ArrayList<String> modelDishes = dishes;
+        final ArrayList<Dish> modelDishes = dishes;
 
-        return new Order(customer, driver, dishes.toArray(new String[0]));
+        return new Order(customer, driver, dishes.toArray(new Dish[0]));
     }
 
 }

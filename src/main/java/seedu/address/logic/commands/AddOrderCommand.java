@@ -3,6 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
@@ -11,7 +15,9 @@ import seedu.address.model.customer.exceptions.CustomerNotFoundException;
 import seedu.address.model.driver.Driver;
 import seedu.address.model.driver.UniqueDriverList;
 import seedu.address.model.item.Dish;
+import seedu.address.model.item.Name;
 import seedu.address.model.item.UniqueDishList;
+import seedu.address.model.item.exceptions.DishNotFoundException;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.exception.NoFreeDriverException;
 
@@ -85,7 +91,21 @@ public class AddOrderCommand extends Command {
             throw new CustomerNotFoundException();
         }
 
-        Order toAdd = new Order(customer, freeDriver, dishesInput);
+        // matching dishes in string in the input to the actual dishes in menu
+        ArrayList<Dish> addedDishes = new ArrayList<Dish> ();
+
+        List<String> dishesInputList = Arrays.asList(dishesInput);
+        for (Dish dish : dishes) {
+            if (dishesInputList.contains(dish.toString())) {
+                addedDishes.add(dish);
+            }
+        }
+
+        if (dishesInputList.size() != addedDishes.size()) {
+            throw new DishNotFoundException();
+        }
+
+        Order toAdd = new Order(customer, freeDriver, addedDishes.toArray(new Dish[0]));
         model.addOrder(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
                 false, false, false, false, true);
