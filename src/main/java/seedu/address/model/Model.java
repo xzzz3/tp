@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.customer.Customer;
 import seedu.address.model.driver.Driver;
 import seedu.address.model.item.Dish;
 import seedu.address.model.item.Person;
@@ -16,6 +17,7 @@ import seedu.address.model.order.Order;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
+    Predicate<Customer> PREDICATE_SHOW_ALL_CUSTOMERS = unused -> true;
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Driver> PREDICATE_SHOW_ALL_DRIVERS = unused -> true;
 
@@ -61,31 +63,38 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a customer with the same identity as {@code customer} exists in the address book.
      */
+    boolean hasCustomer(Customer customer);
     boolean hasPerson(Person person);
     boolean hasDriver(Driver driver);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given customer.
+     * The customer must exist in the address book.
      */
+    void deleteCustomer(Customer target);
+
     void deletePerson(Person target);
     void deleteDriver(Driver driverToDelete);
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given customer.
+     * {@code customer} must not already exist in the address book.
      */
+    void addCustomer(Customer customer);
     void addPerson(Person person);
     void addDriver(Driver driver);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given customer {@code target} with {@code editedCustomer}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The customer identity of {@code editedCustomer} must not be the same as
+     * another existing customer in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setCustomer(Customer target, Customer editedCustomer);
 
+    /** Returns an unmodifiable view of the filtered customer list */
+    ObservableList<Customer> getFilteredCustomerList();
     /**
      * Returns true if a dish with the same identity as {@code dish} exists in FoodOnWheels.
      */
@@ -111,9 +120,10 @@ public interface Model {
     ObservableList<Dish> getFilteredDishList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered customer list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
+    void updateFilteredCustomerList(Predicate<Customer> predicate);
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**

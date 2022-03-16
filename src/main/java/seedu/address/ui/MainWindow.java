@@ -27,18 +27,18 @@ public class MainWindow extends UiPart<Stage> {
     private static final int ORDER_TAB_DISPLAY_FOCUS = 0;
     private static final int DRIVER_TAB_DISPLAY_FOCUS = 1;
     private static final int DISH_TAB_DISPLAY_FOCUS = 2;
-    private static final int PERSON_TAB_DISPLAY_FOCUS = 3;
-    private static final int DEFAULT_TAB_DISPLAY_FOCUS = PERSON_TAB_DISPLAY_FOCUS;
+    private static final int CUSTOMER_TAB_DISPLAY_FOCUS = 3;
+    private static final int DEFAULT_TAB_DISPLAY_FOCUS = CUSTOMER_TAB_DISPLAY_FOCUS;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private ListPanel listPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private final HelpWindow helpWindow;
     private TabDisplay tabDisplay;
 
     @FXML
@@ -48,7 +48,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane customerListPanelPlaceholder;
 
     @FXML
     private StackPane tabDisplayPlaceholder;
@@ -119,8 +119,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        listPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(listPanel.getRoot());
+        listPanel = new CustomerListPanel(logic.getFilteredCustomerList());
+        customerListPanelPlaceholder.getChildren().add(listPanel.getRoot());
 
         tabDisplay = new TabDisplay();
         tabDisplay.setFocus(DEFAULT_TAB_DISPLAY_FOCUS);
@@ -181,7 +181,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void handleDish() {
         listPanel = new DishListPanel(logic.getFilteredDishList());
-        personListPanelPlaceholder.getChildren().add(listPanel.getRoot());
+        customerListPanelPlaceholder.getChildren().add(listPanel.getRoot());
         tabDisplay.setFocus(DISH_TAB_DISPLAY_FOCUS);
         logger.info("Set to dish");
     }
@@ -191,7 +191,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void handleDriver() {
         listPanel = new DriverListPanel(logic.getFilteredDriverList());
-        personListPanelPlaceholder.getChildren().add(listPanel.getRoot());
+        customerListPanelPlaceholder.getChildren().add(listPanel.getRoot());
         tabDisplay.setFocus(DRIVER_TAB_DISPLAY_FOCUS);
         logger.info("Set to driver");
     }
@@ -201,7 +201,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void handleOrder() {
         listPanel = new OrderListPanel(logic.getFilteredOrderList());
-        personListPanelPlaceholder.getChildren().add(listPanel.getRoot());
+        customerListPanelPlaceholder.getChildren().add(listPanel.getRoot());
         tabDisplay.setFocus(ORDER_TAB_DISPLAY_FOCUS);
         logger.info("Set to order");
     }
@@ -209,7 +209,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Executes the command and returns the result.
      *
-     * @see seedu.address.logic.Logic#execute(String)
+     * @see Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
@@ -219,8 +219,8 @@ public class MainWindow extends UiPart<Stage> {
 
             tabDisplay.setFocus(DEFAULT_TAB_DISPLAY_FOCUS);
 
-            listPanel = new PersonListPanel(logic.getFilteredPersonList());
-            personListPanelPlaceholder.getChildren().add(listPanel.getRoot());
+            listPanel = new CustomerListPanel(logic.getFilteredCustomerList());
+            customerListPanelPlaceholder.getChildren().add(listPanel.getRoot());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

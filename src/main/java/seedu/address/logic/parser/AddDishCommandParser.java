@@ -29,7 +29,7 @@ public class AddDishCommandParser implements Parser<AddDishCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDishCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Name name = ParserUtil.parseDishName(argMultimap.getValue(PREFIX_NAME).get());
 
         Dish dish = new Dish(name);
 

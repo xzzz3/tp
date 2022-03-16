@@ -16,12 +16,12 @@ public class TabDisplay extends UiPart<Region> {
     private static final int ORDER_INDEX = 0;
     private static final int DRIVER_INDEX = 1;
     private static final int DISH_INDEX = 2;
-    private static final int PERSON_INDEX = 3;
+    private static final int CUSTOMER_INDEX = 3;
 
     @FXML
     private HBox tabDisplay;
     @FXML
-    private Label person;
+    private Label customer;
     @FXML
     private Label order;
     @FXML
@@ -35,7 +35,7 @@ public class TabDisplay extends UiPart<Region> {
 
     public void setFocus(int focusItem) {
         requireNonNull(focusItem);
-        person.setStyle("-fx-text-fill: grey");
+        customer.setStyle("-fx-text-fill: grey");
         order.setStyle("-fx-text-fill: grey");
         driver.setStyle("-fx-text-fill: grey");
         dish.setStyle("-fx-text-fill: grey");
@@ -49,8 +49,8 @@ public class TabDisplay extends UiPart<Region> {
         case DISH_INDEX:
             dish.setStyle("-fx-text-fill: white");
             break;
-        case PERSON_INDEX:
-            person.setStyle("-fx-text-fill: white");
+        case CUSTOMER_INDEX:
+            customer.setStyle("-fx-text-fill: white");
             break;
         default:
             break;

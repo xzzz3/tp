@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,22 +19,22 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.item.Address;
-import seedu.address.model.item.Email;
-import seedu.address.model.item.Name;
-import seedu.address.model.item.Person;
-import seedu.address.model.item.Phone;
+import seedu.address.model.customer.AddressCustomer;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.EmailCustomer;
+import seedu.address.model.customer.NameCustomer;
+import seedu.address.model.customer.PhoneCustomer;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing customer in the addressCustomer book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the customer identified "
+            + "by the index number used in the displayed customer list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -46,16 +46,16 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_CUSTOMER_SUCCESS = "Edited Customer: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in the addressCustomer book.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the customer in the filtered customer list to edit
+     * @param editPersonDescriptor details to edit the customer with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
@@ -68,38 +68,38 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Customer> lastShownList = model.getFilteredCustomerList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Customer customerToEdit = lastShownList.get(index.getZeroBased());
+        Customer editedCustomer = createEditedCustomer(customerToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!customerToEdit.isSameCustomer(editedCustomer) && model.hasCustomer(editedCustomer)) {
+            throw new CommandException(MESSAGE_DUPLICATE_CUSTOMER);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        model.setCustomer(customerToEdit, editedCustomer);
+        model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+        return new CommandResult(String.format(MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Customer} with the details of {@code customerToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Customer createEditedCustomer(Customer customerToEdit,
+                                                 EditPersonDescriptor editPersonDescriptor) {
+        assert customerToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        NameCustomer updatedNameCustomer = editPersonDescriptor.getName().orElse(customerToEdit.getName());
+        PhoneCustomer updatedPhoneCustomer = editPersonDescriptor.getPhone().orElse(customerToEdit.getPhone());
+        AddressCustomer updatedAddressCustomer = editPersonDescriptor
+                .getAddress().orElse(customerToEdit.getAddress());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Customer(updatedNameCustomer, updatedPhoneCustomer, updatedAddressCustomer);
     }
 
     @Override
@@ -121,14 +121,14 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the customer with. Each non-empty field value will replace the
+     * corresponding field value of the customer.
      */
     public static class EditPersonDescriptor {
-        private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
+        private NameCustomer nameCustomer;
+        private PhoneCustomer phoneCustomer;
+        private EmailCustomer emailCustomer;
+        private AddressCustomer addressCustomer;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -138,10 +138,10 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
-            setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setName(toCopy.nameCustomer);
+            setPhone(toCopy.phoneCustomer);
+            setEmail(toCopy.emailCustomer);
+            setAddress(toCopy.addressCustomer);
             setTags(toCopy.tags);
         }
 
@@ -149,39 +149,39 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(nameCustomer, phoneCustomer, emailCustomer, addressCustomer, tags);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setName(NameCustomer nameCustomer) {
+            this.nameCustomer = nameCustomer;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<NameCustomer> getName() {
+            return Optional.ofNullable(nameCustomer);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setPhone(PhoneCustomer phoneCustomer) {
+            this.phoneCustomer = phoneCustomer;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<PhoneCustomer> getPhone() {
+            return Optional.ofNullable(phoneCustomer);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setEmail(EmailCustomer emailCustomer) {
+            this.emailCustomer = emailCustomer;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<EmailCustomer> getEmail() {
+            return Optional.ofNullable(emailCustomer);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setAddress(AddressCustomer addressCustomer) {
+            this.addressCustomer = addressCustomer;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<AddressCustomer> getAddress() {
+            return Optional.ofNullable(addressCustomer);
         }
 
         /**
