@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.customer.Customer;
 import seedu.address.model.driver.Driver;
 import seedu.address.model.order.Order;
 
@@ -16,7 +17,7 @@ class JsonAdaptedOrder {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Order's %s field is missing!";
 
-    private final String customerPhone;
+    private final Customer customer;
     private final Driver driver;
     private final ArrayList<String> dishes;
 
@@ -24,10 +25,10 @@ class JsonAdaptedOrder {
      * Constructs a {@code JsonAdaptedOrder} with the given dish details.
      */
     @JsonCreator
-    public JsonAdaptedOrder(@JsonProperty("customerPhone") String customerPhone,
+    public JsonAdaptedOrder(@JsonProperty("customer") Customer customer,
                             @JsonProperty("driver") Driver driver,
                             @JsonProperty("dishes") ArrayList<String> dishes) {
-        this.customerPhone = customerPhone;
+        this.customer = customer;
         this.dishes = dishes;
         this.driver = driver;
     }
@@ -36,7 +37,7 @@ class JsonAdaptedOrder {
      * Converts a given {@code Order} into this class for Jackson use.
      */
     public JsonAdaptedOrder(Order source) {
-        customerPhone = source.getCustomerPhone();
+        customer = source.getCustomer();
         dishes = source.getDishes();
         driver = source.getDriver();
     }
@@ -47,11 +48,11 @@ class JsonAdaptedOrder {
      * @throws IllegalValueException if there were any data constraints violated in the adapted order.
      */
     public Order toModelType() throws IllegalValueException {
-        if (customerPhone == null) {
+        if (customer == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT));
         }
 
-        final String modelPhone = customerPhone;
+        final Customer modelCustomer = customer;
 
         if (dishes == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT));
@@ -59,7 +60,7 @@ class JsonAdaptedOrder {
 
         final ArrayList<String> modelDishes = dishes;
 
-        return new Order("Dummy Customer", modelPhone, driver, dishes.toArray(new String[0]));
+        return new Order(customer, driver, dishes.toArray(new String[0]));
     }
 
 }

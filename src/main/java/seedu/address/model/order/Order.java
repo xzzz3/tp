@@ -4,7 +4,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 
+import seedu.address.model.customer.AddressCustomer;
+import seedu.address.model.customer.Customer;
 import seedu.address.model.driver.Driver;
+import seedu.address.model.item.Address;
 
 /**
  * Represents an Order in the address book.
@@ -15,8 +18,7 @@ public class Order {
     private static int nextOrderNumber = 1;
 
     // Data fields
-    private final String customer; // todo change to Customer class in v1.3+
-    private final String phone; // temporary variable before customer class with phone is implemented
+    private final Customer customer;
     private final Driver driver;
     private final int orderNumber;
     private final ArrayList<String> dishes; // todo change to Dish calss in v1.3+
@@ -25,7 +27,7 @@ public class Order {
     /**
      * Every field must be present and not null.
      */
-    public Order(String customer, String phone, Driver driver, String ... orderedDishes) {
+    public Order(Customer customer, Driver driver, String ... orderedDishes) {
         requireAllNonNull(customer, orderedDishes);
         this.customer = customer;
         this.driver = driver;
@@ -34,25 +36,26 @@ public class Order {
         for (String dish : orderedDishes) {
             this.dishes.add(dish);
         }
-        this.phone = phone;
         this.orderNumber = Order.nextOrderNumber;
         nextOrderNumber++;
         this.status = OrderStatus.CREATED;
     }
 
-    public String getCustomerName() {
+    public Customer getCustomer() {
         return customer;
     }
 
-    public String getCustomerPhone() {
-        return phone;
+    public String getCustomerName() {
+        return customer.getName().fullName;
     }
 
-    /*
-    public Address getCustomerAddress() {
+    public String getCustomerPhone() {
+        return customer.getPhone().value;
+    }
+
+    public AddressCustomer getCustomerAddress() {
         return customer.getAddress();
     }
-    */
 
     public Driver getDriver() {
         return driver;
@@ -101,10 +104,8 @@ public class Order {
                 .append(getCustomerName())
                 .append("; Phone: ")
                 .append(getCustomerPhone())
-                /*
                 .append("; Address: ")
                 .append(getCustomerAddress())
-                 */
                 .append("; Driver: ")
                 .append(getDriverName())
                 .append("; Status: ")

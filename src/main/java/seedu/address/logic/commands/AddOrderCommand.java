@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.UniqueCustomerList;
+import seedu.address.model.customer.exceptions.CustomerNotFoundException;
 import seedu.address.model.driver.Driver;
 import seedu.address.model.driver.UniqueDriverList;
 import seedu.address.model.item.Dish;
@@ -57,6 +58,8 @@ public class AddOrderCommand extends Command {
         requireAllNonNull(model, customers, drivers, dishes);
 
         // todo add duplicate checker
+
+        // checking for free driver to assign for the newly created order
         Driver freeDriver = null;
         for (Driver driver : drivers) {
             if (driver.isFree()) {
@@ -69,7 +72,20 @@ public class AddOrderCommand extends Command {
             throw new NoFreeDriverException();
         }
 
-        Order toAdd = new Order("Dummy customer", phoneInput, freeDriver, dishesInput);
+        // matching customer phone number in input to the actual customer in stored data
+        Customer customer = null;
+        for (Customer storedCustomer : customers) {
+            if (storedCustomer.getPhone().toString().equals(phoneInput)) {
+                customer = storedCustomer;
+                break;
+            }
+        }
+
+        if (customer == null) {
+            throw new CustomerNotFoundException();
+        }
+
+        Order toAdd = new Order(customer, freeDriver, dishesInput);
         model.addOrder(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
                 false, false, false, false, true);
