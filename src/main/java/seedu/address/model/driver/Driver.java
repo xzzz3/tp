@@ -12,17 +12,22 @@ public class Driver {
     private final NameDriver name;
     private final PhoneDriver phone;
 
-    private String status;
+    private String status; // mutable
 
     /**
      * Every field must be present and not null.
      */
-    public Driver(NameDriver name, PhoneDriver phone) {
+    public Driver(NameDriver name, PhoneDriver phone, String status) {
         requireAllNonNull(name, phone);
         this.name = name;
         this.phone = phone;
-        this.status = "free";
+        this.status = status;
     }
+
+    public Driver(NameDriver name, PhoneDriver phone) {
+        this(name, phone, "free");
+    }
+
 
     public NameDriver getName() {
         return name;

@@ -17,14 +17,17 @@ class JsonAdaptedDriver {
 
     private final String name;
     private final String phone;
+    private final String status;
 
     /**
      * Constructs a {@code JsonAdaptedDriver} with the given dish details.
      */
     @JsonCreator
-    public JsonAdaptedDriver(@JsonProperty("name") String name, @JsonProperty("phone") String phone) {
+    public JsonAdaptedDriver(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+                             @JsonProperty("status") String status) {
         this.name = name;
         this.phone = phone;
+        this.status = status;
     }
 
     /**
@@ -33,6 +36,7 @@ class JsonAdaptedDriver {
     public JsonAdaptedDriver(Driver source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
+        status = source.getStatus();
     }
 
     /**
@@ -61,8 +65,13 @@ class JsonAdaptedDriver {
 
         final PhoneDriver modelPhone = new PhoneDriver(phone);
 
+        if (status == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT));
+        }
 
-        return new Driver(modelName, modelPhone);
+        final String modelStatus = status;
+
+        return new Driver(modelName, modelPhone, modelStatus);
     }
 
 }
