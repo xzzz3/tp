@@ -71,31 +71,38 @@ class JsonAdaptedOrder {
      */
     public Order toModelType() throws IllegalValueException {
         if (customerName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, NameCustomer.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    NameCustomer.class.getSimpleName()));
         }
 
         if (customerPhone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PhoneCustomer.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PhoneCustomer.class.getSimpleName()));
         }
 
         if (customerAddress == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, AddressCustomer.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    AddressCustomer.class.getSimpleName()));
         }
 
-        final Customer customer = new Customer(new NameCustomer(customerName), new PhoneCustomer(customerPhone), new AddressCustomer(customerAddress));
+        final Customer customer = new Customer(new NameCustomer(customerName),
+                new PhoneCustomer(customerPhone), new AddressCustomer(customerAddress));
 
         if (driverName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, NameDriver.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    NameDriver.class.getSimpleName()));
         }
 
         if (driverPhone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PhoneDriver.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PhoneDriver.class.getSimpleName()));
         }
 
         final Driver driver = new Driver(new NameDriver(driverName), new PhoneDriver(driverPhone));
 
         if (dishes == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Name.class.getSimpleName()));
         }
 
         final ArrayList<Dish> modelDishes = new ArrayList<Dish> ();
