@@ -4,6 +4,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 
+import seedu.address.model.customer.AddressCustomer;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.driver.Driver;
+import seedu.address.model.item.Dish;
+
 /**
  * Represents an Order in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -13,53 +18,58 @@ public class Order {
     private static int nextOrderNumber = 1;
 
     // Data fields
-    private final String customer; // todo change to Customer class in v1.3+
-    private final String phone; // temporary variable before customer class with phone is implemented
-    private final String driver; // todo change this to Driver class in v1.3
+    private final Customer customer;
+    private final Driver driver;
     private final int orderNumber;
-    private final ArrayList<String> dishes; // todo change to Dish calss in v1.3+
+    private final ArrayList<Dish> dishes;
     private OrderStatus status;
 
     /**
      * Every field must be present and not null.
      */
-    public Order(String customer, String phone, String driverName, String ... orderedDishes) {
+    public Order(Customer customer, Driver driver, Dish ... orderedDishes) {
         requireAllNonNull(customer, orderedDishes);
         this.customer = customer;
-        this.driver = driverName;
-        this.dishes = new ArrayList<String>();
-        for (String dish : orderedDishes) {
+        this.driver = driver;
+        driver.setStatus("occupied");
+        this.dishes = new ArrayList<Dish>();
+        for (Dish dish : orderedDishes) {
             this.dishes.add(dish);
         }
-        this.phone = phone;
         this.orderNumber = Order.nextOrderNumber;
         nextOrderNumber++;
         this.status = OrderStatus.CREATED;
     }
 
-    public String getCustomerName() {
+    public Customer getCustomer() {
         return customer;
     }
 
-    public String getCustomerPhone() {
-        return phone;
+    public String getCustomerName() {
+        return customer.getName().fullName;
     }
 
-    /*
-    public Address getCustomerAddress() {
+    public String getCustomerPhone() {
+        return customer.getPhone().value;
+    }
+
+    public AddressCustomer getCustomerAddress() {
         return customer.getAddress();
     }
-    */
+
+    public Driver getDriver() {
+        return driver;
+    }
 
     public String getDriverName() {
-        return driver;
+        return driver.getName().fullName;
     }
 
     public int getOrderNumber() {
         return orderNumber;
     }
 
-    public ArrayList<String> getDishes() {
+    public ArrayList<Dish> getDishes() {
         return dishes;
     }
 
@@ -94,16 +104,14 @@ public class Order {
                 .append(getCustomerName())
                 .append("; Phone: ")
                 .append(getCustomerPhone())
-                /*
                 .append("; Address: ")
                 .append(getCustomerAddress())
-                 */
                 .append("; Driver: ")
                 .append(getDriverName())
                 .append("; Status: ")
                 .append(getStatus());
 
-        ArrayList<String> dishes = getDishes();
+        ArrayList<Dish> dishes = getDishes();
         builder.append("; Dishes: ");
         dishes.forEach(builder::append);
 
@@ -122,6 +130,7 @@ public class Order {
             this.status = OrderStatus.IN_PROGRESS;
         } else if (status.equals("delivered")) {
             this.status = OrderStatus.DELIVERED;
+            this.driver.setStatus("free");
         } else if (status.equals("cancelled")) {
             this.status = OrderStatus.CANCELLED;
         }
