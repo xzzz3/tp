@@ -130,6 +130,7 @@ public class Order {
             this.status = OrderStatus.IN_PROGRESS;
         } else if (status.equals("delivered")) {
             this.status = OrderStatus.DELIVERED;
+            this.driver.setStatus("free");
         } else if (status.equals("cancelled")) {
             this.status = OrderStatus.CANCELLED;
         }
