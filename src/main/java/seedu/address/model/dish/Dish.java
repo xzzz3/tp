@@ -1,8 +1,10 @@
-package seedu.address.model.item;
+package seedu.address.model.dish;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
+
+import seedu.address.model.item.Name;
 
 
 /**
@@ -12,17 +14,17 @@ import java.util.Objects;
 public class Dish {
 
     // Identity fields
-    private final Name name;
+    private final NameDish name;
 
     /**
      * Every field must be present and not null.
      */
-    public Dish(Name name) {
+    public Dish(NameDish name) {
         requireAllNonNull(name);
         this.name = name;
     }
 
-    public Name getName() {
+    public NameDish getName() {
         return name;
     }
 

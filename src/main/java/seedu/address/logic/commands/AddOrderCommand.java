@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.exceptions.CustomerNotFoundException;
 import seedu.address.model.driver.Driver;
-import seedu.address.model.item.Dish;
+import seedu.address.model.dish.Dish;
 import seedu.address.model.item.exceptions.DishNotFoundException;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.exception.NoFreeDriverException;

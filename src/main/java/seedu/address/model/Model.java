@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.driver.Driver;
-import seedu.address.model.item.Dish;
+import seedu.address.model.dish.Dish;
 import seedu.address.model.item.Person;
 import seedu.address.model.order.Order;
 

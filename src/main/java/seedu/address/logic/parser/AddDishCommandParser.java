@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddDishCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.item.Dish;
+import seedu.address.model.dish.Dish;
 import seedu.address.model.item.Name;
 
 /**

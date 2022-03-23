@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.item.Dish;
+import seedu.address.model.dish.Dish;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Person;
 
