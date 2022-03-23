@@ -38,6 +38,8 @@ public class OrderCard extends UiPart<Region> {
     @FXML
     private Label dishes;
     @FXML
+    private Label orderTime;
+    @FXML
     private Label status;
     @FXML
     private Label orderNumber;
@@ -54,7 +56,8 @@ public class OrderCard extends UiPart<Region> {
         customerPhone.setText(order.getCustomerPhone());
         customerAddress.setText(order.getCustomerAddress().toString());
         driverName.setText(order.getDriverName());
-        dishes.setText(order.getDishes().toString()); // todo if necessary, use a better toString representation
+        dishes.setText(order.getDishes().toString());
+        orderTime.setText(order.getTime().toString());
         status.setText(order.getStatus().toString());
     }
 

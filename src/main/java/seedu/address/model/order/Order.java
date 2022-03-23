@@ -2,6 +2,7 @@ package seedu.address.model.order;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import seedu.address.model.customer.AddressCustomer;
@@ -22,12 +23,13 @@ public class Order {
     private final Driver driver;
     private final int orderNumber;
     private final ArrayList<Dish> dishes;
+    private final LocalDateTime time;
     private OrderStatus status;
 
     /**
      * Every field must be present and not null.
      */
-    public Order(Customer customer, Driver driver, Dish ... orderedDishes) {
+    public Order(Customer customer, Driver driver, LocalDateTime time, Dish ... orderedDishes) {
         requireAllNonNull(customer, orderedDishes);
         this.customer = customer;
         this.driver = driver;
@@ -36,9 +38,14 @@ public class Order {
         for (Dish dish : orderedDishes) {
             this.dishes.add(dish);
         }
+        this.time = time;
         this.orderNumber = Order.nextOrderNumber;
         nextOrderNumber++;
         this.status = OrderStatus.CREATED;
+    }
+
+    public Order(Customer customer, Driver driver, Dish ... orderedDishes) {
+        this(customer, driver, LocalDateTime.now(), orderedDishes);
     }
 
     public Customer getCustomer() {
@@ -71,6 +78,10 @@ public class Order {
 
     public ArrayList<Dish> getDishes() {
         return dishes;
+    }
+
+    public LocalDateTime getTime() {
+        return time;
     }
 
     public OrderStatus getStatus() {
@@ -109,7 +120,9 @@ public class Order {
                 .append("; Driver: ")
                 .append(getDriverName())
                 .append("; Status: ")
-                .append(getStatus());
+                .append(getStatus())
+                .append("; Time: ")
+                .append(getTime());
 
         ArrayList<Dish> dishes = getDishes();
         builder.append("; Dishes: ");

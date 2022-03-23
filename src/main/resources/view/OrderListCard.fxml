@@ -33,6 +33,7 @@
             <Label fx:id="driverName" styleClass="cell_small_label" text="\$driverName" />
             <Label fx:id="dishes" styleClass="cell_small_label" text="\$dishes" />
             <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
+            <Label fx:id="orderTime" styleClass="cell_small_label" text="\$orderTime" />
             <Label fx:id="orderNumber" styleClass="cell_small_label" text="\$orderNumber" />
         </VBox>
     </GridPane>
