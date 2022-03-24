@@ -157,6 +157,52 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add/Delete/List Dish feature
+
+#### Implementation
+
+The add/delete/list dish feature are commands which inherits from `Command`. These are the basic commands
+to add, remove or view `Dish` objects.
+
+#### Example run-through
+
+(todo: sequence diagram for add/delete/list dish)
+A sample run-through is shown below in the sequence diagram:
+
+
+### Tab Display feature
+
+`TabDisplay` was implemented as an additional feature to the UI component. 
+It extends from `UiPart` and exists within `MainWindow`. The Tab Display feature was implemented with the
+intention to show which component in FoodOnWheels the user is interacting with, and has four different tabs
+representing the four main models:
+
+* `Customer`
+* `Driver`
+* `Order`
+* `Dish`
+
+It implements the following operations:
+* TabDisplay#setFocus() - Bolds the focusItem (`Driver`/`Customer`/`Dish`/`Order`) in the Tab Display, 
+identifying it as the current focus of the `ListPanel`
+
+The operation `TabDisplay#setFocus()` is exposed in the `MainWindow` class 
+in `MainWindow#handleDish()`, `MainWindow#handleDriver()`, `MainWindow#handleOrder()`, `MainWindow#handleCustomer()`
+`MainWindow#fillInnerParts()` and `MainWindow#executeCommand()`.
+
+#### Example run-through
+A sample run-through is shown below in the sequence diagram:
+
+<img src="images/TabDisplaySequenceDiagram.png" width="550" />
+
+Explanation:
+
+1. Command is called -> `TabDisplay` set to default, which is `Customer` tab
+2. When a `CommandResult` is returned, it `CommandResult#isDish()` will be evaluated to true,
+since the command is related to a dish
+3. `TabDisplay` is then set to `Dish`, as seen from the second time `TabDisplay#setFocus()` is called
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

@@ -22,6 +22,7 @@ Class CustomerListPanel
 Class CustomerCard
 Class StatusBarFooter
 Class CommandBox
+Class TabDisplay
 }
 
 package Model <<Rectangle>> {
@@ -41,6 +42,7 @@ MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" ListPanel
 MainWindow *-down-> "1" StatusBarFooter
+MainWindow *-down-> "1" TabDisplay
 MainWindow --> "0..1" HelpWindow
 
 DishListPanel -down-> "*" DishCard
@@ -51,6 +53,7 @@ DriverListPanel -down-> "*" DriverCard
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
+TabDisplay --|> UiPart
 CommandBox --|> UiPart
 DishListPanel -up-|> ListPanel
 DishCard --|> UiPart
