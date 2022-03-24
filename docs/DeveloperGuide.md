@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -116,13 +116,15 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
+
+(todo: Update Model Class Diagram)
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the FoodOnWheels data i.e., all `Dish/Customer/Driver/Order` objects (`Dish` objects are contained in a `UniqueDishList` object, `Customer` objects are contained in a `UniqueCustomerList` object, etc.).
+* stores the currently 'selected' `Dish/Customer/Driver/Order` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -137,6 +139,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
+(todo: update storage class diagram)
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
@@ -153,6 +156,52 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Add/Delete/List Dish feature
+
+#### Implementation
+
+The add/delete/list dish feature are commands which inherits from `Command`. These are the basic commands
+to add, remove or view `Dish` objects.
+
+#### Example run-through
+
+(todo: sequence diagram for add/delete/list dish)
+A sample run-through is shown below in the sequence diagram:
+
+
+### Tab Display feature
+
+`TabDisplay` was implemented as an additional feature to the UI component. 
+It extends from `UiPart` and exists within `MainWindow`. The Tab Display feature was implemented with the
+intention to show which component in FoodOnWheels the user is interacting with, and has four different tabs
+representing the four main models:
+
+* `Customer`
+* `Driver`
+* `Order`
+* `Dish`
+
+It implements the following operations:
+* TabDisplay#setFocus() - Bolds the focusItem (`Driver`/`Customer`/`Dish`/`Order`) in the Tab Display, 
+identifying it as the current focus of the `ListPanel`
+
+The operation `TabDisplay#setFocus()` is exposed in the `MainWindow` class 
+in `MainWindow#handleDish()`, `MainWindow#handleDriver()`, `MainWindow#handleOrder()`, `MainWindow#handleCustomer()`
+`MainWindow#fillInnerParts()` and `MainWindow#executeCommand()`.
+
+#### Example run-through
+A sample run-through is shown below in the sequence diagram:
+
+<img src="images/TabDisplaySequenceDiagram.png" width="550" />
+
+Explanation:
+
+1. Command is called -> `TabDisplay` set to default, which is `Customer` tab
+2. When a `CommandResult` is returned, it `CommandResult#isDish()` will be evaluated to true,
+since the command is related to a dish
+3. `TabDisplay` is then set to `Dish`, as seen from the second time `TabDisplay#setFocus()` is called
+
 
 ### \[Proposed\] Undo/redo feature
 
