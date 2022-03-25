@@ -222,7 +222,6 @@ method to delete the customer.
 Step 4. A new `CommandResult` with the success message is returned to `Logic` and returned as the output.
 
 ![DeleteCustomerSequenceDiagram](images/DeleteCustomerSequenceDiagram.png)
-This section describes some noteworthy details on how certain features are implemented.
 
 ### Add/Delete/List Dish feature
 
