@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -30,6 +31,7 @@ class JsonAdaptedOrder {
     private final String driverName;
     private final String driverPhone;
     private final ArrayList<String> dishes;
+    private final LocalDateTime time;
 
     /**
      * Constructs a {@code JsonAdaptedOrder} with the given dish details.
@@ -40,13 +42,15 @@ class JsonAdaptedOrder {
                             @JsonProperty("customerAddress") String customerAddress,
                             @JsonProperty("driverName") String driverName,
                             @JsonProperty("driverPhone") String driverPhone,
-                            @JsonProperty("dishes") ArrayList<String> dishes) {
+                            @JsonProperty("dishes") ArrayList<String> dishes,
+                            @JsonProperty("time") LocalDateTime time) {
         this.customerName = customerName;
         this.customerPhone = customerPhone;
         this.customerAddress = customerAddress;
         this.driverName = driverName;
         this.driverPhone = driverPhone;
         this.dishes = dishes;
+        this.time = time;
     }
 
     /**
@@ -62,6 +66,7 @@ class JsonAdaptedOrder {
         for (Dish dish : source.getDishes()) {
             dishes.add(dish.toString());
         }
+        time = source.getTime();
     }
 
     /**
@@ -110,7 +115,14 @@ class JsonAdaptedOrder {
             modelDishes.add(new Dish(new Name(dish)));
         }
 
-        return new Order(customer, driver, modelDishes.toArray(new Dish[0]));
+        if (time == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    "time"));
+        }
+
+        final LocalDateTime time = this.time;
+
+        return new Order(customer, driver, time, modelDishes.toArray(new Dish[0]));
     }
 
 }
