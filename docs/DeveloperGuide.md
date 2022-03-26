@@ -153,9 +153,11 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
+
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
 
 ### Add/Delete Driver feature
 
@@ -180,6 +182,72 @@ to find `Driver` objects which have the status match with the argument in the co
 
 (todo: sequence diagram for add/delete/list driver)
 A sample run-through is shown below in the sequence diagram:
+
+### Add Customer feature
+
+#### Implementation
+
+The add customer mechanism is facilitated by `Customer`. It is a model in the application and some of its important
+attributes include:
+
+* `NameCustomer`  — Contains the name of the given customer
+* `PhoneCustomer`  — Contains the phone number of the given customer
+* `AddressCustomer`  — Contains the address of the given customer
+
+These attributes are used in the `customer#Customer()` instantiation, which is called to create a new Customer when the
+add customer  
+command is called.
+
+Given below is an example usage scenario and how the add customer mechanism behaves at each step.
+
+Step 1. The user executes the `addcustomer n/john p/12345678 a/nus` command in the application to add a given
+customer, which is handled by `Logic#execute`.
+The `addcustomer` command is parsed by the `AddressBookParser#parseCommand` and `AddCustomerCommandParser#parse` to
+create a new
+`AddCustomerCommand` with the given phone number and dishes.
+
+Step 2. The `Logic` then executes the `AddCustomerCommand#execute()` with a `Customer` object
+
+Step 3. The `Customer` object, which contains the following attributes `NameCustomer` `PhoneCustomer`
+`AddressCustomer` is added to the `Model` with
+`Model#addCustomer()`.
+
+Step 5. A new `CommandResult` with the success message is returned to `Logic` and returned as the output.
+
+#### Design considerations:
+* The `Customer` ensures that the value of the customer name, phone number and address is enclosed by the
+  `NameCustomer` `PhoneCustomer` `AddressCustomer` classes instead of `Name` `Phone` `Address` respectively in order to
+  ensure
+  greater level of encapsulation of data being handled.
+
+![AddCustomerSequenceDiagram](images/AddCustomerSequenceDiagram.png)
+
+### Delete Customer feature
+
+#### Implementation
+
+The delete customer mechanism is faciliated by `Customer`.
+
+Given below is an example usage scenario and how the delete customer mechanism behaves at each step.
+
+Step 1. The user executes the `deletecustomer 3` command in the application to delete the customer represented with
+the index 3.
+The `deletecustomer` keyword is parsed by the `AddressBookParser#parseCommand` and
+`DeleteCustomerCommandParser#parse` to
+create a new `DeleteCustomerCommand` with the given index.
+
+Step 2. The `Logic` then executes the `DeleteCustomerCommand#execute()`.
+
+Step 3. The `DeleteCustomerCommand` finds the `Customer` using the given index from the `Model#filteredCustomers`and
+calls
+its
+`Model#deleteCustomer()`
+method to delete the customer.
+
+Step 4. A new `CommandResult` with the success message is returned to `Logic` and returned as the output.
+
+![DeleteCustomerSequenceDiagram](images/DeleteCustomerSequenceDiagram.png)
+
 
 ### Add/Delete/List Dish feature
 
