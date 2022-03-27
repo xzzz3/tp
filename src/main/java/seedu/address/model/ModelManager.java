@@ -154,6 +154,13 @@ public class ModelManager implements Model {
         addressBook.setCustomer(target, editedCustomer);
     }
 
+    @Override
+    public void setDish(Dish target, Dish editedDish) {
+        requireAllNonNull(target, editedDish);
+
+        addressBook.setDish(target, editedDish);
+    }
+
     //=========== Filtered Dish List Accessors =============================================================
     @Override
     public boolean hasDish(Dish dish) {

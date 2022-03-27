@@ -174,6 +174,11 @@ public class AddCustomerCommandTest {
         }
 
         @Override
+        public void setDish(Dish target, Dish editedDish) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasDish(Dish dish) {
             throw new AssertionError("This method should not be called.");
         }
