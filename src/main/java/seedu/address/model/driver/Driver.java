@@ -45,6 +45,10 @@ public class Driver {
         return status.equals(DriverStatus.FREE);
     }
 
+    public boolean isBusy() {
+        return status.equals(DriverStatus.BUSY);
+    }
+
     public void setStatus(DriverStatus status) {
         this.status = status;
     }

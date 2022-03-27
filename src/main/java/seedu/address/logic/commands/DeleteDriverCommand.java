@@ -41,11 +41,11 @@ public class DeleteDriverCommand extends Command {
         }
 
         Driver driverToDelete = lastShownList.get(targetIndex.getZeroBased());
-        if (driverToDelete.isFree()) {
-            model.deleteDriver(driverToDelete);
-        } else {
+        if (driverToDelete.isBusy()) {
             throw new CommandException(String.format(MESSAGE_DELETE_DRIVER_FAIL_BUSY, driverToDelete));
         }
+
+        model.deleteDriver(driverToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_DRIVER_SUCCESS, driverToDelete), false,
                 false, false, true, false);
     }

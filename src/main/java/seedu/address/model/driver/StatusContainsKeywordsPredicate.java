@@ -12,6 +12,10 @@ public class StatusContainsKeywordsPredicate implements Predicate<Driver> {
         this.keywords = keywords;
     }
 
+    public List<String> getKeywords() {
+        return keywords;
+    }
+
     @Override
     public boolean test(Driver driver) {
         return keywords.stream()

@@ -74,13 +74,14 @@ public class EditDriverCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_DRIVER);
         }
 
-        if (!driverToEdit.isFree()) {
+        if (driverToEdit.isBusy()) {
             throw new CommandException(String.format(MESSAGE_DELETE_DRIVER_FAIL_BUSY, driverToEdit));
         }
 
         model.setDriver(driverToEdit, editedDriver);
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
-        return new CommandResult(String.format(MESSAGE_EDIT_DRIVER_SUCCESS, editedDriver));
+        return new CommandResult(String.format(MESSAGE_EDIT_DRIVER_SUCCESS, editedDriver), false,
+                false, false, true, false);
     }
 
     /**
