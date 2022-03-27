@@ -35,7 +35,8 @@ public class EditDishCommand extends Command {
             + PREFIX_PRICE + "19.90";
 
     public static final String MESSAGE_EDIT_DISH_SUCCESS = "Edited Dish: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit "
+            + "must be provided and field to edit should not be the same as existing field.";
     public static final String MESSAGE_DUPLICATE_DISH = "This dish already exists in FoodOnWheels.";
 
     private final Index index;
@@ -64,6 +65,10 @@ public class EditDishCommand extends Command {
 
         Dish dishToEdit = lastShownList.get(index.getZeroBased());
         Dish editedDish = createEditedDish(dishToEdit, editDishDescriptor);
+
+        if (dishToEdit.equals(editedDish)) {
+            throw new CommandException(MESSAGE_NOT_EDITED);
+        }
 
         if (!dishToEdit.isSameDish(editedDish) && model.hasDish(editedDish)) {
             throw new CommandException(MESSAGE_DUPLICATE_DISH);
