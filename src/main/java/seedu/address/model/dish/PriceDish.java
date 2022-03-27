@@ -27,7 +27,7 @@ public class PriceDish {
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid price.
      */
     public static boolean isValidPrice(String test) {
         return test.matches(VALIDATION_REGEX);
