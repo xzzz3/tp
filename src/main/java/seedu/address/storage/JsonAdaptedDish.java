@@ -7,7 +7,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.dish.NameDish;
 import seedu.address.model.dish.PriceDish;
-import seedu.address.model.item.Name;
 import seedu.address.model.item.Person;
 
 /**
@@ -44,7 +43,8 @@ class JsonAdaptedDish {
      */
     public Dish toModelType() throws IllegalValueException {
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, NameDish.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    NameDish.class.getSimpleName()));
         }
         if (!NameDish.isValidName(name)) {
             throw new IllegalValueException(NameDish.MESSAGE_CONSTRAINTS);
@@ -52,7 +52,8 @@ class JsonAdaptedDish {
         final NameDish modelName = new NameDish(name);
 
         if (price == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PriceDish.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PriceDish.class.getSimpleName()));
         }
         if (!PriceDish.isValidPrice(price)) {
             throw new IllegalValueException(PriceDish.MESSAGE_CONSTRAINTS);

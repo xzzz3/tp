@@ -11,13 +11,12 @@ import seedu.address.model.customer.AddressCustomer;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.NameCustomer;
 import seedu.address.model.customer.PhoneCustomer;
+import seedu.address.model.dish.Dish;
 import seedu.address.model.dish.NameDish;
 import seedu.address.model.dish.PriceDish;
 import seedu.address.model.driver.Driver;
 import seedu.address.model.driver.NameDriver;
 import seedu.address.model.driver.PhoneDriver;
-import seedu.address.model.dish.Dish;
-import seedu.address.model.item.Name;
 import seedu.address.model.order.Order;
 
 /**

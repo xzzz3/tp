@@ -11,7 +11,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.dish.NameDish;
 import seedu.address.model.dish.PriceDish;
-import seedu.address.model.item.Name;
 
 /**
  * Parses input arguments and creates a new AddDishCommand object
