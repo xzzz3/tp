@@ -26,7 +26,7 @@ public class AddOrderCommand extends Command {
             + "Parameters: "
             + "p/ [PHONE] d/ [DISHES]\n"
             + "Example: " + COMMAND_WORD
-            + " p/ 87654321 d/ Chicken Pasta, Fries";  // todo change to static variable
+            + " p/ 87654321 d/ Chicken Pasta, Fries"; // todo change to static variable
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists!";
@@ -93,7 +93,7 @@ public class AddOrderCommand extends Command {
         List<String> dishesInputList = Arrays.asList(dishesInput);
         for (Dish dish : dishes) {
             if (dishesInputList.contains(dish.toString())) {
-                addedDishes.add(dish);  // todo use comma as delimiter
+                addedDishes.add(dish); // todo use comma as delimiter
             }
         }
 

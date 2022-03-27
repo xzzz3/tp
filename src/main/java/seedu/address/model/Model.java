@@ -161,5 +161,5 @@ public interface Model {
      * The order identity of {@code editedOrder} must not be the same as
      * another existing order in the address book.
      */
-    void setOrder(Order target, Order editedCustomer);
+    void setOrder(Order target, Order editedOrder);
 }

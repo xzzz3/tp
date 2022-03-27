@@ -6,8 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +21,6 @@ import seedu.address.model.driver.Driver;
 import seedu.address.model.item.Dish;
 import seedu.address.model.item.exceptions.DishNotFoundException;
 import seedu.address.model.order.Order;
-import seedu.address.model.order.exception.NoFreeDriverException;
 
 /**
  * Edits the details of an existing order in the order list.
@@ -68,7 +65,9 @@ public class EditOrderCommand extends Command {
                 false, false, false, false, true);
     }
 
-
+    /**
+     * Executes the EditOrderCommand and returns the result message.
+     */
     public CommandResult execute(Model model, ObservableList<Customer> customers,
                                  ObservableList<Dish> dishes) throws CommandException {
         requireNonNull(model);
@@ -126,7 +125,7 @@ public class EditOrderCommand extends Command {
             List<String> dishesInputList = editOrderDescriptor.getDishes().get();
             for (Dish dish : dishes) {
                 if (dishesInputList.contains(dish.toString())) {
-                    updatedDishes.add(dish);  // todo use comma as delimiter
+                    updatedDishes.add(dish); // todo use comma as delimiter
                 }
             }
 

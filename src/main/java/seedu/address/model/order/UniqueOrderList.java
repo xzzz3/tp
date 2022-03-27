@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.item.Person;
 import seedu.address.model.item.exceptions.DuplicatePersonException;
 import seedu.address.model.item.exceptions.PersonNotFoundException;
 import seedu.address.model.order.exception.DuplicateOrderException;
