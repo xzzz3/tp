@@ -158,6 +158,31 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
+### Add/Delete Driver feature
+
+#### Implementation
+
+The add/delete/list driver feature are commands which inherits from `Command`. These are the basic commands
+to add, remove or view `Driver` objects.
+
+#### Example run-through
+
+(todo: sequence diagram for add/delete/list driver)
+A sample run-through is shown below in the sequence diagram:
+
+### List Driver feature
+
+#### Implementation
+
+The list driver feature is a command which inherits from `FindCommand`. It is the basic command 
+to find `Driver` objects which have the status match with the argument in the command.
+
+#### Example run-through
+
+(todo: sequence diagram for add/delete/list driver)
+A sample run-through is shown below in the sequence diagram:
+
 ### Add Customer feature
 
 #### Implementation
@@ -222,6 +247,7 @@ method to delete the customer.
 Step 4. A new `CommandResult` with the success message is returned to `Logic` and returned as the output.
 
 ![DeleteCustomerSequenceDiagram](images/DeleteCustomerSequenceDiagram.png)
+
 
 ### Add/Delete/List Dish feature
 
