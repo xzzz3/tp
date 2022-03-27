@@ -2,13 +2,15 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddDishCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.item.Dish;
-import seedu.address.model.item.Name;
+import seedu.address.model.dish.Dish;
+import seedu.address.model.dish.NameDish;
+import seedu.address.model.dish.PriceDish;
 
 /**
  * Parses input arguments and creates a new AddDishCommand object
@@ -22,16 +24,17 @@ public class AddDishCommandParser implements Parser<AddDishCommand> {
      */
     public AddDishCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRICE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PRICE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDishCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseDishName(argMultimap.getValue(PREFIX_NAME).get());
+        NameDish name = ParserUtil.parseDishName(argMultimap.getValue(PREFIX_NAME).get());
+        PriceDish price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
 
-        Dish dish = new Dish(name);
+        Dish dish = new Dish(name, price);
 
         return new AddDishCommand(dish);
     }
