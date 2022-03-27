@@ -245,4 +245,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(order);
         return orders.contains(order);
     }
+
+    /**
+     * Replaces the given order {@code target} in the list with {@code editedOrder}.
+     * {@code target} must exist in the app.
+     * The order identity of {@code editedOrder} must not be the same as
+     * another existing order in the app.
+     */
+    public void setOrder(Order target, Order editedOrder) {
+        requireNonNull(editedOrder);
+
+        orders.setOrder(target, editedOrder);
+    }
 }

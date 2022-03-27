@@ -26,7 +26,7 @@ public class AddOrderCommand extends Command {
             + "Parameters: "
             + "p/ [PHONE] d/ [DISHES]\n"
             + "Example: " + COMMAND_WORD
-            + " p/ 87654321 d/ Chicken Pasta";
+            + " p/ 87654321 d/ Chicken Pasta";  // todo change to static variable
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists!";
@@ -47,9 +47,6 @@ public class AddOrderCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-
-        // todo add duplicate checker
-        // model.addOrder(new Order("Dummy customer", phoneInput, "Dummy driver", dishesInput););
         return new CommandResult(String.format(MESSAGE_SUCCESS),
                 false, false, false, false, true);
     }
@@ -96,7 +93,7 @@ public class AddOrderCommand extends Command {
         List<String> dishesInputList = Arrays.asList(dishesInput);
         for (Dish dish : dishes) {
             if (dishesInputList.contains(dish.toString())) {
-                addedDishes.add(dish);
+                addedDishes.add(dish);  // todo use comma as delimiter
             }
         }
 

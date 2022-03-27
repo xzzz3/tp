@@ -10,6 +10,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddOrderCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.EditOrderCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -54,6 +55,10 @@ public class LogicManager implements Logic {
             AddOrderCommand inputCommand = (AddOrderCommand) command;
             commandResult = inputCommand.execute(model,
                     getFilteredCustomerList(), getFilteredDriverList(), getFilteredDishList());
+        } else if (command instanceof EditOrderCommand) {
+            EditOrderCommand editOrderCommand = (EditOrderCommand) command;
+            commandResult = editOrderCommand.execute(model,
+                    getFilteredCustomerList(), getFilteredDishList());
         } else {
             commandResult = command.execute(model);
         }
