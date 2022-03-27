@@ -11,8 +11,8 @@ public class PriceDish {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Prices should only contain numbers";
-    public static final String VALIDATION_REGEX = "\\d";
+            "Prices should only be in 2 decimal places, i.e. 123.90, and within the limits 0.00 to 99999.99 inclusive";
+    public static final String VALIDATION_REGEX = "\\d{1,5}\\.[0-9]{2}";
     public final double value;
 
     /**

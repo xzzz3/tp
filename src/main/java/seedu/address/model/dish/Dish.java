@@ -15,17 +15,23 @@ public class Dish {
 
     // Identity fields
     private final NameDish name;
+    private final PriceDish price;
 
     /**
      * Every field must be present and not null.
      */
-    public Dish(NameDish name) {
-        requireAllNonNull(name);
+    public Dish(NameDish name, PriceDish price) {
+        requireAllNonNull(name, price);
         this.name = name;
+        this.price = price;
     }
 
     public NameDish getName() {
         return name;
+    }
+
+    public PriceDish getPrice() {
+        return price;
     }
 
     /**
@@ -38,7 +44,8 @@ public class Dish {
         }
 
         return otherDish != null
-                && otherDish.getName().equals(getName());
+                && otherDish.getName().equals(getName())
+                && otherDish.getPrice().equals(getPrice());
     }
 
     /**
@@ -56,7 +63,7 @@ public class Dish {
         }
 
         Dish otherDish = (Dish) other;
-        return otherDish.getName().equals(getName());
+        return otherDish.getName().equals(getName()) && otherDish.getPrice().equals(getPrice());
     }
 
     @Override
@@ -69,7 +76,6 @@ public class Dish {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
-
         return builder.toString();
     }
 

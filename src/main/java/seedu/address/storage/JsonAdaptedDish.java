@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.dish.Dish;
+import seedu.address.model.dish.NameDish;
+import seedu.address.model.dish.PriceDish;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Person;
 
@@ -16,13 +18,15 @@ class JsonAdaptedDish {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Dish's %s field is missing!";
 
     private final String name;
+    private final String price;
 
     /**
      * Constructs a {@code JsonAdaptedDish} with the given dish details.
      */
     @JsonCreator
-    public JsonAdaptedDish(@JsonProperty("name") String name) {
+    public JsonAdaptedDish(@JsonProperty("name") String name, @JsonProperty("price") String price) {
         this.name = name;
+        this.price = price;
     }
 
     /**
@@ -30,6 +34,7 @@ class JsonAdaptedDish {
      */
     public JsonAdaptedDish(Dish source) {
         name = source.getName().fullName;
+        price = source.getPrice().toString();
     }
 
     /**
@@ -39,14 +44,22 @@ class JsonAdaptedDish {
      */
     public Dish toModelType() throws IllegalValueException {
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, NameDish.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!NameDish.isValidName(name)) {
+            throw new IllegalValueException(NameDish.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final NameDish modelName = new NameDish(name);
 
-        return new Dish(modelName);
+        if (price == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PriceDish.class.getSimpleName()));
+        }
+        if (!PriceDish.isValidPrice(price)) {
+            throw new IllegalValueException(PriceDish.MESSAGE_CONSTRAINTS);
+        }
+        final PriceDish modelPrice = new PriceDish(price);
+
+        return new Dish(modelName, modelPrice);
     }
 
 }

@@ -11,6 +11,8 @@ import seedu.address.model.customer.AddressCustomer;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.NameCustomer;
 import seedu.address.model.customer.PhoneCustomer;
+import seedu.address.model.dish.NameDish;
+import seedu.address.model.dish.PriceDish;
 import seedu.address.model.driver.Driver;
 import seedu.address.model.driver.NameDriver;
 import seedu.address.model.driver.PhoneDriver;
@@ -24,13 +26,15 @@ import seedu.address.model.order.Order;
 class JsonAdaptedOrder {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Order's %s field is missing!";
+    public static final String INVALID_DISH_MESSAGE = "Number of dishes and prices are not equal!";
 
     private final String customerName;
     private final String customerPhone;
     private final String customerAddress;
     private final String driverName;
     private final String driverPhone;
-    private final ArrayList<String> dishes;
+    private final ArrayList<String> dishNames;
+    private final ArrayList<String> dishPrices;
     private final LocalDateTime time;
 
     /**
@@ -42,14 +46,16 @@ class JsonAdaptedOrder {
                             @JsonProperty("customerAddress") String customerAddress,
                             @JsonProperty("driverName") String driverName,
                             @JsonProperty("driverPhone") String driverPhone,
-                            @JsonProperty("dishes") ArrayList<String> dishes,
+                            @JsonProperty("dishName") ArrayList<String> dishNames,
+                            @JsonProperty("dishPrice") ArrayList<String> dishPrices,
                             @JsonProperty("time") LocalDateTime time) {
         this.customerName = customerName;
         this.customerPhone = customerPhone;
         this.customerAddress = customerAddress;
         this.driverName = driverName;
         this.driverPhone = driverPhone;
-        this.dishes = dishes;
+        this.dishNames = dishNames;
+        this.dishPrices = dishPrices;
         this.time = time;
     }
 
@@ -62,9 +68,11 @@ class JsonAdaptedOrder {
         customerAddress = source.getCustomerAddress().toString();
         driverName = source.getDriverName();
         driverPhone = source.getDriver().getPhone().toString();
-        dishes = new ArrayList<String>();
+        dishNames = new ArrayList<String>();
+        dishPrices = new ArrayList<String>();
         for (Dish dish : source.getDishes()) {
-            dishes.add(dish.toString());
+            dishNames.add(dish.toString());
+            dishPrices.add(dish.getPrice().toString());
         }
         time = source.getTime();
     }
@@ -105,14 +113,24 @@ class JsonAdaptedOrder {
 
         final Driver driver = new Driver(new NameDriver(driverName), new PhoneDriver(driverPhone));
 
-        if (dishes == null) {
+        if (dishNames == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Name.class.getSimpleName()));
+                    NameDish.class.getSimpleName()));
+        }
+
+        if (dishPrices == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PriceDish.class.getSimpleName()));
+        }
+
+        if (dishNames.size() != dishPrices.size()) {
+            throw new IllegalValueException(INVALID_DISH_MESSAGE);
         }
 
         final ArrayList<Dish> modelDishes = new ArrayList<Dish> ();
-        for (String dish : dishes) {
-            modelDishes.add(new Dish(new Name(dish)));
+        for (int i = 0; i < dishNames.size(); i++) {
+            modelDishes.add(new Dish(new NameDish(dishNames.get(i)),
+                    new PriceDish(dishPrices.get(i))));
         }
 
         if (time == null) {
