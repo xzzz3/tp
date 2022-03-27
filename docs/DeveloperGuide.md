@@ -380,6 +380,57 @@ _{more aspects and alternatives to be added}_
 _{Explain here how the data archiving feature will be implemented}_
 
 
+
+### Add Order feature
+
+#### Implementation
+
+The add order mechanism is facilitated by `Order`. It is a model in the application and some of its important attributes include:
+
+* `customer`  — Holds the Customer object who ordered the given Order.
+* `driver`  — Holds the Driver object who will be delivering the given Order.
+* `dishes`  — Holds the Dish objects that are included in the given Order.
+
+![OrderClassDiagram](images/OrderClassDiagram.png)
+
+These attributes are used in the `Order#Order()` instantiation, which is called to create a new Order when the add order command is called.
+
+Given below is an example usage scenario and how the add order mechanism behaves at each step.
+
+Step 1. The user executes the `addorder p/ 123 d/ sushi` command in the application to add an order of sushi for a registered Customer with phone number 123, which is handled by `Logic#execute`. 
+The `addorder` command is parsed by the `AddressBookParser#parseCommand` and `AddOrderCommandParser#parse` to create a new `AddOrderCommand` with the given phone number and dishes.
+
+Step 2. The `Logic` then executes the `AddOrderCommand#execute()` with the stored lists using `Logic#getFilteredCustomerList()`, `Logic#getFilteredDriverList` and `Logic#getFilteredDishList`.
+
+Step 3. `AddOrderCommand#Execute` uses the lists to find the `Customer` object with the given phone number (i.e. 123) , a free `Driver` object, and all the `Dish` objects with the given names (i.e. sushi). It then creates an `Order` with them.
+
+Step 4. The `Order` is added to the `Model` with `Model#addOrder()`.
+
+Step 5. A new `CommandResult` with the success message is returned to `Logic` and returned as the output.
+
+#### Design considerations:
+* The `Order` stores its component objects directly, in order to make future implementation easier. Future updates that targets the different parts of an `Order` can easily be implemented in this way.
+
+### Edit Order Status feature
+
+#### Implementation
+
+The edit order status mechanism is faciliated by `Order` and `OrderStatus`. The latter is an enumeration class to include the possible statuses.
+This mechanism also relies on the method `Order#updateStatus()` which updates the status of the given Order.
+
+Given below is an example usage scenario and how the edit order status mechanism behaves at each step.
+
+Step 1. The user executes the `mark 1 s/ delivered` command in the application to mark the first order in the list as delivered.
+The `mark` keyword is parsed by the `AddressBookParser#parseCommand` and `EditOrderStatusCommandParser#parse` to create a new `EditOrderStatusCommand` with the given index and status.
+
+Step 2. The `Logic` then executes the `EditOrderStatusCommand#execute()`. 
+
+Step 3. The `EditOrderStatusCommand` finds the `Order` using the given index and calls its `Order#updateStatus()` method to update the status to the given new status.
+
+Step 4. A new `CommandResult` with the success message is returned to `Logic` and returned as the output.
+
+![EditOrderStatusSequenceDiagram](images/EditOrderStatusSequenceDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
