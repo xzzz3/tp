@@ -31,7 +31,7 @@ public class AddOrderCommandParser {
         }
 
         String phone = argMultimap.getValue(PREFIX_PHONE).orElse("");
-        String dishes = argMultimap.getValue(PREFIX_DISH).orElse("");
+        String[] dishes = argMultimap.getValue(PREFIX_DISH).orElse("").split("\\s*,\\s*");
 
         return new AddOrderCommand(phone, dishes);
     }
