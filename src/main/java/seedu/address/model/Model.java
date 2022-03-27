@@ -93,6 +93,8 @@ public interface Model {
      */
     void setCustomer(Customer target, Customer editedCustomer);
 
+    void setDriver(Driver target, Driver editedDriver);
+
     /** Returns an unmodifiable view of the filtered customer list */
     ObservableList<Customer> getFilteredCustomerList();
     /**

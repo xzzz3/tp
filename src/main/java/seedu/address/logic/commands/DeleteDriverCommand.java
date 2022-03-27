@@ -44,8 +44,7 @@ public class DeleteDriverCommand extends Command {
         if (driverToDelete.isFree()) {
             model.deleteDriver(driverToDelete);
         } else {
-            return new CommandResult(String.format(MESSAGE_DELETE_DRIVER_FAIL_BUSY, driverToDelete), false,
-                    false, false, true, false);
+            throw new CommandException(String.format(MESSAGE_DELETE_DRIVER_FAIL_BUSY, driverToDelete));
         }
         return new CommandResult(String.format(MESSAGE_DELETE_DRIVER_SUCCESS, driverToDelete), false,
                 false, false, true, false);

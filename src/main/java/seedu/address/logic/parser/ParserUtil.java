@@ -13,6 +13,7 @@ import seedu.address.model.customer.AddressCustomer;
 import seedu.address.model.customer.EmailCustomer;
 import seedu.address.model.customer.NameCustomer;
 import seedu.address.model.customer.PhoneCustomer;
+import seedu.address.model.driver.DriverStatus;
 import seedu.address.model.driver.NameDriver;
 import seedu.address.model.driver.PhoneDriver;
 import seedu.address.model.item.Name;
@@ -24,6 +25,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_DRIVER_STATUS = "This driver status is invalid.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -113,6 +115,24 @@ public class ParserUtil {
         }
         return new PhoneDriver(trimmedPhone);
     }
+
+    /**
+     * Parses a {@code String status} into a {@code DriverStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static DriverStatus parseDriverStatus (String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim();
+        for (DriverStatus driverStatus : DriverStatus.values()) {
+            if (driverStatus.name().equalsIgnoreCase(trimmedStatus)) {
+                return DriverStatus.valueOf(trimmedStatus.toUpperCase());
+            }
+        }
+        throw new ParseException(MESSAGE_INVALID_DRIVER_STATUS);
+    }
+
 
     /**
      * Parses a {@code String address} into an {@code AddressCustomer}.
