@@ -35,10 +35,14 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
    
    * **`listdish`** : Lists all existing dishes on restaurant's menu.
 
+### Commands relating to `Order`
    * **`listorders`** : Lists all the current orders in the system. 
 
    * **`listordersprev`** : Lists all the previous orders in the system.
 
+### Commands relating to `Driver`
+
+### Commands relating to `Customer`
    (to be updated)
    * **`delete`** : Deletes all contacts.
 
