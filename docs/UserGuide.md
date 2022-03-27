@@ -21,14 +21,19 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 3. Copy the file to the folder you want to use as the _home folder_ for your FoodOnWheels.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   (to be updated)
+
    <img src="images/FoodOnWheels.png" width=65% height=65%>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`add dish`**`n/Crab Pasta` : Adds a dish named `Crab Pasta` to the restaurant's menu.
+### Commands relating to `Dish`
+   * **`adddish`**`n/Crab Pasta $/15.50` : Adds a dish named `Crab Pasta` with price `15.50` to the restaurant's menu.
 
-   * **`delete dish`**`n/Crab Pasta` : Deletes a dish named `Crab Pasta` to the restaurant's menu.
+   * **`deletedish`**`n/Crab Pasta` : Deletes a dish named `Crab Pasta` to the restaurant's menu.
+   
+   * **`listdish`** : Lists all existing dishes on restaurant's menu.
 
    * **`listorders`** : Lists all the current orders in the system. 
 
@@ -55,21 +60,21 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 **:information_source: Notes about the command format:**<br>
 
 * Words in `{curly brackets}` are the parameters to be supplied by the user.<br>
-  e.g. in `add /n {name}`, `name` is a parameter which can be used as `add /n John Doe`.
+  e.g. in `adddish n/{name} $/{price}`, `name` and `price` are parameters which can be used as `adddish n/Crab Pasta $/15.50`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/{name} [t/{tag}]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/{tag}]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/{name} p/{phone_number}`, `p/{phone_number} n/{name}` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `listdish`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -135,25 +140,25 @@ Examples:
 
 ## Dish features
 
-### Adding a dish: `add dish`
+### Adding a dish: `adddish`
 
 Adds a dish to the restaurant’s menu.
 
-Format: `add dish n/{name}`
+Format: `adddish n/{name} $/{price}`
 
 Examples:
-* `add dish n/Crab Pasta`
-* `add dish n/Kimchi Fried Rice`
+* `add dish n/Crab Pasta $/15.50`
+* `add dish n/Kimchi Fried Rice $/10.00`
 
-### Deleting a dish: `delete dish`
+### Deleting a dish: `deletedish`
 
 Deletes a dish from the restaurant’s menu.
 
-Format: `delete dish n/{name}`
+Format: `deletedish {index}`, where `index` denotes the index of the dish shown on FoodOnWheels
 
 Examples:
-* `delete dish n/Crab Pasta`
-* `delete dish n/Kimchi Fried Rice`
+* `deletedish 1`
+* `deletedish 2`
 
 
 
@@ -308,8 +313,8 @@ Action | Feature type | Format, Examples
 **Add** | **Driver**   |`add driver n/{name} p/{phone}` <br> e.g,`add driver n/John Doe p/98765432`
 **Delete** | **Driver**   |`delete driver n/{name} p/{phone}` <br> e.g,`delete driver n/John Doe p/98765432`
 **List** | **Driver**   |`list driver free` 
-**Add** | **Dish**     | `add dish n/NAME` <br> e.g., `add dish n/Crab Pasta`
-**Delete** | **Dish**     | `delete dish n/NAME` <br> e.g., `delete dish n/Crab Pasta`
+**Add** | **Dish**     | `adddish n/{name} $/{price}` <br> e.g., `adddish n/Crab Pasta $/15.50`
+**Delete** | **Dish**     | `deletedish {index}` <br> e.g., `deletedish 1`
 **List (current orders)** | **Order**    | `listorders`
 **List (previous orders)** | **Order**    | `listordersprev`
 
