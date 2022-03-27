@@ -15,7 +15,7 @@ public class StatusContainsKeywordsPredicate implements Predicate<Driver> {
     @Override
     public boolean test(Driver driver) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(driver.getStatus(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(driver.getStatus().name(), keyword));
     }
 
     @Override

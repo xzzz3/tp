@@ -12,12 +12,12 @@ public class Driver {
     private final NameDriver name;
     private final PhoneDriver phone;
 
-    private String status; // mutable
+    private DriverStatus status;
 
     /**
      * Every field must be present and not null.
      */
-    public Driver(NameDriver name, PhoneDriver phone, String status) {
+    public Driver(NameDriver name, PhoneDriver phone, DriverStatus status) {
         requireAllNonNull(name, phone);
         this.name = name;
         this.phone = phone;
@@ -25,7 +25,7 @@ public class Driver {
     }
 
     public Driver(NameDriver name, PhoneDriver phone) {
-        this(name, phone, "free");
+        this(name, phone, DriverStatus.FREE);
     }
 
 
@@ -37,15 +37,15 @@ public class Driver {
         return phone;
     }
 
-    public String getStatus() {
+    public DriverStatus getStatus() {
         return status;
     }
 
     public boolean isFree() {
-        return status.equals("free");
+        return status.equals(DriverStatus.FREE);
     }
 
-    public void setStatus(String status) {
+    public void setStatus(DriverStatus status) {
         this.status = status;
     }
 

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import seedu.address.model.customer.AddressCustomer;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.driver.Driver;
+import seedu.address.model.driver.DriverStatus;
 import seedu.address.model.item.Dish;
 
 /**
@@ -33,7 +34,7 @@ public class Order {
         requireAllNonNull(customer, orderedDishes);
         this.customer = customer;
         this.driver = driver;
-        driver.setStatus("occupied");
+        driver.setStatus(DriverStatus.BUSY);
         this.dishes = new ArrayList<Dish>();
         for (Dish dish : orderedDishes) {
             this.dishes.add(dish);
@@ -143,7 +144,7 @@ public class Order {
             this.status = OrderStatus.IN_PROGRESS;
         } else if (status.equals("delivered")) {
             this.status = OrderStatus.DELIVERED;
-            this.driver.setStatus("free");
+            this.driver.setStatus(DriverStatus.FREE);
         } else if (status.equals("cancelled")) {
             this.status = OrderStatus.CANCELLED;
         }
