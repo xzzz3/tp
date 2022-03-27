@@ -39,7 +39,7 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
             editOrderDescriptor.setCustomerPhone(argMultimap.getValue(PREFIX_PHONE).get());
         }
         if (argMultimap.getValue(PREFIX_DISH).isPresent()) {
-            editOrderDescriptor.setDishes(argMultimap.getValue(PREFIX_DISH).get());
+            editOrderDescriptor.setDishes(argMultimap.getValue(PREFIX_DISH).get().split("\\s*,\\s*"));
         }
 
         if (!editOrderDescriptor.isAnyFieldEdited()) {
