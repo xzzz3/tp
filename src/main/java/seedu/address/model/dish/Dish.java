@@ -1,9 +1,8 @@
-package seedu.address.model.item;
+package seedu.address.model.dish;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
-
 
 /**
  * Represents a Dish in FoodOnWheels.
@@ -12,18 +11,24 @@ import java.util.Objects;
 public class Dish {
 
     // Identity fields
-    private final Name name;
+    private final NameDish name;
+    private final PriceDish price;
 
     /**
      * Every field must be present and not null.
      */
-    public Dish(Name name) {
-        requireAllNonNull(name);
+    public Dish(NameDish name, PriceDish price) {
+        requireAllNonNull(name, price);
         this.name = name;
+        this.price = price;
     }
 
-    public Name getName() {
+    public NameDish getName() {
         return name;
+    }
+
+    public PriceDish getPrice() {
+        return price;
     }
 
     /**
@@ -36,7 +41,8 @@ public class Dish {
         }
 
         return otherDish != null
-                && otherDish.getName().equals(getName());
+                && otherDish.getName().equals(getName())
+                && otherDish.getPrice().equals(getPrice());
     }
 
     /**
@@ -54,7 +60,7 @@ public class Dish {
         }
 
         Dish otherDish = (Dish) other;
-        return otherDish.getName().equals(getName());
+        return otherDish.getName().equals(getName()) && otherDish.getPrice().equals(getPrice());
     }
 
     @Override
@@ -67,7 +73,6 @@ public class Dish {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
-
         return builder.toString();
     }
 
