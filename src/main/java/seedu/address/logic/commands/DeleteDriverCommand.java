@@ -22,6 +22,8 @@ public class DeleteDriverCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_DRIVER_SUCCESS = "Deleted Driver: %1$s";
+    public static final String MESSAGE_DELETE_DRIVER_FAIL_BUSY = "Delete Driver: %1$s "
+            + "failed because driver is not free";
 
     private final Index targetIndex;
 
@@ -39,7 +41,12 @@ public class DeleteDriverCommand extends Command {
         }
 
         Driver driverToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteDriver(driverToDelete);
+        if (driverToDelete.isFree()) {
+            model.deleteDriver(driverToDelete);
+        } else {
+            return new CommandResult(String.format(MESSAGE_DELETE_DRIVER_FAIL_BUSY, driverToDelete), false,
+                    false, false, true, false);
+        }
         return new CommandResult(String.format(MESSAGE_DELETE_DRIVER_SUCCESS, driverToDelete), false,
                 false, false, true, false);
     }
