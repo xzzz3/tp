@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import seedu.address.model.customer.AddressCustomer;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.dish.Dish;
 import seedu.address.model.driver.Driver;
 import seedu.address.model.driver.DriverStatus;
 import seedu.address.model.item.Dish;

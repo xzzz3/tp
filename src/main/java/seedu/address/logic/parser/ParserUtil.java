@@ -14,6 +14,8 @@ import seedu.address.model.customer.EmailCustomer;
 import seedu.address.model.customer.NameCustomer;
 import seedu.address.model.customer.PhoneCustomer;
 import seedu.address.model.driver.DriverStatus;
+import seedu.address.model.dish.NameDish;
+import seedu.address.model.dish.PriceDish;
 import seedu.address.model.driver.NameDriver;
 import seedu.address.model.driver.PhoneDriver;
 import seedu.address.model.item.Name;
@@ -61,13 +63,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseDishName(String name) throws ParseException {
+    public static NameDish parseDishName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
+        if (!NameDish.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new NameDish(trimmedName);
     }
 
 
@@ -162,6 +164,21 @@ public class ParserUtil {
             throw new ParseException(EmailCustomer.MESSAGE_CONSTRAINTS);
         }
         return new EmailCustomer(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String price} into a {@code PriceDish}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code price} is invalid.
+     */
+    public static PriceDish parsePrice(String price) throws ParseException {
+        requireNonNull(price);
+        String trimmedPrice = price.trim();
+        if (!PriceDish.isValidPrice(trimmedPrice)) {
+            throw new ParseException(PriceDish.MESSAGE_CONSTRAINTS);
+        }
+        return new PriceDish(trimmedPrice);
     }
 
     /**
