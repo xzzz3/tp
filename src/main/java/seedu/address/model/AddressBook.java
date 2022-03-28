@@ -150,6 +150,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         customers.setCustomer(target, editedCustomer);
     }
 
+    public void setDriver(Driver target, Driver editedDriver) {
+        requireNonNull(editedDriver);
+        drivers.setDriver(target, editedDriver);
+    }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
