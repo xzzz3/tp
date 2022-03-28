@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.exceptions.CustomerNotFoundException;
@@ -50,7 +51,7 @@ public class AddOrderCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        return new CommandResult(String.format(MESSAGE_SUCCESS),
+        return new CommandResult(MESSAGE_SUCCESS,
                 false, false, false, false, true);
     }
 
@@ -59,10 +60,8 @@ public class AddOrderCommand extends Command {
      */
     public CommandResult execute(Model model,
                                  ObservableList<Customer> customers, ObservableList<Driver> drivers,
-                                 ObservableList<Dish> dishes) {
+                                 ObservableList<Dish> dishes) throws CommandException {
         requireAllNonNull(model, customers, drivers, dishes);
-
-        // todo add duplicate checker
 
         // checking for free driver to assign for the newly created order
         Driver freeDriver = null;
@@ -96,7 +95,7 @@ public class AddOrderCommand extends Command {
         List<String> dishesInputList = Arrays.asList(dishesInput);
         for (Dish dish : dishes) {
             if (dishesInputList.contains(dish.toString())) {
-                addedDishes.add(dish); // todo use comma as delimiter
+                addedDishes.add(dish);
             }
         }
 
@@ -105,6 +104,11 @@ public class AddOrderCommand extends Command {
         }
 
         Order toAdd = new Order(customer, freeDriver, addedDishes.toArray(new Dish[0]));
+
+        if (model.hasOrder(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ORDER);
+        }
+
         model.addOrder(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
                 false, false, false, false, true);
