@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DRIVERS;
 
 import java.util.List;
 import java.util.Optional;
@@ -79,7 +79,7 @@ public class EditDriverCommand extends Command {
         }
 
         model.setDriver(driverToEdit, editedDriver);
-        model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+        model.updateFilteredDriverList(PREDICATE_SHOW_ALL_DRIVERS);
         return new CommandResult(String.format(MESSAGE_EDIT_DRIVER_SUCCESS, editedDriver), false,
                 false, false, true, false);
     }
@@ -121,7 +121,7 @@ public class EditDriverCommand extends Command {
 
     /**
      * Stores the details to edit the driver with each non-empty field value will replace the
-     * corresponding field value of the customer.
+     * corresponding field value of the driver.
      */
     public static class EditDriverDescriptor {
         private NameDriver nameDriver;
