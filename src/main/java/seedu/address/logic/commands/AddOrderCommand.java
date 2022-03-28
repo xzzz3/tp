@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DISH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,10 +25,11 @@ public class AddOrderCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an order.\n"
-            + "Parameters: "
-            + "p/ [PHONE] d/ [DISHES]\n"
+            + "Parameters: " + PREFIX_PHONE
+            + " [PHONE] "  + PREFIX_DISH + " [DISHES]\n"
             + "Example: " + COMMAND_WORD
-            + " p/ 87654321 d/ Chicken Pasta, Fries"; // todo change to static variable
+            + PREFIX_PHONE
+            + " 87654321 " + PREFIX_DISH + " Chicken Pasta, Fries";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists!";
