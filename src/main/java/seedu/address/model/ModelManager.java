@@ -154,6 +154,12 @@ public class ModelManager implements Model {
         addressBook.setCustomer(target, editedCustomer);
     }
 
+    @Override
+    public void setDriver(Driver target, Driver editedDriver) {
+        requireAllNonNull(target, editedDriver);
+        addressBook.setDriver(target, editedDriver);
+    }
+
     //=========== Filtered Dish List Accessors =============================================================
     @Override
     public boolean hasDish(Dish dish) {

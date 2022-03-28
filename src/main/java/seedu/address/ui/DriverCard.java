@@ -31,7 +31,7 @@ public class DriverCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(driver.getName().fullName);
         phone.setText(driver.getPhone().value);
-        status.setText(driver.getStatus());
+        status.setText(driver.getStatus().name());
     }
 
     @Override

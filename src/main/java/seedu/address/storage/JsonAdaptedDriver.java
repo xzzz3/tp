@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.driver.Driver;
+import seedu.address.model.driver.DriverStatus;
 import seedu.address.model.driver.NameDriver;
 import seedu.address.model.driver.PhoneDriver;
 
@@ -36,7 +37,7 @@ class JsonAdaptedDriver {
     public JsonAdaptedDriver(Driver source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
-        status = source.getStatus();
+        status = source.getStatus().name();
     }
 
     /**
@@ -69,7 +70,7 @@ class JsonAdaptedDriver {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT));
         }
 
-        final String modelStatus = status;
+        final DriverStatus modelStatus = DriverStatus.valueOf(status);
 
         return new Driver(modelName, modelPhone, modelStatus);
     }
