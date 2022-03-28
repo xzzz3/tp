@@ -4,12 +4,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import seedu.address.model.customer.AddressCustomer;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.driver.Driver;
 import seedu.address.model.driver.DriverStatus;
+import seedu.address.model.order.exception.NoSuchOrderStatusException;
 
 /**
  * Represents an Order in the address book.
@@ -141,6 +143,7 @@ public class Order {
      * @return an {@code Order} with the updated order status.
      */
     public Order updateStatus(String status) {
+        status = status.toLowerCase(Locale.ROOT);
         if (status.equals("created")) {
             this.status = OrderStatus.CREATED;
         } else if (status.equals("in progress")) {
@@ -150,8 +153,9 @@ public class Order {
             this.driver.setStatus(DriverStatus.FREE);
         } else if (status.equals("cancelled")) {
             this.status = OrderStatus.CANCELLED;
+        } else {
+            throw new NoSuchOrderStatusException();
         }
-        // todo implement exception for invalid status
         return this;
     }
 }

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ORDER_STATUS;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -12,6 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.exception.NoSuchOrderStatusException;
 
 public class EditOrderStatusCommand extends Command {
 
@@ -22,7 +24,7 @@ public class EditOrderStatusCommand extends Command {
             + "Parameters: "
             + "INDEX " + PREFIX_STATUS + " STATUS\n"
             + "Example: " + COMMAND_WORD
-            + " 1 " + PREFIX_STATUS + " DELIVERED";
+            + " 1 " + PREFIX_STATUS + " delivered";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the address book.";
@@ -50,6 +52,12 @@ public class EditOrderStatusCommand extends Command {
         }
 
         Order orderToEdit = lastShownList.get(index.getZeroBased());
+        try {
+            orderToEdit.updateStatus(status);
+        } catch (NoSuchOrderStatusException ex) {
+            throw new CommandException(MESSAGE_INVALID_ORDER_STATUS);
+        }
+
         Order editedOrder = orderToEdit.updateStatus(status);
 
         if (!editedOrder.equals(orderToEdit) && model.hasOrder(editedOrder)) {
