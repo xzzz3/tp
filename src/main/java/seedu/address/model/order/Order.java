@@ -30,7 +30,7 @@ public class Order {
     /**
      * Every field must be present and not null.
      */
-    public Order(Customer customer, Driver driver, LocalDateTime time, Dish ... orderedDishes) {
+    public Order(Customer customer, Driver driver, LocalDateTime time, int orderNumber, Dish ... orderedDishes) {
         requireAllNonNull(customer, orderedDishes);
         this.customer = customer;
         this.driver = driver;
@@ -40,13 +40,16 @@ public class Order {
             this.dishes.add(dish);
         }
         this.time = time;
-        this.orderNumber = Order.nextOrderNumber;
-        nextOrderNumber++;
+        this.orderNumber = orderNumber;
         this.status = OrderStatus.CREATED;
     }
 
     public Order(Customer customer, Driver driver, Dish ... orderedDishes) {
         this(customer, driver, LocalDateTime.now(), orderedDishes);
+    }
+
+    public Order(Customer customer, Driver driver, LocalDateTime time, Dish ... orderedDishes) {
+        this(customer, driver, time, nextOrderNumber++, orderedDishes);
     }
 
     public Customer getCustomer() {
