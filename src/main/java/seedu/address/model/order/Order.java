@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.sql.SQLOutput;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 
 import seedu.address.model.customer.AddressCustomer;
@@ -39,9 +40,7 @@ public class Order {
         this.driver = driver;
         driver.setStatus(DriverStatus.BUSY);
         this.dishes = new ArrayList<Dish>();
-        for (Dish dish : orderedDishes) {
-            this.dishes.add(dish);
-        }
+        this.dishes.addAll(Arrays.asList(orderedDishes));
         this.time = time;
         this.orderNumber = orderNumber;
         this.status = OrderStatus.IN_PROGRESS;
@@ -145,13 +144,17 @@ public class Order {
      */
     public Order updateStatus(String status) {
         status = status.toLowerCase(Locale.ROOT);
-        if (status.equals("in progress")) {
+        switch (status) {
+        case "in progress":
             this.status = OrderStatus.IN_PROGRESS;
-        } else if (status.equals("delivered")) {
+            break;
+        case "delivered":
             this.status = OrderStatus.DELIVERED;
-        } else if (status.equals("cancelled")) {
+            break;
+        case "cancelled":
             this.status = OrderStatus.CANCELLED;
-        } else {
+            break;
+        default:
             throw new NoSuchOrderStatusException();
         }
         return this;
