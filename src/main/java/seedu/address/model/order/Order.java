@@ -84,6 +84,10 @@ public class Order {
         return dishes;
     }
 
+    public double getTotalPrice() {
+        return dishes.stream().mapToDouble(x -> x.getPrice().value).sum();
+    }
+
     public LocalDateTime getTime() {
         return time;
     }
