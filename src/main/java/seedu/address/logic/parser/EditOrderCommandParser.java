@@ -42,7 +42,7 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
         }
 
         if (!editOrderDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditOrderCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditOrderCommand(index, editOrderDescriptor);

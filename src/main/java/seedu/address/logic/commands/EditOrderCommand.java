@@ -29,8 +29,8 @@ public class EditOrderCommand extends Command {
 
     public static final String COMMAND_WORD = "editorder";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the order identified "
-            + "by the index number used in the displayed order list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the customer and dish details of "
+            + "the order identified by the index number used in the displayed order list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_PHONE + " PHONE] "
