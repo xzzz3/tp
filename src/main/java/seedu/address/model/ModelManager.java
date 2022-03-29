@@ -155,10 +155,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+
     public void setDish(Dish target, Dish editedDish) {
         requireAllNonNull(target, editedDish);
 
         addressBook.setDish(target, editedDish);
+    }
+
+    public void setDriver(Driver target, Driver editedDriver) {
+        requireAllNonNull(target, editedDriver);
+        addressBook.setDriver(target, editedDriver);
     }
 
     //=========== Filtered Dish List Accessors =============================================================
@@ -277,5 +283,12 @@ public class ModelManager implements Model {
     public void updateFilteredOrderList(Predicate<Order> predicate) {
         requireNonNull(predicate);
         filteredOrders.setPredicate(predicate);
+    }
+
+    @Override
+    public void setOrder(Order target, Order editedOrder) {
+        requireAllNonNull(target, editedOrder);
+
+        addressBook.setOrder(target, editedOrder);
     }
 }

@@ -27,7 +27,11 @@ public class ListDriverCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredDriverList(predicate);
+        if (predicate.getKeywords().get(0).equalsIgnoreCase("all")) {
+            model.updateFilteredDriverList(Model.PREDICATE_SHOW_ALL_DRIVERS);
+        } else {
+            model.updateFilteredDriverList(predicate);
+        }
         return new CommandResult(
                 String.format(Messages.MESSAGE_DRIVERS_LISTED_OVERVIEW, model.getFilteredDriverList().size()), false,
                 false, false, true, false);

@@ -174,7 +174,12 @@ public class AddCustomerCommandTest {
         }
 
         @Override
+
         public void setDish(Dish target, Dish editedDish) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        public void setDriver(Driver target, Driver editedDriver) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -235,6 +240,11 @@ public class AddCustomerCommandTest {
 
         @Override
         public boolean hasOrder(Order order) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setOrder(Order target, Order editedOrder) {
             throw new AssertionError("This method should not be called.");
         }
 

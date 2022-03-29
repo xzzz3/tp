@@ -12,10 +12,14 @@ public class StatusContainsKeywordsPredicate implements Predicate<Driver> {
         this.keywords = keywords;
     }
 
+    public List<String> getKeywords() {
+        return keywords;
+    }
+
     @Override
     public boolean test(Driver driver) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(driver.getStatus(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(driver.getStatus().name(), keyword));
     }
 
     @Override

@@ -20,6 +20,7 @@ public interface Model {
     Predicate<Customer> PREDICATE_SHOW_ALL_CUSTOMERS = unused -> true;
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Driver> PREDICATE_SHOW_ALL_DRIVERS = unused -> true;
+    Predicate<Order> PREDICATE_SHOW_ALL_ORDERS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Dish> PREDICATE_SHOW_ALL_DISHES = unused -> true;
@@ -101,6 +102,9 @@ public interface Model {
      */
     void setDish(Dish target, Dish editedDish);
 
+    void setDriver(Driver target, Driver editedDriver);
+
+
     /** Returns an unmodifiable view of the filtered customer list */
     ObservableList<Customer> getFilteredCustomerList();
     /**
@@ -161,4 +165,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredDishList(Predicate<Dish> predicate);
+
+    /**
+     * Replaces the given order {@code target} with {@code editedOrder}.
+     * {@code target} must exist in the app.
+     * The order identity of {@code editedOrder} must not be the same as
+     * another existing order in the address book.
+     */
+    void setOrder(Order target, Order editedOrder);
 }

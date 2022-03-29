@@ -150,6 +150,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         customers.setCustomer(target, editedCustomer);
     }
 
+    public void setDriver(Driver target, Driver editedDriver) {
+        requireNonNull(editedDriver);
+        drivers.setDriver(target, editedDriver);
+    }
+
     /**
      * Replaces the given dish {@code target} in the list with {@code editedDish}.
      * {@code target} must exist in FoodOnWheels.
@@ -256,5 +261,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasOrder(Order order) {
         requireNonNull(order);
         return orders.contains(order);
+    }
+
+    /**
+     * Replaces the given order {@code target} in the list with {@code editedOrder}.
+     * {@code target} must exist in the app.
+     * The order identity of {@code editedOrder} must not be the same as
+     * another existing order in the app.
+     */
+    public void setOrder(Order target, Order editedOrder) {
+        requireNonNull(editedOrder);
+
+        orders.setOrder(target, editedOrder);
     }
 }
