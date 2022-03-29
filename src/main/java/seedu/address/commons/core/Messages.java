@@ -17,12 +17,12 @@ public class Messages {
     public static final String MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX = "The customer index provided is invalid";
     public static final String MESSAGE_CUSTOMERS_LISTED_OVERVIEW = "%1$d customers listed!";
     public static final String MESSAGE_INVALID_ORDER_STATUS = "The order status provided is invalid";
-    public static final String MESSAGE_INVALID_CUSTOMER_PHONE = "The phone number provided does not " +
-            "belong to an existing customer. Please first create the customer.";
+    public static final String MESSAGE_INVALID_CUSTOMER_PHONE = "The phone number provided does not "
+            + "belong to an existing customer. Please first create the customer.";
     public static final String MESSAGE_NO_FREE_DRIVER = "There is no free driver right now";
-    public static final String MESSAGE_INVALID_DISH_INPUT = "Some of the dishes provided does not " +
-            "match any of the existing dishes. Please first create the dish.";
-    public static final String MESSAGE_DRIVER_BUSY = "The selected driver is currently busy. " +
-            "Please create a new order.";
+    public static final String MESSAGE_INVALID_DISH_INPUT = "Some of the dishes provided does not "
+            + "match any of the existing dishes. Please first create the dish.";
+    public static final String MESSAGE_DRIVER_BUSY = "The selected driver is currently busy. "
+            + "Please create a new order.";
     public static final String MESSAGE_NO_ORDERS_FOUND = "There are no orders that match the provided phone number.";
 }

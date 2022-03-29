@@ -74,16 +74,16 @@ public class EditOrderStatusCommand extends Command {
         System.out.println(status);
         System.out.println(oldStatus);
         // if editing an order from in progress to delivered or cancelled, the driver will be set to free
-        if ((status.equalsIgnoreCase("delivered") || status.equalsIgnoreCase("cancelled")) &&
-                oldStatus.toString().equalsIgnoreCase("in_progress")) {
+        if ((status.equalsIgnoreCase("delivered") || status.equalsIgnoreCase("cancelled"))
+                && oldStatus.toString().equalsIgnoreCase("in_progress")) {
             editedOrder.getDriver().setStatus(DriverStatus.FREE);
             model.setDriver(editedOrder.getDriver(), orderToEdit.getDriver());
         }
 
         // if editing an order from delivered or cancelled to in progress, the driver will be set to busy
-        if (status.equalsIgnoreCase("in progress") &&
-                (oldStatus.toString().equalsIgnoreCase("delivered") ||
-                oldStatus.toString().equalsIgnoreCase("cancelled"))) {
+        if (status.equalsIgnoreCase("in progress")
+                && (oldStatus.toString().equalsIgnoreCase("delivered")
+                || oldStatus.toString().equalsIgnoreCase("cancelled"))) {
             if (orderToEdit.getDriver().isBusy()) {
                 editedOrder = editedOrder.updateStatus(oldStatus.name());
                 throw new CommandException(MESSAGE_DRIVER_BUSY);

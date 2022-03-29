@@ -16,12 +16,9 @@ import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
-import seedu.address.model.customer.exceptions.CustomerNotFoundException;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.driver.Driver;
-import seedu.address.model.item.exceptions.DishNotFoundException;
 import seedu.address.model.order.Order;
-import seedu.address.model.order.exception.NoFreeDriverException;
 
 public class AddOrderCommand extends Command {
 
@@ -30,7 +27,7 @@ public class AddOrderCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an order.\n"
             + "Parameters: " + PREFIX_PHONE
-            + " [PHONE] "  + PREFIX_DISH + " [DISHES]\n"
+            + " [PHONE] " + PREFIX_DISH + " [DISHES]\n"
             + "Example: " + COMMAND_WORD
             + PREFIX_PHONE
             + " 87654321 " + PREFIX_DISH + " Chicken Pasta, Fries";
