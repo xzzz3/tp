@@ -24,7 +24,8 @@ public class RevenueCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Total revenue: $";
 
-    private final OrderDeliveredAndFromDatePredicate predicate = new OrderDeliveredAndFromDatePredicate(List.of(LocalDate.now()));
+    private final OrderDeliveredAndFromDatePredicate predicate =
+            new OrderDeliveredAndFromDatePredicate(List.of(LocalDate.now()));
 
     @Override
     public CommandResult execute(Model model) {
