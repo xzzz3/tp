@@ -43,7 +43,7 @@ public class EditDishCommand extends Command {
     private final EditDishDescriptor editDishDescriptor;
 
     /**
-     * @param index of the customer in the filtered dish list to edit
+     * @param index of the dish in the filtered dish list to edit
      * @param editDishDescriptor details to edit the dish with
      */
     public EditDishCommand(Index index, EditDishDescriptor editDishDescriptor) {
