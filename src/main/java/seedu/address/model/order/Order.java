@@ -2,6 +2,7 @@ package seedu.address.model.order;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.sql.SQLOutput;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -43,7 +44,7 @@ public class Order {
         }
         this.time = time;
         this.orderNumber = orderNumber;
-        this.status = OrderStatus.CREATED;
+        this.status = OrderStatus.IN_PROGRESS;
     }
 
     public Order(Customer customer, Driver driver, Dish ... orderedDishes) {
@@ -144,13 +145,10 @@ public class Order {
      */
     public Order updateStatus(String status) {
         status = status.toLowerCase(Locale.ROOT);
-        if (status.equals("created")) {
-            this.status = OrderStatus.CREATED;
-        } else if (status.equals("in progress")) {
+        if (status.equals("in progress")) {
             this.status = OrderStatus.IN_PROGRESS;
         } else if (status.equals("delivered")) {
             this.status = OrderStatus.DELIVERED;
-            this.driver.setStatus(DriverStatus.FREE);
         } else if (status.equals("cancelled")) {
             this.status = OrderStatus.CANCELLED;
         } else {

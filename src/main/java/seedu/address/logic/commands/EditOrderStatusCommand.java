@@ -1,18 +1,24 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DRIVER_BUSY;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ORDER_STATUS;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DRIVERS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
+import java.util.Locale;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.driver.DriverStatus;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderStatus;
 import seedu.address.model.order.exception.NoSuchOrderStatusException;
 
 public class EditOrderStatusCommand extends Command {
@@ -26,7 +32,7 @@ public class EditOrderStatusCommand extends Command {
             + "Example: " + COMMAND_WORD
             + " 1 " + PREFIX_STATUS + " delivered";
 
-    public static final String MESSAGE_SUCCESS = "New order added: %1$s";
+    public static final String MESSAGE_SUCCESS = "Order edited: %1$s";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the address book.";
 
 
@@ -52,6 +58,7 @@ public class EditOrderStatusCommand extends Command {
         }
 
         Order orderToEdit = lastShownList.get(index.getZeroBased());
+        OrderStatus oldStatus = orderToEdit.getStatus();
         try {
             orderToEdit.updateStatus(status);
         } catch (NoSuchOrderStatusException ex) {
@@ -64,7 +71,30 @@ public class EditOrderStatusCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_ORDER);
         }
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
+
+        System.out.println(status);
+        System.out.println(oldStatus);
+        // if editing an order from in progress to delivered or cancelled, the driver will be set to free
+        if ((status.equalsIgnoreCase("delivered") || status.equalsIgnoreCase("cancelled")) &&
+                oldStatus.toString().equalsIgnoreCase("in_progress")) {
+            editedOrder.getDriver().setStatus(DriverStatus.FREE);
+            model.setDriver(editedOrder.getDriver(), orderToEdit.getDriver());
+        }
+
+        // if editing an order from delivered or cancelled to in progress, the driver will be set to busy
+        if (status.equalsIgnoreCase("in progress") &&
+                (oldStatus.toString().equalsIgnoreCase("delivered") ||
+                oldStatus.toString().equalsIgnoreCase("cancelled"))) {
+            if (orderToEdit.getDriver().isBusy()) {
+                editedOrder = editedOrder.updateStatus(oldStatus.name());
+                throw new CommandException(MESSAGE_DRIVER_BUSY);
+            }
+            editedOrder.getDriver().setStatus(DriverStatus.BUSY);
+            model.setDriver(editedOrder.getDriver(), orderToEdit.getDriver());
+        }
+
+        model.updateFilteredDriverList(PREDICATE_SHOW_ALL_DRIVERS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedOrder),
                 false, false, false, false, true);
     }

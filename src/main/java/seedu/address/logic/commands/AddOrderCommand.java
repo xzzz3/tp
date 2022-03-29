@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_PHONE;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DISH_INPUT;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_FREE_DRIVER;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DISH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -73,7 +76,7 @@ public class AddOrderCommand extends Command {
         }
 
         if (freeDriver == null) {
-            throw new NoFreeDriverException();
+            throw new CommandException(MESSAGE_NO_FREE_DRIVER);
         }
 
         // matching customer phone number in input to the actual customer in stored data
@@ -86,7 +89,7 @@ public class AddOrderCommand extends Command {
         }
 
         if (customer == null) {
-            throw new CustomerNotFoundException();
+            throw new CommandException(MESSAGE_INVALID_CUSTOMER_PHONE);
         }
 
         // matching dishes in string in the input to the actual dishes in menu
@@ -100,7 +103,7 @@ public class AddOrderCommand extends Command {
         }
 
         if (dishesInputList.size() != addedDishes.size()) {
-            throw new DishNotFoundException();
+            throw new CommandException(MESSAGE_INVALID_DISH_INPUT);
         }
 
         Order toAdd = new Order(customer, freeDriver, addedDishes.toArray(new Dish[0]));
