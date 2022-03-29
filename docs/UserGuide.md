@@ -146,7 +146,7 @@ Examples:
 
 ### Adding a dish: `adddish`
 
-Adds a dish to the restaurant’s menu.
+Adds a dish to the restaurant’s menu. Dishes of the same name cannot be added.
 
 Format: `adddish n/{name} $/{price}`
 
