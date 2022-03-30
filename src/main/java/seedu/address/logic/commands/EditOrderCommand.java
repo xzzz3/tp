@@ -29,8 +29,8 @@ public class EditOrderCommand extends Command {
 
     public static final String COMMAND_WORD = "editorder";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the order identified "
-            + "by the index number used in the displayed order list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the customer and dish details of "
+            + "the order identified by the index number used in the displayed order list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_PHONE + "PHONE] "
@@ -61,7 +61,7 @@ public class EditOrderCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS),
+        return new CommandResult(MESSAGE_EDIT_ORDER_SUCCESS,
                 false, false, false, false, true);
     }
 
@@ -125,7 +125,7 @@ public class EditOrderCommand extends Command {
             List<String> dishesInputList = editOrderDescriptor.getDishes().get();
             for (Dish dish : dishes) {
                 if (dishesInputList.contains(dish.toString())) {
-                    updatedDishes.add(dish); // todo use comma as delimiter
+                    updatedDishes.add(dish);
                 }
             }
 

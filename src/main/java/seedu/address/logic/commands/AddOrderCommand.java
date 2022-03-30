@@ -1,22 +1,25 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_PHONE;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DISH_INPUT;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_FREE_DRIVER;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ORDERS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DISH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
-import seedu.address.model.customer.exceptions.CustomerNotFoundException;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.driver.Driver;
-import seedu.address.model.item.exceptions.DishNotFoundException;
 import seedu.address.model.order.Order;
-import seedu.address.model.order.exception.NoFreeDriverException;
 
 public class AddOrderCommand extends Command {
 
@@ -24,10 +27,11 @@ public class AddOrderCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an order.\n"
-            + "Parameters: "
-            + "p/ [PHONE] d/ [DISHES]\n"
+            + "Parameters: " + PREFIX_PHONE
+            + "PHONE " + PREFIX_DISH + "DISHES\n"
             + "Example: " + COMMAND_WORD
-            + " p/ 87654321 d/ Chicken Pasta, Fries"; // todo change to static variable
+            + PREFIX_PHONE
+            + "87654321 " + PREFIX_DISH + "Chicken Pasta, Fries";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists!";
@@ -49,7 +53,7 @@ public class AddOrderCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS),
+        return new CommandResult(MESSAGE_SUCCESS,
                 false, false, false, false, true);
     }
 
@@ -58,10 +62,8 @@ public class AddOrderCommand extends Command {
      */
     public CommandResult execute(Model model,
                                  ObservableList<Customer> customers, ObservableList<Driver> drivers,
-                                 ObservableList<Dish> dishes) {
+                                 ObservableList<Dish> dishes) throws CommandException {
         requireAllNonNull(model, customers, drivers, dishes);
-
-        // todo add duplicate checker
 
         // checking for free driver to assign for the newly created order
         Driver freeDriver = null;
@@ -73,7 +75,7 @@ public class AddOrderCommand extends Command {
         }
 
         if (freeDriver == null) {
-            throw new NoFreeDriverException();
+            throw new CommandException(MESSAGE_NO_FREE_DRIVER);
         }
 
         // matching customer phone number in input to the actual customer in stored data
@@ -86,7 +88,7 @@ public class AddOrderCommand extends Command {
         }
 
         if (customer == null) {
-            throw new CustomerNotFoundException();
+            throw new CommandException(MESSAGE_INVALID_CUSTOMER_PHONE);
         }
 
         // matching dishes in string in the input to the actual dishes in menu
@@ -95,15 +97,20 @@ public class AddOrderCommand extends Command {
         List<String> dishesInputList = Arrays.asList(dishesInput);
         for (Dish dish : dishes) {
             if (dishesInputList.contains(dish.toString())) {
-                addedDishes.add(dish); // todo use comma as delimiter
+                addedDishes.add(dish);
             }
         }
 
         if (dishesInputList.size() != addedDishes.size()) {
-            throw new DishNotFoundException();
+            throw new CommandException(MESSAGE_INVALID_DISH_INPUT);
         }
 
         Order toAdd = new Order(customer, freeDriver, addedDishes.toArray(new Dish[0]));
+
+        if (model.hasOrder(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ORDER);
+        }
+
         model.addOrder(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
                 false, false, false, false, true);

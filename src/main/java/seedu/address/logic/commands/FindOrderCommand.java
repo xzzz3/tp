@@ -1,8 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_ORDERS_FOUND;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.order.OrderContainsKeywordsPredicate;
 
@@ -25,9 +27,12 @@ public class FindOrderCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredOrderList(predicate);
+        if (model.getFilteredOrderList().isEmpty()) {
+            throw new CommandException(MESSAGE_NO_ORDERS_FOUND);
+        }
         return new CommandResult(
                 String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, model.getFilteredOrderList().size()),
                 false, false, false, false, true);

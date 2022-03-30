@@ -257,7 +257,7 @@ public class ModelManager implements Model {
                 && filteredDishes.equals(other.filteredDishes);
     }
 
-    //==================== FoodOnWheels ===================================
+    //==================== Order features ===================================
     @Override
     public void addOrder(Order order) {
         addressBook.addOrder(order);
