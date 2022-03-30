@@ -26,6 +26,10 @@ public class ListOrderCommandParser implements Parser<ListOrderCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListOrderCommand.MESSAGE_USAGE));
         }
 
+        if (trimmedArgs.equals("in progress")) {
+            trimmedArgs = "in_progress";
+        }
+
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
         if (nameKeywords.length > 1) {

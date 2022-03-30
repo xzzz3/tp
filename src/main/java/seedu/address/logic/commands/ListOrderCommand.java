@@ -15,7 +15,8 @@ public class ListOrderCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all orders based on parameter listed "
             + "and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD\n"
-            + "where KEYWORD is one of 'all', 'in_progress', 'delivered', 'cancelled'\n"
+            + "where KEYWORD is one of 'all', 'in_progress' or 'in progress', 'delivered', 'cancelled' "
+            + "(not case-sensitive)\n"
             + "Example: " + COMMAND_WORD + " all";
 
     private final OrderStatusContainsKeywordsPredicate predicate;
