@@ -4,12 +4,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import seedu.address.model.customer.AddressCustomer;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.driver.Driver;
 import seedu.address.model.driver.DriverStatus;
+import seedu.address.model.order.exception.NoSuchOrderStatusException;
 
 /**
  * Represents an Order in the address book.
@@ -36,12 +38,10 @@ public class Order {
         this.driver = driver;
         driver.setStatus(DriverStatus.BUSY);
         this.dishes = new ArrayList<Dish>();
-        for (Dish dish : orderedDishes) {
-            this.dishes.add(dish);
-        }
+        this.dishes.addAll(Arrays.asList(orderedDishes));
         this.time = time;
         this.orderNumber = orderNumber;
-        this.status = OrderStatus.CREATED;
+        this.status = OrderStatus.IN_PROGRESS;
     }
 
     public Order(Customer customer, Driver driver, Dish ... orderedDishes) {
@@ -141,17 +141,20 @@ public class Order {
      * @return an {@code Order} with the updated order status.
      */
     public Order updateStatus(String status) {
-        if (status.equals("created")) {
-            this.status = OrderStatus.CREATED;
-        } else if (status.equals("in progress")) {
+        status = status.toLowerCase();
+        switch (status) {
+        case "in progress":
             this.status = OrderStatus.IN_PROGRESS;
-        } else if (status.equals("delivered")) {
+            break;
+        case "delivered":
             this.status = OrderStatus.DELIVERED;
-            this.driver.setStatus(DriverStatus.FREE);
-        } else if (status.equals("cancelled")) {
+            break;
+        case "cancelled":
             this.status = OrderStatus.CANCELLED;
+            break;
+        default:
+            throw new NoSuchOrderStatusException();
         }
-        // todo implement exception for invalid status
         return this;
     }
 }

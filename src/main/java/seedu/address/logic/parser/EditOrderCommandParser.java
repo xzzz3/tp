@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DISH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditOrderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -42,7 +41,7 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
         }
 
         if (!editOrderDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditOrderCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditOrderCommand(index, editOrderDescriptor);
