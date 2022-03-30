@@ -174,7 +174,7 @@ Examples:
 
 Adds a new delivery order to the list of orders.
 
-Format: `addorder p/{phone} d/ {dishes separated by comma}`
+Format: `addorder p/{phone} d/ {dishes separated by comma}...`
 
 Examples:
 * `addorder p/ 81234567 d/ {Fried Rice, Pasta}`
@@ -189,6 +189,16 @@ Format: `mark {index} s/ {status}`
 Examples:
 * `mark 1 s/ delivered`
 * `mark 3 s/ in progress`
+
+### Edit the details of a Delivery Order: `editorder`
+
+Edit the customer and dishes details of a delivery order in the list using its index.
+
+Format: `editorder {index} [p/ {phone}] [d/ {dishes separated by comma}...]`
+
+Examples:
+* `editorder 1 p/ 87264512 d/ kimchi, fried rice`
+* `editorder 3 p/ 87654321`
 
 ### Search for an Order by Phone Number: `find order`
 
@@ -215,7 +225,7 @@ Format: `listordersprev`
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images/helpMessage.png) (to be updated)
 
 Format: `help`
 
@@ -224,9 +234,6 @@ Format: `help`
 Exits the program.
 
 Format: `exit`
-
-
-
 
 
 ### Saving the data
