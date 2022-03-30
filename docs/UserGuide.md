@@ -36,9 +36,9 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
    * **`listdish`** : Lists all existing dishes on restaurant's menu.
 
 ### Commands relating to `Order`
-   * **`listorders`** : Lists all the current orders in the system. 
+   * **`listorder all`** : Lists all the current orders in the system. 
 
-   * **`listordersprev`** : Lists all the previous orders in the system.
+   * **`listorder in progress`** : Lists all the in-progress orders in the system.
 
 ### Commands relating to `Driver`
 
@@ -164,12 +164,30 @@ Examples:
 * `deletedish 1`
 * `deletedish 2`
 
+### Editing a dish: `editdish`
 
-### List previous orders: `listordersprev`
+Edits a dish from the restaurant’s menu.
 
-Lists all the previous orders in the system
+Format: `editdish INDEX [n/NAME] [$/PRICE]`, where `INDEX` denotes the index of the dish shown on FoodOnWheels
 
-Format: `listordersprev`
+Examples:
+* `editdish 1 n/Limchi Fried Rice`
+* `editdish 2 $/10.00`
+* `editdish 2 n/Limchi Fried Rice $/10.00`
+
+### Listing orders: `listorder`
+
+Lists the orders in the system based on the keyword entered.
+
+Format: `listorder KEYWORD`. KEYWORD is one of 'all', 'in_progress' 
+OR 'in progress', 'delivered', 'cancelled' (not case-sensitive)
+
+### Revenue for the day: `revenue`
+
+Obtains revenue generated in the current day based on the date 
+on the operating system. All orders in FoodOnWheels will be listed.
+
+Format: `revenue`
 
 
 (to be updated)
@@ -226,19 +244,6 @@ Format: `find p/PHONE`
 Examples:
 * `find /p 81234567`
 
-### List current orders: `list`
-
-Lists all the current orders in the system
-
-Format: `listorders`
-
-### List previous orders: `listordersprev`
-
-Lists all the previous orders in the system
-
-Format: `listordersprev`
-
-
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -286,8 +291,11 @@ Action | Feature type | Format, Examples
 **List** | **Driver**   |`list driver free` 
 **Add** | **Dish**     | `adddish n/NAME $/PRICE` <br> e.g., `adddish n/Crab Pasta $/15.50`
 **Delete** | **Dish**     | `deletedish INDEX` <br> e.g., `deletedish 1`
-**List (current orders)** | **Order**    | `listorders`
-**List (previous orders)** | **Order**    | `listordersprev`
+**List (all orders)** | **Order**    | `listorder all` (keyword `all` not case-sensitve)
+**List (in-progress orders)** | **Order**    | `listorder in progress` OR `listorder in_progress` (keyword `in progress` OR `in_progress` not case-sensitve)
+**List (delivered orders)** | **Order**    | `listorder delivered` (keyword `delivered` not case-sensitve)
+**List (cancelled orders)** | **Order**    | `listorder cancelled` (keyword `cancelled` not case-sensitve)
+**Revenue (for the day)** | **Order**    | `revenue`
 
 [//]: # (**Add** |              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`)
 
