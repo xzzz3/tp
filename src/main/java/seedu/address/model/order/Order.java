@@ -142,7 +142,7 @@ public class Order {
      * @return an {@code Order} with the updated order status.
      */
     public Order updateStatus(String status) {
-        status = status.toLowerCase(Locale.ROOT);
+        status = status.toLowerCase();
         switch (status) {
         case "in progress":
             this.status = OrderStatus.IN_PROGRESS;
