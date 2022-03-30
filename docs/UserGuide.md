@@ -170,44 +170,44 @@ Examples:
 
 ## Order Features
 
-### Adding a new Delivery Order: `add order`
+### Adding a new Delivery Order: `addorder`
 
 Adds a new delivery order to the list of orders.
 
-Format: `addorder p/{phone} d/ {dishes separated by comma}...`
+Format: `addorder p/{phone} d/{dishes separated by comma}...`
 
 Examples:
-* `addorder p/ 81234567 d/ {Fried Rice, Pasta}`
-* `addorder p/ 86471627 d/ {Sushi}`
+* `addorder p/81234567 d/{Fried Rice, Pasta}`
+* `addorder p/86471627 d/{Sushi}`
 
 ### Edit the status of a Delivery Order: `mark`
 
 Edit the status of a delivery order in the list using its index.
 
-Format: `mark {index} s/ {status}`
+Format: `mark {index} s/{status}`
 
 Examples:
-* `mark 1 s/ delivered`
-* `mark 3 s/ in progress`
+* `mark 1 s/delivered`
+* `mark 3 s/in progress`
 
 ### Edit the details of a Delivery Order: `editorder`
 
 Edit the customer and dishes details of a delivery order in the list using its index.
 
-Format: `editorder {index} [p/ {phone}] [d/ {dishes separated by comma}...]`
+Format: `editorder {index} [p/{phone}] [d/{dishes separated by comma}...]`
 
 Examples:
-* `editorder 1 p/ 87264512 d/ kimchi, fried rice`
-* `editorder 3 p/ 87654321`
+* `editorder 1 p/87264512 d/kimchi, fried rice`
+* `editorder 3 p/87654321`
 
-### Search for an Order by Phone Number: `find order`
+### Search for an Order by Phone Number: `findorder`
 
 Search for an order with the phone number provided in the list of orders.
 
-Format: `find p/ {phone}`
+Format: `find p/{phone}`
 
 Examples:
-* `find p/ 81234567`
+* `find p/81234567`
 
 ### List current orders: `list`
 
@@ -225,7 +225,7 @@ Format: `listordersprev`
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png) (to be updated)
+![help message](images/helpMessageFOW.png)
 
 Format: `help`
 
@@ -273,6 +273,10 @@ Action | Feature type | Format, Examples
 **List** | **Driver**   |`list driver free` 
 **Add** | **Dish**     | `adddish n/{name} $/{price}` <br> e.g., `adddish n/Crab Pasta $/15.50`
 **Delete** | **Dish**     | `deletedish {index}` <br> e.g., `deletedish 1`
+**Add** | **Order**    | `addorder p/{phone} d/{dishes}…` <br> e.g., `addorder p/82224567 d/kimchi fried rice, sushi`
+**Edit** | **Order (status)** | `mark {index} s/{status}` <br> e.g., `mark 1 s/delivered` 
+**Edit** | **Order** | `editorder {index} [p/{phone}] [d/{dishes}...]` <br> e.g., `editorder 2 p/675827361 d/burger`
+**Find** | **Order** | `find p/{phone}` <br> e.g., `find p/87654321`
 **List (current orders)** | **Order**    | `listorders`
 **List (previous orders)** | **Order**    | `listordersprev`
 
