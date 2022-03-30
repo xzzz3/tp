@@ -26,9 +26,9 @@ public class EditOrderStatusCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits an order status.\n"
             + "Parameters: "
-            + "INDEX " + PREFIX_STATUS + " STATUS\n"
+            + "INDEX " + PREFIX_STATUS + "STATUS\n"
             + "Example: " + COMMAND_WORD
-            + " 1 " + PREFIX_STATUS + " delivered";
+            + " 1 " + PREFIX_STATUS + "delivered";
 
     public static final String MESSAGE_SUCCESS = "Order edited: %1$s";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the address book.";

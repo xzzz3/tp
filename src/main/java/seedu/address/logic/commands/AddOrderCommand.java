@@ -27,10 +27,10 @@ public class AddOrderCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an order.\n"
             + "Parameters: " + PREFIX_PHONE
-            + " [PHONE] " + PREFIX_DISH + " [DISHES]\n"
+            + "PHONE " + PREFIX_DISH + "DISHES\n"
             + "Example: " + COMMAND_WORD
             + PREFIX_PHONE
-            + " 87654321 " + PREFIX_DISH + " Chicken Pasta, Fries";
+            + "87654321 " + PREFIX_DISH + "Chicken Pasta, Fries";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists!";

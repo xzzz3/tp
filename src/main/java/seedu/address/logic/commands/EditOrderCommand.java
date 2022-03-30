@@ -33,11 +33,11 @@ public class EditOrderCommand extends Command {
             + "the order identified by the index number used in the displayed order list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_PHONE + " PHONE] "
-            + "[" + PREFIX_DISH + " DISHES]...\n"
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_DISH + "DISHES]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + " 91234567 "
-            + PREFIX_DISH + " kimchi sushi";
+            + PREFIX_PHONE + "91234567 "
+            + PREFIX_DISH + "kimchi sushi";
 
     public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
