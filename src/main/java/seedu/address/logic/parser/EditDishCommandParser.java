@@ -11,7 +11,7 @@ import seedu.address.logic.commands.EditDishCommand.EditDishDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new EditCustomerCommand object
  */
 public class EditDishCommandParser implements Parser<EditDishCommand> {
 
