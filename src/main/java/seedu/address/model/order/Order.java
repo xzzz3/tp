@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Locale;
 
 import seedu.address.model.customer.AddressCustomer;
 import seedu.address.model.customer.Customer;
