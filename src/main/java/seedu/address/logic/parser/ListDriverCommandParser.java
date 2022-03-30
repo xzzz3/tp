@@ -9,7 +9,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.driver.StatusContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new ListDriverCommandParser object
+ * Parses input arguments and creates a new ListDriverCommand object
  */
 public class ListDriverCommandParser implements Parser<ListDriverCommand> {
 
