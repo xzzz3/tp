@@ -85,25 +85,36 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 ## Customer features
 
-### Adding a customer: `add`
+### Adding a customer: `addcustomer`
 
-Adds a customer to the addressbook.
+Adds a customer to the database.
 
-Format: `add n/{name} a/{address} p/{phone}`
-
-Examples:
-* `add n/John Doe a/John street, block 123, #01-01 p/98765432`
-* `add n/Betsy Crowe a/Newgate Prison p/1234567`
-
-### Deleting a customer: `delete`
-
-Deletes a customer from the addressbook.
-
-Format: `delete n/{name} a/{address} p/{phone}`
+Format: `addcustomer n/{name} a/{address} p/{phone}`
 
 Examples:
-* `delete n/John Doe a/John street, block 123, #01-01 p/98765432`
-* `delete n/Betsy Crowe a/Newgate Prison p/1234567`
+* `addcustomer n/John Doe a/John street, block 123, #01-01 p/98765432`
+* `addcustomer n/Betsy Crowe a/Newgate Prison p/12345678`
+
+### Deleting a customer: `deletecustomer`
+
+Deletes a customer from the database.
+
+Format: `deletecustomer {index}`
+
+Examples:
+* `deletecustomer 1`
+
+### Editing a customer: `editcustomer`
+
+Deletes a customer from the database.
+
+Format: `editcustomer {index} n/{name} p/{phone} a/{address}`
+
+Examples:
+* `editcustomer 1 n/John Doe a/Sentosa Cove`
+* `editcustomer 3 p/81234567 a/Sentosa Cove`
+* `editcustomer 2 n/John Doe p/81234567`
+
 
 ## Driver features
 
@@ -312,8 +323,9 @@ _Details coming soon ..._
 
 Action | Feature type | Format, Examples
 --------|--------------|------------------
-**Add** | **Customer** |`add n/{name} a/{address} p/{phone}` <br> e.g,`add n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
-**Delete** | **Customer** |`delete n/{name} a/{address} p/{phone}` <br> e.g,`delete n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
+**Add** | **Customer** |`addcustomer n/{name} a/{address} p/{phone}` <br> e.g,`addcustomer n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
+**Delete** | **Customer** |`deletecustomer {index}` <br> e.g,`deletecustomer 1`
+**Edit** | **Customer** |`editcustomer {index} n/{name} a/{address} p/{phone}`<br> e.g,`editcustomer 1 n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
 **Add** | **Driver**   |`add driver n/{name} p/{phone}` <br> e.g,`add driver n/John Doe p/98765432`
 **Delete** | **Driver**   |`delete driver n/{name} p/{phone}` <br> e.g,`delete driver n/John Doe p/98765432`
 **List** | **Driver**   |`list driver free` 
