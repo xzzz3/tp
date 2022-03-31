@@ -30,17 +30,17 @@ public class TypicalCustomers {
             .withAddress("wall street").build();
     public static final Customer DANIEL = new CustomerBuilder().withName("Daniel Meier").withPhone("87652533")
             .withAddress("10th street").build();
-    public static final Customer ELLE = new CustomerBuilder().withName("Elle Meyer").withPhone("9482224")
+    public static final Customer ELLE = new CustomerBuilder().withName("Elle Meyer").withPhone("94822245")
             .withAddress("michegan ave").build();
-    public static final Customer FIONA = new CustomerBuilder().withName("Fiona Kunz").withPhone("9482427")
+    public static final Customer FIONA = new CustomerBuilder().withName("Fiona Kunz").withPhone("94824275")
             .withAddress("little tokyo").build();
-    public static final Customer GEORGE = new CustomerBuilder().withName("George Best").withPhone("9482442")
+    public static final Customer GEORGE = new CustomerBuilder().withName("George Best").withPhone("94824452")
             .withAddress("4th street").build();
 
     // Manually added
-    public static final Customer HOON = new CustomerBuilder().withName("Hoon Meier").withPhone("8482424")
+    public static final Customer HOON = new CustomerBuilder().withName("Hoon Meier").withPhone("84824244")
             .withAddress("little india").build();
-    public static final Customer IDA = new CustomerBuilder().withName("Ida Mueller").withPhone("8482131")
+    public static final Customer IDA = new CustomerBuilder().withName("Ida Mueller").withPhone("84821314")
             .withAddress("chicago ave").build();
 
     // Manually added - Customer's details found in {@code CommandTestUtil}

@@ -33,9 +33,9 @@ public class AddCustomerCommandParser implements Parser<AddCustomerCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCustomerCommand.MESSAGE_USAGE));
         }
 
-        NameCustomer nameCustomer = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        PhoneCustomer phoneCustomer = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        AddressCustomer addressCustomer = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        NameCustomer nameCustomer = ParserUtil.parseNameCustomer(argMultimap.getValue(PREFIX_NAME).get());
+        PhoneCustomer phoneCustomer = ParserUtil.parsePhoneCustomer(argMultimap.getValue(PREFIX_PHONE).get());
+        AddressCustomer addressCustomer = ParserUtil.parseAddressCustomer(argMultimap.getValue(PREFIX_ADDRESS).get());
 
         Customer customer = new Customer(nameCustomer, phoneCustomer, addressCustomer);
 
