@@ -36,6 +36,11 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
    * **`listdish`** : Lists all existing dishes on restaurant's menu.
 
 ### Commands relating to `Order`
+
+   * **`addorder`**`p/98765432 d/Sushi, Pasta` : Adds an order of `Sushi, Pasta` for customer with phone number `98765432`.
+
+   * **`mark`**`1 s/delivered` : Edits the status of the order at index `1` to `delivered`.
+
    * **`listorder all`** : Lists all the current orders in the system. 
 
    * **`listorder in progress`** : Lists all the in-progress orders in the system.
@@ -69,8 +74,8 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `…`​ after them can have multiple inputs.<br>
+  e.g. `t/friend`, `t/friend, family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
@@ -85,25 +90,36 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 ## Customer features
 
-### Adding a customer: `add`
+### Adding a customer: `addcustomer`
 
-Adds a customer to the addressbook.
+Adds a customer to the database.
 
-Format: `add n/NAME a/ADDRESS p/PHONE`
-
-Examples:
-* `add n/John Doe a/John street, block 123, #01-01 p/98765432`
-* `add n/Betsy Crowe a/Newgate Prison p/1234567`
-
-### Deleting a customer: `delete`
-
-Deletes a customer from the addressbook.
-
-Format: `delete n/NAME a/ADDRESS p/PHONE`
+Format: `addcustomer n/{name} a/{address} p/{phone}`
 
 Examples:
-* `delete n/John Doe a/John street, block 123, #01-01 p/98765432`
-* `delete n/Betsy Crowe a/Newgate Prison p/1234567`
+* `addcustomer n/John Doe a/John street, block 123, #01-01 p/98765432`
+* `addcustomer n/Betsy Crowe a/Newgate Prison p/12345678`
+
+### Deleting a customer: `deletecustomer`
+
+Deletes a customer from the database.
+
+Format: `deletecustomer {index}`
+
+Examples:
+* `deletecustomer 1`
+
+### Editing a customer: `editcustomer`
+
+Edits a customer from the database.
+
+Format: `editcustomer {index} n/{name} p/{phone} a/{address}`
+
+Examples:
+* `editcustomer 1 n/John Doe a/Sentosa Cove`
+* `editcustomer 3 p/81234567 a/Sentosa Cove`
+* `editcustomer 2 n/John Doe p/81234567`
+
 
 ## Driver features
 
@@ -175,6 +191,48 @@ Examples:
 * `editdish 2 $/10.00`
 * `editdish 2 n/Limchi Fried Rice $/10.00`
 
+## Order Features
+
+### Adding a new Delivery Order: `addorder`
+
+Adds a new delivery order to the list of orders.
+
+Format: `addorder p/PHONE d/DISHES_SEPARATED_BY_COMMA...`
+
+
+Examples:
+* `addorder p/81234567 d/Fried Rice, Pasta`
+* `addorder p/86471627 d/Sushi`
+
+### Edit the status of a Delivery Order: `mark`
+
+Edit the status of a delivery order in the list using its index.
+
+Format: `mark INDEX s/STATUS`
+
+Examples:
+* `mark 1 s/delivered`
+* `mark 3 s/in progress`
+
+### Edit the details of a Delivery Order: `editorder`
+
+Edit the customer and dishes details of a delivery order in the list using its index.
+
+Format: `editorder INDEX [p/PHONE] [d/DISHES_SEPARATED_BY_COMMA...]`
+
+Examples:
+* `editorder 1 p/87264512 d/kimchi, fried rice`
+* `editorder 3 p/87654321`
+
+### Search for an Order by Phone Number: `findorder`
+
+Search for an order with the phone number provided in the list of orders.
+
+Format: `find p/PHONE`
+
+Examples:
+* `find p/81234567`
+
 ### Listing orders: `listorder`
 
 Lists the orders in the system based on the keyword entered.
@@ -189,7 +247,6 @@ on the operating system. All orders in FoodOnWheels will be listed.
 
 Format: `revenue`
 
-
 (to be updated)
 ### Viewing help : `help`
 
@@ -199,59 +256,12 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-## Order Features
-
-### Adding a new Delivery Order: `add order`
-
-Adds a new delivery order to the list of orders.
-
-Format: `add order p/PHONE d/DISHES`. Dishes should be separated by comma.
-
-Examples:
-* `add order p/81234567 d/Fried Rice, Pasta`
-* `add order p/81234567 d/Pasta`
-
-### Edit the status of a Delivery Order: `mark`
-
-Edit the status of a delivery order in the list using its index.
-
-Format: `mark INDEX STATUS`
-
-Examples:
-* `mark 1 done`
-* `mark 3 cancelled`
-
-### Search for an Order by Phone Number: `find order`
-
-Search for an order with the phone number provided in the list of orders.
-
-Format: `find p/PHONE`
-
-Examples:
-* `find /p 81234567`
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
-
-
-
 
 
 ### Saving the data
@@ -284,18 +294,24 @@ _Details coming soon ..._
 
 Action | Feature type | Format, Examples
 --------|--------------|------------------
-**Add** | **Customer** |`add n/NAME a/ADDRESS p/PHONE` <br> e.g,`add n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
-**Delete** | **Customer** |`delete n/NAME a/ADDRESS p/PHONE` <br> e.g,`delete n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
-**Add** | **Driver**   |`add driver n/NAME p/PHONE` <br> e.g,`add driver n/John Doe p/98765432`
-**Delete** | **Driver**   |`delete driver n/NAME p/PHONE` <br> e.g,`delete driver n/John Doe p/98765432`
-**List** | **Driver**   |`list driver free` 
+**Add** | **Customer** |`addcustomer n/NAME a/ADDRESS p/PHONE` <br> e.g,`addcustomer n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
+**Delete** | **Customer** |`deletecustomer INDEX` <br> e.g,`deletecustomer 1`
+**Edit** | **Customer** |`editcustomer INDEX [n/NAME] [a/ADDRESS] [p/PHONE]`<br> e.g,`editcustomer 1 n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
+**Add** | **Driver**   |`adddriver n/NAME p/PHONE` <br> e.g,`add driver n/John Doe p/98765432`
+**Delete** | **Driver**   |`deletedriver n/NAME p/PHONE` <br> e.g,`delete driver n/John Doe p/98765432`
+**List** | **Driver**   |`listdriver free` 
 **Add** | **Dish**     | `adddish n/NAME $/PRICE` <br> e.g., `adddish n/Crab Pasta $/15.50`
 **Delete** | **Dish**     | `deletedish INDEX` <br> e.g., `deletedish 1`
+**Add** | **Order**    | `addorder p/PHONE d/DISHES_SEPARATED_BY_COMMA…` <br> e.g., `addorder p/82224567 d/kimchi fried rice, sushi`
+**Edit** | **Order (status)** | `mark INDEX s/STATUS` <br> e.g., `mark 1 s/delivered` 
+**Edit** | **Order** | `editorder INDEX [p/PHONE] [d/DISHES_SEPARATED_BY_COMMA...]` <br> e.g., `editorder 2 p/675827361 d/burger`
+**Find** | **Order** | `find p/PHONE` <br> e.g., `find p/87654321`
 **List (all orders)** | **Order**    | `listorder all` (keyword `all` not case-sensitve)
 **List (in-progress orders)** | **Order**    | `listorder in progress` OR `listorder in_progress` (keyword `in progress` OR `in_progress` not case-sensitve)
 **List (delivered orders)** | **Order**    | `listorder delivered` (keyword `delivered` not case-sensitve)
 **List (cancelled orders)** | **Order**    | `listorder cancelled` (keyword `cancelled` not case-sensitve)
 **Revenue (for the day)** | **Order**    | `revenue`
+
 
 [//]: # (**Add** |              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`)
 
