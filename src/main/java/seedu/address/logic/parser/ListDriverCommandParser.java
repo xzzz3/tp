@@ -5,8 +5,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import java.util.Arrays;
 
 import seedu.address.logic.commands.ListDriverCommand;
+import seedu.address.logic.commands.ListOrderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.driver.DriverStatus;
 import seedu.address.model.driver.StatusContainsKeywordsPredicate;
+import seedu.address.model.order.OrderStatus;
 
 /**
  * Parses input arguments and creates a new ListDriverCommand object
@@ -27,7 +30,34 @@ public class ListDriverCommandParser implements Parser<ListDriverCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
+        if (nameKeywords.length > 1) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListDriverCommand.MESSAGE_USAGE));
+        }
+
+        if (!driverStatusHasKeyword(nameKeywords[0])) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListDriverCommand.MESSAGE_USAGE));
+        }
         return new ListDriverCommand(new StatusContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
+    /**
+     * Checks the given {@code String} argument and
+     * returns a boolean representing if enum DriverStatus contains argument or
+     * argument is equal to "all" (not case-sensitive)
+     */
+    private boolean driverStatusHasKeyword (String keyword) {
+        if (keyword.toUpperCase().equals("ALL")) {
+            return true;
+        }
+        boolean hasKeyword = false;
+        for (DriverStatus status : DriverStatus.values()) {
+            if (status.name().equals(keyword.toUpperCase())) {
+                hasKeyword = true;
+                break;
+            }
+        }
 
+        return hasKeyword;
+    }
 }
