@@ -40,7 +40,9 @@ public class EditDriverCommand extends Command {
     public static final String MESSAGE_EDIT_DRIVER_SUCCESS = "Edited Driver: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_DRIVER = "This driver already exists in the database.";
-    public static final String MESSAGE_DELETE_DRIVER_FAIL_BUSY = "Edit Driver: %1$s "
+    public static final String MESSAGE_UPDATE_TO_BUSY_FAIL = "Editing Driver: %1$s "
+            + "failed because cannot update the status of driver to BUSY";
+    public static final String MESSAGE_DELETE_DRIVER_FAIL_BUSY = "Editing Driver: %1$s "
             + "failed because driver is not free";
 
     private final Index index;
@@ -72,6 +74,10 @@ public class EditDriverCommand extends Command {
 
         if (!driverToEdit.isSameDriver(editedDriver) && model.hasDriver(editedDriver)) {
             throw new CommandException(MESSAGE_DUPLICATE_DRIVER);
+        }
+
+        if (editedDriver.isBusy()) {
+            throw new CommandException(MESSAGE_UPDATE_TO_BUSY_FAIL);
         }
 
         if (driverToEdit.isBusy()) {

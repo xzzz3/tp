@@ -26,7 +26,9 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
    <img src="images/FoodOnWheels.png" width=65% height=65%>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+   
+6. Some data has been added for you to try the app. Please use command `clear` to use your own data.
+### Some example commands you can try:
 
 ### Commands relating to `Dish`
    * **`adddish`**`n/Crab Pasta $/15.50` : Adds a dish named `Crab Pasta` with price `15.50` to the restaurant's menu.
@@ -46,7 +48,13 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
    * **`listorder in progress`** : Lists all the in-progress orders in the system.
 
 ### Commands relating to `Driver`
+* **`adddriver`**`n/Joe p/98765432` : Adds a new driver with name `Joe` and phone number `98765432`.
 
+* **`editdriver`**`1 s/absent` : Edits the status of the driver at index `1` to `absent`.
+
+* **`listdriver all`** : Lists all the drivers in the system.
+
+* **`listdriver free`** : Lists all the free drivers in the system.
 ### Commands relating to `Customer`
    (to be updated)
    * **`delete`** : Deletes all contacts.
@@ -131,23 +139,23 @@ Format: ` adddriver n/NAME p/PHONE`
 
 Examples:
 * `adddriver n/John Doe p/98765432 `
-* `adddriver n/Betsy Crowe p/1234567 `
+* `adddriver n/Betsy Crowe p/8234567 `
 
-### Deleting a driver: `delete driver`
+### Deleting a driver: `deletedriver`
 
 Deletes a driver from the database, together with his/her information.
 
-Format: `deletedriver n/NAME p/PHONE`
+Format: `deletedriver INDEX`, where `INDEX` denotes the index of the drivers.
+* Please use the index `INDEX` shown from the list retrieved from the command `listdriver all`
 
 Examples:
-* `deletedriver n/John Doe p/98765432`
-* `deletedriver n/Betsy Crowe p/1234567`
+* `deletedriver 1`
 
-### List free drivers: `listdriver free`
+### List all drivers: `listdriver all`
 
-Lists free drivers who are not delivering any order and can receive new orders.
+Lists all drivers in the database.
 
-Format: `listdriver free`
+Format: `listdriver all`
 
 ### List driver with specific status: `listdriver`
 
@@ -155,9 +163,28 @@ Lists drivers having a specific status at that time.
 
 Format: `listdriver [STATUS]`
 
+Action | Feature type  
+--------|--------------  
+**FREE** | Drivers who are not delivering any order and can receive new orders.
+**BUSY** | Drivers who are delivering order and cannot receive new orders.
+**ABSENT** | Drivers who are out of work and cannot receive new orders.
+
 Examples:
 * `listdriver free`
 
+### Editing a driver: `editdriver`
+
+Edits a driver's information
+
+Format: `editdriver INDEX [n/NAME] [p/PHONE] [s/STATUS]`, where `INDEX` denotes the index of the drivers.
+* Please use the index `INDEX` shown from the list retrieved from the command `listdriver all`
+* `STATUS` cannot be changed to `BUSY`.
+* `STATUS` only can be changed when the driver is `FREE`.
+
+Examples:
+* `editdish 1 n/Adam`
+* `editdish 2 p/99998888`
+* `editdish 2 s/absent`
 ## Dish features
 
 ### Adding a dish: `adddish`
@@ -299,7 +326,9 @@ Action | Feature type | Format, Examples
 **Edit** | **Customer** |`editcustomer INDEX [n/NAME] [a/ADDRESS] [p/PHONE]`<br> e.g,`editcustomer 1 n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
 **Add** | **Driver**   |`adddriver n/NAME p/PHONE` <br> e.g,`add driver n/John Doe p/98765432`
 **Delete** | **Driver**   |`deletedriver n/NAME p/PHONE` <br> e.g,`delete driver n/John Doe p/98765432`
-**List** | **Driver**   |`listdriver free` 
+**List (all drivers)** | **Driver**   |`listdriver all` 
+**List** | **Driver**   |`listdriver [STATUS]` <br> e.g `listdriver free`
+**Edit** | **Driver** |``editdriver INDEX [n/NAME] [p/PHONE] [s/STATUS]``<br> e.g,`editdriver 3 s/absent`
 **Add** | **Dish**     | `adddish n/NAME $/PRICE` <br> e.g., `adddish n/Crab Pasta $/15.50`
 **Delete** | **Dish**     | `deletedish INDEX` <br> e.g., `deletedish 1`
 **Add** | **Order**    | `addorder p/PHONE d/DISHES_SEPARATED_BY_COMMA…` <br> e.g., `addorder p/82224567 d/kimchi fried rice, sushi`
