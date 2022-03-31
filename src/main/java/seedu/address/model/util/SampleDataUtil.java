@@ -28,7 +28,7 @@ public class SampleDataUtil {
         return new Customer[] {
             new Customer(new NameCustomer("Alex Yeoh"), new PhoneCustomer("98765432"),
                 new AddressCustomer("Blk 30 Geylang Street 29, #06-40")),
-            new Customer(new NameCustomer("Bernice Yu"), new PhoneCustomer("12345678"),
+            new Customer(new NameCustomer("Bernice Yu"), new PhoneCustomer("81232231"),
                 new AddressCustomer("Blk 30 Lorong 3 Serangoon Gardens, #07-18")),
             new Customer(new NameCustomer("Charlotte Oliveiro"), new PhoneCustomer("88887777"),
                 new AddressCustomer("Blk 11 Ang Mo Kio Street 74, #11-04"))
@@ -48,9 +48,9 @@ public class SampleDataUtil {
 
     public static Driver[] getSampleDrivers() {
         return new Driver[] {
-            new Driver(new NameDriver("Adam"), new PhoneDriver("77779999")),
-            new Driver(new NameDriver("Joe"), new PhoneDriver("34343434")),
-            new Driver(new NameDriver("Eva"), new PhoneDriver("56565656"))
+            new Driver(new NameDriver("Adam"), new PhoneDriver("88993823")),
+            new Driver(new NameDriver("Joe"), new PhoneDriver("91232323")),
+            new Driver(new NameDriver("Eva"), new PhoneDriver("81923823"))
         };
     }
 
