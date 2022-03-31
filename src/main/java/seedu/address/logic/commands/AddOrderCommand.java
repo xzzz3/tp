@@ -50,9 +50,7 @@ public class AddOrderCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        requireNonNull(model);
-        return new CommandResult(MESSAGE_SUCCESS,
-                false, false, false, false, true);
+        throw new AssertionError("This method should not be called.");
     }
 
     /**

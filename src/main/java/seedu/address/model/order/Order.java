@@ -144,6 +144,7 @@ public class Order {
         status = status.toLowerCase();
         switch (status) {
         case "in progress":
+        case "in_progress":
             this.status = OrderStatus.IN_PROGRESS;
             break;
         case "delivered":
