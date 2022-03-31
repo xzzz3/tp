@@ -35,7 +35,8 @@ public class CustomerTest {
         assertFalse(ALICE.isSameCustomer(editedAlice));
 
         // name differs in case, different number, all other attributes same -> returns false
-        Customer editedBob = new CustomerBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).withPhone(VALID_PHONE_AMY).build();
+        Customer editedBob = new CustomerBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase())
+                .withPhone(VALID_PHONE_AMY).build();
         assertFalse(BOB.isSameCustomer(editedBob));
 
         // name has trailing spaces, different number, all other attributes same -> returns false
