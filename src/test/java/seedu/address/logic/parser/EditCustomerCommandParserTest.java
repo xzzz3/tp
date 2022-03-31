@@ -91,13 +91,12 @@ public class EditCustomerCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_CUSTOMER;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + ADDRESS_DESC_AMY + NAME_DESC_AMY;
 
         EditCustomerCommand.EditCustomerDescriptor descriptor =
                 new EditCustomerDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_AMY)
-                .build();
+                        .withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_AMY)
+                        .build();
         EditCustomerCommand expectedCommand = new EditCustomerCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -106,7 +105,7 @@ public class EditCustomerCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_CUSTOMER;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB;
 
         EditCustomerCommand.EditCustomerDescriptor descriptor =
                 new EditCustomerDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
@@ -142,14 +141,15 @@ public class EditCustomerCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_CUSTOMER;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+        String userInput =
+                targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY
+                        + PHONE_DESC_AMY + ADDRESS_DESC_AMY
+                        + PHONE_DESC_BOB + ADDRESS_DESC_BOB;
 
         EditCustomerCommand.EditCustomerDescriptor descriptor =
                 new EditCustomerDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withAddress(VALID_ADDRESS_BOB)
-                .build();
+                        .withAddress(VALID_ADDRESS_BOB)
+                        .build();
         EditCustomerCommand expectedCommand = new EditCustomerCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -174,3 +174,4 @@ public class EditCustomerCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 }
+
