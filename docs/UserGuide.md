@@ -8,7 +8,7 @@ FoodOnWheels (FOW) is a **desktop app for managing delivery orders, optimized fo
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -26,26 +26,26 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
    <img src="images/FoodOnWheels.png" width=65% height=65%>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   
+
 6. Some data has been added for you to try the app. Please use command `clear` to use your own data.
 ### Some example commands you can try:
 
 ### Commands relating to `Dish`
-   * **`adddish`**`n/Crab Pasta $/15.50` : Adds a dish named `Crab Pasta` with price `15.50` to the restaurant's menu.
+* **`adddish`**`n/Crab Pasta $/15.50` : Adds a dish named `Crab Pasta` with price `15.50` to the restaurant's menu.
 
-   * **`deletedish`**`1` : Deletes a dish named with index 1 displayed on filtered dish list.
-   
-   * **`listdish`** : Lists all existing dishes on restaurant's menu.
+* **`deletedish`**`1` : Deletes a dish named with index 1 displayed on filtered dish list.
+
+* **`listdish`** : Lists all existing dishes on restaurant's menu.
 
 ### Commands relating to `Order`
 
-   * **`addorder`**`p/98765432 d/Sushi, Pasta` : Adds an order of `Sushi, Pasta` for customer with phone number `98765432`.
+* **`addorder`**`p/98765432 d/Sushi, Pasta` : Adds an order of `Sushi, Pasta` for customer with phone number `98765432`.
 
-   * **`mark`**`1 s/delivered` : Edits the status of the order at index `1` to `delivered`.
+* **`mark`**`1 s/delivered` : Edits the status of the order at index `1` to `delivered`.
 
-   * **`listorder all`** : Lists all the current orders in the system. 
+* **`listorder all`** : Lists all the current orders in the system.
 
-   * **`listorder in progress`** : Lists all the in-progress orders in the system.
+* **`listorder in progress`** : Lists all the in-progress orders in the system.
 
 ### Commands relating to `Driver`
 * **`adddriver`**`n/Joe p/98765432` : Adds a new driver with name `Joe` and phone number `98765432`.
@@ -56,21 +56,21 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 * **`listdriver free`** : Lists all the free drivers in the system.
 ### Commands relating to `Customer`
-   (to be updated)
-   * **`delete`** : Deletes all contacts.
+(to be updated)
+* **`delete`** : Deletes all contacts.
 
-   * **`exit`** : Exits the app.
+* **`exit`** : Exits the app.
 
-   * **`add`** : Lists all contacts.
+* **`add`** : Lists all contacts.
 
-   * **`delete`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+* **`delete`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features 
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -163,7 +163,7 @@ Lists drivers having a specific status at that time.
 
 Format: `listdriver [STATUS]`
 
-Action | Feature type  
+Action | Feature type
 --------|--------------  
 **FREE** | Drivers who are not delivering any order and can receive new orders.
 **BUSY** | Drivers who are delivering order and cannot receive new orders.
@@ -264,12 +264,12 @@ Examples:
 
 Lists the orders in the system based on the keyword entered.
 
-Format: `listorder KEYWORD`. KEYWORD is one of 'all', 'in_progress' 
+Format: `listorder KEYWORD`. KEYWORD is one of 'all', 'in_progress'
 OR 'in progress', 'delivered', 'cancelled' (not case-sensitive)
 
 ### Revenue for the day: `revenue`
 
-Obtains revenue generated in the current day based on the date 
+Obtains revenue generated in the current day based on the date
 on the operating system. All orders in FoodOnWheels will be listed.
 
 Format: `revenue`
@@ -326,13 +326,13 @@ Action | Feature type | Format, Examples
 **Edit** | **Customer** |`editcustomer INDEX [n/NAME] [a/ADDRESS] [p/PHONE]`<br> e.g,`editcustomer 1 n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
 **Add** | **Driver**   |`adddriver n/NAME p/PHONE` <br> e.g,`add driver n/John Doe p/98765432`
 **Delete** | **Driver**   |`deletedriver n/NAME p/PHONE` <br> e.g,`delete driver n/John Doe p/98765432`
-**List (all drivers)** | **Driver**   |`listdriver all` 
+**List (all drivers)** | **Driver**   |`listdriver all`
 **List** | **Driver**   |`listdriver [STATUS]` <br> e.g `listdriver free`
 **Edit** | **Driver** |``editdriver INDEX [n/NAME] [p/PHONE] [s/STATUS]``<br> e.g,`editdriver 3 s/absent`
 **Add** | **Dish**     | `adddish n/NAME $/PRICE` <br> e.g., `adddish n/Crab Pasta $/15.50`
 **Delete** | **Dish**     | `deletedish INDEX` <br> e.g., `deletedish 1`
 **Add** | **Order**    | `addorder p/PHONE d/DISHES_SEPARATED_BY_COMMA…` <br> e.g., `addorder p/82224567 d/kimchi fried rice, sushi`
-**Edit** | **Order (status)** | `mark INDEX s/STATUS` <br> e.g., `mark 1 s/delivered` 
+**Edit** | **Order (status)** | `mark INDEX s/STATUS` <br> e.g., `mark 1 s/delivered`
 **Edit** | **Order** | `editorder INDEX [p/PHONE] [d/DISHES_SEPARATED_BY_COMMA...]` <br> e.g., `editorder 2 p/675827361 d/burger`
 **Find** | **Order** | `find p/PHONE` <br> e.g., `find p/87654321`
 **List (all orders)** | **Order**    | `listorder all` (keyword `all` not case-sensitve)

@@ -77,7 +77,7 @@ public class EditDriverCommand extends Command {
         }
 
         if (editedDriver.isBusy()) {
-            throw new CommandException(MESSAGE_UPDATE_TO_BUSY_FAIL);
+            throw new CommandException(String.format(MESSAGE_UPDATE_TO_BUSY_FAIL, driverToEdit));
         }
 
         if (driverToEdit.isBusy()) {
