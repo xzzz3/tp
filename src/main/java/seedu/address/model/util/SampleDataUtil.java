@@ -14,6 +14,7 @@ import seedu.address.model.dish.Dish;
 import seedu.address.model.dish.NameDish;
 import seedu.address.model.dish.PriceDish;
 import seedu.address.model.driver.Driver;
+import seedu.address.model.driver.DriverStatus;
 import seedu.address.model.driver.NameDriver;
 import seedu.address.model.driver.PhoneDriver;
 import seedu.address.model.order.Order;
@@ -48,16 +49,8 @@ public class SampleDataUtil {
     public static Driver[] getSampleDrivers() {
         return new Driver[] {
             new Driver(new NameDriver("Adam"), new PhoneDriver("77779999")),
-            new Driver(new NameDriver("Joe"), new PhoneDriver("34343434"))
-        };
-    }
-
-    public static Order[] getSampleOrders() {
-        return new Order[] {
-            new Order(getSampleCustomers()[0], getSampleDrivers()[0], getSampleDishes()[0], getSampleDishes()[1],
-                    getSampleDishes()[5]).updateStatus("delivered"),
-            new Order(getSampleCustomers()[2], getSampleDrivers()[1], getSampleDishes()[3], getSampleDishes()[3],
-                    getSampleDishes()[4]).updateStatus("delivered")
+            new Driver(new NameDriver("Joe"), new PhoneDriver("34343434")),
+            new Driver(new NameDriver("Eva"), new PhoneDriver("56565656"))
         };
     }
 
@@ -72,9 +65,18 @@ public class SampleDataUtil {
         for (Driver sampleDrive : getSampleDrivers()) {
             sampleAb.addDriver(sampleDrive);
         }
-        for (Order sampleOrder : getSampleOrders()) {
-            sampleAb.addOrder(sampleOrder);
-        }
+        sampleAb.getDriverList().get(2).setStatus(DriverStatus.ABSENT);
+
+        sampleAb.addOrder(new Order(sampleAb.getCustomerList().get(0), sampleAb.getDriverList().get(0),
+                sampleAb.getDishList().get(0), sampleAb.getDishList().get(1), sampleAb.getDishList().get(5)));
+        sampleAb.getOrderList().get(0).updateStatus("delivered");
+
+        sampleAb.addOrder(new Order(sampleAb.getCustomerList().get(2), sampleAb.getDriverList().get(1),
+                sampleAb.getDishList().get(3), sampleAb.getDishList().get(2), sampleAb.getDishList().get(4)));
+
+        sampleAb.addOrder(new Order(sampleAb.getCustomerList().get(1), sampleAb.getDriverList().get(0),
+                sampleAb.getDishList().get(0), sampleAb.getDishList().get(5)));
+        sampleAb.getOrderList().get(2).updateStatus("cancelled");
         return sampleAb;
     }
 

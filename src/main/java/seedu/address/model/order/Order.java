@@ -148,9 +148,11 @@ public class Order {
             break;
         case "delivered":
             this.status = OrderStatus.DELIVERED;
+            this.driver.setStatus(DriverStatus.FREE);
             break;
         case "cancelled":
             this.status = OrderStatus.CANCELLED;
+            this.driver.setStatus(DriverStatus.FREE);
             break;
         default:
             throw new NoSuchOrderStatusException();
