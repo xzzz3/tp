@@ -44,13 +44,13 @@ public class EditCustomerCommandParser implements Parser<EditCustomerCommand> {
         EditCustomerCommand.EditCustomerDescriptor editCustomerDescriptor =
                 new EditCustomerCommand.EditCustomerDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editCustomerDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editCustomerDescriptor.setName(ParserUtil.parseNameCustomer(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editCustomerDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editCustomerDescriptor.setPhone(ParserUtil.parsePhoneCustomer(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editCustomerDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editCustomerDescriptor.setAddress(ParserUtil.parseAddressCustomer(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (!editCustomerDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCustomerCommand.MESSAGE_NOT_EDITED);

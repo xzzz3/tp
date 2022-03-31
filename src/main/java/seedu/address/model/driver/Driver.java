@@ -66,6 +66,8 @@ public class Driver {
                 && otherDriver.getName().equals((getName()));
     }
 
+
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
