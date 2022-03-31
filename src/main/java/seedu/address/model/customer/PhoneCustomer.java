@@ -3,10 +3,6 @@ package seedu.address.model.customer;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.driver.Driver;
-import seedu.address.model.driver.UniqueDriverList;
 
 
 /**
@@ -14,8 +10,6 @@ import seedu.address.model.driver.UniqueDriverList;
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class PhoneCustomer {
-
-    private final ObservableList<Driver> internalList = FXCollections.observableArrayList();
 
     public static final String MESSAGE_CONSTRAINTS =
             "Customer phone number should only contain numbers, and it should be only 8 digits long";
