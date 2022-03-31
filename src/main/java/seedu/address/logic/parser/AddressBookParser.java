@@ -28,6 +28,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListDishCommand;
 import seedu.address.logic.commands.ListDriverCommand;
 import seedu.address.logic.commands.ListOrderCommand;
+import seedu.address.logic.commands.RevenueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -119,6 +120,9 @@ public class AddressBookParser {
 
         case EditDriverCommand.COMMAND_WORD:
             return new EditDriverCommandParser().parse(arguments);
+
+        case RevenueCommand.COMMAND_WORD:
+            return new RevenueCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
