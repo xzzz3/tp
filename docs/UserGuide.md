@@ -31,18 +31,19 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 ### Commands relating to `Dish`
    * **`adddish`**`n/Crab Pasta $/15.50` : Adds a dish named `Crab Pasta` with price `15.50` to the restaurant's menu.
 
-   * **`deletedish`**`n/Crab Pasta` : Deletes a dish named `Crab Pasta` to the restaurant's menu.
+   * **`deletedish`**`1` : Deletes a dish named with index 1 displayed on filtered dish list.
    
    * **`listdish`** : Lists all existing dishes on restaurant's menu.
 
 ### Commands relating to `Order`
-   * **`addorder`**`p/ 98765432 d/ Sushi, Pasta` : Adds an order of `Sushi, Pasta` for customer with phone number `98765432`.
 
-   * **`mark`**`1 s/ delivered` : Edits the status of the order at index `1` to `delivered`.
+   * **`addorder`**`p/98765432 d/Sushi, Pasta` : Adds an order of `Sushi, Pasta` for customer with phone number `98765432`.
 
-   * **`listorders`** : Lists all the current orders in the system. 
+   * **`mark`**`1 s/delivered` : Edits the status of the order at index `1` to `delivered`.
 
-   * **`listordersprev`** : Lists all the previous orders in the system.
+   * **`listorder all`** : Lists all the current orders in the system. 
+
+   * **`listorder in progress`** : Lists all the in-progress orders in the system.
 
 ### Commands relating to `Driver`
 
@@ -67,17 +68,17 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `{curly brackets}` are the parameters to be supplied by the user.<br>
-  e.g. in `adddish n/{name} $/{price}`, `name` and `price` are parameters which can be used as `adddish n/Crab Pasta $/15.50`.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `adddish n/NAME $/PRICE`, `name` and `price` are parameters which can be used as `adddish n/Crab Pasta $/15.50`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/{name} [t/{tag}]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can have multiple inputs.<br>
   e.g. `t/friend`, `t/friend, family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/{name} p/{phone_number}`, `p/{phone_number} n/{name}` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -110,7 +111,7 @@ Examples:
 
 ### Editing a customer: `editcustomer`
 
-Deletes a customer from the database.
+Edits a customer from the database.
 
 Format: `editcustomer {index} n/{name} p/{phone} a/{address}`
 
@@ -126,7 +127,7 @@ Examples:
 
 Adds a driver to the database.
 
-Format: ` adddriver n/{name} p/{phone}`
+Format: ` adddriver n/NAME p/PHONE`
 
 Examples:
 * `adddriver n/John Doe p/98765432 `
@@ -136,7 +137,7 @@ Examples:
 
 Deletes a driver from the database, together with his/her information.
 
-Format: `deletedriver n/{name} p/{phone}`
+Format: `deletedriver n/NAME p/PHONE`
 
 Examples:
 * `deletedriver n/John Doe p/98765432`
@@ -163,7 +164,7 @@ Examples:
 
 Adds a dish to the restaurant’s menu. Dishes of the same name cannot be added.
 
-Format: `adddish n/{name} $/{price}`
+Format: `adddish n/NAME $/PRICE`
 
 Examples:
 * `add dish n/Crab Pasta $/15.50`
@@ -173,11 +174,22 @@ Examples:
 
 Deletes a dish from the restaurant’s menu.
 
-Format: `deletedish {index}`, where `index` denotes the index of the dish shown on FoodOnWheels
+Format: `deletedish INDEX`, where `INDEX` denotes the index of the dish shown on FoodOnWheels
 
 Examples:
 * `deletedish 1`
 * `deletedish 2`
+
+### Editing a dish: `editdish`
+
+Edits a dish from the restaurant’s menu.
+
+Format: `editdish INDEX [n/NAME] [$/PRICE]`, where `INDEX` denotes the index of the dish shown on FoodOnWheels
+
+Examples:
+* `editdish 1 n/Limchi Fried Rice`
+* `editdish 2 $/10.00`
+* `editdish 2 n/Limchi Fried Rice $/10.00`
 
 ## Order Features
 
@@ -185,17 +197,18 @@ Examples:
 
 Adds a new delivery order to the list of orders.
 
-Format: `addorder p/{phone} d/{dishes separated by comma}...`
+Format: `addorder p/PHONE d/DISHES_SEPARATED_BY_COMMA...`
+
 
 Examples:
-* `addorder p/81234567 d/{Fried Rice, Pasta}`
-* `addorder p/86471627 d/{Sushi}`
+* `addorder p/81234567 d/Fried Rice, Pasta`
+* `addorder p/86471627 d/Sushi`
 
 ### Edit the status of a Delivery Order: `mark`
 
 Edit the status of a delivery order in the list using its index.
 
-Format: `mark {index} s/{status}`
+Format: `mark INDEX s/STATUS`
 
 Examples:
 * `mark 1 s/delivered`
@@ -205,7 +218,7 @@ Examples:
 
 Edit the customer and dishes details of a delivery order in the list using its index.
 
-Format: `editorder {index} [p/{phone}] [d/{dishes separated by comma}...]`
+Format: `editorder INDEX [p/PHONE] [d/DISHES_SEPARATED_BY_COMMA...]`
 
 Examples:
 * `editorder 1 p/87264512 d/kimchi, fried rice`
@@ -215,30 +228,34 @@ Examples:
 
 Search for an order with the phone number provided in the list of orders.
 
-Format: `find p/{phone}`
+Format: `find p/PHONE`
 
 Examples:
 * `find p/81234567`
 
-### List current orders: `list`
+### Listing orders: `listorder`
 
-Lists all the current orders in the system.
+Lists the orders in the system based on the keyword entered.
 
-Format: `listorders`
+Format: `listorder KEYWORD`. KEYWORD is one of 'all', 'in_progress' 
+OR 'in progress', 'delivered', 'cancelled' (not case-sensitive)
 
-### List previous orders: `listordersprev`
+### Revenue for the day: `revenue`
 
-Lists all the previous orders in the system.
+Obtains revenue generated in the current day based on the date 
+on the operating system. All orders in FoodOnWheels will be listed.
 
-Format: `listordersprev`
+Format: `revenue`
 
+(to be updated)
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessageFOW.png)
+![help message](images/helpMessage.png)
 
 Format: `help`
+
 
 ### Exiting the program : `exit`
 
@@ -277,20 +294,24 @@ _Details coming soon ..._
 
 Action | Feature type | Format, Examples
 --------|--------------|------------------
-**Add** | **Customer** |`addcustomer n/{name} a/{address} p/{phone}` <br> e.g,`addcustomer n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
-**Delete** | **Customer** |`deletecustomer {index}` <br> e.g,`deletecustomer 1`
-**Edit** | **Customer** |`editcustomer {index} n/{name} a/{address} p/{phone}`<br> e.g,`editcustomer 1 n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
-**Add** | **Driver**   |`add driver n/{name} p/{phone}` <br> e.g,`add driver n/John Doe p/98765432`
-**Delete** | **Driver**   |`delete driver n/{name} p/{phone}` <br> e.g,`delete driver n/John Doe p/98765432`
-**List** | **Driver**   |`list driver free` 
-**Add** | **Dish**     | `adddish n/{name} $/{price}` <br> e.g., `adddish n/Crab Pasta $/15.50`
-**Delete** | **Dish**     | `deletedish {index}` <br> e.g., `deletedish 1`
-**Add** | **Order**    | `addorder p/{phone} d/{dishes}…` <br> e.g., `addorder p/82224567 d/kimchi fried rice, sushi`
-**Edit** | **Order (status)** | `mark {index} s/{status}` <br> e.g., `mark 1 s/delivered` 
-**Edit** | **Order** | `editorder {index} [p/{phone}] [d/{dishes}...]` <br> e.g., `editorder 2 p/675827361 d/burger`
-**Find** | **Order** | `find p/{phone}` <br> e.g., `find p/87654321`
-**List (current orders)** | **Order**    | `listorders`
-**List (previous orders)** | **Order**    | `listordersprev`
+**Add** | **Customer** |`addcustomer n/NAME a/ADDRESS p/PHONE` <br> e.g,`addcustomer n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
+**Delete** | **Customer** |`deletecustomer INDEX` <br> e.g,`deletecustomer 1`
+**Edit** | **Customer** |`editcustomer INDEX [n/NAME] [a/ADDRESS] [p/PHONE]`<br> e.g,`editcustomer 1 n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
+**Add** | **Driver**   |`adddriver n/NAME p/PHONE` <br> e.g,`add driver n/John Doe p/98765432`
+**Delete** | **Driver**   |`deletedriver n/NAME p/PHONE` <br> e.g,`delete driver n/John Doe p/98765432`
+**List** | **Driver**   |`listdriver free` 
+**Add** | **Dish**     | `adddish n/NAME $/PRICE` <br> e.g., `adddish n/Crab Pasta $/15.50`
+**Delete** | **Dish**     | `deletedish INDEX` <br> e.g., `deletedish 1`
+**Add** | **Order**    | `addorder p/PHONE d/DISHES_SEPARATED_BY_COMMA…` <br> e.g., `addorder p/82224567 d/kimchi fried rice, sushi`
+**Edit** | **Order (status)** | `mark INDEX s/STATUS` <br> e.g., `mark 1 s/delivered` 
+**Edit** | **Order** | `editorder INDEX [p/PHONE] [d/DISHES_SEPARATED_BY_COMMA...]` <br> e.g., `editorder 2 p/675827361 d/burger`
+**Find** | **Order** | `find p/PHONE` <br> e.g., `find p/87654321`
+**List (all orders)** | **Order**    | `listorder all` (keyword `all` not case-sensitve)
+**List (in-progress orders)** | **Order**    | `listorder in progress` OR `listorder in_progress` (keyword `in progress` OR `in_progress` not case-sensitve)
+**List (delivered orders)** | **Order**    | `listorder delivered` (keyword `delivered` not case-sensitve)
+**List (cancelled orders)** | **Order**    | `listorder cancelled` (keyword `cancelled` not case-sensitve)
+**Revenue (for the day)** | **Order**    | `revenue`
+
 
 [//]: # (**Add** |              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`)
 
