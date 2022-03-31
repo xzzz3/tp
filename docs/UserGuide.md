@@ -57,13 +57,9 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 * **`listdriver free`** : Lists all the free drivers in the system.
 ### Commands relating to `Customer`
    (to be updated)
-   * **`delete`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
-
-   * **`add`** : Lists all contacts.
-
-   * **`delete`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`deletecustomer 1`** : Deletes customer at index `1`.
+   * **`addcustomer n/John p/88889999 a/Sentosa`** : Adds new customers.
+   * **`list`** : Lists all customers.
 
 
 1. Refer to the [Features](#features) below for details of each command.
