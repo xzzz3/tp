@@ -50,21 +50,22 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 ### Commands relating to `Driver`
 * **`adddriver`**`n/Joe p/98765432` : Adds a new driver with name `Joe` and phone number `98765432`.
 
+* **`deletedriver`**`1` : Deletes the driver at index `1`.
+
 * **`editdriver`**`1 s/absent` : Edits the status of the driver at index `1` to `absent`.
 
 * **`listdriver all`** : Lists all the drivers in the system.
 
 * **`listdriver free`** : Lists all the free drivers in the system.
+
 ### Commands relating to `Customer`
-   (to be updated)
-   * **`delete`** : Deletes all contacts.
+* **`addcustomer`**`n/Joe p/98765432 a/home` : Adds a new driver with name `Joe` and phone number `98765432`.
 
-   * **`exit`** : Exits the app.
+* **`deletecustomer`**`1` : Deletes the customer at index `1`.
 
-   * **`add`** : Lists all contacts.
+* **`editcustomer`**`1 n/Jack` : Edits the customer at index `1` and replaces name with `Jack`.
 
-   * **`delete`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
+* **`listcustomer`** : Lists all the customers in the system.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -89,7 +90,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
   e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `p/81232323 p/91823232`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `listdish`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -106,7 +107,7 @@ Format: `addcustomer n/{name} a/{address} p/{phone}`
 
 Examples:
 * `addcustomer n/John Doe a/John street, block 123, #01-01 p/98765432`
-* `addcustomer n/Betsy Crowe a/Newgate Prison p/12345678`
+* `addcustomer n/Betsy Crowe a/Newgate Prison p/82943423`
 
 ### Deleting a customer: `deletecustomer`
 
@@ -128,6 +129,11 @@ Examples:
 * `editcustomer 3 p/81234567 a/Sentosa Cove`
 * `editcustomer 2 n/John Doe p/81234567`
 
+### Editing a customer: `editcustomer`
+
+Lists all customers from the database.
+
+Format: `listcustomer`
 
 ## Driver features
 
@@ -139,7 +145,7 @@ Format: ` adddriver n/NAME p/PHONE`
 
 Examples:
 * `adddriver n/John Doe p/98765432 `
-* `adddriver n/Betsy Crowe p/8234567 `
+* `adddriver n/Betsy Crowe p/82345671 `
 
 ### Deleting a driver: `deletedriver`
 
@@ -321,9 +327,9 @@ _Details coming soon ..._
 
 Action | Feature type | Format, Examples
 --------|--------------|------------------
-**Add** | **Customer** |`addcustomer n/NAME a/ADDRESS p/PHONE` <br> e.g,`addcustomer n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
+**Add** | **Customer** |`addcustomer n/NAME a/ADDRESS p/PHONE` <br> e.g,`addcustomer n/James Ho a/123, Clementi Rd, 1234665 p/88884444`
 **Delete** | **Customer** |`deletecustomer INDEX` <br> e.g,`deletecustomer 1`
-**Edit** | **Customer** |`editcustomer INDEX [n/NAME] [a/ADDRESS] [p/PHONE]`<br> e.g,`editcustomer 1 n/James Ho a/123, Clementi Rd, 1234665 p/22224444`
+**Edit** | **Customer** |`editcustomer INDEX [n/NAME] [a/ADDRESS] [p/PHONE]`<br> e.g,`editcustomer 1 n/James Ho a/123, Clementi Rd, 1234665 p/99994444`
 **Add** | **Driver**   |`adddriver n/NAME p/PHONE` <br> e.g,`add driver n/John Doe p/98765432`
 **Delete** | **Driver**   |`deletedriver n/NAME p/PHONE` <br> e.g,`delete driver n/John Doe p/98765432`
 **List (all drivers)** | **Driver**   |`listdriver all` 
