@@ -23,14 +23,14 @@ public class CustomerTest {
         // null -> returns false
         assertFalse(ALICE.isSameCustomer(null));
 
-        // same name, all other attributes different -> returns true
+        // same name and number, all other attributes different -> returns true
         Customer editedAlice =
                 new CustomerBuilder(ALICE)
                                 .withAddress(VALID_ADDRESS_BOB).build();
         assertTrue(ALICE.isSameCustomer(editedAlice));
 
-        // different name, all other attributes same -> returns false
-        editedAlice = new CustomerBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        // different name and number, all other attributes same -> returns false
+        editedAlice = new CustomerBuilder(ALICE).withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).build();
         assertFalse(ALICE.isSameCustomer(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
