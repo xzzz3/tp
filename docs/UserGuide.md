@@ -36,6 +36,10 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
    * **`listdish`** : Lists all existing dishes on restaurant's menu.
 
 ### Commands relating to `Order`
+   * **`addorder`**`p/ 98765432 d/ Sushi, Pasta` : Adds an order of `Sushi, Pasta` for customer with phone number `98765432`.
+
+   * **`mark`**`1 s/ delivered` : Edits the status of the order at index `1` to `delivered`.
+
    * **`listorders`** : Lists all the current orders in the system. 
 
    * **`listordersprev`** : Lists all the previous orders in the system.
@@ -69,8 +73,8 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 * Items in square brackets are optional.<br>
   e.g `n/{name} [t/{tag}]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/{tag}]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `…`​ after them can have multiple inputs.<br>
+  e.g. `t/friend`, `t/friend, family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/{name} p/{phone_number}`, `p/{phone_number} n/{name}` is also acceptable.
@@ -164,122 +168,72 @@ Examples:
 * `deletedish 1`
 * `deletedish 2`
 
-
-
-
-
-### List previous orders: `listordersprev`
-
-Lists all the previous orders in the system
-
-Format: `listordersprev`
-
-
-(to be updated)
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
 ## Order Features
 
-### Adding a new Delivery Order: `add order`
+### Adding a new Delivery Order: `addorder`
 
 Adds a new delivery order to the list of orders.
 
-Format: `add order /p {phone} /d {dishes separated by comma}`
+Format: `addorder p/{phone} d/{dishes separated by comma}...`
 
 Examples:
-* `add order /p 81234567 /d {Fried Rice, Pasta}`
-* `add order /p 81234567 /d {Pasta}`
+* `addorder p/81234567 d/{Fried Rice, Pasta}`
+* `addorder p/86471627 d/{Sushi}`
 
 ### Edit the status of a Delivery Order: `mark`
 
 Edit the status of a delivery order in the list using its index.
 
-Format: `mark {index} {string for the status}`
+Format: `mark {index} s/{status}`
 
 Examples:
-* `mark 1 done`
-* `mark 3 cancelled`
+* `mark 1 s/delivered`
+* `mark 3 s/in progress`
 
-### Search for an Order by Phone Number: `find order`
+### Edit the details of a Delivery Order: `editorder`
+
+Edit the customer and dishes details of a delivery order in the list using its index.
+
+Format: `editorder {index} [p/{phone}] [d/{dishes separated by comma}...]`
+
+Examples:
+* `editorder 1 p/87264512 d/kimchi, fried rice`
+* `editorder 3 p/87654321`
+
+### Search for an Order by Phone Number: `findorder`
 
 Search for an order with the phone number provided in the list of orders.
 
-Format: `find /p {phone}`
+Format: `find p/{phone}`
 
 Examples:
-* `find /p 81234567`
+* `find p/81234567`
 
 ### List current orders: `list`
 
-Lists all the current orders in the system
+Lists all the current orders in the system.
 
 Format: `listorders`
 
 ### List previous orders: `listordersprev`
 
-Lists all the previous orders in the system
+Lists all the previous orders in the system.
 
 Format: `listordersprev`
-=======
 
-### Adding a new Delivery Order: `add order`
+### Viewing help : `help`
 
-Adds a new delivery order to the list of orders.
+Shows a message explaning how to access the help page.
 
-Format: `add order /p {phone} /d {dishes separated by comma}`
+![help message](images/helpMessageFOW.png)
 
-Examples:
-* `add order /p 81234567 /d {Fried Rice, Pasta}`
-* `add order /p 81234567 /d {Pasta}`
-
-### Edit the status of a Delivery Order: `mark`
-
-Edit the status of a delivery order in the list using its index.
-
-Format: `mark {index} {string for the status}`
-
-Examples:
-* `mark 1 done`
-* `mark 3 cancelled`
-
-### Search for an Order by Phone Number: `find order`
-
-Search for an order with the phone number provided in the list of orders.
-
-Format: `find /p {phone}`
-
-Examples:
-* `find /p 81234567`
-
+Format: `help`
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
-
-
-
 
 
 ### Saving the data
@@ -319,6 +273,10 @@ Action | Feature type | Format, Examples
 **List** | **Driver**   |`list driver free` 
 **Add** | **Dish**     | `adddish n/{name} $/{price}` <br> e.g., `adddish n/Crab Pasta $/15.50`
 **Delete** | **Dish**     | `deletedish {index}` <br> e.g., `deletedish 1`
+**Add** | **Order**    | `addorder p/{phone} d/{dishes}…` <br> e.g., `addorder p/82224567 d/kimchi fried rice, sushi`
+**Edit** | **Order (status)** | `mark {index} s/{status}` <br> e.g., `mark 1 s/delivered` 
+**Edit** | **Order** | `editorder {index} [p/{phone}] [d/{dishes}...]` <br> e.g., `editorder 2 p/675827361 d/burger`
+**Find** | **Order** | `find p/{phone}` <br> e.g., `find p/87654321`
 **List (current orders)** | **Order**    | `listorders`
 **List (previous orders)** | **Order**    | `listordersprev`
 
