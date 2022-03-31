@@ -90,7 +90,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
   e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/81232323 p/91823232`, only `p/56785678` will be taken.
+  e.g. if you specify `p/81232323 p/91823232`, only `p/81232323` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `listdish`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
