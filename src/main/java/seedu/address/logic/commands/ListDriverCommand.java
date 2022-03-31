@@ -33,7 +33,8 @@ public class ListDriverCommand extends Command {
             model.updateFilteredDriverList(predicate);
         }
         return new CommandResult(
-                String.format(Messages.MESSAGE_DRIVERS_LISTED_OVERVIEW, model.getFilteredDriverList().size()), false,
+                String.format(Messages.MESSAGE_DRIVERS_LISTED_OVERVIEW,
+                        model.getFilteredDriverList().size()), false,
                 false, false, true, false);
     }
 
