@@ -33,7 +33,7 @@ public class Dish {
 
     /**
      * Returns true if both dishes have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * This defines a weaker notion of equality between two dishes.
      */
     public boolean isSameDish(Dish otherDish) {
         if (otherDish == this) {
@@ -41,13 +41,12 @@ public class Dish {
         }
 
         return otherDish != null
-                && otherDish.getName().equals(getName())
-                && otherDish.getPrice().equals(getPrice());
+                && otherDish.getName().equals(getName());
     }
 
     /**
      * Returns true if both dishes have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * This defines a stronger notion of equality between two dishes.
      */
     @Override
     public boolean equals(Object other) {

@@ -49,6 +49,26 @@ public class UniqueDishList implements Iterable<Dish> {
     }
 
     /**
+     * Replaces the dish {@code target} in the list with {@code editedDish}.
+     * {@code target} must exist in the list.
+     * The dish identity of {@code editedDish} must not be the same as another existing dish in the list.
+     */
+    public void setDish(Dish target, Dish editedDish) {
+        requireAllNonNull(target, editedDish);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new DishNotFoundException();
+        }
+
+        if (!target.isSameDish(editedDish) && contains(editedDish)) {
+            throw new DuplicateDishException();
+        }
+
+        internalList.set(index, editedDish);
+    }
+
+    /**
      * Removes the equivalent dish from the list.
      * The dish must exist in the list.
      */

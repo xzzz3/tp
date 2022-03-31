@@ -16,6 +16,7 @@ import seedu.address.logic.commands.DeleteCustomerCommand;
 import seedu.address.logic.commands.DeleteDishCommand;
 import seedu.address.logic.commands.DeleteDriverCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditDishCommand;
 import seedu.address.logic.commands.EditDriverCommand;
 import seedu.address.logic.commands.EditOrderCommand;
 import seedu.address.logic.commands.EditOrderStatusCommand;
@@ -26,6 +27,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListDishCommand;
 import seedu.address.logic.commands.ListDriverCommand;
+import seedu.address.logic.commands.ListOrderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -64,6 +66,9 @@ public class AddressBookParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
+        case EditDishCommand.COMMAND_WORD:
+            return new EditDishCommandParser().parse(arguments);
+
         case DeleteCustomerCommand.COMMAND_WORD:
             return new DeleteCustomerCommandParser().parse(arguments);
 
@@ -99,6 +104,9 @@ public class AddressBookParser {
 
         case FindOrderCommand.COMMAND_WORD:
             return new FindOrderCommandParser().parse(arguments);
+
+        case ListOrderCommand.COMMAND_WORD:
+            return new ListOrderCommandParser().parse(arguments);
 
         case AddDriverCommand.COMMAND_WORD:
             return new AddDriverCommandParser().parse(arguments);

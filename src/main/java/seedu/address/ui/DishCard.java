@@ -29,6 +29,8 @@ public class DishCard extends UiPart<Region> {
     private Label dishName;
     @FXML
     private Label dishId;
+    @FXML
+    private Label dishPrice;
 
     /**
      * Creates a {@code DishCode} with the given {@code Dish} and index to display.
@@ -38,6 +40,7 @@ public class DishCard extends UiPart<Region> {
         this.dish = dish;
         dishId.setText(displayedIndex + ". ");
         dishName.setText(dish.getName().fullName);
+        dishPrice.setText("$" + dish.getPrice().toString());
     }
 
     @Override

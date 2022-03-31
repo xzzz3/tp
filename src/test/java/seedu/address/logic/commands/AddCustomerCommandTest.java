@@ -174,6 +174,11 @@ public class AddCustomerCommandTest {
         }
 
         @Override
+
+        public void setDish(Dish target, Dish editedDish) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public void setDriver(Driver target, Driver editedDriver) {
             throw new AssertionError("This method should not be called.");
         }

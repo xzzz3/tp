@@ -94,7 +94,16 @@ public interface Model {
      */
     void setCustomer(Customer target, Customer editedCustomer);
 
+    /**
+     * Replaces the given dish {@code target} with {@code editedDish}.
+     * {@code target} must exist in the address book.
+     * The dish identity of {@code editedDish} must not be the same as
+     * another existing dish in FoodOnWheels.
+     */
+    void setDish(Dish target, Dish editedDish);
+
     void setDriver(Driver target, Driver editedDriver);
+
 
     /** Returns an unmodifiable view of the filtered customer list */
     ObservableList<Customer> getFilteredCustomerList();

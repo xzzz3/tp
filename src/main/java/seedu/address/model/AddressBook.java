@@ -156,6 +156,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the given dish {@code target} in the list with {@code editedDish}.
+     * {@code target} must exist in FoodOnWheels.
+     * The dish identity of {@code editedDish} must not be the same as
+     * another existing dish in FoodOnWheels.
+     */
+    public void setDish(Dish target, Dish editedDish) {
+        requireNonNull(editedDish);
+
+        dishes.setDish(target, editedDish);
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
