@@ -7,12 +7,19 @@ FoodOnWheels (FOW) is a **desktop app for managing delivery orders, optimized fo
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
-* Table of Contents
-  {:toc}
+## Table of Contents
+1. [Quick start](#1-quick-start)
+2. [Features](#2-features)  
+   2.1 [Customer features](#21-customer-features)  
+   2.2 [Driver features](#22-driver-features)  
+   2.3 [Dish features](#23-dish-features)  
+   2.4 [Other features](#24-order-features)
+3. [FAQ](#3-faq)
+4. [Command summary](#4-command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 1. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -71,7 +78,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 2. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -97,7 +104,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 </div>
 
-## Customer features
+## 2.1 Customer features
 
 ### Adding a customer: `addcustomer`
 
@@ -135,7 +142,7 @@ Lists all customers from the database.
 
 Format: `listcustomer`
 
-## Driver features
+## 2.2 Driver features
 
 ### Adding a driver: `adddriver`
 
@@ -191,7 +198,7 @@ Examples:
 * `editdish 1 n/Adam`
 * `editdish 2 p/99998888`
 * `editdish 2 s/absent`
-## Dish features
+## 2.3 Dish features
 
 ### Adding a dish: `adddish`
 
@@ -224,7 +231,7 @@ Examples:
 * `editdish 2 $/10.00`
 * `editdish 2 n/Limchi Fried Rice $/10.00`
 
-## Order Features
+## 2.4 Order Features
 
 ### Adding a new Delivery Order: `addorder`
 
@@ -281,6 +288,8 @@ on the operating system. All orders in FoodOnWheels will be listed.
 Format: `revenue`
 
 (to be updated)
+
+## 2.4 Other features
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -315,14 +324,14 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 3. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FoodOnWheels home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 4. Command summary
 (to be updated)
 
 Action | Feature type | Format, Examples
