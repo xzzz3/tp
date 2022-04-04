@@ -192,7 +192,7 @@ Edits a driver's information
 Format: `editdriver INDEX [n/NAME] [p/PHONE] [s/STATUS]`, where `INDEX` denotes the index of the drivers.
 * Please use the index `INDEX` shown from the list retrieved from the command `listdriver all`
 * `STATUS` cannot be changed to `BUSY`.
-* `STATUS` only can be changed when the driver is `FREE`.
+* `STATUS` only can be changed when the driver is not `BUSY`.
 
 Examples:
 * `editdish 1 n/Adam`
