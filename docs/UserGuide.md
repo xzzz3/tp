@@ -74,7 +74,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 * **`listcustomer`** : Lists all the customers in the system.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#2-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -154,6 +154,8 @@ Examples:
 * `adddriver n/John Doe p/98765432 `
 * `adddriver n/Betsy Crowe p/82345671 `
 
+<img src="images/adddriver.png" >
+
 ### Deleting a driver: `deletedriver`
 
 Deletes a driver from the database, together with his/her information.
@@ -164,11 +166,15 @@ Format: `deletedriver INDEX`, where `INDEX` denotes the index of the drivers.
 Examples:
 * `deletedriver 1`
 
+<img src="images/deletedriver.png" >
+
 ### List all drivers: `listdriver all`
 
 Lists all drivers in the database.
 
 Format: `listdriver all`
+
+<img src="images/listdriverall.png" >
 
 ### List driver with specific status: `listdriver`
 
@@ -185,6 +191,8 @@ Action | Feature type
 Examples:
 * `listdriver free`
 
+<img src="images/listdriverfree.png" >
+
 ### Editing a driver: `editdriver`
 
 Edits a driver's information
@@ -198,6 +206,9 @@ Examples:
 * `editdish 1 n/Adam`
 * `editdish 2 p/99998888`
 * `editdish 2 s/absent`
+
+<img src="images/editdriver.png" >
+
 ## 2.3 Dish features
 
 ### Adding a dish: `adddish`
