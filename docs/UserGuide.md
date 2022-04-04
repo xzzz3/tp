@@ -174,7 +174,7 @@ Format: `listdriver all`
 
 Lists drivers having a specific status at that time.
 
-Format: `listdriver [STATUS]`
+Format: `listdriver STATUS`
 
 Action | Feature type
 --------|--------------  
@@ -339,10 +339,10 @@ Action | Feature type | Format, Examples
 **Add** | **Customer** |`addcustomer n/NAME a/ADDRESS p/PHONE` <br> e.g,`addcustomer n/James Ho a/123, Clementi Rd, 1234665 p/88884444`
 **Delete** | **Customer** |`deletecustomer INDEX` <br> e.g,`deletecustomer 1`
 **Edit** | **Customer** |`editcustomer INDEX [n/NAME] [a/ADDRESS] [p/PHONE]`<br> e.g,`editcustomer 1 n/James Ho a/123, Clementi Rd, 1234665 p/99994444`
-**Add** | **Driver**   |`adddriver n/NAME p/PHONE` <br> e.g,`add driver n/John Doe p/98765432`
-**Delete** | **Driver**   |`deletedriver n/NAME p/PHONE` <br> e.g,`delete driver n/John Doe p/98765432`
+**Add** | **Driver**   |`adddriver n/NAME p/PHONE` <br> e.g,`adddriver n/John Doe p/98765432`
+**Delete** | **Driver**   |`deletedriver INDEX` <br> e.g,`deletedriver 1`
 **List (all drivers)** | **Driver**   |`listdriver all`
-**List** | **Driver**   |`listdriver [STATUS]` <br> e.g `listdriver free`
+**List** | **Driver**   |`listdriver STATUS` <br> e.g `listdriver free`
 **Edit** | **Driver** |``editdriver INDEX [n/NAME] [p/PHONE] [s/STATUS]``<br> e.g,`editdriver 3 s/absent`
 **Add** | **Dish**     | `adddish n/NAME $/PRICE` <br> e.g., `adddish n/Crab Pasta $/15.50`
 **Delete** | **Dish**     | `deletedish INDEX` <br> e.g., `deletedish 1`
