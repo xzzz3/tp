@@ -4,10 +4,15 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
+import java.util.Random;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddDriverCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.customer.AddressCustomer;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.NameCustomer;
+import seedu.address.model.customer.PhoneCustomer;
 import seedu.address.model.driver.Driver;
 import seedu.address.model.driver.NameDriver;
 import seedu.address.model.driver.PhoneDriver;
@@ -16,6 +21,19 @@ import seedu.address.model.driver.PhoneDriver;
  * Parses input arguments and creates a new AddDriverCommandParser object
  */
 public class AddDriverCommandParser implements Parser<AddDriverCommand> {
+
+    protected String randomString() {
+        String nameChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        StringBuilder randomString = new StringBuilder();
+        Random random = new Random();
+        while (randomString.length() < 8) { // length of the random string.
+            int index = (int) (random.nextFloat() * nameChar.length());
+            randomString.append(nameChar.charAt(index));
+        }
+        String finalRandomString = randomString.toString();
+        return finalRandomString;
+
+    }
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddDriverCommand
@@ -33,9 +51,14 @@ public class AddDriverCommandParser implements Parser<AddDriverCommand> {
         NameDriver name = ParserUtil.parseNameDriver(argMultimap.getValue(PREFIX_NAME).get());
         PhoneDriver phone = ParserUtil.parsePhoneDriver(argMultimap.getValue(PREFIX_PHONE).get());
 
-        Driver driver = new Driver(name, phone);
+        NameCustomer nameCustomer = ParserUtil.parseNameCustomer(randomString());
+        PhoneCustomer phoneCustomer = ParserUtil.parsePhoneCustomer(argMultimap.getValue(PREFIX_PHONE).get());
+        AddressCustomer addressCustomer = ParserUtil.parseAddressCustomer(randomString());
 
-        return new AddDriverCommand(driver);
+        Driver driver = new Driver(name, phone);
+        Customer customer = new Customer(nameCustomer, phoneCustomer, addressCustomer);
+
+        return new AddDriverCommand(driver, customer);
     }
 
     /**

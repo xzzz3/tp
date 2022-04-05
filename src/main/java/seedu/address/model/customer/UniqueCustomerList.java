@@ -31,6 +31,7 @@ public class UniqueCustomerList implements Iterable<Customer> {
     private final ObservableList<Customer> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+
     /**
      * Returns true if the list contains an equivalent customer as the given argument.
      */

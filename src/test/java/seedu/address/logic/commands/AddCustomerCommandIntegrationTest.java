@@ -11,6 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.driver.Driver;
 import seedu.address.testutil.CustomerBuilder;
 
 /**
@@ -28,18 +29,21 @@ public class AddCustomerCommandIntegrationTest {
     @Test
     public void execute_newCustomer_success() {
         Customer validCustomer = new CustomerBuilder().build();
+        Driver dummmyDriver = null;
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addCustomer(validCustomer);
 
-        assertCommandSuccess(new AddCustomerCommand(validCustomer), model,
+        assertCommandSuccess(new AddCustomerCommand(validCustomer, dummmyDriver), model,
                 String.format(AddCustomerCommand.MESSAGE_SUCCESS, validCustomer), expectedModel);
     }
 
     @Test
     public void execute_duplicateCustomer_throwsCommandException() {
         Customer customerInList = model.getAddressBook().getCustomerList().get(0);
-        assertCommandFailure(new AddCustomerCommand(customerInList), model,
+        Driver dummmyDriver = null;
+
+        assertCommandFailure(new AddCustomerCommand(customerInList, dummmyDriver), model,
                 AddCustomerCommand.MESSAGE_DUPLICATE_CUSTOMER);
     }
 
