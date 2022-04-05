@@ -32,7 +32,12 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 ## 1. Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. 
+   1. The official Oracle version of Java `11` can be found [here](https://www.oracle.com/java/technologies/downloads/#java11). 
+   2. If the Oracle version is not compatible, or if the text in the GUI appears unreadable,
+   the Azul build of OpenJDK `11` can be an alternative, 
+   which can be found [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx) 
+   (scroll to the bottom of the page).
 
 2. Download the latest `foodonwheels.jar` from [here](https://github.com/AY2122S2-CS2103-F10-2/tp) (to be updated).
 
