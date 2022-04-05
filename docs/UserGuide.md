@@ -7,12 +7,19 @@ FoodOnWheels (FOW) is a **desktop app for managing delivery orders, optimized fo
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
-* Table of Contents
-  {:toc}
+## Table of Contents
+1. [Quick start](#1-quick-start)
+2. [Features](#2-features)  
+   2.1 [Customer features](#21-customer-features)  
+   2.2 [Driver features](#22-driver-features)  
+   2.3 [Dish features](#23-dish-features)  
+   2.4 [Other features](#24-order-features)
+3. [FAQ](#3-faq)
+4. [Command summary](#4-command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 1. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -67,11 +74,11 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 * **`listcustomer`** : Lists all the customers in the system.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#2-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 2. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -97,7 +104,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 </div>
 
-## Customer features
+## 2.1 Customer features
 
 ### Adding a customer: `addcustomer`
 
@@ -135,7 +142,7 @@ Lists all customers from the database.
 
 Format: `listcustomer`
 
-## Driver features
+## 2.2 Driver features
 
 ### Adding a driver: `adddriver`
 
@@ -147,6 +154,8 @@ Examples:
 * `adddriver n/John Doe p/98765432 `
 * `adddriver n/Betsy Crowe p/82345671 `
 
+<img src="images/adddriver.png" >
+
 ### Deleting a driver: `deletedriver`
 
 Deletes a driver from the database, together with his/her information.
@@ -157,17 +166,21 @@ Format: `deletedriver INDEX`, where `INDEX` denotes the index of the drivers.
 Examples:
 * `deletedriver 1`
 
+<img src="images/deletedriver.png" >
+
 ### List all drivers: `listdriver all`
 
 Lists all drivers in the database.
 
 Format: `listdriver all`
 
+<img src="images/listdriverall.png" >
+
 ### List driver with specific status: `listdriver`
 
 Lists drivers having a specific status at that time.
 
-Format: `listdriver [STATUS]`
+Format: `listdriver STATUS`
 
 Action | Feature type
 --------|--------------  
@@ -178,6 +191,8 @@ Action | Feature type
 Examples:
 * `listdriver free`
 
+<img src="images/listdriverfree.png" >
+
 ### Editing a driver: `editdriver`
 
 Edits a driver's information
@@ -185,13 +200,16 @@ Edits a driver's information
 Format: `editdriver INDEX [n/NAME] [p/PHONE] [s/STATUS]`, where `INDEX` denotes the index of the drivers.
 * Please use the index `INDEX` shown from the list retrieved from the command `listdriver all`
 * `STATUS` cannot be changed to `BUSY`.
-* `STATUS` only can be changed when the driver is `FREE`.
+* `STATUS` only can be changed when the driver is not `BUSY`.
 
 Examples:
 * `editdish 1 n/Adam`
 * `editdish 2 p/99998888`
 * `editdish 2 s/absent`
-## Dish features
+
+<img src="images/editdriver.png" >
+
+## 2.3 Dish features
 
 ### Adding a dish: `adddish`
 
@@ -224,7 +242,7 @@ Examples:
 * `editdish 2 $/10.00`
 * `editdish 2 n/Limchi Fried Rice $/10.00`
 
-## Order Features
+## 2.4 Order Features
 
 ### Adding a new Delivery Order: `addorder`
 
@@ -281,6 +299,8 @@ on the operating system. All orders in FoodOnWheels will be listed.
 Format: `revenue`
 
 (to be updated)
+
+## 2.4 Other features
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -315,14 +335,14 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 3. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FoodOnWheels home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 4. Command summary
 (to be updated)
 
 Action | Feature type | Format, Examples
@@ -330,10 +350,10 @@ Action | Feature type | Format, Examples
 **Add** | **Customer** |`addcustomer n/NAME a/ADDRESS p/PHONE` <br> e.g,`addcustomer n/James Ho a/123, Clementi Rd, 1234665 p/88884444`
 **Delete** | **Customer** |`deletecustomer INDEX` <br> e.g,`deletecustomer 1`
 **Edit** | **Customer** |`editcustomer INDEX [n/NAME] [a/ADDRESS] [p/PHONE]`<br> e.g,`editcustomer 1 n/James Ho a/123, Clementi Rd, 1234665 p/99994444`
-**Add** | **Driver**   |`adddriver n/NAME p/PHONE` <br> e.g,`add driver n/John Doe p/98765432`
-**Delete** | **Driver**   |`deletedriver n/NAME p/PHONE` <br> e.g,`delete driver n/John Doe p/98765432`
+**Add** | **Driver**   |`adddriver n/NAME p/PHONE` <br> e.g,`adddriver n/John Doe p/98765432`
+**Delete** | **Driver**   |`deletedriver INDEX` <br> e.g,`deletedriver 1`
 **List (all drivers)** | **Driver**   |`listdriver all`
-**List** | **Driver**   |`listdriver [STATUS]` <br> e.g `listdriver free`
+**List** | **Driver**   |`listdriver STATUS` <br> e.g `listdriver free`
 **Edit** | **Driver** |``editdriver INDEX [n/NAME] [p/PHONE] [s/STATUS]``<br> e.g,`editdriver 3 s/absent`
 **Add** | **Dish**     | `adddish n/NAME $/PRICE` <br> e.g., `adddish n/Crab Pasta $/15.50`
 **Delete** | **Dish**     | `deletedish INDEX` <br> e.g., `deletedish 1`
