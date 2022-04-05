@@ -228,8 +228,8 @@ Adds a dish to the restaurant’s menu. Dishes of the same name cannot be added.
 Format: `adddish n/NAME $/PRICE`
 
 Examples:
-* `add dish n/Crab Pasta $/15.50`
-* `add dish n/Kimchi Fried Rice $/10.00`
+* `adddish n/Crab Pasta $/15.50`
+* `adddish n/Kimchi Fried Rice $/10.00`
 
 Sample screenshot:
 
