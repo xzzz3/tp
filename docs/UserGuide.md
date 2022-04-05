@@ -3,7 +3,18 @@ layout: page
 title: User Guide
 ---
 
-FoodOnWheels (FOW) is a **desktop app for managing delivery orders, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FOW can get your order management tasks done faster than traditional GUI apps.
+FoodOnWheels (FOW) is a **desktop app for managing delivery orders, 
+optimized for use via a Command Line Interface** (CLI) while still having the benefits 
+of a Graphical User Interface (GUI). 
+If you can type fast, FOW can get your order management tasks done faster 
+than traditional GUI apps.
+
+The main idea of FOW is to allow for easier management of a single restaurant's delivery status.
+FOW stores the information of customers, drivers, dishes and all previous and current orders, with
+the provided ability for restaurants to make edits and deletions where necessary.
+
+A secondary function of FOW would be for revenue tracking, where the current day's revenue can be
+generated with a simple command.
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
@@ -21,20 +32,35 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 ## 1. Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. 
+   1. The official Oracle version of Java `11` can be found [here](https://www.oracle.com/java/technologies/downloads/#java11). 
+   2. If the Oracle version is not compatible, or if the text in the GUI appears unreadable,
+   the Azul build of OpenJDK `11` can be an alternative, 
+   which can be found [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx) 
+   (scroll to the bottom of the page).
 
 2. Download the latest `foodonwheels.jar` from [here](https://github.com/AY2122S2-CS2103-F10-2/tp) (to be updated).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your FoodOnWheels.
+3. Copy the file to the folder you want to use as the _home folder_ for your FoodOnWheels. 
+Ensure that the folder has permissions for the app to create files (i.e. do not use a write-protected
+folder). 
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   (to be updated)
+   1. If double-clicking the file does not work, use the command `java -jar foodonwheels.jar` from the
+   folder containing `foodonwheels.jar`.
 
-   <img src="images/FoodOnWheels.png" width=65% height=65%>
+(to be updated)
+   
+<img src="images/FoodOnWheels.png" width=65% height=65%>
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. The UI shows four different tabs: `Customers`, `Orders`, `Drivers` and `Dishes`.
+   1. To switch between the tabs, enter any command relating to the tab (i.e. an `adddish` 
+   command changes the tab to `Dishes`, likewise for others). The available and 
+   detailed usage of each command can be found in [Features](#2-features).
+   
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
-6. Some data has been added for you to try the app. Please use command `clear` to use your own data.
+7. Some data has been added for you to try the app. Please use command `clear` to use your own data.
 ### Some example commands you can try:
 
 ### Commands relating to `Dish`
@@ -154,6 +180,8 @@ Examples:
 * `adddriver n/John Doe p/98765432 `
 * `adddriver n/Betsy Crowe p/82345671 `
 
+Sample screenshot:
+
 <img src="images/adddriver.png" >
 
 ### Deleting a driver: `deletedriver`
@@ -166,6 +194,8 @@ Format: `deletedriver INDEX`, where `INDEX` denotes the index of the drivers.
 Examples:
 * `deletedriver 1`
 
+Sample screenshot:
+
 <img src="images/deletedriver.png" >
 
 ### List all drivers: `listdriver all`
@@ -173,6 +203,8 @@ Examples:
 Lists all drivers in the database.
 
 Format: `listdriver all`
+
+Sample screenshot:
 
 <img src="images/listdriverall.png" >
 
@@ -191,6 +223,8 @@ Action | Feature type
 Examples:
 * `listdriver free`
 
+Sample screenshot:
+
 <img src="images/listdriverfree.png" >
 
 ### Editing a driver: `editdriver`
@@ -207,6 +241,8 @@ Examples:
 * `editdish 2 p/99998888`
 * `editdish 2 s/absent`
 
+Sample screenshot:
+
 <img src="images/editdriver.png" >
 
 ## 2.3 Dish features
@@ -218,8 +254,12 @@ Adds a dish to the restaurant’s menu. Dishes of the same name cannot be added.
 Format: `adddish n/NAME $/PRICE`
 
 Examples:
-* `add dish n/Crab Pasta $/15.50`
-* `add dish n/Kimchi Fried Rice $/10.00`
+* `adddish n/Crab Pasta $/15.50`
+* `adddish n/Kimchi Fried Rice $/10.00`
+
+Sample screenshot:
+
+<img src="images/adddish.png">
 
 ### Deleting a dish: `deletedish`
 
@@ -231,6 +271,10 @@ Examples:
 * `deletedish 1`
 * `deletedish 2`
 
+Sample screenshot:
+
+<img src="images/deletedish.png">
+
 ### Editing a dish: `editdish`
 
 Edits a dish from the restaurant’s menu.
@@ -241,6 +285,10 @@ Examples:
 * `editdish 1 n/Limchi Fried Rice`
 * `editdish 2 $/10.00`
 * `editdish 2 n/Limchi Fried Rice $/10.00`
+
+Sample screenshot:
+
+<img src="images/editdish.png">
 
 ## 2.4 Order Features
 
@@ -291,6 +339,22 @@ Lists the orders in the system based on the keyword entered.
 Format: `listorder KEYWORD`. KEYWORD is one of 'all', 'in_progress'
 OR 'in progress', 'delivered', 'cancelled' (not case-sensitive)
 
+Sample screenshot `listorder all`:
+
+<img src="images/listorderall.png">
+
+Sample screenshot `listorder in progress` OR `listorder in_progress`:
+
+<img src="images/listorderinprogress.png">
+
+Sample screenshot `listorder delivered`:
+
+<img src="images/listorderdelivered.png">
+
+Sample screenshot `listorder cancelled`:
+
+<img src="images/listordercancelled.png">
+
 ### Revenue for the day: `revenue`
 
 Obtains revenue generated in the current day based on the date
@@ -298,7 +362,9 @@ on the operating system. All orders in FoodOnWheels will be listed.
 
 Format: `revenue`
 
-(to be updated)
+Sample screenshot:
+
+<img src="images/revenue.png">
 
 ## 2.4 Other features
 ### Viewing help : `help`
