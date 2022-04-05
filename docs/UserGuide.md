@@ -142,6 +142,10 @@ Examples:
 * `addcustomer n/John Doe  p/98765432 a/John street, block 123, #01-01`
 * `addcustomer n/Betsy Crowe p/82943423 a/Newgate Prison `
 
+Sample screenshot:
+
+<img src="images/addcustomer.png">
+
 ### Deleting a customer: `deletecustomer`
 
 Deletes a customer from the database.
@@ -150,6 +154,10 @@ Format: `deletecustomer INDEX`
 
 Examples:
 * `deletecustomer 1`
+
+Sample screenshot:
+
+<img src="images/deletecustomer.png">
 
 ### Editing a customer: `editcustomer`
 
@@ -162,11 +170,19 @@ Examples:
 * `editcustomer 3 p/81234567 a/Sentosa Cove`
 * `editcustomer 2 n/John Doe p/81234567`
 
-### Editing a customer: `editcustomer`
+Sample screenshot:
+
+<img src="images/editcustomer.png">
+
+### List a customer: `listcustomer`
 
 Lists all customers from the database.
 
 Format: `listcustomer`
+
+Sample screenshot:
+
+<img src="images/listcustomer.png">
 
 ## 2.2 Driver features
 
