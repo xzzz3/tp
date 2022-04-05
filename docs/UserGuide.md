@@ -154,6 +154,8 @@ Examples:
 * `adddriver n/John Doe p/98765432 `
 * `adddriver n/Betsy Crowe p/82345671 `
 
+Sample screenshot:
+
 <img src="images/adddriver.png" >
 
 ### Deleting a driver: `deletedriver`
@@ -166,6 +168,8 @@ Format: `deletedriver INDEX`, where `INDEX` denotes the index of the drivers.
 Examples:
 * `deletedriver 1`
 
+Sample screenshot:
+
 <img src="images/deletedriver.png" >
 
 ### List all drivers: `listdriver all`
@@ -173,6 +177,8 @@ Examples:
 Lists all drivers in the database.
 
 Format: `listdriver all`
+
+Sample screenshot:
 
 <img src="images/listdriverall.png" >
 
@@ -191,6 +197,8 @@ Action | Feature type
 Examples:
 * `listdriver free`
 
+Sample screenshot:
+
 <img src="images/listdriverfree.png" >
 
 ### Editing a driver: `editdriver`
@@ -207,6 +215,8 @@ Examples:
 * `editdish 2 p/99998888`
 * `editdish 2 s/absent`
 
+Sample screenshot:
+
 <img src="images/editdriver.png" >
 
 ## 2.3 Dish features
@@ -221,6 +231,10 @@ Examples:
 * `add dish n/Crab Pasta $/15.50`
 * `add dish n/Kimchi Fried Rice $/10.00`
 
+Sample screenshot:
+
+<img src="images/adddish.png">
+
 ### Deleting a dish: `deletedish`
 
 Deletes a dish from the restaurant’s menu.
@@ -230,6 +244,10 @@ Format: `deletedish INDEX`, where `INDEX` denotes the index of the dish shown on
 Examples:
 * `deletedish 1`
 * `deletedish 2`
+
+Sample screenshot:
+
+<img src="images/deletedish.png">
 
 ### Editing a dish: `editdish`
 
@@ -241,6 +259,10 @@ Examples:
 * `editdish 1 n/Limchi Fried Rice`
 * `editdish 2 $/10.00`
 * `editdish 2 n/Limchi Fried Rice $/10.00`
+
+Sample screenshot:
+
+<img src="images/editdish.png">
 
 ## 2.4 Order Features
 
@@ -291,6 +313,22 @@ Lists the orders in the system based on the keyword entered.
 Format: `listorder KEYWORD`. KEYWORD is one of 'all', 'in_progress'
 OR 'in progress', 'delivered', 'cancelled' (not case-sensitive)
 
+Sample screenshot `listorder all`:
+
+<img src="images/listorderall.png">
+
+Sample screenshot `listorder in progress` OR `listorder in_progress`:
+
+<img src="images/listorderinprogress.png">
+
+Sample screenshot `listorder delivered`:
+
+<img src="images/listorderdelivered.png">
+
+Sample screenshot `listorder cancelled`:
+
+<img src="images/listordercancelled.png">
+
 ### Revenue for the day: `revenue`
 
 Obtains revenue generated in the current day based on the date
@@ -298,7 +336,9 @@ on the operating system. All orders in FoodOnWheels will be listed.
 
 Format: `revenue`
 
-(to be updated)
+Sample screenshot:
+
+<img src="images/revenue.png">
 
 ## 2.4 Other features
 ### Viewing help : `help`
