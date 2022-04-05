@@ -1,14 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -34,18 +32,6 @@ public class AddCustomerCommandTest {
         assertThrows(NullPointerException.class, () -> new AddCustomerCommand(null, null));
     }
 
-    @Test
-    public void execute_customerAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingCustomerAdded modelStub = new ModelStubAcceptingCustomerAdded();
-        Customer validCustomer = new CustomerBuilder().build();
-        Driver dummmyDriver = null;
-
-        CommandResult commandResult = new AddCustomerCommand(validCustomer, dummmyDriver).execute(modelStub);
-
-        assertEquals(String.format(AddCustomerCommand.MESSAGE_SUCCESS, validCustomer),
-                commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validCustomer), modelStub.customersAdded);
-    }
 
     @Test
     public void execute_duplicateCustomer_throwsCommandException() {

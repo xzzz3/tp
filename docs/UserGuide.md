@@ -144,7 +144,7 @@ Examples:
 
 Sample screenshot:
 
-<img src="images/addcustomer.png">
+<img src="images/acustomer.png">
 
 ### Deleting a customer: `deletecustomer`
 
