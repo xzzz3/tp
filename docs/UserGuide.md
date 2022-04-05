@@ -3,7 +3,18 @@ layout: page
 title: User Guide
 ---
 
-FoodOnWheels (FOW) is a **desktop app for managing delivery orders, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FOW can get your order management tasks done faster than traditional GUI apps.
+FoodOnWheels (FOW) is a **desktop app for managing delivery orders, 
+optimized for use via a Command Line Interface** (CLI) while still having the benefits 
+of a Graphical User Interface (GUI). 
+If you can type fast, FOW can get your order management tasks done faster 
+than traditional GUI apps.
+
+The main idea of FOW is to allow for easier management of a single restaurant's delivery status.
+FOW stores the information of customers, drivers, dishes and all previous and current orders, with
+the provided ability for restaurants to make edits and deletions where necessary.
+
+A secondary function of FOW would be for revenue tracking, where the current day's revenue can be
+generated with a simple command.
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
