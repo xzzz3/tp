@@ -53,9 +53,14 @@ folder).
    
 <img src="images/FoodOnWheels.png" width=65% height=65%>
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. The UI shows four different tabs: `Customers`, `Orders`, `Drivers` and `Dishes`.
+   1. To switch between the tabs, enter any command relating to the tab (i.e. an `adddish` 
+   command changes the tab to `Dishes`, likewise for others). The available and 
+   detailed usage of each command can be found in [Features](#2-features).
+   
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
-6. Some data has been added for you to try the app. Please use command `clear` to use your own data.
+7. Some data has been added for you to try the app. Please use command `clear` to use your own data.
 ### Some example commands you can try:
 
 ### Commands relating to `Dish`
