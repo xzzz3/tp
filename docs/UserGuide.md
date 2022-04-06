@@ -114,10 +114,10 @@ folder).
   e.g. in `adddish n/NAME $/PRICE`, `name` and `price` are parameters which can be used as `adddish n/Crab Pasta $/15.50`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `INDEX [n/NAME] [p/PHONE]` can be used as `1 n/John Doe` or as `1 n/John Doe p/81234567`.
 
 * Items with `…`​ after them can have multiple inputs.<br>
-  e.g. `t/friend`, `t/friend, family` etc.
+  e.g. `d/Sushi`, `d/Sushi, Kimchi Fried Rice` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
@@ -136,37 +136,53 @@ folder).
 
 Adds a customer to the database.
 
-Format: `addcustomer n/{name} a/{address} p/{phone}`
+Format: `addcustomer n/NAME p/PHONE a/ADDRESS `
 
 Examples:
-* `addcustomer n/John Doe a/John street, block 123, #01-01 p/98765432`
-* `addcustomer n/Betsy Crowe a/Newgate Prison p/82943423`
+* `addcustomer n/John Doe  p/98765432 a/John street, block 123, #01-01`
+* `addcustomer n/Betsy Crowe p/82943423 a/Newgate Prison `
+
+Sample screenshot:
+
+<img src="images/acustomer.png">
 
 ### Deleting a customer: `deletecustomer`
 
 Deletes a customer from the database.
 
-Format: `deletecustomer {index}`
+Format: `deletecustomer INDEX`
 
 Examples:
 * `deletecustomer 1`
+
+Sample screenshot:
+
+<img src="images/deletecustomer.png">
 
 ### Editing a customer: `editcustomer`
 
 Edits a customer from the database.
 
-Format: `editcustomer {index} n/{name} p/{phone} a/{address}`
+Format: `editcustomer INDEX [n/NAME] [p/PHONE] [a/ADDRESS]`
 
 Examples:
 * `editcustomer 1 n/John Doe a/Sentosa Cove`
 * `editcustomer 3 p/81234567 a/Sentosa Cove`
 * `editcustomer 2 n/John Doe p/81234567`
 
-### Editing a customer: `editcustomer`
+Sample screenshot:
+
+<img src="images/editcustomer.png">
+
+### List a customer: `listcustomer`
 
 Lists all customers from the database.
 
 Format: `listcustomer`
+
+Sample screenshot:
+
+<img src="images/listcustomer.png">
 
 ## 2.2 Driver features
 
@@ -237,9 +253,9 @@ Format: `editdriver INDEX [n/NAME] [p/PHONE] [s/STATUS]`, where `INDEX` denotes 
 * `STATUS` only can be changed when the driver is not `BUSY`.
 
 Examples:
-* `editdish 1 n/Adam`
-* `editdish 2 p/99998888`
-* `editdish 2 s/absent`
+* `editdriver 1 n/Adam`
+* `editdriver 2 p/99998888`
+* `editdriver 2 s/absent`
 
 Sample screenshot:
 
@@ -282,7 +298,7 @@ Edits a dish from the restaurant’s menu.
 Format: `editdish INDEX [n/NAME] [$/PRICE]`, where `INDEX` denotes the index of the dish shown on FoodOnWheels
 
 Examples:
-* `editdish 1 n/Limchi Fried Rice`
+* `editdish 1 n/Kimchi Fried Rice`
 * `editdish 2 $/10.00`
 * `editdish 2 n/Limchi Fried Rice $/10.00`
 
