@@ -48,7 +48,7 @@ public class NameDriver {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof NameDriver // instanceof handles nulls
-                && fullName.equals(((NameDriver) other).fullName)); // state check
+                && fullName.toLowerCase().equals(((NameDriver) other).fullName.toLowerCase())); // state check
     }
 
     @Override

@@ -28,7 +28,7 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PHONE = "81234567";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
@@ -58,71 +58,71 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseNameCustomer(null));
     }
 
     @Test
     public void parseName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME));
+        assertThrows(ParseException.class, () -> ParserUtil.parseNameCustomer(INVALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
         NameCustomer expectedNameCustomer = new NameCustomer(VALID_NAME);
-        assertEquals(expectedNameCustomer, ParserUtil.parseName(VALID_NAME));
+        assertEquals(expectedNameCustomer, ParserUtil.parseNameCustomer(VALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
         NameCustomer expectedNameCustomer = new NameCustomer(VALID_NAME);
-        assertEquals(expectedNameCustomer, ParserUtil.parseName(nameWithWhitespace));
+        assertEquals(expectedNameCustomer, ParserUtil.parseNameCustomer(nameWithWhitespace));
     }
 
     @Test
     public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhoneCustomer(null));
     }
 
     @Test
     public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
+        assertThrows(ParseException.class, () -> ParserUtil.parsePhoneCustomer(INVALID_PHONE));
     }
 
     @Test
     public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
         PhoneCustomer expectedPhoneCustomer = new PhoneCustomer(VALID_PHONE);
-        assertEquals(expectedPhoneCustomer, ParserUtil.parsePhone(VALID_PHONE));
+        assertEquals(expectedPhoneCustomer, ParserUtil.parsePhoneCustomer(VALID_PHONE));
     }
 
     @Test
     public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
         PhoneCustomer expectedPhoneCustomer = new PhoneCustomer(VALID_PHONE);
-        assertEquals(expectedPhoneCustomer, ParserUtil.parsePhone(phoneWithWhitespace));
+        assertEquals(expectedPhoneCustomer, ParserUtil.parsePhoneCustomer(phoneWithWhitespace));
     }
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddressCustomer(null));
     }
 
     @Test
     public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+        assertThrows(ParseException.class, () -> ParserUtil.parseAddressCustomer(INVALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
         AddressCustomer expectedAddressCustomer = new AddressCustomer(VALID_ADDRESS);
-        assertEquals(expectedAddressCustomer, ParserUtil.parseAddress(VALID_ADDRESS));
+        assertEquals(expectedAddressCustomer, ParserUtil.parseAddressCustomer(VALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
         AddressCustomer expectedAddressCustomer = new AddressCustomer(VALID_ADDRESS);
-        assertEquals(expectedAddressCustomer, ParserUtil.parseAddress(addressWithWhitespace));
+        assertEquals(expectedAddressCustomer, ParserUtil.parseAddressCustomer(addressWithWhitespace));
     }
 
     @Test

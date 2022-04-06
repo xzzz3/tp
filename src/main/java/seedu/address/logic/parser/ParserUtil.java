@@ -48,7 +48,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static NameCustomer parseName(String name) throws ParseException {
+    public static NameCustomer parseNameCustomer(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!NameCustomer.isValidName(trimmedName)) {
@@ -94,7 +94,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static PhoneCustomer parsePhone(String phone) throws ParseException {
+    public static PhoneCustomer parsePhoneCustomer(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
         if (!PhoneCustomer.isValidPhone(trimmedPhone)) {
@@ -142,7 +142,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static AddressCustomer parseAddress(String address) throws ParseException {
+    public static AddressCustomer parseAddressCustomer(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
         if (!AddressCustomer.isValidAddress(trimmedAddress)) {

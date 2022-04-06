@@ -11,8 +11,10 @@ public class PhoneDriver {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Driver phone number should only contain numbers, and it should be only 8 digits long and start"
+                    + " with 8 or 9";
+
+    public static final String VALIDATION_REGEX = "[8-9][0-9]{7}";
     public final String value;
 
     /**
