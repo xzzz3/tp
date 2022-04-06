@@ -24,7 +24,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
    2.1 [Customer features](#21-customer-features)  
    2.2 [Driver features](#22-driver-features)  
    2.3 [Dish features](#23-dish-features)  
-   2.4 [Other features](#24-order-features)
+   2.4 [Order features](#24-order-features)
 3. [FAQ](#3-faq)
 4. [Command summary](#4-command-summary)
 
@@ -70,16 +70,6 @@ folder).
 
 * **`listdish`** : Lists all existing dishes on restaurant's menu.
 
-### Commands relating to `Order`
-
-* **`addorder`**`p/98765432 d/Sushi, Pasta` : Adds an order of `Sushi, Pasta` for customer with phone number `98765432`.
-
-* **`mark`**`1 s/delivered` : Edits the status of the order at index `1` to `delivered`.
-
-* **`listorder all`** : Lists all the current orders in the system.
-
-* **`listorder in progress`** : Lists all the in-progress orders in the system.
-
 ### Commands relating to `Driver`
 * **`adddriver`**`n/Joe p/98765432` : Adds a new driver with name `Joe` and phone number `98765432`.
 
@@ -100,7 +90,21 @@ folder).
 
 * **`listcustomer`** : Lists all the customers in the system.
 
-1. Refer to the [Features](#2-features) below for details of each command.
+### Commands relating to `Order` 
+
+* *These commands can only be done after the above commands for Dish, Driver and Customer have been performed.
+This is due to preconditions required for Order, which are explained in the [Order features](#24-order-features) section.*
+
+* **`addorder`**`p/98765432 d/Crab Pasta` : Adds an order of `Crab Pasta` for customer with phone number `98765432`.
+
+* **`mark`**`1 s/delivered` : Edits the status of the order at index `1` to `delivered`.
+
+* **`listorder all`** : Lists all the current orders in the system.
+
+* **`listorder in progress`** : Lists all the in-progress orders in the system.
+
+
+Refer to the [Features](#2-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -380,7 +384,7 @@ Sample screenshot:
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images/helpMessageFOW.png)
 
 Format: `help`
 
