@@ -39,7 +39,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
    which can be found [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx) 
    (scroll to the bottom of the page).
 
-2. Download the latest `foodonwheels.jar` from [here](https://github.com/AY2122S2-CS2103-F10-2/tp) (to be updated).
+2. Download the latest `foodonwheels.jar` from [here](https://github.com/AY2122S2-CS2103-F10-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your FoodOnWheels. 
 Ensure that the folder has permissions for the app to create files (i.e. do not use a write-protected
@@ -48,8 +48,6 @@ folder).
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    1. If double-clicking the file does not work, use the command `java -jar foodonwheels.jar` from the
    folder containing `foodonwheels.jar`.
-
-(to be updated)
    
 <img src="images/FoodOnWheels.png" width=65% height=65%>
 
