@@ -41,7 +41,7 @@ public class Customer {
     }
 
     /**
-     * Returns true if both customers have the same nameCustomer.
+     * Returns true if both customers have the same nameCustomer or phoneCustomer.
      * This defines a weaker notion of equality between two customers.
      */
     public boolean isSameCustomer(Customer otherCustomer) {
@@ -55,6 +55,21 @@ public class Customer {
                 || otherCustomer.getPhone()
                 .equals(getPhone()));
     }
+
+    /**
+     * Returns true if both customers have the same nameCustomer and phoneCustomer.
+     * This defines a notion of equality or duplication between two customers.
+     */
+    public boolean isExactlySameCustomer(Customer otherCustomer) {
+        if (otherCustomer == this) {
+            return true;
+        }
+
+        return otherCustomer != null
+                && (otherCustomer.getName().equals(getName())
+                && otherCustomer.getPhone().equals(getPhone()));
+    }
+
 
     /**
      * Returns true if both customers have the same identity and data fields.

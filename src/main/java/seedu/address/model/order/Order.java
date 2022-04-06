@@ -130,7 +130,7 @@ public class Order {
                 .append("; Status: ")
                 .append(getStatus())
                 .append("; Time: ")
-                .append(getTime());
+                .append(getTime().toString().replace("T", " ").split("\\.")[0]);
 
         ArrayList<Dish> dishes = getDishes();
         builder.append("; Dishes: ");

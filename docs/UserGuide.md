@@ -24,7 +24,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
    2.1 [Customer features](#21-customer-features)  
    2.2 [Driver features](#22-driver-features)  
    2.3 [Dish features](#23-dish-features)  
-   2.4 [Other features](#24-order-features)
+   2.4 [Order features](#24-order-features)
 3. [FAQ](#3-faq)
 4. [Command summary](#4-command-summary)
 
@@ -39,7 +39,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
    which can be found [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx) 
    (scroll to the bottom of the page).
 
-2. Download the latest `foodonwheels.jar` from [here](https://github.com/AY2122S2-CS2103-F10-2/tp) (to be updated).
+2. Download the latest `foodonwheels.jar` from [here](https://github.com/AY2122S2-CS2103-F10-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your FoodOnWheels. 
 Ensure that the folder has permissions for the app to create files (i.e. do not use a write-protected
@@ -48,8 +48,6 @@ folder).
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    1. If double-clicking the file does not work, use the command `java -jar foodonwheels.jar` from the
    folder containing `foodonwheels.jar`.
-
-(to be updated)
    
 <img src="images/FoodOnWheels.png" width=65% height=65%>
 
@@ -69,16 +67,6 @@ folder).
 * **`deletedish`**`1` : Deletes a dish named with index 1 displayed on filtered dish list.
 
 * **`listdish`** : Lists all existing dishes on restaurant's menu.
-
-### Commands relating to `Order`
-
-* **`addorder`**`p/98765432 d/Sushi, Pasta` : Adds an order of `Sushi, Pasta` for customer with phone number `98765432`.
-
-* **`mark`**`1 s/delivered` : Edits the status of the order at index `1` to `delivered`.
-
-* **`listorder all`** : Lists all the current orders in the system.
-
-* **`listorder in progress`** : Lists all the in-progress orders in the system.
 
 ### Commands relating to `Driver`
 * **`adddriver`**`n/Joe p/98765432` : Adds a new driver with name `Joe` and phone number `98765432`.
@@ -100,7 +88,21 @@ folder).
 
 * **`listcustomer`** : Lists all the customers in the system.
 
-1. Refer to the [Features](#2-features) below for details of each command.
+### Commands relating to `Order` 
+
+* *These commands can only be done after the above commands for Dish, Driver and Customer have been performed.
+This is due to preconditions required for Order, which are explained in the [Order features](#24-order-features) section.*
+
+* **`addorder`**`p/98765432 d/Crab Pasta` : Adds an order of `Crab Pasta` for customer with phone number `98765432`.
+
+* **`mark`**`1 s/delivered` : Edits the status of the order at index `1` to `delivered`.
+
+* **`listorder all`** : Lists all the current orders in the system.
+
+* **`listorder in progress`** : Lists all the in-progress orders in the system.
+
+
+Refer to the [Features](#2-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -310,7 +312,12 @@ Sample screenshot:
 
 ### Adding a new Delivery Order: `addorder`
 
-Adds a new delivery order to the list of orders.
+Adds a new delivery order to the list of orders. 
+
+Pre-condition: 
+1. The phone number provided belongs to an existing customer
+2. The dishes provided exist in the current dish list
+3. There exists at least one free driver.
 
 Format: `addorder p/PHONE d/DISHES_SEPARATED_BY_COMMA...`
 
@@ -323,6 +330,9 @@ Examples:
 
 Edit the status of a delivery order in the list using its index.
 
+When attempting to edit a delivered Order back to being in progress, the original driver must be available.
+Else, please create a new Order so that a new driver can be assigned.
+
 Format: `mark INDEX s/STATUS`
 
 Examples:
@@ -332,6 +342,7 @@ Examples:
 ### Edit the details of a Delivery Order: `editorder`
 
 Edit the customer and dishes details of a delivery order in the list using its index.
+The same pre-conditions of AddOrder applies to this command as well.
 
 Format: `editorder INDEX [p/PHONE] [d/DISHES_SEPARATED_BY_COMMA...]`
 
@@ -387,7 +398,7 @@ Sample screenshot:
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images/helpMessageFOW.png)
 
 Format: `help`
 
