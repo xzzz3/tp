@@ -294,7 +294,12 @@ Sample screenshot:
 
 ### Adding a new Delivery Order: `addorder`
 
-Adds a new delivery order to the list of orders.
+Adds a new delivery order to the list of orders. 
+
+Pre-condition: 
+1. The phone number provided belongs to an existing customer
+2. The dishes provided exist in the current dish list
+3. There exists at least one free driver.
 
 Format: `addorder p/PHONE d/DISHES_SEPARATED_BY_COMMA...`
 
@@ -307,6 +312,9 @@ Examples:
 
 Edit the status of a delivery order in the list using its index.
 
+When attempting to edit a delivered Order back to being in progress, the original driver must be available.
+Else, please create a new Order so that a new driver can be assigned.
+
 Format: `mark INDEX s/STATUS`
 
 Examples:
@@ -316,6 +324,7 @@ Examples:
 ### Edit the details of a Delivery Order: `editorder`
 
 Edit the customer and dishes details of a delivery order in the list using its index.
+The same pre-conditions of AddOrder applies to this command as well.
 
 Format: `editorder INDEX [p/PHONE] [d/DISHES_SEPARATED_BY_COMMA...]`
 
