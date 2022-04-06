@@ -86,9 +86,10 @@ public class EditCustomerCommandTest {
         showCustomerAtIndex(model, INDEX_FIRST_CUSTOMER);
 
         Customer customerInFilteredList = model.getFilteredCustomerList().get(INDEX_FIRST_CUSTOMER.getZeroBased());
-        Customer editedCustomer = new CustomerBuilder(customerInFilteredList).withName(VALID_NAME_BOB).build();
+        Customer editedCustomer = new CustomerBuilder(customerInFilteredList).withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).build();
         EditCustomerCommand editCustomerCommand = new EditCustomerCommand(INDEX_FIRST_CUSTOMER,
-                new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).build());
 
         String expectedMessage = String.format(EditCustomerCommand.MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer);
 
