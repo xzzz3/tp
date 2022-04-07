@@ -17,8 +17,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalCustomers.AMY;
-import static seedu.address.testutil.TypicalCustomers.BOB;
+import static seedu.address.testutil.TypicalAddressBook.AMY;
+import static seedu.address.testutil.TypicalAddressBook.BOB;
 
 import org.junit.jupiter.api.Test;
 

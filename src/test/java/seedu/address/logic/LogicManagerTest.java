@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalCustomers.AMY;
+import static seedu.address.testutil.TypicalAddressBook.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -90,6 +90,11 @@ public class LogicManagerTest {
     @Test
     public void getFilteredCustomerList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredCustomerList().remove(0));
+    }
+
+    @Test
+    public void getFilteredDishList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredDishList().remove(0));
     }
 
     /**
