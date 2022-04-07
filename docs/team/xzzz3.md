@@ -10,7 +10,7 @@ FoodOnWheels is a desktop application used to delivery orders for a restaurant b
 Given below are my contributions to the project.
 
 * **New Feature**:
-  * Order-realted Model and interactions with other models
+  * Order-related Model and interactions with other models
   * AddOrder command, EditOrderStatus command, EditOrder command and more
   * GUI for Order and FOW app
 
