@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.driver.Driver;
 
 /**
  * Adds a customer to the address book.
@@ -27,16 +28,22 @@ public class AddCustomerCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 ";
 
     public static final String MESSAGE_SUCCESS = "New customer added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in the database. "
+            + "Duplicated name or phone number.";
+
+    public static final String MESSAGE_DUPLICATE_DRIVER = "A driver with the same phone number "
+            + "already exists.";
 
     private final Customer toAdd;
+    private final Driver toAddDriver;
 
     /**
      * Creates an AddCustomerCommand to add the specified {@code Customer}
      */
-    public AddCustomerCommand(Customer customer) {
+    public AddCustomerCommand(Customer customer, Driver driver) {
         requireNonNull(customer);
         toAdd = customer;
+        toAddDriver = driver;
     }
 
     @Override
@@ -45,6 +52,10 @@ public class AddCustomerCommand extends Command {
 
         if (model.hasCustomer(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CUSTOMER);
+        }
+
+        if (model.hasDriver(toAddDriver)) {
+            throw new CommandException(MESSAGE_DUPLICATE_DRIVER);
         }
 
         model.addCustomer(toAdd);

@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+
 /**
  * Represents a Customer in the addressCustomer book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -49,8 +50,10 @@ public class Customer {
         }
 
         return otherCustomer != null
-                && (otherCustomer.getName().equals(getName())
-                || otherCustomer.getPhone().equals(getPhone()));
+                && (otherCustomer.getName().toString()
+                .equalsIgnoreCase(getName().toString())
+                || otherCustomer.getPhone()
+                .equals(getPhone()));
     }
 
     /**
@@ -83,9 +86,11 @@ public class Customer {
         }
 
         Customer otherCustomer = (Customer) other;
-        return otherCustomer.getName().equals(getName())
+        return otherCustomer.getName().toString()
+                .equalsIgnoreCase(getName().toString())
                 && otherCustomer.getPhone().equals(getPhone())
-                && otherCustomer.getAddress().equals(getAddress());
+                && otherCustomer.getAddress().toString()
+                .equalsIgnoreCase(getAddress().toString());
     }
 
     @Override
@@ -98,9 +103,9 @@ public class Customer {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; PhoneCustomer: ")
+                .append("; Phone: ")
                 .append(getPhone())
-                .append("; AddressCustomer: ")
+                .append("; Address: ")
                 .append(getAddress());
 
         return builder.toString();

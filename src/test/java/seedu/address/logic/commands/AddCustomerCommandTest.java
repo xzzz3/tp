@@ -1,14 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -31,25 +29,16 @@ public class AddCustomerCommandTest {
 
     @Test
     public void constructor_nullCustomer_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCustomerCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddCustomerCommand(null, null));
     }
 
-    @Test
-    public void execute_customerAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingCustomerAdded modelStub = new ModelStubAcceptingCustomerAdded();
-        Customer validCustomer = new CustomerBuilder().build();
-
-        CommandResult commandResult = new AddCustomerCommand(validCustomer).execute(modelStub);
-
-        assertEquals(String.format(AddCustomerCommand.MESSAGE_SUCCESS, validCustomer),
-                commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validCustomer), modelStub.customersAdded);
-    }
 
     @Test
     public void execute_duplicateCustomer_throwsCommandException() {
         Customer validCustomer = new CustomerBuilder().build();
-        AddCustomerCommand addCustomerCommand = new AddCustomerCommand(validCustomer);
+        Driver dummmyDriver = null;
+
+        AddCustomerCommand addCustomerCommand = new AddCustomerCommand(validCustomer, dummmyDriver);
         ModelStub modelStub = new ModelStubWithCustomer(validCustomer);
         assertThrows(CommandException.class, AddCustomerCommand.MESSAGE_DUPLICATE_CUSTOMER, () ->
                 addCustomerCommand.execute(modelStub));
@@ -59,14 +48,16 @@ public class AddCustomerCommandTest {
     public void equals() {
         Customer alice = new CustomerBuilder().withName("Alice").build();
         Customer bob = new CustomerBuilder().withName("Bob").build();
-        AddCustomerCommand addAliceCommand = new AddCustomerCommand(alice);
-        AddCustomerCommand addBobCommand = new AddCustomerCommand(bob);
+        Driver dummmyDriver = null;
+
+        AddCustomerCommand addAliceCommand = new AddCustomerCommand(alice, dummmyDriver);
+        AddCustomerCommand addBobCommand = new AddCustomerCommand(bob, dummmyDriver);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCustomerCommand addAliceCommandCopy = new AddCustomerCommand(alice);
+        AddCustomerCommand addAliceCommandCopy = new AddCustomerCommand(alice, dummmyDriver);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
