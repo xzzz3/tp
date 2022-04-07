@@ -42,4 +42,4 @@ Given below are my contributions to the project.
 * **Community**:
   * Reviewed teammates' PRs (Samples can be found in the Pull Requests tab)
   * Reported bugs and suggestions for other teams in the module
-  
+
