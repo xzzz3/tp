@@ -54,7 +54,7 @@ public class Driver {
     }
 
     /**
-     * Returns true if both driver have the same name.
+     * Returns true if both driver have the same name OR the same phone number.
      * This defines a weaker notion of equality between two drivers.
      */
     public boolean isSameDriver(Driver otherDriver) {
@@ -63,8 +63,11 @@ public class Driver {
         }
 
         return otherDriver != null
-                && otherDriver.getName().equals((getName()));
+                && (otherDriver.getName().equals((getName()))
+                || otherDriver.getPhone().equals((getPhone())));
     }
+
+
 
     @Override
     public boolean equals(Object other) {

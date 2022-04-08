@@ -57,7 +57,7 @@ public class OrderCard extends UiPart<Region> {
         customerAddress.setText(order.getCustomerAddress().toString());
         driverName.setText(order.getDriverName());
         dishes.setText(order.getDishes().toString());
-        orderTime.setText(order.getTime().toString());
+        orderTime.setText(order.getTime().toString().replace("T", " ").split("\\.")[0]);
         status.setText(order.getStatus().toString());
     }
 

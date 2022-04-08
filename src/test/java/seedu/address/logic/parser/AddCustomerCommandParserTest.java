@@ -27,6 +27,7 @@ import seedu.address.model.customer.AddressCustomer;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.NameCustomer;
 import seedu.address.model.customer.PhoneCustomer;
+import seedu.address.model.driver.Driver;
 import seedu.address.testutil.CustomerBuilder;
 
 public class AddCustomerCommandParserTest {
@@ -35,22 +36,23 @@ public class AddCustomerCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         Customer expectedCustomer = new CustomerBuilder(BOB).build();
+        Driver dummmyDriver = null;
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
-                + ADDRESS_DESC_BOB, new AddCustomerCommand(expectedCustomer));
+                + ADDRESS_DESC_BOB, new AddCustomerCommand(expectedCustomer, dummmyDriver));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB
-                + ADDRESS_DESC_BOB, new AddCustomerCommand(expectedCustomer));
+                + ADDRESS_DESC_BOB, new AddCustomerCommand(expectedCustomer, dummmyDriver));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB
-                + ADDRESS_DESC_BOB, new AddCustomerCommand(expectedCustomer));
+                + ADDRESS_DESC_BOB, new AddCustomerCommand(expectedCustomer, dummmyDriver));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB, new AddCustomerCommand(expectedCustomer));
+                + ADDRESS_DESC_BOB, new AddCustomerCommand(expectedCustomer, dummmyDriver));
 
     }
 
@@ -58,8 +60,10 @@ public class AddCustomerCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Customer expectedCustomer = new CustomerBuilder(AMY).build();
+        Driver dummmyDriver = null;
+
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCustomerCommand(expectedCustomer));
+                new AddCustomerCommand(expectedCustomer, dummmyDriver));
     }
 
     @Test

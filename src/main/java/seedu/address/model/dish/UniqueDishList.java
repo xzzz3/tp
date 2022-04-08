@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.item.exceptions.DishNotFoundException;
-import seedu.address.model.item.exceptions.DuplicateDishException;
+import seedu.address.model.dish.exception.DishNotFoundException;
+import seedu.address.model.dish.exception.DuplicateDishException;
 
 /**
  * A list of dishes that enforces uniqueness between its elements and does not allow nulls.

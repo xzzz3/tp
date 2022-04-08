@@ -7,6 +7,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_NO_FREE_DRIVER;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DISH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 import java.util.ArrayList;
 import java.util.Arrays;

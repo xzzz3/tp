@@ -15,7 +15,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCustomerCommand;
 import seedu.address.logic.commands.DeleteDishCommand;
 import seedu.address.logic.commands.DeleteDriverCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCustomerCommand;
 import seedu.address.logic.commands.EditDishCommand;
 import seedu.address.logic.commands.EditDriverCommand;
 import seedu.address.logic.commands.EditOrderCommand;
@@ -24,10 +24,11 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindOrderCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListCustomerCommand;
 import seedu.address.logic.commands.ListDishCommand;
 import seedu.address.logic.commands.ListDriverCommand;
 import seedu.address.logic.commands.ListOrderCommand;
+import seedu.address.logic.commands.RevenueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -63,8 +64,8 @@ public class AddressBookParser {
         case AddDishCommand.COMMAND_WORD:
             return new AddDishCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditCustomerCommand.COMMAND_WORD:
+            return new EditCustomerCommandParser().parse(arguments);
 
         case EditDishCommand.COMMAND_WORD:
             return new EditDishCommandParser().parse(arguments);
@@ -81,8 +82,8 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListCustomerCommand.COMMAND_WORD:
+            return new ListCustomerCommand();
 
         case ListDishCommand.COMMAND_WORD:
             return new ListDishCommand();
@@ -119,6 +120,9 @@ public class AddressBookParser {
 
         case EditDriverCommand.COMMAND_WORD:
             return new EditDriverCommandParser().parse(arguments);
+
+        case RevenueCommand.COMMAND_WORD:
+            return new RevenueCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

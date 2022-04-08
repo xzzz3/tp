@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
+import java.util.Random;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCustomerCommand;
@@ -13,11 +14,28 @@ import seedu.address.model.customer.AddressCustomer;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.NameCustomer;
 import seedu.address.model.customer.PhoneCustomer;
+import seedu.address.model.driver.Driver;
+import seedu.address.model.driver.NameDriver;
+import seedu.address.model.driver.PhoneDriver;
 
 /**
  * Parses input arguments and creates a new AddCustomerCommand object
  */
 public class AddCustomerCommandParser implements Parser<AddCustomerCommand> {
+
+
+    protected String randomString() {
+        String nameChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        StringBuilder randomString = new StringBuilder();
+        Random random = new Random();
+        while (randomString.length() < 8) { // length of the random string.
+            int index = (int) (random.nextFloat() * nameChar.length());
+            randomString.append(nameChar.charAt(index));
+        }
+        String finalRandomString = randomString.toString();
+        return finalRandomString;
+
+    }
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCustomerCommand
@@ -33,13 +51,18 @@ public class AddCustomerCommandParser implements Parser<AddCustomerCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCustomerCommand.MESSAGE_USAGE));
         }
 
-        NameCustomer nameCustomer = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        PhoneCustomer phoneCustomer = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        AddressCustomer addressCustomer = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        NameCustomer nameCustomer = ParserUtil.parseNameCustomer(argMultimap.getValue(PREFIX_NAME).get());
+        PhoneCustomer phoneCustomer = ParserUtil.parsePhoneCustomer(argMultimap.getValue(PREFIX_PHONE).get());
+        AddressCustomer addressCustomer = ParserUtil.parseAddressCustomer(argMultimap.getValue(PREFIX_ADDRESS).get());
+
+        NameDriver nameDriver = ParserUtil.parseNameDriver(randomString());
+        PhoneDriver phoneDriver = ParserUtil.parsePhoneDriver(argMultimap.getValue(PREFIX_PHONE).get());
+
 
         Customer customer = new Customer(nameCustomer, phoneCustomer, addressCustomer);
+        Driver driver = new Driver(nameDriver, phoneDriver);
 
-        return new AddCustomerCommand(customer);
+        return new AddCustomerCommand(customer, driver);
     }
 
     /**

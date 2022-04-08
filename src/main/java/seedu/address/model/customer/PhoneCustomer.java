@@ -3,16 +3,19 @@ package seedu.address.model.customer;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+
+
 /**
  * Represents a Customer's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class PhoneCustomer {
 
-
     public static final String MESSAGE_CONSTRAINTS =
-            "PhoneCustomer numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Customer phone number should only contain numbers, and it should be only 8 digits long and start"
+                    + " with 8 or 9";
+
+    public static final String VALIDATION_REGEX = "[8-9][0-9]{7}";
     public final String value;
 
     /**
@@ -32,6 +35,7 @@ public class PhoneCustomer {
     public static boolean isValidPhone(String test) {
         return test.matches(VALIDATION_REGEX);
     }
+
 
     @Override
     public String toString() {

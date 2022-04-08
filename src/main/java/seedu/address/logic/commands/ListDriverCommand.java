@@ -15,7 +15,8 @@ public class ListDriverCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all free drivers who are not deliver any orders "
             + "now and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "The status of driver: FREE, BUSY, ABSENT.\n"
+            + "Parameters: STATUS...\n"
             + "Example: " + COMMAND_WORD + " free";
 
     private final StatusContainsKeywordsPredicate predicate;

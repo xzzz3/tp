@@ -1,4 +1,4 @@
-package seedu.address.model.item.exceptions;
+package seedu.address.model.dish.exception;
 
 /**
  * Signals that the operation will result in duplicate Dishes (Dishes are considered duplicates if they have the same
