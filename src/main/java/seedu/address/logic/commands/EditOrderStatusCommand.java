@@ -94,4 +94,12 @@ public class EditOrderStatusCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedOrder),
                 false, false, false, false, true);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof EditOrderStatusCommand
+                && index.equals(((EditOrderStatusCommand) other).index)
+                && status.equals(((EditOrderStatusCommand) other).status));
+    }
 }
