@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -19,7 +20,10 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.NameCustomerContainsKeywordsPredicate;
+import seedu.address.model.dish.Dish;
+import seedu.address.model.dish.NameDishContainsKeywordsPredicate;
 import seedu.address.testutil.EditCustomerDescriptorBuilder;
+import seedu.address.testutil.EditDishDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -37,6 +41,15 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    public static final String VALID_DISH_NAME_FRIES = "Fries";
+    public static final String VALID_DISH_NAME_DONUT = "Donut";
+    public static final String VALID_DISH_PRICE_FRIES = "3.50";
+    public static final String VALID_DISH_PRICE_DONUT = "4.00";
+
+    public static final String DISH_NAME_DESC_DONUT = " " + PREFIX_NAME + VALID_DISH_NAME_DONUT;
+    public static final String DISH_NAME_DESC_FRIES = " " + PREFIX_NAME + VALID_DISH_NAME_FRIES;
+    public static final String PRICE_DESC_DONUT = " " + PREFIX_PRICE + VALID_DISH_PRICE_DONUT;
+    public static final String PRICE_DESC_FRIES = " " + PREFIX_PRICE + VALID_DISH_PRICE_FRIES;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -49,6 +62,8 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_PRICE_DESC_NO_DP = " " + PREFIX_PRICE + "1"; // no 2 d.p.
+    public static final String INVALID_PRICE_DESC_TOO_HIGH = " " + PREFIX_PRICE + "100000.00"; // above 99999.99
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
@@ -60,6 +75,9 @@ public class CommandTestUtil {
     public static final EditCustomerCommand.EditCustomerDescriptor DESC_AMY;
     public static final EditCustomerCommand.EditCustomerDescriptor DESC_BOB;
 
+    public static final EditDishCommand.EditDishDescriptor DESC_FRIES;
+    public static final EditDishCommand.EditDishDescriptor DESC_DONUT;
+
     static {
         DESC_AMY = new EditCustomerDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -67,6 +85,10 @@ public class CommandTestUtil {
         DESC_BOB = new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
                 .build();
+        DESC_FRIES = new EditDishDescriptorBuilder().withName(VALID_DISH_NAME_FRIES)
+                .withPrice(VALID_DISH_PRICE_FRIES).build();
+        DESC_DONUT = new EditDishDescriptorBuilder().withName(VALID_DISH_NAME_DONUT)
+                .withPrice(VALID_DISH_PRICE_DONUT).build();
     }
 
     /**
@@ -125,4 +147,17 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredCustomerList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the dish at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showDishAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredDishList().size());
+
+        Dish dish = model.getFilteredDishList().get(targetIndex.getZeroBased());
+        final String[] splitName = dish.getName().fullName.split("\\s+");
+        model.updateFilteredDishList(new NameDishContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredDishList().size());
+    }
 }
