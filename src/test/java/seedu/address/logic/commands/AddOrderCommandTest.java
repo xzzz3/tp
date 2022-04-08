@@ -20,11 +20,8 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.driver.Driver;
-import seedu.address.model.driver.NameDriver;
-import seedu.address.model.driver.PhoneDriver;
 import seedu.address.model.item.Person;
 import seedu.address.model.order.Order;
-import seedu.address.testutil.OrderBuilder;
 
 public class AddOrderCommandTest {
 
