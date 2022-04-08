@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalOrders.AMY_ORDER;
-import static seedu.address.testutil.TypicalOrders.BENSON_ORDER;
+import static seedu.address.testutil.TypicalOrders.BOB_ORDER;
 import static seedu.address.testutil.TypicalOrders.CARL_ORDER;
 import static seedu.address.testutil.TypicalOrders.getTypicalAddressBook;
 
@@ -65,10 +65,10 @@ public class FindOrderCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleOrdersFound() {
-        OrderContainsKeywordsPredicate predicate = preparePredicate("81234567 98765432 95352563");
+        OrderContainsKeywordsPredicate predicate = preparePredicate("81234567 91234567 95352563");
         FindOrderCommand command = new FindOrderCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
-        assertEquals(Arrays.asList(AMY_ORDER, BENSON_ORDER, CARL_ORDER), expectedModel.getFilteredOrderList());
+        assertEquals(Arrays.asList(AMY_ORDER, BOB_ORDER, CARL_ORDER), expectedModel.getFilteredOrderList());
     }
 
     /**

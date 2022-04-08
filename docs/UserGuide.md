@@ -55,6 +55,8 @@ folder).
    1. To switch between the tabs, enter any command relating to the tab (i.e. an `adddish` 
    command changes the tab to `Dishes`, likewise for others). The available and 
    detailed usage of each command can be found in [Features](#2-features).
+   2. Sample screenshot for the tabs can be found here (`Customers` selected):
+   <img src="images/tabdisplay.png" width=80%>
    
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
@@ -349,6 +351,7 @@ Format: `editorder INDEX [p/PHONE] [d/DISHES_SEPARATED_BY_COMMA...]`
 Examples:
 * `editorder 1 p/87264512 d/kimchi, fried rice`
 * `editorder 3 p/87654321`
+
 
 ### Search for Orders by Phone Number: `findorder`
 
