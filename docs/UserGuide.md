@@ -357,11 +357,11 @@ Examples:
 
 Search for orders with the customer phone number(s) provided in the list of orders.
 
-Format: `find p/PHONE_SEPARATED_BY_SPACE...`
+Format: `findorder p/PHONE_SEPARATED_BY_SPACE...`
 
 Examples:
-* `find p/81234567`
-* `find p/81234567 98765432`
+* `findorder p/81234567`
+* `findorder p/81234567 98765432`
 
 ### Listing orders: `listorder`
 
