@@ -109,6 +109,7 @@ public class AddOrderCommand extends Command {
         }
 
         model.addOrder(toAdd);
+        model.updateFilteredOrderList(x -> true);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
                 false, false, false, false, true);
     }
