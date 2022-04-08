@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -37,12 +36,12 @@ public class TypicalOrders {
 
     public static final Order DANIEL_ORDER = new OrderBuilder().withCustomer(TypicalCustomers.DANIEL)
             .withDriver(new Driver(new NameDriver("Wilson"), new PhoneDriver("85736285")))
-            .withDish(new ArrayList<Dish>(Arrays.asList(new Dish(new NameDish("Milktea"), new PriceDish("3.20") ))))
+            .withDish(new ArrayList<Dish>(Arrays.asList(new Dish(new NameDish("Milktea"), new PriceDish("3.20")))))
             .build();
 
     public static final Order ELLE_ORDER = new OrderBuilder().withCustomer(TypicalCustomers.ELLE)
             .withDriver(new Driver(new NameDriver("Vivi"), new PhoneDriver("82364513")))
-            .withDish(new ArrayList<Dish>(Arrays.asList(new Dish(new NameDish("Chicken chop"), new PriceDish("4.50") ))))
+            .withDish(new ArrayList<Dish>(Arrays.asList(new Dish(new NameDish("Chicken chop"), new PriceDish("4.50")))))
             .build();
 
     private TypicalOrders() {} // prevents instantiation

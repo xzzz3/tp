@@ -15,10 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -29,7 +26,6 @@ import seedu.address.model.driver.Driver;
 import seedu.address.model.driver.NameDriver;
 import seedu.address.model.driver.PhoneDriver;
 import seedu.address.model.item.Person;
-import seedu.address.model.item.Phone;
 import seedu.address.model.order.Order;
 import seedu.address.testutil.OrderBuilder;
 
@@ -59,7 +55,9 @@ public class AddOrderCommandTest {
         ObservableList dishList = FXCollections.observableArrayList();
         dishList.addAll(validOrder.getDishes());
 
-        CommandResult commandResult = new AddOrderCommand(validOrder.getCustomerPhone(), dishesInput).execute(modelStub, customerList, driverList, dishList);
+        CommandResult commandResult =
+                new AddOrderCommand(validOrder.getCustomerPhone(), dishesInput)
+                        .execute(modelStub, customerList, driverList, dishList);
 
         // unable to check success message as the time of order creation will have a difference of a few milliseconds
         assertEquals(Arrays.asList(validOrder), modelStub.ordersAdded);

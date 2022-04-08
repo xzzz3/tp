@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_PHONE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DISH_INPUT;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_FREE_DRIVER;

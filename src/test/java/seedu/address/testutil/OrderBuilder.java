@@ -2,8 +2,6 @@ package seedu.address.testutil;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 
 import seedu.address.model.customer.Customer;
 import seedu.address.model.dish.Dish;
@@ -26,12 +24,12 @@ public class OrderBuilder {
     public static final OrderStatus DEFAULT_ORDER_STATUS = OrderStatus.IN_PROGRESS;
     public static final LocalDateTime DEFAULT_TIME = LocalDateTime.of(2022, 1, 1, 0, 0);
 
+    private static int nextNumber = 1;
     private Customer customer;
     private Driver driver;
     private ArrayList<Dish> dishes;
     private OrderStatus status;
     private int orderNumber;
-    private static int nextNumber = 1;
 
     /**
      * Creates a {@code OrderBuilder} with the default details.
@@ -88,6 +86,10 @@ public class OrderBuilder {
         return this;
     }
 
+    /**
+     * Builds an {@code Order} with the specification provided.
+     * @return the Order built
+     */
     public Order build() {
         return new Order(customer, driver, DEFAULT_TIME, orderNumber, dishes.toArray(new Dish[0]))
                 .updateStatus(status.name());
