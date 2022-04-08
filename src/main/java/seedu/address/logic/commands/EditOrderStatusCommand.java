@@ -71,8 +71,6 @@ public class EditOrderStatusCommand extends Command {
 
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
 
-        System.out.println(status);
-        System.out.println(oldStatus);
         // if editing an order from in progress to delivered or cancelled, the driver will be set to free
         if ((status.equalsIgnoreCase("delivered") || status.equalsIgnoreCase("cancelled"))
                 && oldStatus.toString().equalsIgnoreCase("in_progress")) {
