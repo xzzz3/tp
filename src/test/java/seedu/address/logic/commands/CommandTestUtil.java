@@ -20,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.NameCustomerContainsKeywordsPredicate;
 import seedu.address.testutil.EditCustomerDescriptorBuilder;
+import seedu.address.testutil.EditOrderDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -59,6 +60,8 @@ public class CommandTestUtil {
 
     public static final EditCustomerCommand.EditCustomerDescriptor DESC_AMY;
     public static final EditCustomerCommand.EditCustomerDescriptor DESC_BOB;
+    public static final EditOrderCommand.EditOrderDescriptor DESC_AMY_ORDER;
+    public static final EditOrderCommand.EditOrderDescriptor DESC_BOB_ORDER;
 
     static {
         DESC_AMY = new EditCustomerDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -67,6 +70,8 @@ public class CommandTestUtil {
         DESC_BOB = new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
                 .build();
+        DESC_AMY_ORDER = new EditOrderDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
+        DESC_BOB_ORDER = new EditOrderDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
     }
 
     /**

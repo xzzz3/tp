@@ -31,7 +31,7 @@ public class TypicalOrders {
             .build();
 
     public static final Order CARL_ORDER = new OrderBuilder().withCustomer(TypicalCustomers.CARL)
-            .withDriver(new Driver(new NameDriver("Xavier"), new PhoneDriver("67776888")))
+            .withDriver(new Driver(new NameDriver("Xavier"), new PhoneDriver("87776888")))
             .withDish(new ArrayList<Dish>(Arrays.asList(new Dish(new NameDish("Fried Rice"), new PriceDish("6.50")))))
             .build();
 
@@ -41,7 +41,7 @@ public class TypicalOrders {
             .build();
 
     public static final Order ELLE_ORDER = new OrderBuilder().withCustomer(TypicalCustomers.ELLE)
-            .withDriver(new Driver(new NameDriver("Vivi"), new PhoneDriver("72364513")))
+            .withDriver(new Driver(new NameDriver("Vivi"), new PhoneDriver("82364513")))
             .withDish(new ArrayList<Dish>(Arrays.asList(new Dish(new NameDish("Chicken chop"), new PriceDish("4.50") ))))
             .build();
 

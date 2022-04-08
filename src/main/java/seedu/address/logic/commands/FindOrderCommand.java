@@ -41,7 +41,7 @@ public class FindOrderCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof FindCommand)
+                || (other instanceof FindOrderCommand)
                 && predicate.equals(((FindOrderCommand) other).predicate);
     }
 }

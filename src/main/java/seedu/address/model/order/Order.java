@@ -115,6 +115,25 @@ public class Order {
         return this.orderNumber == otherOrder.orderNumber;
     }
 
+    /**
+     * Returns true if both orders share the same customer phone, driver name and dish names.
+     * Mainly used for testing. For program usage, refer to {@code equals} method;
+     * @param other the other order to be compared with
+     * @return a boolean value indicating the equality
+     */
+    public boolean isSameOrder(Order other) {
+        if (this.getCustomerPhone().equals(other.getCustomerPhone())
+                && (this.getDriverName().equals(other.getDriverName()))) {
+            for (int i = 0; i < this.getDishes().size(); i++) {
+                if (!this.getDishes().get(i).getName().equals(other.getDishes().get(i).getName())) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
