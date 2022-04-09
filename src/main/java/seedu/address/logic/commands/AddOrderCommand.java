@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_PHONE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DISH_INPUT;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_FREE_DRIVER;
@@ -29,7 +28,7 @@ public class AddOrderCommand extends Command {
             + ": Adds an order.\n"
             + "Parameters: " + PREFIX_PHONE
             + "PHONE " + PREFIX_DISH + "DISHES\n"
-            + "Example: " + COMMAND_WORD
+            + "Example: " + COMMAND_WORD + " "
             + PREFIX_PHONE
             + "87654321 " + PREFIX_DISH + "Chicken Pasta, Fries";
 
@@ -51,10 +50,7 @@ public class AddOrderCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        requireNonNull(model);
-        model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
-        return new CommandResult(MESSAGE_SUCCESS,
-                false, false, false, false, true);
+        throw new AssertionError("This method should not be called.");
     }
 
     /**
@@ -112,9 +108,17 @@ public class AddOrderCommand extends Command {
         }
 
         model.addOrder(toAdd);
+        model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
                 false, false, false, false, true);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof AddOrderCommand)
+                && (phoneInput.equals(((AddOrderCommand) other).phoneInput)
+                && Arrays.equals(dishesInput, ((AddOrderCommand) other).dishesInput));
+    }
 
 }

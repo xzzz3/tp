@@ -151,7 +151,6 @@ public class EditCustomerCommandTest {
     @Test
     public void equals() {
         final EditCustomerCommand standardCommand = new EditCustomerCommand(INDEX_FIRST, DESC_AMY);
-
         // same values -> returns true
         EditCustomerCommand.EditCustomerDescriptor copyDescriptor =
                 new EditCustomerCommand.EditCustomerDescriptor(DESC_AMY);

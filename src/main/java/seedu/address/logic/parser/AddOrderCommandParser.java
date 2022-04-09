@@ -13,7 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new AddOrderCommand object
  */
-public class AddOrderCommandParser {
+public class AddOrderCommandParser implements Parser<AddOrderCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddOrderCommand

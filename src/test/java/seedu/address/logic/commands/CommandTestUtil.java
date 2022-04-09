@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DISH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -24,6 +25,7 @@ import seedu.address.model.dish.Dish;
 import seedu.address.model.dish.NameDishContainsKeywordsPredicate;
 import seedu.address.testutil.EditCustomerDescriptorBuilder;
 import seedu.address.testutil.EditDishDescriptorBuilder;
+import seedu.address.testutil.EditOrderDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -60,6 +62,7 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String DISH_DESC_AMY = " " + PREFIX_DISH + "Sushi";
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PRICE_DESC_NO_DP = " " + PREFIX_PRICE + "1"; // no 2 d.p.
@@ -74,7 +77,8 @@ public class CommandTestUtil {
 
     public static final EditCustomerCommand.EditCustomerDescriptor DESC_AMY;
     public static final EditCustomerCommand.EditCustomerDescriptor DESC_BOB;
-
+    public static final EditOrderCommand.EditOrderDescriptor DESC_AMY_ORDER;
+    public static final EditOrderCommand.EditOrderDescriptor DESC_BOB_ORDER;
     public static final EditDishCommand.EditDishDescriptor DESC_FRIES;
     public static final EditDishCommand.EditDishDescriptor DESC_DONUT;
 
@@ -85,6 +89,8 @@ public class CommandTestUtil {
         DESC_BOB = new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
                 .build();
+        DESC_AMY_ORDER = new EditOrderDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
+        DESC_BOB_ORDER = new EditOrderDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
         DESC_FRIES = new EditDishDescriptorBuilder().withName(VALID_DISH_NAME_FRIES)
                 .withPrice(VALID_DISH_PRICE_FRIES).build();
         DESC_DONUT = new EditDishDescriptorBuilder().withName(VALID_DISH_NAME_DONUT)
