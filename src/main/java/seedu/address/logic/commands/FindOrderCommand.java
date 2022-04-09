@@ -15,10 +15,10 @@ public class FindOrderCommand extends Command {
 
     public static final String COMMAND_WORD = "findorder";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all orders whose names contain any of "
-            + "the specified phone number and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all orders who contain any of "
+            + "the specified customer phone numbers and displays them as a list with index numbers.\n"
             + "Parameters: PHONENUMBER \n"
-            + "Example: " + COMMAND_WORD + " 81234567";
+            + "Example: " + COMMAND_WORD + " 81234567 87654321";
 
     public final OrderContainsKeywordsPredicate predicate;
 
@@ -41,7 +41,7 @@ public class FindOrderCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof FindCommand)
+                || (other instanceof FindOrderCommand)
                 && predicate.equals(((FindOrderCommand) other).predicate);
     }
 }

@@ -352,14 +352,16 @@ Examples:
 * `editorder 1 p/87264512 d/kimchi, fried rice`
 * `editorder 3 p/87654321`
 
-### Search for an Order by Phone Number: `findorder`
 
-Search for an order with the phone number provided in the list of orders.
+### Search for Orders by Phone Number: `findorder`
 
-Format: `find p/PHONE`
+Search for orders with the customer phone number(s) provided in the list of orders.
+
+Format: `findorder p/PHONE_SEPARATED_BY_SPACE...`
 
 Examples:
-* `find p/81234567`
+* `findorder p/81234567`
+* `findorder p/81234567 98765432`
 
 ### Listing orders: `listorder`
 

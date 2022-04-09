@@ -71,8 +71,6 @@ public class EditOrderStatusCommand extends Command {
 
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
 
-        System.out.println(status);
-        System.out.println(oldStatus);
         // if editing an order from in progress to delivered or cancelled, the driver will be set to free
         if ((status.equalsIgnoreCase("delivered") || status.equalsIgnoreCase("cancelled"))
                 && oldStatus.toString().equalsIgnoreCase("in_progress")) {
@@ -95,5 +93,13 @@ public class EditOrderStatusCommand extends Command {
         model.updateFilteredDriverList(PREDICATE_SHOW_ALL_DRIVERS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedOrder),
                 false, false, false, false, true);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof EditOrderStatusCommand
+                && index.equals(((EditOrderStatusCommand) other).index)
+                && status.equals(((EditOrderStatusCommand) other).status));
     }
 }

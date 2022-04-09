@@ -36,6 +36,8 @@ public class OrderCard extends UiPart<Region> {
     @FXML
     private Label driverName;
     @FXML
+    private Label driverPhone;
+    @FXML
     private Label dishes;
     @FXML
     private Label orderTime;
@@ -43,6 +45,8 @@ public class OrderCard extends UiPart<Region> {
     private Label status;
     @FXML
     private Label orderNumber;
+    @FXML
+    private Label totalPrice;
 
     /**
      * Creates a {@code orderCode} with the given {@code order} and index to display.
@@ -51,14 +55,16 @@ public class OrderCard extends UiPart<Region> {
         super(FXML);
         this.order = order;
         id.setText(displayedIndex + ". ");
-        orderNumber.setText("#" + order.getOrderNumber());
+        orderNumber.setText("Order Ref No." + order.getOrderNumber());
         customerName.setText(order.getCustomerName());
         customerPhone.setText(order.getCustomerPhone());
         customerAddress.setText(order.getCustomerAddress().toString());
         driverName.setText(order.getDriverName());
+        driverPhone.setText(order.getDriver().getPhone().toString());
         dishes.setText(order.getDishes().toString());
         orderTime.setText(order.getTime().toString().replace("T", " ").split("\\.")[0]);
         status.setText(order.getStatus().toString());
+        totalPrice.setText("$" + Double.toString(order.getTotalPrice()));
     }
 
     @Override
