@@ -37,7 +37,7 @@ Given below are my contributions to the project.
   * **Order UI**: 
     * Implemented a clear and aesthetically pleasing `Order` display in FOW.
 
-    ![OrderUI](images/OrderUIDemo.png)
+    ![OrderUI](../OrderUIDemo.png)
   * GUI for Order and FOW app
 
   
