@@ -37,9 +37,6 @@ Given below are my contributions to the project.
   * **Order UI**: 
     * Implemented a clear and aesthetically pleasing `Order` display in FOW.
 
-    ![OrderUI](../OrderUIDemo.png)
-  * GUI for Order and FOW app
-
   
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=xzzz3&breakdown=true)
 
