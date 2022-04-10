@@ -9,8 +9,6 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant "l:lastShownList" as lastShownList MODEL_COLOR
-participant "o:order" as order MODEL_COLOR
 end box
 
 [-> LogicManager : execute(mark)
@@ -32,23 +30,11 @@ deactivate AddressBookParser
 LogicManager -> EditOrderStatusCommand : execute()
 activate EditOrderStatusCommand
 
-EditOrderStatusCommand -> Model : getFilteredOrderList()
+EditOrderStatusCommand -> Model : updateStatus()
 activate Model
 
-Model --> EditOrderStatusCommand : l
+Model --> EditOrderStatusCommand :
 deactivate Model
-
-EditOrderStatusCommand -> lastShownList : get()
-activate lastShownList
-
-lastShownList --> EditOrderStatusCommand : o
-deactivate lastShownList
-
-EditOrderStatusCommand -> order : updateStatus()
-activate order
-
-order --> EditOrderStatusCommand : editedOrder
-deactivate order
 
 
 EditOrderStatusCommand --> LogicManager : result

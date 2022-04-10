@@ -18,6 +18,10 @@ import java.util.List;
 import seedu.address.model.AddressBook;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.dish.Dish;
+import seedu.address.model.driver.Driver;
+import seedu.address.model.driver.DriverStatus;
+import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderStatus;
 
 /**
  * A utility class containing a list of {@code Customer} objects to be used in tests.
@@ -47,6 +51,30 @@ public class TypicalAddressBook {
     public static final Dish BURGER = new DishBuilder().withName("Burger").withPrice("6.50").build();
     public static final Dish COKE = new DishBuilder().withName("Coke").withPrice("3.50").build();
     public static final Dish DUCKRICE = new DishBuilder().withName("Duck Rice").withPrice("5.50").build();
+
+    // Drivers
+    public static final Driver ABEL = new DriverBuilder().withName("Abel Door")
+            .withPhone("93218721").withStatus(DriverStatus.BUSY)
+            .build();
+    public static final Driver BAREL = new DriverBuilder().withName("Barel Ran")
+            .withPhone("93021872")
+            .build();
+    public static final Driver CANDY = new DriverBuilder().withName("Candy Ate")
+            .withPhone("99102634")
+            .build();
+    public static final Driver DAREL = new DriverBuilder().withName("Darel Bin")
+            .withPhone("91027394")
+            .build();
+
+    // Orders
+    public static final Order FIRST = new OrderBuilder().withCustomer(ALICE).withDriver(ABEL)
+            .withDish(new ArrayList<>(List.of(APPLE, BURGER))).withStatus(OrderStatus.IN_PROGRESS).build();
+    public static final Order SECOND = new OrderBuilder().withCustomer(BENSON).withDriver(BAREL)
+            .withDish(new ArrayList<>(List.of(BURGER, DUCKRICE))).withStatus(OrderStatus.DELIVERED).build();
+    public static final Order THIRD = new OrderBuilder().withCustomer(CARL).withDriver(CANDY)
+            .withDish(new ArrayList<>(List.of(BURGER, DUCKRICE))).withStatus(OrderStatus.CANCELLED).build();
+    public static final Order FOURTH = new OrderBuilder().withCustomer(DANIEL).withDriver(DAREL)
+            .withDish(new ArrayList<>(List.of(COKE))).withStatus(OrderStatus.DELIVERED).build();
 
     // Manually added - Dish's details found in {@code CommandTestUtil}
     public static final Dish FRIES = new DishBuilder().withName(VALID_DISH_NAME_FRIES).withPrice(VALID_DISH_PRICE_FRIES)
@@ -82,6 +110,12 @@ public class TypicalAddressBook {
         for (Dish dish : getTypicalDishes()) {
             ab.addDish(dish);
         }
+        for (Driver driver : getTypicalDrivers()) {
+            ab.addDriver(driver);
+        }
+        for (Order order : getTypicalOrders()) {
+            ab.addOrder(order);
+        }
         return ab;
     }
 
@@ -91,5 +125,13 @@ public class TypicalAddressBook {
 
     public static List<Dish> getTypicalDishes() {
         return new ArrayList<>(Arrays.asList(APPLE, BURGER, COKE, DUCKRICE));
+    }
+
+    public static List<Driver> getTypicalDrivers() {
+        return new ArrayList<>(Arrays.asList(ABEL, BAREL, CANDY, DAREL));
+    }
+
+    public static List<Order> getTypicalOrders() {
+        return new ArrayList<>(Arrays.asList(FIRST, SECOND, THIRD, FOURTH));
     }
 }
