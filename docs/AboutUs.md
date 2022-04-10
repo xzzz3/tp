@@ -16,8 +16,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/jaegarpoon)] [[portfolio](team/jaegarpoon.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Developer
+* Responsibilities: `Dish` related classes, Code Quality, Testing, Documentation
 
 ### Goh Zi Xuan
 
@@ -25,8 +25,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/zxgoh)] [[portfolio](team/zxgoh.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Developer
+* Responsibilities: `Customer` related classes, Code Quality, Testing, Documentation
 
 ### Nguyen Minh Hieu
 
@@ -35,8 +35,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/hieunm1821)]
 [[portfolio](team/hieunm1821.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Developer
+* Responsibilities: `Driver` related classes, Code Quality, Testing, Documentation
 
 ### Xing Zheng
 
@@ -45,5 +45,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/xzzz3)]
 [[portfolio](team/xzzz3.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Developer
+* Responsibilities: `Order` related classes, Code Quality, Testing, Documentation
