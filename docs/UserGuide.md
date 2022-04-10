@@ -49,7 +49,7 @@ folder).
    1. If double-clicking the file does not work, use the command `java -jar foodonwheels.jar` from the
    folder containing `foodonwheels.jar`.
    
-<img src="images/FoodOnWheels.png" width=65% height=65%>
+<img src="images/FoodOnWheels.png">
 
 5. The UI shows four different tabs: `Customers`, `Orders`, `Drivers` and `Dishes`.
    1. To switch between the tabs, enter any command relating to the tab (i.e. an `adddish` 
