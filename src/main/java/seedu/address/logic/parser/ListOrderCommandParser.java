@@ -26,11 +26,11 @@ public class ListOrderCommandParser implements Parser<ListOrderCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListOrderCommand.MESSAGE_USAGE));
         }
 
-        if (trimmedArgs.equals("in progress")) {
+        if (trimmedArgs.equalsIgnoreCase("in progress")) {
             trimmedArgs = "in_progress";
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        String[] nameKeywords = trimmedArgs.toLowerCase().split("\\s+");
 
         if (nameKeywords.length > 1) {
             throw new ParseException(
@@ -51,12 +51,12 @@ public class ListOrderCommandParser implements Parser<ListOrderCommand> {
      * argument is equal to "all" (not case-sensitive)
      */
     private boolean orderStatusHasKeyword (String keyword) {
-        if (keyword.toUpperCase().equals("ALL")) {
+        if (keyword.equalsIgnoreCase("ALL")) {
             return true;
         }
         boolean hasKeyword = false;
         for (OrderStatus status : OrderStatus.values()) {
-            if (status.name().equals(keyword.toUpperCase())) {
+            if (status.name().equalsIgnoreCase(keyword)) {
                 hasKeyword = true;
                 break;
             }

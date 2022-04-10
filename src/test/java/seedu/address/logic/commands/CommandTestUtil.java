@@ -25,6 +25,7 @@ import seedu.address.model.dish.Dish;
 import seedu.address.model.dish.NameDishContainsKeywordsPredicate;
 import seedu.address.testutil.EditCustomerDescriptorBuilder;
 import seedu.address.testutil.EditDishDescriptorBuilder;
+import seedu.address.testutil.EditDriverDescriptorBuilder;
 import seedu.address.testutil.EditOrderDescriptorBuilder;
 
 /**
@@ -33,8 +34,10 @@ import seedu.address.testutil.EditOrderDescriptorBuilder;
 public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
+    public static final String VALID_NAME_BAREL = "Barel Ran";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "81234567";
+    public static final String VALID_PHONE_BAREL = "93021872";
     public static final String VALID_PHONE_BOB = "91234567";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
@@ -53,8 +56,10 @@ public class CommandTestUtil {
     public static final String PRICE_DESC_DONUT = " " + PREFIX_PRICE + VALID_DISH_PRICE_DONUT;
     public static final String PRICE_DESC_FRIES = " " + PREFIX_PRICE + VALID_DISH_PRICE_FRIES;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
+    public static final String NAME_DESC_BAREL = " " + PREFIX_NAME + VALID_NAME_BAREL;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
+    public static final String PHONE_DESC_BAREL = " " + PREFIX_PHONE + VALID_PHONE_BAREL;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
@@ -81,6 +86,8 @@ public class CommandTestUtil {
     public static final EditOrderCommand.EditOrderDescriptor DESC_BOB_ORDER;
     public static final EditDishCommand.EditDishDescriptor DESC_FRIES;
     public static final EditDishCommand.EditDishDescriptor DESC_DONUT;
+    public static final EditDriverCommand.EditDriverDescriptor DESC_AMY_DRIVER;
+    public static final EditDriverCommand.EditDriverDescriptor DESC_BOB_DRIVER;
 
     static {
         DESC_AMY = new EditCustomerDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -89,6 +96,10 @@ public class CommandTestUtil {
         DESC_BOB = new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
                 .build();
+        DESC_AMY_DRIVER = new EditDriverDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).build();
+        DESC_BOB_DRIVER = new EditDriverDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).build();
         DESC_AMY_ORDER = new EditOrderDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
         DESC_BOB_ORDER = new EditOrderDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
         DESC_FRIES = new EditDishDescriptorBuilder().withName(VALID_DISH_NAME_FRIES)

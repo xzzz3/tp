@@ -31,12 +31,18 @@ public class RevenueCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        double revenue = getRevenueForTheDay(model);
+        return new CommandResult(MESSAGE_SUCCESS
+                + String.format("%.2f", revenue), false, false, false, false, true);
+    }
+
+    public double getRevenueForTheDay(Model model) {
+        requireNonNull(model);
         model.updateFilteredOrderList(predicate);
         double revenue = model.getFilteredOrderList().stream()
                 .mapToDouble(x -> x.getTotalPrice()).sum();
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
-        return new CommandResult(MESSAGE_SUCCESS
-                + String.format("%.2f", revenue), false, false, false, false, true);
+        return revenue;
     }
 
     @Override

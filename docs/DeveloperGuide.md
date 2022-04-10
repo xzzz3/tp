@@ -2,8 +2,30 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+## Table of Contents
+1. [Acknowledgements](#acknowledgements)    
+2. [Setting up, getting started](#setting-up-getting-started)   
+3. [Design](#design)    
+   3.1 [Architecture](#architecture)    
+   3.2 [UI component](#ui-component)    
+   3.3 [Logic component](#logic-component)  
+   3.4 [Model component](#model-component)  
+   3.5 [Storage component](#storage-component)  
+4. [Implementation](#feature-implementation)    
+   4.1 [Add/Delete Driver](#adddelete-driver-feature)   
+   4.2 [List Driver](#list-driver-feature)  
+   4.3 [Add/Delete Customer](#add-customer-feature)    
+   4.4 [List Customer](#list-customer-feature)  
+   4.5 [Add/Delete/List Dish](#adddeletelist-dish-feature)  
+   4.6 [Tab Display](#tab-display-feature)  
+   4.7 [Add Order](#add-order-feature)  
+   4.8 [Edit Order Status](#edit-order-status-feature)  
+   4.9 [List Order](#list-order-feature)  
+   4.10 [Revenue](#revenue-feature)  
+   4.11 [[Proposed] Undo/redo](#proposed-undoredo-feature)   
+5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)  
+6. [Appendix: Requirements](#appendix-requirements) 
+7. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)   
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +45,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S2-CS2103-F10-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +58,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S2-CS2103-F10-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S2-CS2103-F10-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -52,7 +74,8 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user 
+issues the command `deletecustomer 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -69,7 +92,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S2-CS2103-F10-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -86,7 +109,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S2-CS2103-F10-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -98,9 +121,11 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletecustomer 
+1")` 
+API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deletecustomer 1` Command](images/DeleteCustomerSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -114,12 +139,9 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S2-CS2103-F10-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-
-(todo: Update Model Class Diagram)
-<img src="images/ModelClassDiagram.png" width="450" />
-
+<img src="images/ModelClassDiagram.png" width="800" />
 
 The `Model` component,
 
@@ -128,16 +150,9 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
-
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S2-CS2103-F10-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 (todo: update storage class diagram)
 <img src="images/StorageClassDiagram.png" width="550" />
@@ -154,7 +169,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 --------------------------------------------------------------------------------------------------------------------
 
 
-## **Implementation**
+## **Feature Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -248,18 +263,43 @@ Step 4. A new `CommandResult` with the success message is returned to `Logic` an
 
 ![DeleteCustomerSequenceDiagram](images/DeleteCustomerSequenceDiagram.png)
 
+### List Customer feature
+
+#### Implementation
+
+Given below is an example usage scenario and how the `listcustomer` mechanism behaves at each step.
+
+Step 1. The user executes the `listcustomer` command in the application to list all customers, 
+which is handled by `Logic#execute`.
+
+Step 2. The command entered is parsed by the `AddressBookParser#parseCommand`.
+
+Step 3. The `Logic` component then performs the `Command#execute()` method in the respective commands
+
+Step 4. A new `CommandResult` with the success message is returned to `Logic` and returned as the output.
 
 ### Add/Delete/List Dish feature
 
 #### Implementation
 
-The add/delete/list dish feature are commands which inherits from `Command`. These are the basic commands
-to add, remove or view `Dish` objects.
+The add/delete/edit/list dish feature are commands which inherits from `Command`. These are the basic commands
+to add, remove, edit or view `Dish` objects respectively.
 
-#### Example run-through
+Given below is a successful usage scenario of the commands.
 
-(todo: sequence diagram for add/delete/list dish)
-A sample run-through is shown below in the sequence diagram:
+Step 1. The user executes the `adddish`, `deletedish`, `editdish`, `listdish` command in the application to add, delete, edit or list the dishes, 
+which is handled by `Logic#execute`.
+
+Step 2. The command entered is parsed by the `AddressBookParser#parseCommand`.
+
+Step 3. The `adddish`, `deletedish` and `editdish` command will then be parsed by `AddDishCommandParser#parse`, `EditDishCommandParser#parse` 
+and `DeleteDishCommandParser#parse` to create a new `AddDishCommand`, `DeleteDishCommand` and `EditDishCommand` respectively.
+
+The list dish command will be created directly from `AddressBookParser#parseCommand`, since no further parsing is required.
+
+Step 4. The `Logic` component then performs the `Command#execute()` method in the respective commands
+
+Step 5. A new `CommandResult` with the success message is returned to `Logic` and returned as the output.
 
 
 ### Tab Display feature
@@ -294,6 +334,86 @@ Explanation:
 since the command is related to a dish
 3. `TabDisplay` is then set to `Dish`, as seen from the second time `TabDisplay#setFocus()` is called
 
+### Add Order feature
+
+#### Implementation
+
+The add order mechanism is facilitated by `Order`. It is a model in the application and some of its important attributes include:
+
+* `customer`  — Holds the Customer object who ordered the given Order.
+* `driver`  — Holds the Driver object who will be delivering the given Order.
+* `dishes`  — Holds the Dish objects that are included in the given Order.
+
+![OrderClassDiagram](images/OrderClassDiagram.png)
+
+These attributes are used in the `Order#Order()` instantiation, which is called to create a new Order when the add order command is called.
+
+Given below is an example usage scenario and how the add order mechanism behaves at each step.
+
+Step 1. The user executes the `addorder p/ 123 d/ sushi` command in the application to add an order of sushi for a registered Customer with phone number 123, which is handled by `Logic#execute`. 
+The `addorder` command is parsed by the `AddressBookParser#parseCommand` and `AddOrderCommandParser#parse` to create a new `AddOrderCommand` with the given phone number and dishes.
+
+Step 2. The `Logic` then executes the `AddOrderCommand#execute()` with the stored lists using `Logic#getFilteredCustomerList()`, `Logic#getFilteredDriverList` and `Logic#getFilteredDishList`.
+
+Step 3. `AddOrderCommand#Execute` uses the lists to find the `Customer` object with the given phone number (i.e. 123) , a free `Driver` object, and all the `Dish` objects with the given names (i.e. sushi). It then creates an `Order` with them.
+
+Step 4. The `Order` is added to the `Model` with `Model#addOrder()`.
+
+Step 5. A new `CommandResult` with the success message is returned to `Logic` and returned as the output.
+
+#### Design considerations:
+* The `Order` stores its component objects directly, in order to make future implementation easier. Future updates that targets the different parts of an `Order` can easily be implemented in this way.
+
+### Edit Order Status feature
+
+#### Implementation
+
+The edit order status mechanism is faciliated by `Order` and `OrderStatus`. The latter is an enumeration class to include the possible statuses.
+This mechanism also relies on the method `Order#updateStatus()` which updates the status of the given Order.
+
+Given below is an example usage scenario and how the edit order status mechanism behaves at each step.
+
+Step 1. The user executes the `mark 1 s/ delivered` command in the application to mark the first order in the list as delivered.
+The `mark` keyword is parsed by the `AddressBookParser#parseCommand` and `EditOrderStatusCommandParser#parse` to create a new `EditOrderStatusCommand` with the given index and status.
+
+Step 2. The `Logic` then executes the `EditOrderStatusCommand#execute()`. 
+
+Step 3. The `EditOrderStatusCommand` finds the `Order` using the given index and calls its `Order#updateStatus()` method to update the status to the given new status.
+
+Step 4. A new `CommandResult` with the success message is returned to `Logic` and returned as the output.
+
+![EditOrderStatusSequenceDiagram](images/EditOrderStatusSequenceDiagram.png)
+
+### List Order feature
+
+#### Implementation
+
+The list order mechanism is faciliated by `Order` and `OrderStatus`. The latter is an enumeration class to include the possible statuses.
+
+Given below is an example usage scenario and how the list order mechanism behaves at each step.
+
+Step 1. The user executes the `listorder delivered` command in the application to list the delivered orders.
+The `listorder` keyword is parsed by the `AddressBookParser#parseCommand` and `ListOrderCommandParser#parse` to create a new `ListOrderCommand` with the provided status.
+
+Step 2. The `Logic` then executes the `ListOrderCommand#execute()`.
+
+Step 3. A new `CommandResult` with the success message is returned to `Logic` and returned as the output, with the orders of `OrderStatus#DELIVERED` being displayed.
+
+### Revenue feature
+
+#### Implementation
+
+The revenue mechanism is faciliated by `Order` and `OrderDeliveredAndFromDatePredicate`. The latter is predicate to include filter the order list to contain only orders
+from the current date (determined by date on OS) and with `OrderStatus#DELIVERED`.
+
+Given below is an example usage scenario and how the list order mechanism behaves at each step.
+
+Step 1. The user executes the `revenue` command in the application to obtain the revenue of the current day.
+The `revenue` keyword is parsed by the `AddressBookParser#parseCommand` to create a new `RevenueCommand`.
+
+Step 2. The `Logic` then executes the `RevenueCommand#execute()`.
+
+Step 3. A new `CommandResult` with the success message and the revenue of the day is returned to `Logic` and returned as the output.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -365,71 +485,16 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
-
-### Add Order feature
-
-#### Implementation
-
-The add order mechanism is facilitated by `Order`. It is a model in the application and some of its important attributes include:
-
-* `customer`  — Holds the Customer object who ordered the given Order.
-* `driver`  — Holds the Driver object who will be delivering the given Order.
-* `dishes`  — Holds the Dish objects that are included in the given Order.
-
-![OrderClassDiagram](images/OrderClassDiagram.png)
-
-These attributes are used in the `Order#Order()` instantiation, which is called to create a new Order when the add order command is called.
-
-Given below is an example usage scenario and how the add order mechanism behaves at each step.
-
-Step 1. The user executes the `addorder p/ 123 d/ sushi` command in the application to add an order of sushi for a registered Customer with phone number 123, which is handled by `Logic#execute`. 
-The `addorder` command is parsed by the `AddressBookParser#parseCommand` and `AddOrderCommandParser#parse` to create a new `AddOrderCommand` with the given phone number and dishes.
-
-Step 2. The `Logic` then executes the `AddOrderCommand#execute()` with the stored lists using `Logic#getFilteredCustomerList()`, `Logic#getFilteredDriverList` and `Logic#getFilteredDishList`.
-
-Step 3. `AddOrderCommand#Execute` uses the lists to find the `Customer` object with the given phone number (i.e. 123) , a free `Driver` object, and all the `Dish` objects with the given names (i.e. sushi). It then creates an `Order` with them.
-
-Step 4. The `Order` is added to the `Model` with `Model#addOrder()`.
-
-Step 5. A new `CommandResult` with the success message is returned to `Logic` and returned as the output.
-
-#### Design considerations:
-* The `Order` stores its component objects directly, in order to make future implementation easier. Future updates that targets the different parts of an `Order` can easily be implemented in this way.
-
-### Edit Order Status feature
-
-#### Implementation
-
-The edit order status mechanism is faciliated by `Order` and `OrderStatus`. The latter is an enumeration class to include the possible statuses.
-This mechanism also relies on the method `Order#updateStatus()` which updates the status of the given Order.
-
-Given below is an example usage scenario and how the edit order status mechanism behaves at each step.
-
-Step 1. The user executes the `mark 1 s/ delivered` command in the application to mark the first order in the list as delivered.
-The `mark` keyword is parsed by the `AddressBookParser#parseCommand` and `EditOrderStatusCommandParser#parse` to create a new `EditOrderStatusCommand` with the given index and status.
-
-Step 2. The `Logic` then executes the `EditOrderStatusCommand#execute()`. 
-
-Step 3. The `EditOrderStatusCommand` finds the `Order` using the given index and calls its `Order#updateStatus()` method to update the status to the given new status.
-
-Step 4. A new `CommandResult` with the success message is returned to `Logic` and returned as the output.
-
-![EditOrderStatusSequenceDiagram](images/EditOrderStatusSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -506,18 +571,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `FoodOnWheels` application and the **Actor** is the `user`, unless specified otherwise)
 
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
 **Use case: Add a customer**
 
 **MSS**
@@ -532,26 +585,104 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to delete customer by providing the required info (name, address, phone number)
-2.  FoodOnWheels deletes the customer
+1. User requests to delete customer by providing the required info (name, address, phone number)
+2. FoodOnWheels deletes the customer
 
     Use case ends.
 
-**Use case: List current orders**
+**Use case: Add a dish**
 
 **MSS**
 
-1.  User requests to view a list of current orders using `listorders`
-2.  FoodOnWheels displays all the current orders
+1.  User requests to add a dish by providing the required info (name, price)
+2.  FoodOnWheels adds the dish
+
+    Use case ends
+
+**Extensions**
+
+* 1a. Some fields are missing
+    * 1a1. FoodOnWheels shows an error message
+
+      Use case resumes at step 1.
+* 1b. Price is out of given bound
+    * 1b1. FoodOnWheels shows an error message
+
+      Use case resumes at step 1.
+* 1c. Add results in a duplicate dish
+    * 1c1. FoodOnWheels shows an error message
+
+      Use case resumes at step 1.
+
+**Use case: Delete a dish**
+
+**MSS**
+
+1.  User requests to delete a dish by providing the required index
+2.  FoodOnWheels deletes the dish
 
     Use case ends.
-          
-**Use case: List previous orders**
+
+**Extensions**
+
+* 1a. Index is unrecognized or out of bounds
+    * 1a1. FoodOnWheels shows an error message
+
+      Use case resumes at step 1.
+
+**Use case: Edit a dish**
 
 **MSS**
 
-1.  User requests to view a list of previous orders using `listprevorders`
-2.  FoodOnWheels displays all the previous orders
+1.  User requests to edit a dish by providing the index of the dish and fields to change 
+2.  FoodOnWheels edits the dish based on the fields provided
+
+    Use case ends
+
+**Extensions**
+
+* 1a. Edit results in a duplicate dish
+    * 1a1. FoodOnWheels shows an error message
+
+      Use case resumes at step 1.
+* 1b. No fields indicated for edit
+    * 1b1. FoodOnWheels shows an error message
+
+      Use case resumes at step 1.
+* 1c. Index is unrecognized or out of bounds
+    * 1c1. FoodOnWheels shows an error message
+
+      Use case resumes at step 1.
+
+**Use case: List orders**
+
+**MSS**
+
+1. User requests to view a list of current orders with a given status
+2. FoodOnWheels displays all the orders based on the given status
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Status is unrecognized
+  * 1a1. FoodOnWheels shows an error message
+
+    Use case resumes at step 1.
+
+**Use case: Revenue**
+
+**MSS**
+
+1. User requests to view the revenue for the day
+2. FoodOnWheels displays all the orders and the revenue for the day
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. No delivered orders for the day. 
+  * 2a1. Revenue shows as $0.00
 
     Use case ends.
 
@@ -564,15 +695,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-*{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 orders without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 orders, dishes, customers and drivers without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -596,7 +724,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+      1. If double-clicking the file does not work, use the command `java -jar foodonwheels.jar` from the
+      folder containing `foodonwheels.jar`.
 
 1. Saving window preferences
 
@@ -604,25 +734,55 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+   
 
-1. _{ more test cases …​ }_
+### Deleting a customer 
 
-### Deleting a person
+1. Deleting a customer while all customers are being shown
 
-1. Deleting a person while all persons are being shown
+   1. Prerequisites: List all customers using the `listcustomer` command. Multiple customers in the list.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   2. Test case: `deletecustomer 1`<br>
+      Expected: First customer is deleted from the list. Details of the deleted customer shown in the status message. 
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   3. Test case: `deletecustomer 0`<br>
+      Expected: No customer is deleted. Error details shown in the status message. 
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `deletecustomer`, `deletecustomer x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Deleting a dish
+
+1. Deleting a dish while all dishes are being shown
+
+    1. Prerequisites: List all dishes using the `listdish` command. Multiple dishes in the list.
+
+    2. Test case: `deletedish 1`<br>
+       Expected: First dish is deleted from the list. Details of the deleted dish shown in the status message.
+
+    3. Test case: `deletedish 0`<br>
+       Expected: No dish is deleted. Error details shown in the status message. 
+
+    4. Other incorrect delete commands to try: `deletedish`, `deletedish x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Adding a dish
+
+1. Adding a dish while all dishes are being shown
+
+    1. Prerequisites: List all dishes using the `listdish` command. Multiple dishes in the list.
+
+    2. Test case: `adddish n/Dish One $/1.00`<br>
+       Expected: Dish with name 'Dish One' and price $1.00 added to the list. Ensure that 'Dish One' does not exist
+       in the list of dishes. If it exists, use another name that does not exist.
+
+    3. Test case: `adddish n/Dish One $/1.00`<br>
+       Expected: No dish is added since it is a duplicate dish (if a different name is used in step 2, use that name instead) 
+       Error details shown in the status message. 
+
+    4. Other incorrect add commands to try: `adddish`, `adddish n/random`, `adddish n/random $/1.0` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
 
 ### Saving data
 
