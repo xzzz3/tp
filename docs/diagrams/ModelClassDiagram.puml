@@ -20,11 +20,15 @@ Class PhoneCustomer
 
 Class UniqueOrderList
 Class Order
+Class OrderStatus
+Class Integer
+Class LocalDateTime
 
 Class UniqueDriverList
 Class Driver
 Class NameDriver
 Class PhoneDriver
+Class DriverStatus
 
 Class UniqueDishList
 Class Dish
@@ -42,7 +46,7 @@ Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyAddressBook
 ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
-UserPrefs ...up.|> ReadOnlyUserPrefs
+UserPrefs ..up.|> ReadOnlyUserPrefs
 
 AddressBook *-left-> "1" UniqueCustomerList
 UniqueCustomerList ---> " ~* all" Customer
@@ -52,14 +56,18 @@ Customer *--> AddressCustomer
 
 AddressBook *-left-> "1" UniqueOrderList
 UniqueOrderList --> "~* all" Order
-Order *--> Customer
-Order *--> Driver
-Order *--> Dish
+Order *---> Customer
+Order *---> Driver
+Order *---> Dish
+Order *---> LocalDateTime
+Order *---> Integer
+Order *---> OrderStatus
 
 AddressBook *-left-> "1" UniqueDriverList
 UniqueDriverList ---> "~* all" Driver
 Driver *--> NameDriver
 Driver *--> PhoneDriver
+Driver *--> DriverStatus
 
 AddressBook *-left-> "1" UniqueDishList
 UniqueDishList ---> "~* all" Dish
@@ -68,7 +76,8 @@ Dish *--> PriceDish
 
 NameCustomer -[hidden]right-> PhoneCustomer
 PhoneCustomer -[hidden]right-> AddressCustomer
-ModelManager -down->"~* filtered" Customer
-ModelManager -down->"~* filtered" Driver
-ModelManager -down->"~* filtered" Dish
+ModelManager -left-> "~* filtered" Customer
+ModelManager -->"~* filtered" Driver
+ModelManager -->"~* filtered" Dish
+ModelManager -->"~* filtered" Order
 @enduml
