@@ -74,8 +74,8 @@ public class NameCustomerContainsKeywordsPredicateTest {
 
         // Keywords match phone, email and address, but does not match name
         predicate = new NameCustomerContainsKeywordsPredicate(Arrays
-                .asList("81234567", "alice@email.com", "Main", "Street"));
+                .asList("81234567", "Main", "Street"));
         assertFalse(predicate.test(new CustomerBuilder().withName("Alice").withPhone("81234567")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
+                .withAddress("Main " + "Street").build()));
     }
 }
