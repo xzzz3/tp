@@ -12,17 +12,17 @@ title: Developer Guide
    3.4 [Model component](#model-component)  
    3.5 [Storage component](#storage-component)  
 4. [Implementation](#feature-implementation)    
-   3.1 [Add/Delete Driver](#adddelete-driver-feature)   
-   3.2 [List Driver](#list-driver-feature)  
-   3.3 [Add Customer](#add-customer-feature)    
-   3.4 [Delete Customer](#delete-customer-feature)  
-   3.5 [Add/Delete/List Dish](#adddeletelist-dish-feature)  
-   3.6 [Tab Display](#tab-display-feature)  
-   3.7 [Add Order](#add-order-feature)  
-   3.8 [Edit Order Status](#edit-order-status-feature)  
-   3.9 [List Order](#list-order-feature)  
-   3.10 [Revenue](#revenue-feature)  
-   3.11 [[Proposed] Undo/redo](#proposed-undoredo-feature)   
+   4.1 [Add/Delete Driver](#adddelete-driver-feature)   
+   4.2 [List Driver](#list-driver-feature)  
+   4.3 [Add/Delete Customer](#add-customer-feature)    
+   4.4 [List Customer](#list-customer-feature)  
+   4.5 [Add/Delete/List Dish](#adddeletelist-dish-feature)  
+   4.6 [Tab Display](#tab-display-feature)  
+   4.7 [Add Order](#add-order-feature)  
+   4.8 [Edit Order Status](#edit-order-status-feature)  
+   4.9 [List Order](#list-order-feature)  
+   4.10 [Revenue](#revenue-feature)  
+   4.11 [[Proposed] Undo/redo](#proposed-undoredo-feature)   
 5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)  
 6. [Appendix: Requirements](#appendix-requirements) 
 7. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)   
@@ -263,6 +263,21 @@ Step 4. A new `CommandResult` with the success message is returned to `Logic` an
 
 ![DeleteCustomerSequenceDiagram](images/DeleteCustomerSequenceDiagram.png)
 
+### List Customer feature
+
+#### Implementation
+
+Given below is an example usage scenario and how the `listcustomer` mechanism behaves at each step.
+
+Step 1. The user executes the `listcustomer` command in the application to list all customers, 
+which is handled by `Logic#execute`.
+
+Step 2. The command entered is parsed by the `AddressBookParser#parseCommand`.
+
+Step 3. The `Logic` component then performs the `Command#execute()` method in the respective commands
+
+Step 4. A new `CommandResult` with the success message is returned to `Logic` and returned as the output.
+
 ### Add/Delete/List Dish feature
 
 #### Implementation
@@ -272,7 +287,7 @@ to add, remove, edit or view `Dish` objects respectively.
 
 Given below is a successful usage scenario of the commands.
 
-Step 1. The user executes the `adddish`, `deletedish`, `editdish`, `listdish` command in the application to add, delete or list the dishes, 
+Step 1. The user executes the `adddish`, `deletedish`, `editdish`, `listdish` command in the application to add, delete, edit or list the dishes, 
 which is handled by `Logic#execute`.
 
 Step 2. The command entered is parsed by the `AddressBookParser#parseCommand`.
