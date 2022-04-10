@@ -48,8 +48,6 @@ folder).
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    1. If double-clicking the file does not work, use the command `java -jar foodonwheels.jar` from the
    folder containing `foodonwheels.jar`.
-      
-<img src="images/FoodOnWheels.png">
 
 5. The UI shows four different tabs: `Customers`, `Orders`, `Drivers` and `Dishes`.
    1. To switch between the tabs, enter any command relating to the tab (i.e. an `adddish` 
@@ -61,7 +59,7 @@ folder).
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
 7. Some data has been added for you to try the app. Please use command `clear` to use your own data.
-### Some example commands you can try:
+## Some example commands you can try:
 
 ### Commands relating to `Dish`
 * **`adddish`**`n/Crab Pasta $/15.50` : Adds a dish named `Crab Pasta` with price `15.50` to the restaurant's menu.
@@ -463,18 +461,3 @@ Action | Feature type | Format, Examples
 **List (delivered orders)** | **Order**    | `listorder delivered` (keyword `delivered` not case-sensitve)
 **List (cancelled orders)** | **Order**    | `listorder cancelled` (keyword `cancelled` not case-sensitve)
 **Revenue (for the day)** | **Order**    | `revenue`
-
-
-[//]: # (**Add** |              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`)
-
-[//]: # (**Clear** |              | `clear`                                                                                                                     )
-
-[//]: # (**Delete** |              | `delete INDEX`<br> e.g., `delete 3`                                                                                         )
-
-[//]: # (**Edit** |              | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` )
-
-[//]: # (**Find** |              | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                  )
-
-[//]: # (**List** |              | `list`                                                                                                                      )
-
-[//]: # (**Help** |              | `help`                                                                                                                      )
