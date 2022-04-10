@@ -653,6 +653,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c1. FoodOnWheels shows an error message
 
       Use case resumes at step 1.
+    
+**Use case: Add an order**
+
+**MSS**
+
+1. User requests to add a new order with the provided information
+2. FoodOnWheels creates a new order, adds it and displays the updated order list to the user.
+   
+    Use case ends.
+
+**Extensions**
+
+* 1a. The provided information is invalid or incomplete
+    * 1a1. FoodOnWheels shows an error message with tips on how to correct the error
+    
+        Use case resumes at step 1.
+    
+**Use case: Edit the status of an order**
+
+1. User requests to edit the status of an existing order in the list to a provided status.
+2. FoodOnWheels updates the status of the order and displays the updated order list to the user.
+    
+    Use case ends.
+
+**Extensions**
+
+* 1a. The provided status is unrecognized   
+    * 1a1. FoodOnWheels shows an error messages with tips on how to correct the error    
+        Use case resumes at step 1.
+    
 
 **Use case: List orders**
 
@@ -780,14 +810,56 @@ testers are expected to do more *exploratory* testing.
        Expected: No dish is added since it is a duplicate dish (if a different name is used in step 2, use that name instead) 
        Error details shown in the status message. 
 
-    4. Other incorrect add commands to try: `adddish`, `adddish n/random`, `adddish n/random $/1.0` (where x is larger than the list size)<br>
+    4. Other incorrect add commands to try: `adddish`, `adddish n/random`, `adddish n/random $/1.0` <br>
        Expected: Similar to previous.
 
+### Adding a driver
 
-### Saving data
+1. Adding a driver while all drivers are being shown
 
-1. Dealing with missing/corrupted data files
+    1. Prerequisites: List all drivers using the `listdriver` command. 
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    2. Test case: `adddriver n/Driver One p/91234567`<br>
+       Expected: Driver with name 'Driver One' and phone number 91234567 added to the list. Ensure that 'Driver One' and the phone number does not exist
+       in the list of drivers. If it exists, use another name and phone that does not exist.
 
-1. _{ more test cases …​ }_
+    4. Other incorrect add commands to try: `adddriver`, `adddriver n/random` <br>
+       Expected: No driver is added since it is an invalid command. Error details shown in the status message.
+       
+### Adding an Order
+1. Adding an order while all orders are being shown
+    1. Prerequisites: 
+        1. List all orders using the `listorder all` command.
+        2. There exists a `Customer` with the phone number 98765432 (example for illustration).
+        3. There exists a free `Driver`. 
+        4. There exists a `Dish` with name Sushi (example for illustration).
+    2. Test case: `addorder p/98765432 d/Sushi` <br>
+        Expected: Order with the `Dish` sushi for the `Customer` with the number 98765432 is created.
+    3. Other incorrect add commands to try: `addorder`, `addorder p/99999999 n/Sushi` (or any number that does not belong to an existing customer), `addorder p/98765432 s/Rock` (or any dish that does not exist in FOW) <br>
+        Expected: No order is added since it is an invalid command. Error details shown in the status message.
+
+
+## **Appendix: Effort**
+
+Given below are explanations for the difficulty level, challenges faced, effort required, and achievements of the FOW project.
+
+### Dealing with Multiple OOP Entities
+
+* Unlike the AB3 project which focuses on one entity `Person`, FOW focuses on a total of four different entities, which are `Customer`, `Driver`, `Dish` and `Order`, with each of the entity having a similar complexity level to the original `Person` entity.
+    * This can be justified by the fact that all the four entities have almost all the equivalent AB3 `Person` commands implemented. Moreover, they branch out to more commands that were not in the AB3 project.
+    * Furthermore, the last entity `Order` is built on top of the other three entities, as an `Order` contains a `Customer` entity, a `Driver` entity, and many `Dish` entities. Each of the component entities also contain attributes such as `Name`, `Phone`, `Address`, `Price` and more. 
+      Compared to AB3's `Person` entity with attributes like `Name` and `Phone`, FOW constructed another layer of abstraction that facilitates close interaction between meaningful classes.
+    * One particular challenge posed by this elaborated structure is the need to deal with changing attributes.
+      For example, in the AB3 `Person` class, the `Name` and `Phone` objects do not change after the `Person` is created.
+      However, in FOW, due to the nature of food delivery, an `Order` which have significant classes like `Driver` as its attributes can have constantly changing attributes.
+      For instance, a `Driver` needs to be set to `Busy` during a delivery and `Free` afterwards. This leads to more complexity and dependency, and require effective communications between developers to link the different classes together.
+    
+
+* With more entities and commands than the original AB3 project, it also requires more effort to create the relevant testcases, documentations and supporting classes.
+
+### Implementation with Target User and Purpose in mind
+
+* As FoodOnWheels is targeted at restaurant delivery managers, our team implemented it with the aim of easy and efficient management of delivery details in mind. To make FOW more than just a deployable application, more effort has been put in to satisfy the non-technical requirements of our target audience.
+    * Our team implemented clear User Interfaces for all entities to highlight important information for the manager to view, after analysing which attributes of the entities the manager would be the most interested in.
+    
+
