@@ -114,7 +114,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S2-CS2103-F10-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 
 (todo: Update Model Class Diagram)
@@ -248,18 +248,28 @@ Step 4. A new `CommandResult` with the success message is returned to `Logic` an
 
 ![DeleteCustomerSequenceDiagram](images/DeleteCustomerSequenceDiagram.png)
 
-
 ### Add/Delete/List Dish feature
 
 #### Implementation
 
-The add/delete/list dish feature are commands which inherits from `Command`. These are the basic commands
-to add, remove or view `Dish` objects.
+The add/delete/edit/list dish feature are commands which inherits from `Command`. These are the basic commands
+to add, remove, edit or view `Dish` objects respectively.
 
-#### Example run-through
+Given below is a successful usage scenario of the commands.
 
-(todo: sequence diagram for add/delete/list dish)
-A sample run-through is shown below in the sequence diagram:
+Step 1. The user executes the `adddish`, `deletedish`, `editdish`, `listdish` command in the application to add, delete or list the dishes, 
+which is handled by `Logic#execute`.
+
+Step 2. The command entered is parsed by the `AddressBookParser#parseCommand`.
+
+Step 3. The `adddish`, `deletedish` and `editdish` command will then be parsed by `AddDishCommandParser#parse`, `EditDishCommandParser#parse` 
+and `DeleteDishCommandParser#parse` to create a new `AddDishCommand`, `DeleteDishCommand` and `EditDishCommand` respectively.
+
+The list dish command will be created directly from `AddressBookParser#parseCommand`, since no further parsing is required.
+
+Step 4. The `Logic` component then performs the `Command#execute()` method in the respective commands
+
+Step 5. A new `CommandResult` with the success message is returned to `Logic` and returned as the output.
 
 
 ### Tab Display feature
