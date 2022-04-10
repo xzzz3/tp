@@ -75,14 +75,13 @@ public class EditDriverCommand extends Command {
         if (!driverToEdit.isSameDriver(editedDriver) && model.hasDriver(editedDriver)) {
             throw new CommandException(MESSAGE_DUPLICATE_DRIVER);
         }
-
+        if (driverToEdit.isBusy()) {
+            throw new CommandException(String.format(MESSAGE_DELETE_DRIVER_FAIL_BUSY, driverToEdit));
+        }
         if (editedDriver.isBusy()) {
             throw new CommandException(String.format(MESSAGE_UPDATE_TO_BUSY_FAIL, driverToEdit));
         }
 
-        if (driverToEdit.isBusy()) {
-            throw new CommandException(String.format(MESSAGE_DELETE_DRIVER_FAIL_BUSY, driverToEdit));
-        }
 
         model.setDriver(driverToEdit, editedDriver);
         model.updateFilteredDriverList(PREDICATE_SHOW_ALL_DRIVERS);
