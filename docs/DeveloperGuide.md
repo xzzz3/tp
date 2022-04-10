@@ -117,15 +117,15 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddDriverCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletecustomer 
-1")` 
+3")` 
 API call.
 
-![Interactions Inside the Logic Component for the `deletecustomer 1` Command](images/DeleteCustomerSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deletecustomer 3` Command](images/DeleteCustomerSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -135,8 +135,10 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` 
+(`XYZ` is a placeholder for the specific command name e.g., `AddDriverCommandParser`) which uses the other classes
+shown above to parse the user command and create a `XYZCommand` object (e.g., `AddDriverCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddDriverCommandParser`, `DeleteDriverCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2122S2-CS2103-F10-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -174,7 +176,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 
-### Add/Delete Driver feature
+### Add/Delete/Edit Driver feature
 
 #### Implementation
 
@@ -183,20 +185,37 @@ to add, remove or view `Driver` objects.
 
 #### Example run-through
 
-(todo: sequence diagram for add/delete/list driver)
-A sample run-through is shown below in the sequence diagram:
+Given below is a successful usage scenario of the commands.
 
+Step 1. The user executes the `adddriver`, `deletedriver` and `editdriver` command in the application to add, delete or 
+edit the driver, which is handled by `Logic#execute`.
+
+Step 2. The command entered is parsed by the `AddressBookParser#parseCommand`.
+
+Step 3. The `adddriver`, `deletedriver` and `editdriver` command will then be parsed by `AddDriverCommandParser#parse`,
+`EditDriverCommandParser#parse` and `DeleteDriverCommandParser#parse` to create a new `AddDriverCommand`,
+`DeleteDriverCommand` and `EditDriverCommand` respectively.
+
+Step 4. The `Logic` component then performs the `Command#execute()` method in the respective commands
+
+Step 5. A new `CommandResult` with the success message is returned to `Logic` and returned as the output.
+
+![AddDriverSequenceDiagram](images/AddDriverSequenceDiagram.png)
 ### List Driver feature
 
 #### Implementation
 
-The list driver feature is a command which inherits from `FindCommand`. It is the basic command 
-to find `Driver` objects which have the status match with the argument in the command.
+The list driver mechanism is faciliated by `Driver` and `DriverStatus`. The latter is an enumeration class to include the possible statuses.
 
-#### Example run-through
+Given below is an example usage scenario and how the list order mechanism behaves at each step.
 
-(todo: sequence diagram for add/delete/list driver)
-A sample run-through is shown below in the sequence diagram:
+Step 1. The user executes the `listdriver free` command in the application to list the free driver.
+The `listdriver` keyword is parsed by the `AddressBookParser#parseCommand` and `ListDriverCommandParser#parse` to create a new `ListDriverCommand` with the provided status.
+
+Step 2. The `Logic` then executes the `ListDriverCommand#execute()`.
+
+Step 3. A new `CommandResult` with the success message is returned to `Logic` and returned as the output, with the orders of `DriverStatus#FREE` being displayed.
+
 
 ### Add Customer feature
 
@@ -531,11 +550,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |-------| ------------------------------------------ |----------------------------------------------------------------------------------------------------| ---------------------------------------------------------------------- |
 | `* * *` | new user                            | view all the possible commands                                                                     | easily refer to the commands without needing to remember them          |
 | `* * *` | new user                                   | see usage instructions                                                                             | refer to instructions when I forget how to use the App                 |
-| `* * *` | user                                       | add a new person                                                                                   |                                                                        |
-| `* * *` | user                                       | delete a person                                                                                    | remove entries that I no longer need                                   |
-| `* * *` | user                                       | find a person by name                                                                              | locate details of persons without having to go through the entire list |
-| `* * *` | experienced user                           | view a list of previous delivery orders                                                            | review the previous transactions' details in case they're needed (e.g. if the driver accidentally clicks delivered and the task disappears) |
-| `* * *` | experienced user                        | view a list of current delivery orders                                                             | know the details of the delivery orders and respond to them. |
 | `* * *` | basic user                                       | view a list of free drivers                                                                        | assign them to delivery orders
 | `* * *` | basic user                                       | add information of a driver                                                                        |
 | `* * *` | basic user                                       | delete information of a driver                                                                     |
@@ -543,6 +557,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | basic user                                       | delete information of a repeat customer                                                            |
 | `* * *` | basic user                                       | add a new delivery order                                                                           | I can store the information of food, customer and driver.
 | `* * *` | basic user                                       | edit the status of the order (done/ not done, customer not respond, ...)                           | I can keep track of the order status.
+| `* * *` | experienced user                           | view a list of previous delivery orders                                                            | review the previous transactions' details in case they're needed (e.g. if the driver accidentally clicks delivered and the task disappears) |
+| `* * *` | experienced user                        | view a list of current delivery orders                                                             | know the details of the delivery orders and respond to them. |
 | `* *` | experienced user                                       | view my revenue for the day                                                                        | report to the accountant of the company or show my managers the earnings of the delivery orders.               |
 | `* *` | experienced user                                       | undo a previous action                                                                             | deal with mistakes when keying in   
 | `* *` | experienced user                                       | view the delivery orders of a single restaurant (of the chain)                                     | have a better idea of which ones are more popular at the current time              |
@@ -652,8 +668,87 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1c. Index is unrecognized or out of bounds
     * 1c1. FoodOnWheels shows an error message
 
+      Use case resumes at step 1. 
+  
+**Use case: Add a driver**
+
+**MSS**
+
+1.  User requests to add a driver by providing the required info (name, phone)
+2.  FoodOnWheels adds the driver
+
+    Use case ends
+
+**Extensions**
+
+* 1a. Some fields are missing
+    * 1a1. FoodOnWheels shows an error message
+
+      Use case resumes at step 1.
+* 1b. Add results in a duplicate driver 
+    * 1c1. FoodOnWheels shows an error message
+
       Use case resumes at step 1.
 
+**Use case: Delete a driver**
+
+**MSS**
+
+1.  User requests to delete a driver by providing the required index
+2.  FoodOnWheels deletes the driver
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Index is unrecognized or out of bounds
+    * 1a1. FoodOnWheels shows an error message
+
+      Use case resumes at step 1.
+
+**Use case: Edit a driver**
+
+**MSS**
+
+1.  User requests to edit a driver by providing the index of the driver and fields to change
+2.  FoodOnWheels edits the driver based on the fields provided
+
+    Use case ends
+
+**Extensions**
+
+* 1a. Edit results in a duplicate driver
+    * 1a1. FoodOnWheels shows an error message
+
+      Use case resumes at step 1.
+* 1b. No fields indicated for edit
+    * 1b1. FoodOnWheels shows an error message
+
+      Use case resumes at step 1.
+* 1c. Index is unrecognized or out of bounds
+    * 1c1. FoodOnWheels shows an error message
+
+      Use case resumes at step 1.
+* 1d. Edit status to busy or edit busy driver 
+    * 1c1. FoodOnWheels shows an error message
+
+      Use case resumes at step 1.  
+  
+**Use case: List driver**
+
+**MSS**
+
+1. User requests to view a list of current drivers with a given status
+2. FoodOnWheels displays all the drivers based on the given status
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Status is unrecognized
+    * 1a1. FoodOnWheels shows an error message
+
+      Use case resumes at step 1.
 **Use case: List orders**
 
 **MSS**
@@ -782,12 +877,26 @@ testers are expected to do more *exploratory* testing.
 
     4. Other incorrect add commands to try: `adddish`, `adddish n/random`, `adddish n/random $/1.0` (where x is larger than the list size)<br>
        Expected: Similar to previous.
+### Deleting a driver
 
+1. Deleting a driver while all drivers are being shown
+
+    1. Prerequisites: List all drivers using the `listdriver all` command. Multiple driver in the list.
+
+    2. Test case: `deletedriver 1`<br>
+       Expected: First dish is deleted from the list. Details of the deleted driver shown in the status message.
+
+    3. Test case: `deletedriver 0`<br>
+       Expected: No driver is deleted. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `deletedriver`, `deletedriver x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+1. Dealing with missing data files <br>
+- There is no folder `data` or `addressbook.json` <br>
+     Expected: Dummy data will be automatically generated.
+2. Dealing with corrupt data files <br>
+- `addressbook.json` exists but is corrupted <br>
+   Expected: Application will run with empty data.
