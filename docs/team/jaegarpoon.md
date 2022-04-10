@@ -85,10 +85,12 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
   * Implemented the logic to show the relevant `ListPanel`, eg. when a command relating to `Dish` is 
   entered, the `DishListPanel` will be displayed
     * Logic implemented using additional boolean conditions `isDish`, `isDriver`, `isOrder` in the 
-    constructor of `CommandResult` (see Pull Request #73)
+    constructor of `CommandResult` (see PR [\#73](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/73))
 
 #### Enhancements implemented
-* **Improvements to UI**: Rearranged and displayed neatly the results in `DishCard` (see Pull Request #103)
+* **Improvements to UI**: Rearranged and displayed neatly the results in `DishCard` (see PR [\#103](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/103))
+* **Added tests for `Dish` class**: Increased test coverage from 36.00% to 43.95% (see PR [\#170](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/170))
+* **Added tests for `revenue` and `listorder`**: Increased test coverage from 51.46% to 55.70% (see PR [\#175](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/175))
 
 
 #### Contributions to the UG
@@ -105,7 +107,11 @@ above
 * **UI Component**: Updated relevant changes and diagrams made to the `Ui` component after adaptation from AB3
 
 #### Review / Mentoring contributions
-* **Pull Request Reviews**: Reviewed PR #70, #83, #85, #97, #98, #100, #106, #111, #114, #115, #116, #163
+* **Pull Request Reviews**: Reviewed PR [\#70](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/70), [\#83](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/83), 
+[\#85](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/85), [\#97](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/97), [\#98](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/98), 
+[\#100](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/100), [\#106](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/106), [\#111](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/111), 
+[\#114](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/114), [\#115](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/115), [\#116](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/116), 
+[\#163](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/163)
 * **Mentoring Contributions**: 
   * Provided comments on how to improve code in the PRs reviewed
   * Started a bug list (not found on GitHub, on Google Docs) to track bugs discovered while exploring
