@@ -100,28 +100,6 @@ public class EditCustomerCommandTest {
     }
 
     @Test
-    public void execute_duplicateCustomerUnfilteredList_failure() {
-        Customer firstCustomer = model.getFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
-        EditCustomerCommand.EditCustomerDescriptor descriptor =
-                new EditCustomerDescriptorBuilder(firstCustomer).build();
-        EditCustomerCommand editCustomerCommand = new EditCustomerCommand(INDEX_SECOND, descriptor);
-
-        assertCommandFailure(editCustomerCommand, model, EditCustomerCommand.MESSAGE_DUPLICATE_CUSTOMER);
-    }
-
-    @Test
-    public void execute_duplicateCustomerFilteredList_failure() {
-        showCustomerAtIndex(model, INDEX_FIRST);
-
-        // edit customer in filtered list into a duplicate in address book
-        Customer customerInList = model.getAddressBook().getCustomerList().get(INDEX_SECOND.getZeroBased());
-        EditCustomerCommand editCustomerCommand = new EditCustomerCommand(INDEX_FIRST,
-                new EditCustomerDescriptorBuilder(customerInList).build());
-
-        assertCommandFailure(editCustomerCommand, model, EditCustomerCommand.MESSAGE_DUPLICATE_CUSTOMER);
-    }
-
-    @Test
     public void execute_invalidCustomerIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCustomerList().size() + 1);
         EditCustomerCommand.EditCustomerDescriptor descriptor =
