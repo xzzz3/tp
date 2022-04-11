@@ -842,6 +842,7 @@ testers are expected to do more *exploratory* testing.
 
     4. Other incorrect add commands to try: `adddish`, `adddish n/random`, `adddish n/random $/1.0` <br>
        Expected: Similar to previous.
+
 ### Deleting a driver
 
 1. Deleting a driver while all drivers are being shown
