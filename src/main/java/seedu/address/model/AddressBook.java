@@ -11,8 +11,6 @@ import seedu.address.model.dish.Dish;
 import seedu.address.model.dish.UniqueDishList;
 import seedu.address.model.driver.Driver;
 import seedu.address.model.driver.UniqueDriverList;
-import seedu.address.model.item.Person;
-import seedu.address.model.item.UniquePersonList;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.UniqueOrderList;
 
@@ -24,7 +22,6 @@ import seedu.address.model.order.UniqueOrderList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueCustomerList customers;
-    private final UniquePersonList persons;
     private final UniqueOrderList orders;
     private final UniqueDishList dishes;
     private final UniqueDriverList drivers;
@@ -38,7 +35,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         customers = new UniqueCustomerList();
-        persons = new UniquePersonList();
         orders = new UniqueOrderList();
         dishes = new UniqueDishList();
         drivers = new UniqueDriverList();
@@ -126,14 +122,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         customers.add(p);
     }
 
-    /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
-     */
-    public void addPerson(Person p) {
-        persons.add(p);
-    }
-
     public void addDriver(Driver d) {
         drivers.add(d);
     }
@@ -208,7 +196,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String toString() {
         // TODO: refine later
         return customers.asUnmodifiableObservableList().size() + " customers"
-                + persons.asUnmodifiableObservableList().size() + " persons "
                 + dishes.asUnmodifiableObservableList().size() + " dishes "
                 + drivers.asUnmodifiableObservableList().size() + " drivers";
     }
@@ -217,10 +204,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Customer> getCustomerList() {
         return customers.asUnmodifiableObservableList();
     }
-
-    @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList(); }
 
     @Override
     public ObservableList<Driver> getDriverList() {

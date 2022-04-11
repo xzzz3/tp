@@ -8,7 +8,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.driver.Driver;
-import seedu.address.model.item.Person;
 import seedu.address.model.order.Order;
 
 
@@ -18,7 +17,6 @@ import seedu.address.model.order.Order;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Customer> PREDICATE_SHOW_ALL_CUSTOMERS = unused -> true;
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Driver> PREDICATE_SHOW_ALL_DRIVERS = unused -> true;
     Predicate<Order> PREDICATE_SHOW_ALL_ORDERS = unused -> true;
 
@@ -67,7 +65,6 @@ public interface Model {
      * Returns true if a customer with the same identity as {@code customer} exists in the address book.
      */
     boolean hasCustomer(Customer customer);
-    boolean hasPerson(Person person);
     boolean hasDriver(Driver driver);
 
     /**
@@ -76,14 +73,12 @@ public interface Model {
      */
     void deleteCustomer(Customer target);
 
-    void deletePerson(Person target);
     void deleteDriver(Driver driverToDelete);
     /**
      * Adds the given customer.
      * {@code customer} must not already exist in the address book.
      */
     void addCustomer(Customer customer);
-    void addPerson(Person person);
     void addDriver(Driver driver);
 
     /**
@@ -119,13 +114,12 @@ public interface Model {
     void deleteDish(Dish target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given dish.
+     * {@code dish} must not already exist in the address book.
      */
     void addDish(Dish dish);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered driver list */
     ObservableList<Driver> getFilteredDriverList();
 
     /** Returns an unmodifiable view of the filtered dish list */
@@ -136,7 +130,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredCustomerList(Predicate<Customer> predicate);
-    void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
      * Adds the given order.

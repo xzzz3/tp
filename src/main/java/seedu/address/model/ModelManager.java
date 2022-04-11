@@ -14,7 +14,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.driver.Driver;
-import seedu.address.model.item.Person;
 import seedu.address.model.order.Order;
 
 
@@ -104,10 +103,6 @@ public class ModelManager implements Model {
         return addressBook.hasCustomer(customer);
     }
 
-    @Override
-    public boolean hasPerson(Person person) {
-        return false;
-    }
 
     @Override
     public boolean hasDriver(Driver driver) {
@@ -121,11 +116,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePerson(Person target) {
-
-    }
-
-    @Override
     public void deleteDriver(Driver target) {
         addressBook.removeDriver(target);
     }
@@ -134,11 +124,6 @@ public class ModelManager implements Model {
     public void addCustomer(Customer customer) {
         addressBook.addCustomer(customer);
         updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-
     }
 
     @Override
@@ -185,11 +170,6 @@ public class ModelManager implements Model {
         updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
     }
 
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return null;
-    }
-
     //=========== Filtered Customer List Accessors =============================================================
 
     /**
@@ -219,11 +199,6 @@ public class ModelManager implements Model {
     public void updateFilteredCustomerList(Predicate<Customer> predicate) {
         requireNonNull(predicate);
         filteredCustomers.setPredicate(predicate);
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-
     }
 
     @Override

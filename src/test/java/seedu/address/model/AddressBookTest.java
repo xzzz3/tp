@@ -21,7 +21,6 @@ import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.exceptions.DuplicateCustomerException;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.driver.Driver;
-import seedu.address.model.item.Person;
 import seedu.address.model.order.Order;
 import seedu.address.testutil.CustomerBuilder;
 
@@ -91,7 +90,6 @@ public class AddressBookTest {
      * A stub ReadOnlyAddressBook whose customers list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Order> orders = FXCollections.observableArrayList();
         private final ObservableList<Driver> drivers = FXCollections.observableArrayList();
         private final ObservableList<Dish> dishes = FXCollections.observableArrayList();
@@ -109,11 +107,6 @@ public class AddressBookTest {
         @Override
         public ObservableList<Order> getOrderList() {
             return orders;
-        }
-
-        @Override
-        public ObservableList<Person> getPersonList() {
-            return null;
         }
 
         @Override
