@@ -68,7 +68,6 @@ public class EditCustomerCommand extends Command {
         Customer customerToEdit = lastShownList.get(index.getZeroBased());
         Customer editedCustomer = createEditedCustomer(customerToEdit, editCustomerDescriptor);
 
-
         model.setCustomer(customerToEdit, editedCustomer);
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
         return new CommandResult(String.format(MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer));
