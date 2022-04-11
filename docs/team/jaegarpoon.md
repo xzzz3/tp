@@ -13,17 +13,14 @@ than traditional GUI apps.
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
-### Summary of Contributions
-**Code contributed**: [RepoSense Link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=jaegarpoon&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-02-18&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+Given below are my **contributions to the project**.
 
-#### Features implemented
+**Code contributed**: [RepoSense Link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=jaegarpoon&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-02-18&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 **Model**:
 * **Dish Class**: Added `Dish` class
-  * Overview: `Dish` class provides a blueprint for the creation of a dish in the restaurant to be
+  * `Dish` class provides a blueprint for the creation of a dish in the restaurant to be
   used in FOW
-  * Justification: It is a required and fundamental building block for FOW, a delivery management
-  app. Four fundamental classes: `Order`, `Dish`, `Customer` and `Driver`
   * Attribute 1: `NameDish` - Stores the name of the dish (adapted from AB3 `Name` class)
   * Attribute 2: `PriceDish` - Stores the price of the dish (created) 
     * Accepts only entries with 2 d.p.
@@ -38,23 +35,10 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 
 **Logic**:
-* **Add Dish Command and Parser**: Command and Parser to add a dish into FOW
-  * Overview: Adds a dish into the `UniqueDishList` stored in FOW
-  * Credits: `AddDishCommand` and `AddDishCommandParser` was adapted from AB3 `AddPersonCommand`
-  and `AddPersonCommandParser`, with edits of the fields required for the `Dish` class as opposed
+* **Add / Delete / Edit Dish Command and Parser**: Command and Parser to add a dish into FOW
+  * Overview: Add / Delete / Edit / List dishes in the `UniqueDishList` stored in FOW
+  * Credits: Commands and Parsers was adapted from AB3, with edits of the fields required for the `Dish` class as opposed
   to the `Person` class
-* **Delete Dish Command and Parser**: Command and Parser to delete a dish from FOW
-  * Overview: Deletes a dish from the `UniqueDishList` stored in FOW
-  * Credits: `DeleteDishCommand` and `DeleteDishCommandParser` was adapted from AB3 `DeletePersonCommand`
-    and `DeletePersonCommandParser`
-* **Edit Dish Command and Parser**: Command and Parser to edit a dish in FOW
-  * Overview: Edits a dish from the `UniqueDishList` stored in FOW
-  * Credits: `EditDishCommand` and `EditDishCommandParser` was adapted from AB3 `EditPersonCommand`
-    and `EditPersonCommandParser`, with edits of the fields required for the `Dish` class as opposed
-    to the `Person` class
-* **List Dish Command**: Command to list all dishes in FOW
-  * Overview: Lists all the dishes in FOW, obtained from `UniqueDishList` as an unmodifiable view.
-  * Credits: `ListDishCommand` was adapted from AB3 `ListPersonCommand`
 * **List Order Command and Parser**: Command and Parser to list orders in FOW based on their current status
   * Overview: Updates the filtered order list stored in `ModelManager` based on the input status,
   and displays the list of orders on the UI
@@ -76,8 +60,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
     delivered
     * Streams the orders and sums up the revenue
     * Then updates `ModelManager#filteredOrderList` to show all orders again
-
-
+    
 **UI**:
 * **Tab Display Feature**: Displays the relevant classes: `Dishes`, `Customers`, `Orders` and `Drivers`
   * Highlights: Relevant class that was in the latest command will be bolded, with the relevant list being
@@ -87,13 +70,12 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
     * Logic implemented using additional boolean conditions `isDish`, `isDriver`, `isOrder` in the 
     constructor of `CommandResult` (see PR [\#73](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/73))
 
-#### Enhancements implemented
+**Enhancements implemented**:
 * **Improvements to UI**: Rearranged and displayed neatly the results in `DishCard` (see PR [\#103](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/103))
 * **Added tests for `Dish` class**: Increased test coverage from 36.00% to 43.95% (see PR [\#170](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/170))
 * **Added tests for `revenue` and `listorder`**: Increased test coverage from 51.46% to 55.70% (see PR [\#175](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/175))
 
-
-#### Contributions to the UG
+**Contributions to the UG**:
 * **Documenting usage of Commands**: Documented usage of commands based on the commands implemented and mentioned
 above
 * **Documenting usage of Tabs**: Documented how a user can switch between tabs in FOW
@@ -101,12 +83,12 @@ above
 * **Java `11` installation guide**: Added instructions for Java `11` installation
 * **Instructions to start FOW**: Wrote instructions on usage of `java -jar foodonwheels.jar`
 
-#### Contributions to the DG
+**Contributions to the DG**:
 * **Model Component**: Updated relevant changes and diagrams made to the `Model` component after adaptation from AB3
 * **Implementations**: Updated implementations based on implementations and enhancements mentioned above
 * **UI Component**: Updated relevant changes and diagrams made to the `Ui` component after adaptation from AB3
 
-#### Review / Mentoring contributions
+**Review / Mentoring contributions**:
 * **Pull Request Reviews**: Reviewed PR [\#70](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/70), [\#83](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/83), 
 [\#85](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/85), [\#97](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/97), [\#98](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/98), 
 [\#100](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/100), [\#106](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/106), [\#111](https://github.com/AY2122S2-CS2103-F10-2/tp/pull/111), 
@@ -119,7 +101,7 @@ above
   * Taking initiative to establish UI features to enhance visuals of FOW for easier use, where team members
   adapted the UI features implemented
 
-#### Contributions beyond the project team
+**Contributions beyond the project team**:
 * **Sharing information on forums**: 
   * Forum post on [JavaFX SDK](https://github.com/nus-cs2103-AY2122S2/forum/issues/66)
   * Forum post on [Varying builds from CI and local machine](https://github.com/nus-cs2103-AY2122S2/forum/issues/122)
