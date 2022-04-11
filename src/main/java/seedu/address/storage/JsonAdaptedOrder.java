@@ -18,6 +18,7 @@ import seedu.address.model.driver.Driver;
 import seedu.address.model.driver.NameDriver;
 import seedu.address.model.driver.PhoneDriver;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderStatus;
 
 /**
  * Jackson-friendly version of {@link Order}.
@@ -32,6 +33,7 @@ class JsonAdaptedOrder {
     private final String customerAddress;
     private final String driverName;
     private final String driverPhone;
+    private final String status;
     private final ArrayList<String> dishNames;
     private final ArrayList<String> dishPrices;
     private final LocalDateTime time;
@@ -45,6 +47,7 @@ class JsonAdaptedOrder {
                             @JsonProperty("customerAddress") String customerAddress,
                             @JsonProperty("driverName") String driverName,
                             @JsonProperty("driverPhone") String driverPhone,
+                            @JsonProperty("status") String status,
                             @JsonProperty("dishName") ArrayList<String> dishNames,
                             @JsonProperty("dishPrice") ArrayList<String> dishPrices,
                             @JsonProperty("time") LocalDateTime time) {
@@ -53,6 +56,7 @@ class JsonAdaptedOrder {
         this.customerAddress = customerAddress;
         this.driverName = driverName;
         this.driverPhone = driverPhone;
+        this.status = status;
         this.dishNames = dishNames;
         this.dishPrices = dishPrices;
         this.time = time;
@@ -67,6 +71,7 @@ class JsonAdaptedOrder {
         customerAddress = source.getCustomerAddress().toString();
         driverName = source.getDriverName();
         driverPhone = source.getDriver().getPhone().toString();
+        status = source.getStatus().toString();
         dishNames = new ArrayList<String>();
         dishPrices = new ArrayList<String>();
         for (Dish dish : source.getDishes()) {
@@ -112,6 +117,22 @@ class JsonAdaptedOrder {
 
         final Driver driver = new Driver(new NameDriver(driverName), new PhoneDriver(driverPhone));
 
+        if (status == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    OrderStatus.class.getSimpleName()));
+        }
+
+        final OrderStatus orderStatus;
+
+        // default is delivered
+        if (status.equalsIgnoreCase("in_progress")) {
+            orderStatus = OrderStatus.IN_PROGRESS;
+        } else if (status.equalsIgnoreCase("cancelled")) {
+            orderStatus = OrderStatus.CANCELLED;
+        } else {
+            orderStatus = OrderStatus.DELIVERED;
+        }
+
         if (dishNames == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     NameDish.class.getSimpleName()));
@@ -139,7 +160,7 @@ class JsonAdaptedOrder {
 
         final LocalDateTime time = this.time;
 
-        return new Order(customer, driver, time, modelDishes.toArray(new Dish[0]));
+        return new Order(customer, driver, time, orderStatus, modelDishes.toArray(new Dish[0]));
     }
 
 }
