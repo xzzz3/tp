@@ -72,9 +72,11 @@ public class EditDriverCommand extends Command {
         Driver driverToEdit = lastShownList.get(index.getZeroBased());
         Driver editedDriver = createEditedDriver(driverToEdit, editDriverDescriptor);
 
-        if (!driverToEdit.isSameDriver(editedDriver) && model.hasDriver(editedDriver)) {
+
+        if (model.hasRepeatedNameOrPhoneDriver(driverToEdit, editedDriver)) {
             throw new CommandException(MESSAGE_DUPLICATE_DRIVER);
         }
+
         if (driverToEdit.isBusy()) {
             throw new CommandException(String.format(MESSAGE_DELETE_DRIVER_FAIL_BUSY, driverToEdit));
         }

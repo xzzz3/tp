@@ -16,9 +16,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
-import seedu.address.model.customer.exceptions.CustomerNotFoundException;
 import seedu.address.model.dish.Dish;
-import seedu.address.model.dish.exception.DishNotFoundException;
 import seedu.address.model.driver.Driver;
 import seedu.address.model.order.Order;
 
@@ -97,7 +95,7 @@ public class EditOrderCommand extends Command {
     private static Order createEditedOrder(Order orderToEdit,
                                            EditOrderDescriptor editOrderDescriptor,
                                            ObservableList<Customer> customers,
-                                           ObservableList<Dish> dishes) {
+                                           ObservableList<Dish> dishes) throws CommandException {
         assert orderToEdit != null;
 
         Customer updatedCustomer = orderToEdit.getCustomer();
@@ -114,7 +112,7 @@ public class EditOrderCommand extends Command {
             }
 
             if (!customerFound) {
-                throw new CustomerNotFoundException();
+                throw new CommandException(Messages.MESSAGE_NO_CUSTOMER_FOUND);
             }
         }
 
@@ -130,7 +128,7 @@ public class EditOrderCommand extends Command {
             }
 
             if (dishesInputList.size() != updatedDishes.size()) {
-                throw new DishNotFoundException();
+                throw new CommandException(Messages.MESSAGE_NO_DISH_FOUND);
             }
         } else {
             updatedDishes = orderToEdit.getDishes();

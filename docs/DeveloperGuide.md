@@ -22,7 +22,6 @@ title: Developer Guide
    4.8 [Edit Order Status](#edit-order-status-feature)  
    4.9 [List Order](#list-order-feature)  
    4.10 [Revenue](#revenue-feature)  
-   4.11 [[Proposed] Undo/redo](#proposed-undoredo-feature)   
 5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)  
 6. [Appendix: Requirements](#appendix-requirements) 
 7. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)   
@@ -98,7 +97,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S2-CS2103-F10-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S2-CS2103-F10-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -604,7 +603,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 * 1b. Add results in a duplicate driver 
-    * 1c1. FoodOnWheels shows an error message
+    * 1b1. FoodOnWheels shows an error message
 
       Use case resumes at step 1.
 
@@ -649,7 +648,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1.
 
 * 1d. Edit status to busy or edit busy driver 
-    * 1c1. FoodOnWheels shows an error message
+    * 1d1. FoodOnWheels shows an error message
 
       Use case resumes at step 1.  
   
@@ -730,15 +729,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: View all commands**
+**Use case: Help**
 
 **MSS**
 
-1.  User requests to view the list of all commands
-2.  FoodOnWheels shows a list of commands
+1.  User requests for help with the operation of the app
+2.  FoodOnWheels shows a link to the product documentation site
 
     Use case ends.
 
+**Use case: Clear existing data**
+
+**MSS**
+
+1. User requests to clear existing data
+2. FoodOnWheels clears existing data
+
+    Use case ends.
+
+**Use case: Exit**
+
+**MSS**
+
+1.  User requests to exit the app
+2.  FoodOnWheels closes
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
@@ -770,7 +786,7 @@ testers are expected to do more *exploratory* testing.
 
    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
       1. If double-clicking the file does not work, use the command `java -jar foodonwheels.jar` from the
-      folder containing `foodonwheels.jar`.
+      folder containing `foodonwheels.jar` (assuming you saved the file as `foodonwheels.jar`).
 
 1. Saving window preferences
 
@@ -826,6 +842,7 @@ testers are expected to do more *exploratory* testing.
 
     4. Other incorrect add commands to try: `adddish`, `adddish n/random`, `adddish n/random $/1.0` <br>
        Expected: Similar to previous.
+
 ### Deleting a driver
 
 1. Deleting a driver while all drivers are being shown

@@ -112,6 +112,16 @@ public class AddOrderCommandTest {
         }
 
         @Override
+        public boolean hasRepeatedNameOrPhone(Customer toRemove, Customer toCheck) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasRepeatedNameOrPhoneDriver(Driver driverToEdit, Driver editedDriver) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteCustomer(Customer target) {
             throw new AssertionError("This method should not be called.");
         }

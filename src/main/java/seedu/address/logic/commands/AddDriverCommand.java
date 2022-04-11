@@ -26,7 +26,7 @@ public class AddDriverCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New driver added: %1$s";
     public static final String MESSAGE_DUPLICATE_DRIVER = "This driver already exists in the database";
     public static final String MESSAGE_DUPLICATE_CUSTOMER = "A customer with the same phone number "
-            + "already exists.";
+            + "already exists. Please use another phone number as phone numbers are unique in FOW.";
 
     private final Driver toAdd;
     private final Customer toAddCustomer;

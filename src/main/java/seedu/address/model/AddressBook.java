@@ -107,6 +107,24 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a customer with the same identity as {@code customer} exists in the address book.
+     */
+    public boolean hasRepeatedNameOrPhone(Customer toRemove, Customer toCheck) {
+        requireNonNull(toRemove);
+        requireNonNull(toCheck);
+        return customers.containsExcludeCurrent(toRemove, toCheck);
+    }
+
+    /**
+     * Returns true if a customer with the same identity as {@code customer} exists in the address book.
+     */
+    public boolean hasRepeatedNameOrPhoneDriver(Driver toRemove, Driver toCheck) {
+        requireNonNull(toRemove);
+        requireNonNull(toCheck);
+        return drivers.containsExcludeCurrentDriver(toRemove, toCheck);
+    }
+
+    /**
      * Returns true if a driver with the same identity as {@code driver} exists in the database
      */
     public boolean hasDriver(Driver driver) {

@@ -18,6 +18,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.driver.Driver;
+import seedu.address.model.driver.DriverStatus;
 import seedu.address.model.order.Order;
 
 /**
@@ -94,6 +95,14 @@ class JsonSerializableAddressBook {
             Order order = jsonAdaptedOrder.toModelType();
             if (addressBook.hasOrder(order)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ORDER);
+            }
+            if (order.getStatus().toString().equalsIgnoreCase("IN_PROGRESS")) {
+                Driver orderDriver = order.getDriver();
+                for (Driver driver : addressBook.getDriverList()) {
+                    if (driver.getName().equals(orderDriver.getName())) {
+                        driver.setStatus(DriverStatus.BUSY);
+                    }
+                }
             }
             addressBook.addOrder(order);
         }

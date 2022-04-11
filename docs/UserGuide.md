@@ -47,18 +47,18 @@ folder).
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    1. If double-clicking the file does not work, use the command `java -jar foodonwheels.jar` from the
-   folder containing `foodonwheels.jar`.
+   folder containing `foodonwheels.jar` (assuming you saved the file as `foodonwheels.jar`).
 
 5. The UI shows four different tabs: `Customers`, `Orders`, `Drivers` and `Dishes`.
    1. To switch between the tabs, enter any command relating to the tab (i.e. an `adddish` 
    command changes the tab to `Dishes`, likewise for others). The available and 
    detailed usage of each command can be found in [Features](#2-features).
-   2. Sample screenshot for the tabs can be found here (`Customers` selected):
-   <img src="images/tabdisplay.png" width=80%>
    
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
 7. Some data has been added for you to try the app. Please use command `clear` to use your own data.
+
+
 ## Some example commands you can try:
 
 ### Commands relating to `Dish`
@@ -138,6 +138,8 @@ Refer to the [Features](#2-features) below for details of each command.
 
 Adds a customer to the database.
 
+`(Existing names or phone numbers will not be added to prevent duplicates)`
+
 Format: `addcustomer n/NAME p/PHONE a/ADDRESS `
 
 Examples:
@@ -165,12 +167,17 @@ Sample screenshot:
 
 Edits a customer from the database.
 
+`(Existing names or phone numbers will not be added to prevent duplicates)`
+
 Format: `editcustomer INDEX [n/NAME] [p/PHONE] [a/ADDRESS]`
 
 Examples:
 * `editcustomer 1 n/John Doe a/Sentosa Cove`
 * `editcustomer 3 p/81234567 a/Sentosa Cove`
 * `editcustomer 2 n/John Doe p/81234567`
+
+Note: If a customer was previously added into an order, the edit will not affect the customer snapshot captured in the order.
+This is because it will affect previous records, which is an unwanted situation.
 
 Sample screenshot:
 
@@ -190,9 +197,13 @@ Sample screenshot:
 
 ### Adding a driver: `adddriver`
 
-Adds a driver to the database.
+Adds a driver to the database. 
 
-Format: ` adddriver n/NAME p/PHONE`
+`(Existing names or phone numbers will not be added to prevent duplicates)`
+
+Note: Drivers should not have the same phone number as an existing customer as phone numbers are unique in FOW.
+
+Format: `adddriver n/NAME p/PHONE`
 
 Examples:
 * `adddriver n/John Doe p/98765432 `
@@ -248,6 +259,8 @@ Sample screenshot:
 
 Edits a driver's information
 
+`(Existing names or phone numbers will not be added to prevent duplicates)`
+
 Format: `editdriver INDEX [n/NAME] [p/PHONE] [s/STATUS]`, where `INDEX` denotes the index of the drivers.
 * `STATUS` cannot be changed to `BUSY`.
 * `STATUS` only can be changed when the driver is not `BUSY`.
@@ -256,6 +269,9 @@ Examples:
 * `editdriver 1 n/Adam`
 * `editdriver 2 p/99998888`
 * `editdriver 2 s/absent`
+
+Note: If a driver was previously added into an order, the edit will not affect the driver snapshot captured in the order.
+This is because it will affect previous records, which is an unwanted situation.
 
 Sample screenshot:
 
@@ -301,6 +317,9 @@ Examples:
 * `editdish 1 n/Kimchi Fried Rice`
 * `editdish 2 $/10.00`
 * `editdish 2 n/Limchi Fried Rice $/10.00`
+
+Note: If a dish was previously added into an order, the edit will not affect the dish snapshot captured in the order.
+This is because it will affect previous records, which is an unwanted situation.
 
 Sample screenshot:
 
@@ -416,6 +435,11 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Clearing all existing data : `clear`
+
+Clears all existing customers / orders / drivers / dishes from FOW.
+
+Format: `clear`
 
 ### Exiting the program : `exit`
 
@@ -451,24 +475,30 @@ _Details coming soon ..._
 
 ## 4. Command summary
 
-Action | Feature type | Format, Examples
---------|--------------|------------------
-**Add** | **Customer** |`addcustomer n/NAME a/ADDRESS p/PHONE` <br> e.g,`addcustomer n/James Ho a/123, Clementi Rd, 1234665 p/88884444`
-**Delete** | **Customer** |`deletecustomer INDEX` <br> e.g,`deletecustomer 1`
-**Edit** | **Customer** |`editcustomer INDEX [n/NAME] [a/ADDRESS] [p/PHONE]`<br> e.g,`editcustomer 1 n/James Ho a/123, Clementi Rd, 1234665 p/99994444`
-**Add** | **Driver**   |`adddriver n/NAME p/PHONE` <br> e.g,`adddriver n/John Doe p/98765432`
-**Delete** | **Driver**   |`deletedriver INDEX` <br> e.g,`deletedriver 1`
-**List (all drivers)** | **Driver**   |`listdriver all`
-**List** | **Driver**   |`listdriver STATUS` <br> e.g `listdriver free`
-**Edit** | **Driver** |``editdriver INDEX [n/NAME] [p/PHONE] [s/STATUS]``<br> e.g,`editdriver 3 s/absent`
-**Add** | **Dish**     | `adddish n/NAME $/PRICE` <br> e.g., `adddish n/Crab Pasta $/15.50`
-**Delete** | **Dish**     | `deletedish INDEX` <br> e.g., `deletedish 1`
-**Add** | **Order**    | `addorder p/PHONE d/DISHES_SEPARATED_BY_COMMA…` <br> e.g., `addorder p/82224567 d/kimchi fried rice, sushi`
+Action | Feature type       | Format, Examples
+--------|--------------------|------------------
+**Add** | **Customer**       |`addcustomer n/NAME a/ADDRESS p/PHONE` <br> e.g,`addcustomer n/James Ho a/123, Clementi Rd, 1234665 p/88884444`
+**Delete** | **Customer**       |`deletecustomer INDEX` <br> e.g,`deletecustomer 1`
+**Edit** | **Customer**       |`editcustomer INDEX [n/NAME] [a/ADDRESS] [p/PHONE]`<br> e.g,`editcustomer 1 n/James Ho a/123, Clementi Rd, 1234665 p/99994444`
+**List** | **Customer**       |`listcustomer`
+**Add** | **Driver**         |`adddriver n/NAME p/PHONE` <br> e.g,`adddriver n/John Doe p/98765432`
+**Delete** | **Driver**         |`deletedriver INDEX` <br> e.g,`deletedriver 1`
+**List (all drivers)** | **Driver**         |`listdriver all`
+**List** | **Driver**         |`listdriver STATUS` <br> e.g `listdriver free`
+**Edit** | **Driver**         |``editdriver INDEX [n/NAME] [p/PHONE] [s/STATUS]``<br> e.g,`editdriver 3 s/absent`
+**Add** | **Dish**           | `adddish n/NAME $/PRICE` <br> e.g., `adddish n/Crab Pasta $/15.50`
+**Delete** | **Dish**           | `deletedish INDEX` <br> e.g., `deletedish 1`
+**Edit** | **Dish**           | `editdish INDEX [n/NAME] [$/PRICE]` <br> e.g., `editdish 1 n/Kimchi Fried Rice $/10.00`
+**List** | **Dish**           |`listdish`
+**Add** | **Order**          | `addorder p/PHONE d/DISHES_SEPARATED_BY_COMMA…` <br> e.g., `addorder p/82224567 d/kimchi fried rice, sushi`
 **Edit** | **Order (status)** | `mark INDEX s/STATUS` <br> e.g., `mark 1 s/delivered`
-**Edit** | **Order** | `editorder INDEX [p/PHONE] [d/DISHES_SEPARATED_BY_COMMA...]` <br> e.g., `editorder 2 p/675827361 d/burger`
-**Find** | **Order** | `find p/PHONE` <br> e.g., `find p/87654321`
-**List (all orders)** | **Order**    | `listorder all` (keyword `all` not case-sensitve)
-**List (in-progress orders)** | **Order**    | `listorder in progress` OR `listorder in_progress` (keyword `in progress` OR `in_progress` not case-sensitve)
-**List (delivered orders)** | **Order**    | `listorder delivered` (keyword `delivered` not case-sensitve)
-**List (cancelled orders)** | **Order**    | `listorder cancelled` (keyword `cancelled` not case-sensitve)
-**Revenue (for the day)** | **Order**    | `revenue`
+**Edit** | **Order**          | `editorder INDEX [p/PHONE] [d/DISHES_SEPARATED_BY_COMMA...]` <br> e.g., `editorder 2 p/675827361 d/burger`
+**Find** | **Order**          | `find p/PHONE` <br> e.g., `find p/87654321`
+**List (all orders)** | **Order**          | `listorder all` (keyword `all` not case-sensitve)
+**List (in-progress orders)** | **Order**          | `listorder in progress` OR `listorder in_progress` (keyword `in progress` OR `in_progress` not case-sensitve)
+**List (delivered orders)** | **Order**          | `listorder delivered` (keyword `delivered` not case-sensitve)
+**List (cancelled orders)** | **Order**          | `listorder cancelled` (keyword `cancelled` not case-sensitve)
+**Revenue (for the day)** | **Order**          | `revenue`
+**Help** | -                  | `help`
+**Clear the existing data** | -                  | `clear`
+**Exit the app** | -                  | `exit`
