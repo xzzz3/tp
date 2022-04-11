@@ -168,4 +168,6 @@ public interface Model {
     void setOrder(Order target, Order editedOrder);
 
     boolean hasRepeatedNameOrPhone(Customer toRemove, Customer toCheck);
+
+    boolean hasRepeatedNameOrPhoneDriver(Driver driverToEdit, Driver editedDriver);
 }

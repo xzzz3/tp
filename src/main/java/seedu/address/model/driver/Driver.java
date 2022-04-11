@@ -67,7 +67,19 @@ public class Driver {
                 || otherDriver.getPhone().equals((getPhone())));
     }
 
+    /**
+     * Returns true if both customers have the same nameCustomer and phoneCustomer.
+     * This defines a notion of equality or duplication between two customers.
+     */
+    public boolean isCurrentDriver(Driver otherDriver) {
+        if (otherDriver == this) {
+            return true;
+        }
 
+        return otherDriver != null
+                && (otherDriver.getName().equals(getName())
+                && otherDriver.getPhone().equals(getPhone()));
+    }
 
     @Override
     public boolean equals(Object other) {
