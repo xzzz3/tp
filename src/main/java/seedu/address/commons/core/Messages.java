@@ -24,4 +24,9 @@ public class Messages {
     public static final String MESSAGE_DRIVER_BUSY = "The selected driver is currently busy. "
             + "Please create a new order.";
     public static final String MESSAGE_NO_ORDERS_FOUND = "There are no orders that match the provided phone number.";
+    public static final String MESSAGE_NO_CUSTOMER_FOUND = "There are no customers that match the "
+            + "provided phone number";
+    public static final String MESSAGE_NO_DISH_FOUND = "There are no dishes that match the "
+            + "provided dish name";
+
 }
