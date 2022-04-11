@@ -47,7 +47,7 @@ folder).
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    1. If double-clicking the file does not work, use the command `java -jar foodonwheels.jar` from the
-   folder containing `foodonwheels.jar`.
+   folder containing `foodonwheels.jar` (assuming you saved the file as `foodonwheels.jar`).
 
 5. The UI shows four different tabs: `Customers`, `Orders`, `Drivers` and `Dishes`.
    1. To switch between the tabs, enter any command relating to the tab (i.e. an `adddish` 

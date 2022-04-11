@@ -787,7 +787,7 @@ testers are expected to do more *exploratory* testing.
 
    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
       1. If double-clicking the file does not work, use the command `java -jar foodonwheels.jar` from the
-      folder containing `foodonwheels.jar`.
+      folder containing `foodonwheels.jar` (assuming you saved the file as `foodonwheels.jar`).
 
 1. Saving window preferences
 
