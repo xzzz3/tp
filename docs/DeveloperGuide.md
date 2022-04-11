@@ -730,15 +730,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: View all commands**
+**Use case: Help**
 
 **MSS**
 
-1.  User requests to view the list of all commands
-2.  FoodOnWheels shows a list of commands
+1.  User requests for help with the operation of the app
+2.  FoodOnWheels shows a link to the product documentation site
 
     Use case ends.
 
+**Use case: Clear existing data**
+
+**MSS**
+
+1. User requests to clear existing data
+2. FoodOnWheels clears existing data
+
+    Use case ends.
+
+**Use case: Exit**
+
+**MSS**
+
+1.  User requests to exit the app
+2.  FoodOnWheels closes
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
