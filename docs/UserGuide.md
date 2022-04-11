@@ -207,7 +207,6 @@ Sample screenshot:
 Deletes a driver from the database, together with his/her information.
 
 Format: `deletedriver INDEX`, where `INDEX` denotes the index of the drivers.
-* Please use the index `INDEX` shown from the list retrieved from the command `listdriver all`
 
 Examples:
 * `deletedriver 1`
@@ -250,7 +249,6 @@ Sample screenshot:
 Edits a driver's information
 
 Format: `editdriver INDEX [n/NAME] [p/PHONE] [s/STATUS]`, where `INDEX` denotes the index of the drivers.
-* Please use the index `INDEX` shown from the list retrieved from the command `listdriver all`
 * `STATUS` cannot be changed to `BUSY`.
 * `STATUS` only can be changed when the driver is not `BUSY`.
 
