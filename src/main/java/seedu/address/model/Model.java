@@ -166,4 +166,6 @@ public interface Model {
      * another existing order in the address book.
      */
     void setOrder(Order target, Order editedOrder);
+
+    boolean hasRepeatedNameOrPhone(Customer toRemove, Customer toCheck);
 }

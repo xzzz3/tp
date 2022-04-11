@@ -73,6 +73,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean hasRepeatedNameOrPhone(Customer toRemove, Customer toCheck) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public boolean hasDriver(Driver driver) {
         throw new AssertionError("This method should not be called.");
     }

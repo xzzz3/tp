@@ -103,6 +103,14 @@ public class ModelManager implements Model {
         return addressBook.hasCustomer(customer);
     }
 
+    @Override
+    public boolean hasRepeatedNameOrPhone(Customer toRemove, Customer toCheck) {
+        requireNonNull(toRemove);
+        requireNonNull(toCheck);
+        return addressBook.hasRepeatedNameOrPhone(toRemove, toCheck);
+    }
+
+
 
     @Override
     public boolean hasDriver(Driver driver) {
