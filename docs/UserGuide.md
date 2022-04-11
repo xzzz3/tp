@@ -324,6 +324,10 @@ Examples:
 * `addorder p/81234567 d/Fried Rice, Pasta`
 * `addorder p/86471627 d/Sushi`
 
+Sample screenshot:
+
+<img src="images/addorder.png">
+
 ### Edit the status of a Delivery Order: `mark`
 
 Edit the status of a delivery order in the list using its index.
@@ -336,6 +340,11 @@ Format: `mark INDEX s/STATUS`
 Examples:
 * `mark 1 s/delivered`
 * `mark 3 s/in progress`
+
+Sample screenshot:
+
+<img src="images/editorderstatus.png">
+
 
 ### Edit the details of a Delivery Order: `editorder`
 
@@ -358,6 +367,11 @@ Format: `findorder p/PHONE_SEPARATED_BY_SPACE...`
 Examples:
 * `findorder p/81234567`
 * `findorder p/81234567 98765432`
+
+Sample screenshot:
+
+<img src="images/findorder.png">
+
 
 ### Listing orders: `listorder`
 
