@@ -140,6 +140,8 @@ Refer to the [Features](#2-features) below for details of each command.
 
 Adds a customer to the database.
 
+`(Existing names or phone numbers will not be added to prevent duplicates)`
+
 Format: `addcustomer n/NAME p/PHONE a/ADDRESS `
 
 Examples:
@@ -167,6 +169,8 @@ Sample screenshot:
 
 Edits a customer from the database.
 
+`(Existing names or phone numbers will not be added to prevent duplicates)`
+
 Format: `editcustomer INDEX [n/NAME] [p/PHONE] [a/ADDRESS]`
 
 Examples:
@@ -192,7 +196,9 @@ Sample screenshot:
 
 ### Adding a driver: `adddriver`
 
-Adds a driver to the database.
+Adds a driver to the database. 
+
+`(Existing names or phone numbers will not be added to prevent duplicates)`
 
 Format: ` adddriver n/NAME p/PHONE`
 
@@ -249,6 +255,8 @@ Sample screenshot:
 ### Editing a driver: `editdriver`
 
 Edits a driver's information
+
+`(Existing names or phone numbers will not be added to prevent duplicates)`
 
 Format: `editdriver INDEX [n/NAME] [p/PHONE] [s/STATUS]`, where `INDEX` denotes the index of the drivers.
 * `STATUS` cannot be changed to `BUSY`.
