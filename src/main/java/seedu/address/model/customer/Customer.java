@@ -60,7 +60,7 @@ public class Customer {
      * Returns true if both customers have the same nameCustomer and phoneCustomer.
      * This defines a notion of equality or duplication between two customers.
      */
-    public boolean isExactlySameCustomer(Customer otherCustomer) {
+    public boolean isCurrentCustomer(Customer otherCustomer) {
         if (otherCustomer == this) {
             return true;
         }

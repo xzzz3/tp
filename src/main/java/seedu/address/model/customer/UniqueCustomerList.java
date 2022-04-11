@@ -41,6 +41,15 @@ public class UniqueCustomerList implements Iterable<Customer> {
     }
 
     /**
+     * Returns true if the list contains an equivalent customer as the given argument.
+     */
+    public boolean containsExcludeCurrent(Customer toRemove, Customer toCheck) {
+        requireNonNull(toRemove);
+        requireNonNull(toCheck);
+        return internalList.stream().filter(x -> !x.isCurrentCustomer(toRemove)).anyMatch(toCheck::isSameCustomer);
+    }
+
+    /**
      * Adds a customer to the list.
      * The customer must not already exist in the list.
      */
