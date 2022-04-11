@@ -22,7 +22,6 @@ title: Developer Guide
    4.8 [Edit Order Status](#edit-order-status-feature)  
    4.9 [List Order](#list-order-feature)  
    4.10 [Revenue](#revenue-feature)  
-   4.11 [[Proposed] Undo/redo](#proposed-undoredo-feature)   
 5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)  
 6. [Appendix: Requirements](#appendix-requirements) 
 7. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)   
@@ -98,7 +97,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S2-CS2103-F10-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S2-CS2103-F10-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -604,7 +603,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 * 1b. Add results in a duplicate driver 
-    * 1c1. FoodOnWheels shows an error message
+    * 1b1. FoodOnWheels shows an error message
 
       Use case resumes at step 1.
 
@@ -649,7 +648,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1.
 
 * 1d. Edit status to busy or edit busy driver 
-    * 1c1. FoodOnWheels shows an error message
+    * 1d1. FoodOnWheels shows an error message
 
       Use case resumes at step 1.  
   
