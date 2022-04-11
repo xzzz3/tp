@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.customer.Customer;
 import seedu.address.model.driver.exception.DriverNotFoundException;
 import seedu.address.model.driver.exception.DuplicateDriverException;
 

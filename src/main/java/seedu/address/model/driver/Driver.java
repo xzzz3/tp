@@ -4,8 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import seedu.address.model.customer.Customer;
-
 /**
  * Represents a Driver in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
