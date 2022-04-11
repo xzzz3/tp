@@ -146,7 +146,7 @@ Examples:
 
 Sample screenshot:
 
-<img src="images/acustomer.png">
+<img src="images/addcustomer.png">
 
 ### Deleting a customer: `deletecustomer`
 
@@ -207,7 +207,6 @@ Sample screenshot:
 Deletes a driver from the database, together with his/her information.
 
 Format: `deletedriver INDEX`, where `INDEX` denotes the index of the drivers.
-* Please use the index `INDEX` shown from the list retrieved from the command `listdriver all`
 
 Examples:
 * `deletedriver 1`
@@ -250,7 +249,6 @@ Sample screenshot:
 Edits a driver's information
 
 Format: `editdriver INDEX [n/NAME] [p/PHONE] [s/STATUS]`, where `INDEX` denotes the index of the drivers.
-* Please use the index `INDEX` shown from the list retrieved from the command `listdriver all`
 * `STATUS` cannot be changed to `BUSY`.
 * `STATUS` only can be changed when the driver is not `BUSY`.
 
@@ -418,7 +416,7 @@ FoodOnWheels data are saved in the hard disk automatically after any command tha
 
 ### Editing the data file
 
-FoodOnWheels data are saved as a JSON file `[JAR file location]/data/addressbook.json` (to be updated). Advanced users are welcome to update data directly by editing that data file.
+FoodOnWheels data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
@@ -438,7 +436,6 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. Command summary
-(to be updated)
 
 Action | Feature type | Format, Examples
 --------|--------------|------------------

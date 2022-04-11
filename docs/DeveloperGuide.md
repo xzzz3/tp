@@ -117,15 +117,15 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddDriverCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletecustomer 
-1")` 
+3")` 
 API call.
 
-![Interactions Inside the Logic Component for the `deletecustomer 1` Command](images/DeleteCustomerSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deletecustomer 3` Command](images/DeleteCustomerSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -135,8 +135,10 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` 
+(`XYZ` is a placeholder for the specific command name e.g., `AddDriverCommandParser`) which uses the other classes
+shown above to parse the user command and create a `XYZCommand` object (e.g., `AddDriverCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddDriverCommandParser`, `DeleteDriverCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2122S2-CS2103-F10-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -174,7 +176,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 
-### Add/Delete Driver feature
+### Add/Delete/Edit Driver feature
 
 #### Implementation
 
@@ -183,20 +185,37 @@ to add, remove or view `Driver` objects.
 
 #### Example run-through
 
-(todo: sequence diagram for add/delete/list driver)
-A sample run-through is shown below in the sequence diagram:
+Given below is a successful usage scenario of the commands.
 
+Step 1. The user executes the `adddriver`, `deletedriver` and `editdriver` command in the application to add, delete or 
+edit the driver, which is handled by `Logic#execute`.
+
+Step 2. The command entered is parsed by the `AddressBookParser#parseCommand`.
+
+Step 3. The `adddriver`, `deletedriver` and `editdriver` command will then be parsed by `AddDriverCommandParser#parse`,
+`EditDriverCommandParser#parse` and `DeleteDriverCommandParser#parse` to create a new `AddDriverCommand`,
+`DeleteDriverCommand` and `EditDriverCommand` respectively.
+
+Step 4. The `Logic` component then performs the `Command#execute()` method in the respective commands
+
+Step 5. A new `CommandResult` with the success message is returned to `Logic` and returned as the output.
+
+![AddDriverSequenceDiagram](images/AddDriverSequenceDiagram.png)
 ### List Driver feature
 
 #### Implementation
 
-The list driver feature is a command which inherits from `FindCommand`. It is the basic command 
-to find `Driver` objects which have the status match with the argument in the command.
+The list driver mechanism is faciliated by `Driver` and `DriverStatus`. The latter is an enumeration class to include the possible statuses.
 
-#### Example run-through
+Given below is an example usage scenario and how the list order mechanism behaves at each step.
 
-(todo: sequence diagram for add/delete/list driver)
-A sample run-through is shown below in the sequence diagram:
+Step 1. The user executes the `listdriver free` command in the application to list the free driver.
+The `listdriver` keyword is parsed by the `AddressBookParser#parseCommand` and `ListDriverCommandParser#parse` to create a new `ListDriverCommand` with the provided status.
+
+Step 2. The `Logic` then executes the `ListDriverCommand#execute()`.
+
+Step 3. A new `CommandResult` with the success message is returned to `Logic` and returned as the output, with the orders of `DriverStatus#FREE` being displayed.
+
 
 ### Add Customer feature
 
@@ -368,7 +387,7 @@ Step 5. A new `CommandResult` with the success message is returned to `Logic` an
 
 #### Implementation
 
-The edit order status mechanism is faciliated by `Order` and `OrderStatus`. The latter is an enumeration class to include the possible statuses.
+The edit order status mechanism is facilitated by `Order` and `OrderStatus`. The latter is an enumeration class to include the possible statuses.
 This mechanism also relies on the method `Order#updateStatus()` which updates the status of the given Order.
 
 Given below is an example usage scenario and how the edit order status mechanism behaves at each step.
@@ -388,7 +407,7 @@ Step 4. A new `CommandResult` with the success message is returned to `Logic` an
 
 #### Implementation
 
-The list order mechanism is faciliated by `Order` and `OrderStatus`. The latter is an enumeration class to include the possible statuses.
+The list order mechanism is facilitated by `Order` and `OrderStatus`. The latter is an enumeration class to include the possible statuses.
 
 Given below is an example usage scenario and how the list order mechanism behaves at each step.
 
@@ -403,7 +422,7 @@ Step 3. A new `CommandResult` with the success message is returned to `Logic` an
 
 #### Implementation
 
-The revenue mechanism is faciliated by `Order` and `OrderDeliveredAndFromDatePredicate`. The latter is predicate to include filter the order list to contain only orders
+The revenue mechanism is facilitated by `Order` and `OrderDeliveredAndFromDatePredicate`. The latter is predicate to include filter the order list to contain only orders
 from the current date (determined by date on OS) and with `OrderStatus#DELIVERED`.
 
 Given below is an example usage scenario and how the list order mechanism behaves at each step.
@@ -414,86 +433,6 @@ The `revenue` keyword is parsed by the `AddressBookParser#parseCommand` to creat
 Step 2. The `Logic` then executes the `RevenueCommand#execute()`.
 
 Step 3. A new `CommandResult` with the success message and the revenue of the day is returned to `Logic` and returned as the output.
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -531,11 +470,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |-------| ------------------------------------------ |----------------------------------------------------------------------------------------------------| ---------------------------------------------------------------------- |
 | `* * *` | new user                            | view all the possible commands                                                                     | easily refer to the commands without needing to remember them          |
 | `* * *` | new user                                   | see usage instructions                                                                             | refer to instructions when I forget how to use the App                 |
-| `* * *` | user                                       | add a new person                                                                                   |                                                                        |
-| `* * *` | user                                       | delete a person                                                                                    | remove entries that I no longer need                                   |
-| `* * *` | user                                       | find a person by name                                                                              | locate details of persons without having to go through the entire list |
-| `* * *` | experienced user                           | view a list of previous delivery orders                                                            | review the previous transactions' details in case they're needed (e.g. if the driver accidentally clicks delivered and the task disappears) |
-| `* * *` | experienced user                        | view a list of current delivery orders                                                             | know the details of the delivery orders and respond to them. |
 | `* * *` | basic user                                       | view a list of free drivers                                                                        | assign them to delivery orders
 | `* * *` | basic user                                       | add information of a driver                                                                        |
 | `* * *` | basic user                                       | delete information of a driver                                                                     |
@@ -543,6 +477,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | basic user                                       | delete information of a repeat customer                                                            |
 | `* * *` | basic user                                       | add a new delivery order                                                                           | I can store the information of food, customer and driver.
 | `* * *` | basic user                                       | edit the status of the order (done/ not done, customer not respond, ...)                           | I can keep track of the order status.
+| `* * *` | experienced user                           | view a list of previous delivery orders                                                            | review the previous transactions' details in case they're needed (e.g. if the driver accidentally clicks delivered and the task disappears) |
+| `* * *` | experienced user                        | view a list of current delivery orders                                                             | know the details of the delivery orders and respond to them. |
 | `* *` | experienced user                                       | view my revenue for the day                                                                        | report to the accountant of the company or show my managers the earnings of the delivery orders.               |
 | `* *` | experienced user                                       | undo a previous action                                                                             | deal with mistakes when keying in   
 | `* *` | experienced user                                       | view the delivery orders of a single restaurant (of the chain)                                     | have a better idea of which ones are more popular at the current time              |
@@ -564,8 +500,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`   | user who uses other management tools       | migrate into the platform without major restructuring                                              | transition from one app to another              |
 | `*`   | user with many persons in the address book | sort persons by name                                                                               | locate a person easily                                                 |
 | `*`   | basic user                                       | View the detail of a driver (e.g. number, car plate number, current order)                         | I can contact the drivers in case of emergency
-
-*{More to be added}*
 
 ### Use cases
 
@@ -652,8 +586,118 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1c. Index is unrecognized or out of bounds
     * 1c1. FoodOnWheels shows an error message
 
+      Use case resumes at step 1. 
+  
+**Use case: Add a driver**
+
+**MSS**
+
+1.  User requests to add a driver by providing the required info (name, phone)
+2.  FoodOnWheels adds the driver
+
+    Use case ends
+
+**Extensions**
+
+* 1a. Some fields are missing
+    * 1a1. FoodOnWheels shows an error message
+
+      Use case resumes at step 1.
+* 1b. Add results in a duplicate driver 
+    * 1c1. FoodOnWheels shows an error message
+
       Use case resumes at step 1.
 
+**Use case: Delete a driver**
+
+**MSS**
+
+1.  User requests to delete a driver by providing the required index
+2.  FoodOnWheels deletes the driver
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Index is unrecognized or out of bounds
+    * 1a1. FoodOnWheels shows an error message
+
+      Use case resumes at step 1.
+
+**Use case: Edit a driver**
+
+**MSS**
+
+1.  User requests to edit a driver by providing the index of the driver and fields to change
+2.  FoodOnWheels edits the driver based on the fields provided
+
+    Use case ends
+
+**Extensions**
+
+* 1a. Edit results in a duplicate driver
+    * 1a1. FoodOnWheels shows an error message
+
+      Use case resumes at step 1.
+* 1b. No fields indicated for edit
+    * 1b1. FoodOnWheels shows an error message
+
+      Use case resumes at step 1.
+* 1c. Index is unrecognized or out of bounds
+    * 1c1. FoodOnWheels shows an error message
+
+      Use case resumes at step 1.
+
+* 1d. Edit status to busy or edit busy driver 
+    * 1c1. FoodOnWheels shows an error message
+
+      Use case resumes at step 1.  
+  
+**Use case: List driver**
+
+**MSS**
+
+1. User requests to view a list of current drivers with a given status
+2. FoodOnWheels displays all the drivers based on the given status
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Status is unrecognized
+    * 1a1. FoodOnWheels shows an error message
+
+      Use case resumes at step 1.
+      
+**Use case: Add an order**
+
+**MSS**
+
+1. User requests to add a new order with the provided information
+2. FoodOnWheels creates a new order, adds it and displays the updated order list to the user.
+   
+    Use case ends.
+
+**Extensions**
+
+* 1a. The provided information is invalid or incomplete
+    * 1a1. FoodOnWheels shows an error message with tips on how to correct the error
+    
+        Use case resumes at step 1.
+    
+**Use case: Edit the status of an order**
+
+1. User requests to edit the status of an existing order in the list to a provided status.
+2. FoodOnWheels updates the status of the order and displays the updated order list to the user.
+    
+    Use case ends.
+
+**Extensions**
+
+* 1a. The provided status is unrecognized   
+    * 1a1. FoodOnWheels shows an error messages with tips on how to correct the error    
+        Use case resumes at step 1.     
+      
 **Use case: List orders**
 
 **MSS**
@@ -780,14 +824,57 @@ testers are expected to do more *exploratory* testing.
        Expected: No dish is added since it is a duplicate dish (if a different name is used in step 2, use that name instead) 
        Error details shown in the status message. 
 
-    4. Other incorrect add commands to try: `adddish`, `adddish n/random`, `adddish n/random $/1.0` (where x is larger than the list size)<br>
+    4. Other incorrect add commands to try: `adddish`, `adddish n/random`, `adddish n/random $/1.0` <br>
+       Expected: Similar to previous.
+### Deleting a driver
+
+1. Deleting a driver while all drivers are being shown
+
+    1. Prerequisites: List all drivers using the `listdriver all` command. Multiple driver in the list.
+
+    2. Test case: `deletedriver 1`<br>
+       Expected: First dish is deleted from the list. Details of the deleted driver shown in the status message.
+
+    3. Test case: `deletedriver 0`<br>
+       Expected: No driver is deleted. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `deletedriver`, `deletedriver x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
+### Adding an Order
+1. Adding an order while all orders are being shown
+    1. Prerequisites: 
+        1. List all orders using the `listorder all` command.
+        2. There exists a `Customer` with the phone number 98765432 (example for illustration).
+        3. There exists a free `Driver`. 
+        4. There exists a `Dish` with name Sushi (example for illustration).
+    2. Test case: `addorder p/98765432 d/Sushi` <br>
+        Expected: Order with the `Dish` sushi for the `Customer` with the number 98765432 is created.
+    3. Other incorrect add commands to try: `addorder`, `addorder p/99999999 n/Sushi` (or any number that does not belong to an existing customer), `addorder p/98765432 s/Rock` (or any dish that does not exist in FOW) <br>
+        Expected: No order is added since it is an invalid command. Error details shown in the status message.
 
-### Saving data
 
-1. Dealing with missing/corrupted data files
+## **Appendix: Effort**
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+Given below are explanations for the difficulty level, challenges faced, effort required, and achievements of the FOW project.
 
-1. _{ more test cases …​ }_
+### Dealing with Multiple OOP Entities
+
+* Unlike the AB3 project which focuses on one entity `Person`, FOW focuses on a total of four different entities, which are `Customer`, `Driver`, `Dish` and `Order`, with each of the entity having a similar complexity level to the original `Person` entity.
+    * This can be justified by the fact that all the four entities have almost all the equivalent AB3 `Person` commands implemented. Moreover, they branch out to more commands that were not in the AB3 project.
+    * Furthermore, the last entity `Order` is built on top of the other three entities, as an `Order` contains a `Customer` entity, a `Driver` entity, and many `Dish` entities. Each of the component entities also contain attributes such as `Name`, `Phone`, `Address`, `Price` and more. 
+      Compared to AB3's `Person` entity with attributes like `Name` and `Phone`, FOW constructed another layer of abstraction that facilitates close interaction between meaningful classes.
+    * One particular challenge posed by this elaborated structure is the need to deal with changing attributes.
+      For example, in the AB3 `Person` class, the `Name` and `Phone` objects do not change after the `Person` is created.
+      However, in FOW, due to the nature of food delivery, an `Order` which have significant classes like `Driver` as its attributes can have constantly changing attributes.
+      For instance, a `Driver` needs to be set to `Busy` during a delivery and `Free` afterwards. This leads to more complexity and dependency, and require effective communications between developers to link the different classes together.
+    
+
+* With more entities and commands than the original AB3 project, it also requires more effort to create the relevant testcases, documentations and supporting classes.
+
+### Implementation with Target User and Purpose in mind
+
+* As FoodOnWheels is targeted at restaurant delivery managers, our team implemented it with the aim of easy and efficient management of delivery details in mind. To make FOW more than just a deployable application, more effort has been put in to satisfy the non-technical requirements of our target audience.
+    * Our team implemented clear User Interfaces for all entities to highlight important information for the manager to view, after analysing which attributes of the entities the manager would be the most interested in.
+    
+
