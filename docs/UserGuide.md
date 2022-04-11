@@ -480,6 +480,7 @@ Action | Feature type       | Format, Examples
 **Add** | **Customer**       |`addcustomer n/NAME a/ADDRESS p/PHONE` <br> e.g,`addcustomer n/James Ho a/123, Clementi Rd, 1234665 p/88884444`
 **Delete** | **Customer**       |`deletecustomer INDEX` <br> e.g,`deletecustomer 1`
 **Edit** | **Customer**       |`editcustomer INDEX [n/NAME] [a/ADDRESS] [p/PHONE]`<br> e.g,`editcustomer 1 n/James Ho a/123, Clementi Rd, 1234665 p/99994444`
+**List** | **Customer**       |`listcustomer`
 **Add** | **Driver**         |`adddriver n/NAME p/PHONE` <br> e.g,`adddriver n/John Doe p/98765432`
 **Delete** | **Driver**         |`deletedriver INDEX` <br> e.g,`deletedriver 1`
 **List (all drivers)** | **Driver**         |`listdriver all`
@@ -488,6 +489,7 @@ Action | Feature type       | Format, Examples
 **Add** | **Dish**           | `adddish n/NAME $/PRICE` <br> e.g., `adddish n/Crab Pasta $/15.50`
 **Delete** | **Dish**           | `deletedish INDEX` <br> e.g., `deletedish 1`
 **Edit** | **Dish**           | `editdish INDEX [n/NAME] [$/PRICE]` <br> e.g., `editdish 1 n/Kimchi Fried Rice $/10.00`
+**List** | **Dish**           |`listdish`
 **Add** | **Order**          | `addorder p/PHONE d/DISHES_SEPARATED_BY_COMMA…` <br> e.g., `addorder p/82224567 d/kimchi fried rice, sushi`
 **Edit** | **Order (status)** | `mark INDEX s/STATUS` <br> e.g., `mark 1 s/delivered`
 **Edit** | **Order**          | `editorder INDEX [p/PHONE] [d/DISHES_SEPARATED_BY_COMMA...]` <br> e.g., `editorder 2 p/675827361 d/burger`
