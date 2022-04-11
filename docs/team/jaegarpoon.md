@@ -5,13 +5,7 @@ title: Jaegar's Project Portfolio Page
 
 ## Project: FoodOnWheels
 
-FoodOnWheels (FOW) is a **desktop app for managing delivery orders,
-optimized for use via a Command Line Interface** (CLI) while still having the benefits
-of a Graphical User Interface (GUI).
-If you can type fast, FOW can get your order management tasks done faster
-than traditional GUI apps.
-
-This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+FoodOnWheels is a desktop application used to delivery orders for a restaurant by tracking and providing updates of the status of delivery orders. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 15 kLoC.
 
 Given below are my **contributions to the project**.
 
