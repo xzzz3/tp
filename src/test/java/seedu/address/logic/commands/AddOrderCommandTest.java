@@ -20,7 +20,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.driver.Driver;
-import seedu.address.model.item.Person;
 import seedu.address.model.order.Order;
 
 public class AddOrderCommandTest {
@@ -29,35 +28,6 @@ public class AddOrderCommandTest {
     public void constructor_nullOrder_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddOrderCommand(null, null, null));
     }
-
-    /*
-    @Test
-    public void execute_orderAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded();
-        Order validOrder = new OrderBuilder().build();
-
-        String[] dishesInput = new String[validOrder.getDishes().size()];
-        for (int i = 0; i < validOrder.getDishes().size(); i++) {
-            dishesInput[i] = validOrder.getDishes().get(i).toString();
-        }
-
-        ObservableList customerList = FXCollections.observableArrayList();
-        customerList.add(validOrder.getCustomer());
-
-        ObservableList driverList = FXCollections.observableArrayList();
-        driverList.add(new Driver(new NameDriver("Zac"), new PhoneDriver("98765432")));
-
-        ObservableList dishList = FXCollections.observableArrayList();
-        dishList.addAll(validOrder.getDishes());
-
-        CommandResult commandResult =
-                new AddOrderCommand(validOrder.getCustomerPhone(), dishesInput)
-                        .execute(modelStub, customerList, driverList, dishList);
-
-        // unable to check success message as the time of order creation will have a difference of a few milliseconds
-        assertEquals(Arrays.asList(validOrder), modelStub.ordersAdded);
-    }
-    */
 
     @Test
     public void equals() {
@@ -117,11 +87,6 @@ public class AddOrderCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
-
-        }
-
-        @Override
         public void addDriver(Driver driver) {
             throw new AssertionError("This method should not be called.");
         }
@@ -142,23 +107,13 @@ public class AddOrderCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            return false;
-        }
-
-        @Override
-        public boolean hasDriver(Driver person) {
+        public boolean hasDriver(Driver driver) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void deleteCustomer(Customer target) {
             throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deletePerson(Person target) {
-
         }
 
         @Override
@@ -197,11 +152,6 @@ public class AddOrderCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            return null;
-        }
-
-        @Override
         public ObservableList<Customer> getFilteredCustomerList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -219,11 +169,6 @@ public class AddOrderCommandTest {
         @Override
         public void updateFilteredCustomerList(Predicate<Customer> predicate) {
             throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-
         }
 
         @Override

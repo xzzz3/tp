@@ -11,7 +11,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.driver.Driver;
-import seedu.address.model.item.Person;
 import seedu.address.model.order.Order;
 
 /**
@@ -36,8 +35,8 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of customers */
     ObservableList<Customer> getFilteredCustomerList();
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the filtered list of drivers */
     ObservableList<Driver> getFilteredDriverList();
 
     /** Returns an unmodifiable view of the filtered list of dishes */

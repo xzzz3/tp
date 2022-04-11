@@ -7,10 +7,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.dish.NameDish;
 import seedu.address.model.dish.PriceDish;
-import seedu.address.model.item.Person;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Dish}.
  */
 class JsonAdaptedDish {
 

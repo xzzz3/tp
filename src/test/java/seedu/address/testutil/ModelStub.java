@@ -11,7 +11,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.driver.Driver;
-import seedu.address.model.item.Person;
 import seedu.address.model.order.Order;
 
 /**
@@ -54,11 +53,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void addPerson(Person person) {
-
-    }
-
-    @Override
     public void addDriver(Driver driver) {
         throw new AssertionError("This method should not be called.");
     }
@@ -79,23 +73,13 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        return false;
-    }
-
-    @Override
-    public boolean hasDriver(Driver person) {
+    public boolean hasDriver(Driver driver) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public void deleteCustomer(Customer target) {
         throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-
     }
 
     @Override
@@ -134,11 +118,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return null;
-    }
-
-    @Override
     public ObservableList<Customer> getFilteredCustomerList() {
         throw new AssertionError("This method should not be called.");
     }
@@ -156,11 +135,6 @@ public class ModelStub implements Model {
     @Override
     public void updateFilteredCustomerList(Predicate<Customer> predicate) {
         throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-
     }
 
     @Override
