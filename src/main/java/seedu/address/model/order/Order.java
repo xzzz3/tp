@@ -32,16 +32,23 @@ public class Order {
     /**
      * Every field must be present and not null.
      */
-    public Order(Customer customer, Driver driver, LocalDateTime time, int orderNumber, Dish ... orderedDishes) {
+    public Order(Customer customer, Driver driver, LocalDateTime time, OrderStatus status,
+                 int orderNumber, Dish ... orderedDishes) {
         requireAllNonNull(customer, orderedDishes);
         this.customer = customer;
         this.driver = driver;
-        driver.setStatus(DriverStatus.BUSY);
+        if (status.toString().equalsIgnoreCase("IN_PROGRESS")) {
+            driver.setStatus(DriverStatus.BUSY);
+        }
         this.dishes = new ArrayList<Dish>();
         this.dishes.addAll(Arrays.asList(orderedDishes));
         this.time = time;
         this.orderNumber = orderNumber;
-        this.status = OrderStatus.IN_PROGRESS;
+        this.status = status;
+    }
+
+    public Order(Customer customer, Driver driver, LocalDateTime time, int orderNumber, Dish ... orderedDishes) {
+        this(customer, driver, time, OrderStatus.IN_PROGRESS, orderNumber, orderedDishes);
     }
 
     public Order(Customer customer, Driver driver, Dish ... orderedDishes) {
@@ -50,6 +57,10 @@ public class Order {
 
     public Order(Customer customer, Driver driver, LocalDateTime time, Dish ... orderedDishes) {
         this(customer, driver, time, nextOrderNumber++, orderedDishes);
+    }
+
+    public Order(Customer customer, Driver driver, LocalDateTime time, OrderStatus status, Dish ... orderedDishes) {
+        this(customer, driver, time, status, nextOrderNumber++, orderedDishes);
     }
 
     public Customer getCustomer() {

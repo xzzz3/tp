@@ -197,6 +197,8 @@ Sample screenshot:
 
 Adds a driver to the database.
 
+Note: Drivers should not have the same phone number as an existing customer as phone numbers are unique in FOW.
+
 Format: ` adddriver n/NAME p/PHONE`
 
 Examples:

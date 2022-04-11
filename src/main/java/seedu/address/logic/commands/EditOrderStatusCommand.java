@@ -14,6 +14,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.driver.Driver;
 import seedu.address.model.driver.DriverStatus;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderStatus;
@@ -82,9 +83,14 @@ public class EditOrderStatusCommand extends Command {
         if (status.equalsIgnoreCase("in progress")
                 && (oldStatus.toString().equalsIgnoreCase("delivered")
                 || oldStatus.toString().equalsIgnoreCase("cancelled"))) {
-            if (orderToEdit.getDriver().isBusy()) {
-                editedOrder = editedOrder.updateStatus(oldStatus.name());
-                throw new CommandException(MESSAGE_DRIVER_BUSY);
+            for (Driver driver : model.getFilteredDriverList()) {
+                if (driver.getName().equals(orderToEdit.getDriver().getName())) {
+                    if (driver.isBusy()) {
+                        editedOrder = editedOrder.updateStatus(oldStatus.name());
+                        throw new CommandException(MESSAGE_DRIVER_BUSY);
+                    }
+                    break;
+                }
             }
             editedOrder.getDriver().setStatus(DriverStatus.BUSY);
             model.setDriver(editedOrder.getDriver(), orderToEdit.getDriver());
