@@ -174,6 +174,9 @@ Examples:
 * `editcustomer 3 p/81234567 a/Sentosa Cove`
 * `editcustomer 2 n/John Doe p/81234567`
 
+Note: If a customer was previously added into an order, the edit will not affect the customer snapshot captured in the order.
+This is because it will affect previous records, which is an unwanted situation.
+
 Sample screenshot:
 
 <img src="images/editcustomer.png">
@@ -259,6 +262,9 @@ Examples:
 * `editdriver 2 p/99998888`
 * `editdriver 2 s/absent`
 
+Note: If a driver was previously added into an order, the edit will not affect the driver snapshot captured in the order.
+This is because it will affect previous records, which is an unwanted situation.
+
 Sample screenshot:
 
 <img src="images/editdriver.png" >
@@ -303,6 +309,9 @@ Examples:
 * `editdish 1 n/Kimchi Fried Rice`
 * `editdish 2 $/10.00`
 * `editdish 2 n/Limchi Fried Rice $/10.00`
+
+Note: If a dish was previously added into an order, the edit will not affect the dish snapshot captured in the order.
+This is because it will affect previous records, which is an unwanted situation.
 
 Sample screenshot:
 
