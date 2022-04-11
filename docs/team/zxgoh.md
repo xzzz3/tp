@@ -12,12 +12,16 @@ written in Java, and has about 15 kLoC.
 Given below are my contributions to the project.
 
 * **New Feature**:
-  * Customer oriented commands, `addcustomer` , `deletecustomer` and `editcustomer`
-  * `addcustomer` allows restaurants to store information of customers and display it on the application interface
-  * `deletecustomer` removes the customer from the database via indexing
-  * `editcustomer` provides the option to amend  information of existing customers, such as name, phone number 
+  * Model & Logic
+    * Customer oriented commands, `addcustomer` , `deletecustomer` and `editcustomer`
+    * `addcustomer` allows restaurants to store information of customers and display it on the application interface
+    * `deletecustomer` removes the customer from the database via indexing
+    * `editcustomer` provides the option to amend  information of existing customers, such as name, phone number 
     and/or address
-  * Implemented checks to detect repeated inputs, such as phone number
+    * Implemented checks to detect repeated inputs, such as phone number
+    * Added tests for customers (adapted from `Person` test cases)
+  * UI:
+    * Implemented a clear UI for `Customer`
 
   
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=zxgoh&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-02-18)

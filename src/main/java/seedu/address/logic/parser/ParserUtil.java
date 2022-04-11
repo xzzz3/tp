@@ -2,15 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.customer.AddressCustomer;
-import seedu.address.model.customer.EmailCustomer;
 import seedu.address.model.customer.NameCustomer;
 import seedu.address.model.customer.PhoneCustomer;
 import seedu.address.model.dish.NameDish;
@@ -18,8 +13,6 @@ import seedu.address.model.dish.PriceDish;
 import seedu.address.model.driver.DriverStatus;
 import seedu.address.model.driver.NameDriver;
 import seedu.address.model.driver.PhoneDriver;
-import seedu.address.model.item.Name;
-import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -58,7 +51,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String name} into a {@code NameDish}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
@@ -67,7 +60,7 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!NameDish.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(NameDish.MESSAGE_CONSTRAINTS);
         }
         return new NameDish(trimmedName);
     }
@@ -152,21 +145,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code EmailCustomer}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code email} is invalid.
-     */
-    public static EmailCustomer parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!EmailCustomer.isValidEmail(trimmedEmail)) {
-            throw new ParseException(EmailCustomer.MESSAGE_CONSTRAINTS);
-        }
-        return new EmailCustomer(trimmedEmail);
-    }
-
-    /**
      * Parses a {@code String price} into a {@code PriceDish}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -179,32 +157,5 @@ public class ParserUtil {
             throw new ParseException(PriceDish.MESSAGE_CONSTRAINTS);
         }
         return new PriceDish(trimmedPrice);
-    }
-
-    /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
     }
 }

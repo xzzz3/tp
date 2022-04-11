@@ -1,9 +1,5 @@
 package seedu.address.model.util;
 
-import java.util.Arrays;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.customer.AddressCustomer;
@@ -18,7 +14,6 @@ import seedu.address.model.driver.DriverStatus;
 import seedu.address.model.driver.NameDriver;
 import seedu.address.model.driver.PhoneDriver;
 import seedu.address.model.order.Order;
-import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -78,15 +73,6 @@ public class SampleDataUtil {
                 sampleAb.getDishList().get(0), sampleAb.getDishList().get(5)));
         sampleAb.getOrderList().get(2).updateStatus("cancelled");
         return sampleAb;
-    }
-
-    /**
-     * Returns a tag set containing the list of strings given.
-     */
-    public static Set<Tag> getTagSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
     }
 
 }
