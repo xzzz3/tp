@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.customer.Customer;
 import seedu.address.model.driver.exception.DriverNotFoundException;
 import seedu.address.model.driver.exception.DuplicateDriverException;
 
@@ -22,6 +23,16 @@ public class UniqueDriverList implements Iterable<Driver> {
     public boolean contains(Driver toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameDriver);
+    }
+
+
+    /**
+     * Returns true if the list contains an equivalent customer as the given argument.
+     */
+    public boolean containsExcludeCurrentDriver(Driver toRemove, Driver toCheck) {
+        requireNonNull(toRemove);
+        requireNonNull(toCheck);
+        return internalList.stream().filter(x -> !x.isCurrentDriver(toRemove)).anyMatch(toCheck::isSameDriver);
     }
 
     /**

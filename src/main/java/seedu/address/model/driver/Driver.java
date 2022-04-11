@@ -4,6 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.customer.Customer;
+
 /**
  * Represents a Driver in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -67,7 +69,19 @@ public class Driver {
                 || otherDriver.getPhone().equals((getPhone())));
     }
 
+    /**
+     * Returns true if both customers have the same nameCustomer and phoneCustomer.
+     * This defines a notion of equality or duplication between two customers.
+     */
+    public boolean isCurrentDriver(Driver otherDriver) {
+        if (otherDriver == this) {
+            return true;
+        }
 
+        return otherDriver != null
+                && (otherDriver.getName().equals(getName())
+                && otherDriver.getPhone().equals(getPhone()));
+    }
 
     @Override
     public boolean equals(Object other) {

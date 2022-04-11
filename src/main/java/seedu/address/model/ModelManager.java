@@ -110,6 +110,13 @@ public class ModelManager implements Model {
         return addressBook.hasRepeatedNameOrPhone(toRemove, toCheck);
     }
 
+    @Override
+    public boolean hasRepeatedNameOrPhoneDriver(Driver toRemove, Driver toCheck) {
+        requireNonNull(toRemove);
+        requireNonNull(toCheck);
+        return addressBook.hasRepeatedNameOrPhoneDriver(toRemove, toCheck);
+    }
+
 
 
     @Override
