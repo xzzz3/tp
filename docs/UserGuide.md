@@ -54,6 +54,7 @@ folder).
    command changes the tab to `Dishes`, likewise for others). The available and 
    detailed usage of each command can be found in [Features](#2-features).
    2. Sample screenshot for the tabs can be found here (`Customers` selected):
+   
    <img src="images/tabdisplay.png" width=80%>
    
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -199,7 +200,7 @@ Adds a driver to the database.
 
 Note: Drivers should not have the same phone number as an existing customer as phone numbers are unique in FOW.
 
-Format: ` adddriver n/NAME p/PHONE`
+Format: `adddriver n/NAME p/PHONE`
 
 Examples:
 * `adddriver n/John Doe p/98765432 `
@@ -481,6 +482,7 @@ Action | Feature type       | Format, Examples
 **Edit** | **Driver**         |``editdriver INDEX [n/NAME] [p/PHONE] [s/STATUS]``<br> e.g,`editdriver 3 s/absent`
 **Add** | **Dish**           | `adddish n/NAME $/PRICE` <br> e.g., `adddish n/Crab Pasta $/15.50`
 **Delete** | **Dish**           | `deletedish INDEX` <br> e.g., `deletedish 1`
+**Edit** | **Dish**           | `editdish INDEX [n/NAME] [$/PRICE]` <br> e.g., `editdish 1 n/Kimchi Fried Rice $/10.00`
 **Add** | **Order**          | `addorder p/PHONE d/DISHES_SEPARATED_BY_COMMA…` <br> e.g., `addorder p/82224567 d/kimchi fried rice, sushi`
 **Edit** | **Order (status)** | `mark INDEX s/STATUS` <br> e.g., `mark 1 s/delivered`
 **Edit** | **Order**          | `editorder INDEX [p/PHONE] [d/DISHES_SEPARATED_BY_COMMA...]` <br> e.g., `editorder 2 p/675827361 d/burger`
