@@ -22,7 +22,6 @@ title: Developer Guide
    4.8 [Edit Order Status](#edit-order-status-feature)  
    4.9 [List Order](#list-order-feature)  
    4.10 [Revenue](#revenue-feature)  
-   4.11 [[Proposed] Undo/redo](#proposed-undoredo-feature)   
 5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)  
 6. [Appendix: Requirements](#appendix-requirements) 
 7. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)   
